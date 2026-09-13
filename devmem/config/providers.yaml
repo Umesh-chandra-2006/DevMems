@@ -1,0 +1,35 @@
+# devmem/config/providers.yaml
+# LLM Provider Configuration for DevMem-Agents Fallback Router
+providers:
+  - name: groq
+    priority: 1
+    models:
+      fast: "llama-3.1-8b-instant"      # High daily quota (14,400 RPD), used for Stage 2 scoring
+      strong: "llama-3.3-70b-versatile" # Lower daily quota (1,000 RPD), used for Stage 3/4
+    keys:
+      - env: GROQ_KEY_1
+      - env: GROQ_KEY_2
+      - env: GROQ_KEY_3
+    daily_limit_fast: 14400
+    daily_limit_strong: 1000
+
+  - name: gemini
+    priority: 2
+    models:
+      fast: "gemini-1.5-flash"          # 1,500 RPD free tier quota
+      strong: "gemini-1.5-flash"         # 1,500 RPD free tier quota
+    keys:
+      - env: GEMINI_KEY_1
+      - env: GEMINI_KEY_2
+    daily_limit_fast: 1500
+    daily_limit_strong: 1500
+
+  - name: nemotron
+    priority: 3
+    models:
+      fast: "nvidia/nemotron-mini-4b-instruct" # Fast tier
+      strong: "nvidia/nemotron-4-340b-instruct" # 340B parameter strong tier
+    keys:
+      - env: NIM_KEY_1
+    daily_limit_fast: 5000
+    daily_limit_strong: 40
