@@ -12,15 +12,25 @@ from global_methods import *
 from persona.prompt_template.gpt_structure import *
 from persona.prompt_template.run_gpt_prompt import *
 
+from utils import MEMORY_MODE
+
 def generate_poig_score(persona, event_type, description): 
   if "is idle" in description: 
     return 1
 
+  # DevMem Integration Point (technical_implementation_plan.md Section 4):
+  # Toggle between baseline flat memory and staged developmental memory architecture.
+  if MEMORY_MODE == "staged":
+    # Scaffolded for Phase 3+: currently falls through to baseline behavior during Phase 2
+    pass
+
   if event_type == "event": 
-    return run_gpt_prompt_event_poignancy(persona, description)[0]
+    res = run_gpt_prompt_event_poignancy(persona, description)
+    return res[0] if (res and res[0] is not None) else 1
   elif event_type == "chat": 
-    return run_gpt_prompt_chat_poignancy(persona, 
-                           persona.scratch.act_description)[0]
+    res = run_gpt_prompt_chat_poignancy(persona, 
+                           persona.scratch.act_description)
+    return res[0] if (res and res[0] is not None) else 1
 
 def perceive(persona, maze): 
   """

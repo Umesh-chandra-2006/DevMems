@@ -1,0 +1,261 @@
+{
+  "vision_r": 8,
+  "att_bandwidth": 8,
+  "retention": 8,
+  "curr_time": "February 13, 2023, 00:00:10",
+  "curr_tile": [
+    127,
+    46
+  ],
+  "daily_plan_req": "Klaus Mueller goes to the library at Oak Hill College early in the morning, spends his days writing, and eats at Hobbs Cafe.",
+  "name": "Klaus Mueller",
+  "first_name": "Klaus",
+  "last_name": "Mueller",
+  "age": 20,
+  "innate": "kind, inquisitive, passionate",
+  "learned": "Klaus Mueller is a student at Oak Hill College studying sociology. He is passionate about social justice and loves to explore different perspectives.",
+  "currently": "Klaus Mueller is writing a research paper on the effects of gentrification in low-income communities.",
+  "lifestyle": "Klaus Mueller goes to bed around 11pm, awakes up around 7am, eats dinner around 5pm.",
+  "living_area": "the Ville:Dorm for Oak Hill College:Klaus Mueller's room",
+  "concept_forget": 100,
+  "daily_reflection_time": 180,
+  "daily_reflection_size": 5,
+  "overlap_reflect_th": 4,
+  "kw_strg_event_reflect_th": 10,
+  "kw_strg_thought_reflect_th": 9,
+  "recency_w": 1,
+  "relevance_w": 1,
+  "importance_w": 1,
+  "recency_decay": 0.99,
+  "importance_trigger_max": 150,
+  "importance_trigger_curr": 143,
+  "importance_ele_n": 6,
+  "thought_count": 5,
+  "daily_req": [
+    "wake up and complete the morning routine at 7:00 am"
+  ],
+  "f_daily_schedule": [
+    [
+      "sleeping",
+      420
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (opening his laptop and checking his research outline)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (reviewing the literature notes)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (drafting the introduction paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (writing the thesis statement)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (outlining the main arguments)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (researching a recent study on gentrification)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (taking notes from the study)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (integrating the study into his outline)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (drafting the first body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (revising the first body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (drafting the second body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (revising the second body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (drafting the third body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (revising the third body paragraph)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (writing the conclusion)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (reviewing the conclusion)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (checking citations and bibliography)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (formatting the paper according to APA style)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (proofreading for grammar errors)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (taking a short break and stretching)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (reviewing the entire paper for coherence)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (making final edits)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (saving the document and backing up)",
+      5
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED (closing his laptop and preparing to leave)",
+      5
+    ],
+    [
+      "[Monday February 13 -- 12:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      180
+    ],
+    [
+      "[(ID:DggX2u) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      120
+    ],
+    [
+      "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      180
+    ],
+    [
+      "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      120
+    ],
+    [
+      "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "sleeping",
+      0
+    ]
+  ],
+  "f_daily_schedule_hourly_org": [
+    [
+      "sleeping",
+      420
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      120
+    ],
+    [
+      "[Monday February 13 -- 12:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      180
+    ],
+    [
+      "[(ID:DggX2u) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      120
+    ],
+    [
+      "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      180
+    ],
+    [
+      "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ],
+    [
+      "TOKEN LIMIT EXCEEDED",
+      120
+    ],
+    [
+      "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping",
+      60
+    ]
+  ],
+  "act_address": "the Ville:Dorm for Oak Hill College:Klaus Mueller's room:desk",
+  "act_start_time": "February 13, 2023, 00:00:00",
+  "act_duration": 420,
+  "act_description": "sleeping",
+  "act_pronunciatio": "\ud83d\udca4",
+  "act_event": [
+    "Klaus Mueller",
+    "Klaus Mueller",
+    "is"
+  ],
+  "act_obj_description": "idle",
+  "act_obj_pronunciatio": "\ud83d\ude34\ud83d\udca4",
+  "act_obj_event": [
+    "desk",
+    "desk",
+    "is"
+  ],
+  "chatting_with": null,
+  "chat": null,
+  "chatting_with_buffer": {},
+  "chatting_end_time": null,
+  "act_path_set": true,
+  "planned_path": [
+    [
+      129,
+      46
+    ],
+    [
+      130,
+      46
+    ],
+    [
+      131,
+      46
+    ]
+  ]
+}

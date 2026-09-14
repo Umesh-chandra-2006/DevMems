@@ -97,6 +97,8 @@ def call_llm(
     config_path: str = CONFIG_FILE_PATH,
     db_path: str = DEFAULT_DB_PATH,
     return_obj: bool = False,
+    system_prompt: Optional[str] = None,
+    temperature: Optional[float] = None,
 ) -> Union[str, ProviderResponse]:
     """
     Route an LLM call across configured providers and keys.
@@ -142,7 +144,14 @@ def call_llm(
             # Attempt provider request
             try:
                 logger.debug("Attempting call to provider=%s model=%s key=%s", p_name, model, key_env_var)
-                response = send_request(provider_name=p_name, model=model, api_key=api_key, prompt=prompt)
+                response = send_request(
+                    provider_name=p_name,
+                    model=model,
+                    api_key=api_key,
+                    prompt=prompt,
+                    system_prompt=system_prompt,
+                    temperature=temperature,
+                )
 
                 # Successful request: update usage and call ledger
                 increment_usage(p_name, key_env_var, date_str=today, count=1, db_path=db_path)
@@ -160,8 +169,19 @@ def call_llm(
                 return response if return_obj else response.text
 
             except RateLimitError as rle:
-                logger.warning("Rate limit hit on %s (%s): %s. Marking exhausted and rotating.", p_name, key_env_var, rle)
-                mark_key_exhausted(p_name, key_env_var, date_str=today, db_path=db_path)
+                rle_str = str(rle).lower()
+                is_daily = (
+                    "requests per day" in rle_str or
+                    "rpd" in rle_str or
+                    "daily_limit" in rle_str or
+                    "daily quota" in rle_str or
+                    "per-day" in rle_str
+                )
+                if is_daily:
+                    logger.warning("Daily quota exhausted on %s (%s): %s. Marking exhausted.", p_name, key_env_var, rle)
+                    mark_key_exhausted(p_name, key_env_var, date_str=today, db_path=db_path)
+                else:
+                    logger.warning("Per-minute rate limit hit on %s (%s): %s. Rotating to next key/provider.", p_name, key_env_var, rle)
                 continue
 
             except ProviderError as pe:
