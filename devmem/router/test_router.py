@@ -148,7 +148,7 @@ class TestRouterRotationAndFallback(unittest.TestCase):
     def test_429_rate_limit_marks_exhausted_and_fails_over(self, mock_send):
         """Verify dynamic 429 marks key exhausted and immediately rotates to next key."""
         mock_send.side_effect = [
-            RateLimitError("429 Too Many Requests"),
+            RateLimitError("429 Too Many Requests: daily_limit reached"),
             ProviderResponse(text="Success from Key 2", tokens_in=12, tokens_out=6),
         ]
 
