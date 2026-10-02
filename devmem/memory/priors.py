@@ -139,7 +139,7 @@ def inject_into_baseline(
     agent_id: str,
     persona: Any,
     created_time: Optional[datetime] = None,
-    mode: str = "bundled",
+    mode: str = "atomic",
     personas_dir: Optional[Union[str, Path]] = None,
 ) -> Any:
     """
@@ -147,16 +147,21 @@ def inject_into_baseline(
     original upstream memory structure (AssociativeMemory) so baseline agents start with
     the same personality grounding as staged-condition agents.
 
+    Plan Amendment:
+        Default mode is 'atomic' (one ConceptNode per prior statement) rather than 'bundled'.
+        Rationale: Bundled embeddings dilute cosine similarity against specific situational
+        focal points, which would handicap the baseline condition during retrieval.
+
     Args:
         agent_id: Identifier of the agent.
         persona: Upstream Persona instance (or object with .a_mem: AssociativeMemory).
         created_time: Timestamp for memory creation. Defaults to persona.scratch.curr_time or 2023-02-13 00:00:00.
-        mode: Injection format mode ("bundled" for single combined thought, "atomic" for individual thoughts).
-              Currently surfaces as a Decision Checkpoint.
+        mode: Injection format mode ("atomic" for individual thoughts, "bundled" for single combined thought).
+              Default is "atomic".
         personas_dir: Optional path to personas config directory.
 
     Returns:
-        The created ConceptNode instance (if bundled) or list of ConceptNode instances (if atomic).
+        List of ConceptNode instances (if atomic) or the created ConceptNode instance (if bundled).
     """
     priors = load_priors(agent_id, personas_dir=personas_dir)
 

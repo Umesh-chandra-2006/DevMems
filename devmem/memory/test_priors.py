@@ -169,9 +169,10 @@ class TestPriorsModule(unittest.TestCase):
         self.assertIn(node.description, persona.a_mem.embeddings)
 
     def test_inject_into_baseline_atomic(self):
-        """Verify inject_into_baseline with mode='atomic' creates individual thought nodes per prior."""
+        """Verify inject_into_baseline default mode is 'atomic' creating individual thought nodes per prior."""
         persona = MockPersona(name="Klaus Mueller")
-        nodes = inject_into_baseline("Klaus Mueller", persona, mode="atomic")
+        # Test default mode (should be atomic per approved plan amendment)
+        nodes = inject_into_baseline("Klaus Mueller", persona)
 
         priors = load_priors("Klaus Mueller")
         self.assertEqual(len(nodes), len(priors))
@@ -182,6 +183,48 @@ class TestPriorsModule(unittest.TestCase):
             self.assertIn("Klaus Mueller:", node.description)
             self.assertIn(node.description, persona.a_mem.embeddings)
             self.assertEqual(persona.a_mem.id_to_node[node.node_id], node)
+
+    def test_inject_into_baseline_real_associative_memory(self):
+        """Integration test: verify injection and retrieval against real upstream AssociativeMemory."""
+        import sys
+        backend_dir = Path(__file__).resolve().parent.parent.parent / "reverie" / "reverie" / "backend_server"
+        if str(backend_dir) not in sys.path:
+            sys.path.insert(0, str(backend_dir))
+
+        from persona.persona import Persona
+        from persona.cognitive_modules.retrieve import new_retrieve
+        from persona.memory_structures.associative_memory import ConceptNode
+
+        storage_persona_dir = (
+            Path(__file__).resolve().parent.parent.parent
+            / "reverie"
+            / "environment"
+            / "frontend_server"
+            / "storage"
+            / "base_the_ville_isabella_maria_klaus"
+            / "personas"
+            / "Isabella Rodriguez"
+        )
+        if not storage_persona_dir.exists():
+            self.skipTest(f"Bootstrap storage directory not found: {storage_persona_dir}")
+
+        real_persona = Persona("Isabella Rodriguez", str(storage_persona_dir))
+        initial_thought_count = len(real_persona.a_mem.seq_thought)
+
+        injected_nodes = inject_into_baseline("Isabella Rodriguez", real_persona, mode="atomic")
+        self.assertEqual(len(injected_nodes), 6)
+        self.assertEqual(len(real_persona.a_mem.seq_thought), initial_thought_count + 6)
+        self.assertIsInstance(injected_nodes[0], ConceptNode)
+
+        # Confirm retrieval through real new_retrieve
+        focal_pts = ["Isabella has a disagreement and potential confrontation with a neighbour"]
+        retrieved = new_retrieve(real_persona, focal_pts, n_count=5)
+        self.assertIn(focal_pts[0], retrieved)
+        retrieved_descriptions = [node.description for node in retrieved[focal_pts[0]]]
+        self.assertTrue(
+            any("Isabella Rodriguez:" in desc for desc in retrieved_descriptions),
+            "Expected at least one injected personality prior in retrieved memories",
+        )
 
     def test_inject_into_baseline_invalid_persona_raises(self):
         """Verify passing an object without a_mem raises AttributeError."""
@@ -194,3 +237,4 @@ class TestPriorsModule(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
