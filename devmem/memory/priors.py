@@ -198,6 +198,14 @@ def inject_into_baseline(
 
     agent_name = getattr(persona, "name", agent_id)
 
+    # Idempotency check: if priors were already injected, do not create duplicate nodes
+    existing_prior_nodes = [
+        n for n in a_mem.seq_thought
+        if getattr(n, "predicate", "") == "has personality trait"
+    ]
+    if existing_prior_nodes:
+        return existing_prior_nodes if mode == "atomic" else existing_prior_nodes[0]
+
     if mode == "bundled":
         # Option A: Single combined thought entry
         bundled_desc = f"{agent_name}'s core personality traits: " + " ".join(priors)

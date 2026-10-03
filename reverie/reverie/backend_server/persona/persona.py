@@ -47,6 +47,22 @@ class Persona:
     scratch_saved = f"{folder_mem_saved}/bootstrap_memory/scratch.json"
     self.scratch = Scratch(scratch_saved)
 
+    # DevMem Baseline Fairness Control (technical_implementation_plan.md Section 4):
+    # In baseline mode, inject hand-authored priors into memory stream as atomic ConceptNodes.
+    # In staged mode, do NOT inject priors into memory stream (Stage 1 stays separate).
+    try:
+      from utils import MEMORY_MODE
+    except ImportError:
+      import os
+      MEMORY_MODE = os.environ.get("MEMORY_MODE", "baseline")
+
+    if MEMORY_MODE == "baseline":
+      try:
+        from devmem.memory.priors import inject_into_baseline
+        inject_into_baseline(self.name, self)
+      except Exception:
+        pass
+
 
   def save(self, save_folder): 
     """

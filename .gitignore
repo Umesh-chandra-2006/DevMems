@@ -14,6 +14,8 @@ __pycache__/
 
 # Local SQLite databases (runtime state)
 *.sqlite3
+*.db
+devmem/storage/
 devmem/router/usage_log.db
 
 # OS specific

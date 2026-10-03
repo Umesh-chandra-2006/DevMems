@@ -11,7 +11,7 @@ Fork `generative_agents` first, then layer your additions on top rather than rew
 ```
 devmem-agents/
 ├── reverie/                          # forked base repo (environment, perception, action, planning)
-│   ├── backend_server/
+│   ├── reverie/backend_server/      # actual upstream path is reverie/reverie/backend_server/ (kept as upstream lays it out)
 │   │   ├── persona/
 │   │   │   ├── memory_structures/    # ORIGINAL flat memory stream lives here — do not delete, keep for baseline runs
 │   │   │   └── cognitive_modules/    # perceive, plan, execute — reused as-is
@@ -129,6 +129,8 @@ CREATE TABLE key_usage (
 );
 ```
 
+**Pending decision (Phase 4 checkpoint):** run isolation (one memory DB file per simulation run vs. a `sim_code` column) and whether staged episodic entries mirror upstream memory nodes. Do not change this schema until that checkpoint is approved.
+
 ---
 
 ## 3. LLM Router (build this first, week 1)
@@ -174,6 +176,8 @@ providers:
 
 Verify actual current quotas for each provider before locking these numbers, free-tier limits change. Treat the yaml values as configuration, not hardcoded assumptions, so updating them later doesn't touch code.
 
+**Revision note (after Phase 2):** the yaml above is illustrative only. The repo's `devmem/config/providers.yaml` is the source of truth for models, priority order (currently Groq, then NVIDIA NIM, then Gemini) and quotas.
+
 ### 3.2 Router logic (pseudocode)
 
 ```
@@ -203,23 +207,39 @@ function call_llm(prompt, tier, purpose, agent_id, condition):
 4. Add local usage tracking table and pre-emptive limit checks (don't wait for 429)
 5. Load-test with a burst of dummy calls to confirm rotation actually triggers correctly
 
+### 3.4 Rate-limit classification (added after Phase 3 review)
+
+Two different things both arrive as HTTP 429: a transient per-minute limit (requests or tokens), and exhaustion of a daily quota. They need different handling, and the classifier must not depend on one hand-written substring.
+
+1. The local usage ledger remains the first line of defense for daily limits (pre-emptive checks).
+2. On a 429, classify using the provider's actual response: the retry-after value (header or body) and any quota identifiers in the body. Phrases indicating a per-day limit are expected signals, but the exact wording per provider must be taken from real captured payloads, not assumed.
+3. A retry-after longer than a few minutes is treated as daily-style exhaustion until reset; a short one is treated as transient and the key is retried after that delay.
+4. An unclassifiable 429 is treated as transient, with a per-key cooldown that escalates after consecutive 429s (circuit breaker), instead of disabling the key for the whole day.
+5. Tests use fixtures built from real captured payloads from each provider, not invented error strings.
+
 ---
 
 ## 4. Integration Point with the Base Repo
 
-The only place `reverie/` gets touched directly: the original `memory_structures/` and `cognitive_modules/` call sites where the base code (a) computes importance scores and (b) triggers reflection. Both get redirected to your `devmem/memory/` modules instead of the original flat logic.
+`reverie/` (actual path `reverie/reverie/backend_server/`) is touched only at sanctioned points, each reported as such in the relevant phase report:
 
-- Base repo's importance-scoring function call → replaced with a call into `devmem/memory/episodic.py`'s persona-conditioned scorer
-- Base repo's reflection trigger (currently importance-threshold based) → replaced with your sleep-action listener that calls `devmem/memory/consolidation.py`
+1. **LLM call sites** (Phase 2, done): OpenAI calls routed through the devmem router.
+2. **Importance-scoring integration point in `perceive.py`** (scaffolded in Phase 2, wired in Phase 4): event and chat poignancy only, staged mode only.
+3. **Persona initialization** (Phase 4): baseline-mode priors injection, idempotent on reload.
+4. **Reflection replacement and sleep hook** (Phase 5).
+
+Anything else is a deviation and must be reported as one.
 
 Keep the original functions intact but unused (don't delete), so you can toggle between baseline and staged mode with a config flag rather than maintaining two separate codebases. This single toggle is what makes your side-by-side comparison runs trivial to execute.
 
+Revision note: the original snippet here pointed at a scoring function in `spatial_memory.py`, which does not exist in upstream. Upstream scoring lives in the event and chat poignancy prompt functions called from the perceive module (exact names and call sites are confirmed in the Phase 4 report). The branch looks like this:
+
 ```python
-# reverie/backend_server/persona/cognitive_modules/perceive.py (integration point)
-if config.MEMORY_MODE == "staged":
-    from devmem.memory.episodic import score_importance_persona_conditioned as score_fn
+# reverie/reverie/backend_server/persona/cognitive_modules/perceive.py (integration point)
+if MEMORY_MODE == "staged":
+    score = devmem.memory.episodic.score_importance_persona_conditioned(agent_id, description, kind)
 else:
-    from persona.memory_structures.spatial_memory import score_importance as score_fn
+    score = <unchanged upstream call>
 ```
 
 ---
@@ -229,31 +249,39 @@ else:
 ```python
 # devmem/memory/priors.py
 
-def load_priors(agent_id: str) -> list[str]:
-    """Load hand-authored priors from config/personas/{agent_id}.yaml"""
+class PersonaNotFoundError(Exception): ...
+class PersonaSchemaError(Exception): ...
+
+def load_priors(agent_id: str, personas_dir=...) -> list[str]:
+    """Load hand-authored priors from config/personas/. Raises PersonaNotFoundError
+    if there is no file for the agent, PersonaSchemaError if the file is malformed."""
     ...
 
-def get_prompt_context(agent_id: str) -> str:
+def get_prompt_context(agent_id: str, personas_dir=...) -> str:
     """Format priors into a block to inject into scoring/planning prompts."""
     priors = load_priors(agent_id)
     return "This agent's core personality traits:\n" + "\n".join(f"- {p}" for p in priors)
 
-def inject_into_baseline(agent_id: str):
-    """Fairness control: write the same priors as a single initial memory
-    stream entry for baseline (flat-memory) condition agents."""
+def inject_into_baseline(agent_id, persona, created_time=None, mode="atomic", personas_dir=...):
+    """Fairness control: write the same priors into the baseline (flat-memory) agent's
+    memory stream as one high-poignancy thought node per prior statement (mode="atomic",
+    the default). mode="bundled" (one combined node) exists but is not used. Must be
+    idempotent: reloading a saved simulation must not create duplicate prior nodes."""
     ...
 ```
 
-Persona files, one per agent, e.g.:
+Persona file schema as delivered (agent_id is the exact upstream persona folder name; category is for traceability to plan.md Section 7 and is not required by the loader):
 ```yaml
-# devmem/config/personas/isabella.yaml
-agent_id: isabella
+# devmem/config/personas/isabella_rodriguez.yaml
+agent_id: "Isabella Rodriguez"
 priors:
-  - "Assumes new people are trustworthy until proven otherwise, opens up quickly."
-  - "Actively seeks out company, feels uncomfortable being alone for long."
-  - "Values harmony above honesty, avoids saying something upsetting even if true."
-  - "Deliberates carefully before acting on anything uncertain."
+  - statement: "Avoids confrontation whenever possible, prefers to smooth over disagreements rather than let them sit."
+    category: conflict_style
+  - statement: "Actively seeks out company and feels uneasy spending long stretches of time alone."
+    category: social_orientation
 ```
+
+**Revision note (after Phase 3 review):** baseline injection was amended from a single bundled entry to atomic entries. In the real-memory retrieval test, the bundled node scored a flat 0.500 relevance for a conflict-related focal point, while atomic nodes surfaced the conflict-relevant priors at 1.000 and 0.803. **Intended asymmetry to disclose:** baseline priors are ordinary memories subject to recency decay and competition in the flat stream; staged priors are permanent.
 
 ---
 
@@ -262,40 +290,25 @@ priors:
 ```python
 # devmem/memory/episodic.py
 
-IMPORTANCE_PROMPT_TEMPLATE = """
-{persona_context}
-{identity_context}
-
-On a scale of 1 to 10, rate how important the following event is
-to this specific agent, given who they are:
-
-Event: "{observation}"
-
-Respond with only a single number.
-"""
-
-def score_importance_persona_conditioned(agent_id: str, observation: str) -> float:
-    persona_context = priors.get_prompt_context(agent_id)
-    identity_context = identity.get_prompt_context(agent_id)  # empty until Stage 4 has graduated entries
-    prompt = IMPORTANCE_PROMPT_TEMPLATE.format(
-        persona_context=persona_context,
-        identity_context=identity_context,
-        observation=observation
-    )
-    response = llm_router.call(prompt, tier="fast", purpose="importance_scoring", agent_id=agent_id)
-    score = parse_float(response)
-
-    if score >= PIVOTAL_THRESHOLD:  # e.g. 9.5+
-        flag_for_pivotal_promotion(agent_id, observation, score)
-
-    return score
+def score_importance_persona_conditioned(agent_id: str, observation: str, kind: str,
+                                         identity_context: str = "") -> int:
+    """kind is "event" or "chat". The staged prompt is the upstream prompt for that kind
+    PLUS the priors block from priors.get_prompt_context(agent_id). Augment, never replace,
+    so the priors block is the only difference between the two conditions.
+    identity_context stays an empty string until Stage 4 exists (Phase 6)."""
+    ...
 
 def log_episodic_memory(agent_id, content, sim_timestamp, sim_day, recency, importance, relevance):
-    """Insert into episodic_memory table with consolidated=False"""
+    """Record the entry with consolidated=False. Storage design (mirror into SQLite vs.
+    extend upstream node vs. SQLite only) is decided at the Phase 4 checkpoint.
+    sim_day = days since the fork's start date (day 1 = start date)."""
     ...
 ```
 
-**Threshold to decide during implementation, not now:** `PIVOTAL_THRESHOLD`. Start high (9.5/10) so pivotal promotion stays genuinely rare, tune after watching real score distributions from a test run.
+Rules:
+- Retrieval (recency + importance + relevance) is unchanged.
+- Thought poignancy (reflection) is untouched in this stage; reflection is replaced in Stage 3.
+- Pivotal-event detection (a score at the top of the scale triggers immediate identity promotion) is Stage 4 work. It was in the original pseudocode here but is deliberately not part of Stage 2 implementation. `PIVOTAL_THRESHOLD` is decided in Phase 6 after watching real score distributions.
 
 ---
 
@@ -433,7 +446,7 @@ Plot calls/tokens per simulated day, baseline vs staged.
 | Baseline running | Forked repo runs end-to-end on Groq instead of OpenAI, produces normal Smallville output |
 | Config toggle works | Flipping `MEMORY_MODE` between `baseline` and `staged` actually changes which scoring function executes |
 | Stage 1 done | Every agent's priors load correctly and appear in the scoring prompt (verify by logging the actual prompt sent) |
-| Stage 2 done | Two agents with different priors witnessing the same scripted event produce different importance scores, verify this explicitly with a test case |
+| Stage 2 done | Two agents with different priors witnessing the same scripted event produce different importance scores, verified with repeated trials (raw scores reported, not a single call) |
 | Stage 3 done | After a full simulated day + sleep, at least one semantic memory exists with correct source references, and `consolidated` flags flipped correctly |
 | Stage 4 done | Manually force a semantic memory to reinforce 3+ days in a test, confirm it graduates and appears in the next scoring prompt |
 | Evaluation harness done | Run baseline and staged side by side for a short test window (2-3 simulated days, 3 agents), confirm all three metrics produce non-trivial output |
@@ -441,9 +454,21 @@ Plot calls/tokens per simulated day, baseline vs staged.
 
 ---
 
-## 11. Things to Verify Once Inside the Actual Repo (not guessable from outside)
+## 11. Open Verification Items
 
-- Exact internal representation of "agent is sleeping" (action string vs. object occupancy event vs. scratch memory field)
-- Exact function signature and call site for the existing importance-scoring logic, so the integration point in Section 4 attaches cleanly
-- Whether the base repo's embedding calls (used for its own relevance scoring) are already wired to an embedding provider you can reuse, or whether you need to add a separate embedding call for Stage 3 clustering
-- Confirm current free-tier daily limits for Groq/Gemini/Nemotron directly from each provider's docs before finalizing `providers.yaml`, these change over time and the plan should not silently rely on stale numbers
+**Resolved:**
+- Upstream path layout is `reverie/reverie/backend_server/` (Phase 0). Keep real paths.
+- Embeddings: Phase 2 replaced the OpenAI embedding call with a cached Gemini embedding model plus a deterministic fallback.
+
+**Still open:**
+- Exact internal representation of "agent is sleeping" (action string vs. object occupancy event vs. scratch memory field). Resolved at the start of Phase 5.
+- Verbatim upstream event and chat poignancy prompts, their call sites, and what persona information they already receive. Phase 4, Task 1.
+- Stage 3 clustering embeddings: reuse the provider-based embedding path (rate-limit and quota cost) or use a local model. Decision checkpoint in Phase 5.
+- Rate-limit classification against real provider payloads (Section 3.4). Raised in the Phase 4 report, fixed in a follow-up task.
+- Free-tier quotas change over time; `providers.yaml` is the source of truth and is re-verified before final experiment runs.
+
+---
+
+## 12. Revision Log
+
+- **Rev 2 (after Phase 3 review):** repository paths corrected (Sections 1, 4); schema pending-decision note (Section 2); provider note and rate-limit classification added (Section 3); Section 4 rewritten with the list of sanctioned touch points and the incorrect scoring snippet removed; Section 5 updated to the delivered module API and persona schema, with atomic baseline injection; Section 6 rewritten to the augment-the-upstream-prompt design with pivotal detection moved to Stage 4; Section 11 updated.

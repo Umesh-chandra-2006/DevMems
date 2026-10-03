@@ -208,13 +208,25 @@ class TestPriorsModule(unittest.TestCase):
         if not storage_persona_dir.exists():
             self.skipTest(f"Bootstrap storage directory not found: {storage_persona_dir}")
 
-        real_persona = Persona("Isabella Rodriguez", str(storage_persona_dir))
-        initial_thought_count = len(real_persona.a_mem.seq_thought)
+        import utils
+        orig = utils.MEMORY_MODE
+        try:
+            # Instantiate in staged mode to isolate direct inject_into_baseline call
+            utils.MEMORY_MODE = "staged"
+            real_persona = Persona("Isabella Rodriguez", str(storage_persona_dir))
+            self.assertEqual(len(real_persona.a_mem.seq_thought), 0)
 
-        injected_nodes = inject_into_baseline("Isabella Rodriguez", real_persona, mode="atomic")
-        self.assertEqual(len(injected_nodes), 6)
-        self.assertEqual(len(real_persona.a_mem.seq_thought), initial_thought_count + 6)
-        self.assertIsInstance(injected_nodes[0], ConceptNode)
+            injected_nodes = inject_into_baseline("Isabella Rodriguez", real_persona, mode="atomic")
+            self.assertEqual(len(injected_nodes), 6)
+            self.assertEqual(len(real_persona.a_mem.seq_thought), 6)
+            self.assertIsInstance(injected_nodes[0], ConceptNode)
+
+            # Idempotency check: second injection call must return existing nodes without duplicating
+            second_call_nodes = inject_into_baseline("Isabella Rodriguez", real_persona, mode="atomic")
+            self.assertEqual(len(second_call_nodes), 6)
+            self.assertEqual(len(real_persona.a_mem.seq_thought), 6)
+        finally:
+            utils.MEMORY_MODE = orig
 
         # Confirm retrieval through real new_retrieve
         focal_pts = ["Isabella has a disagreement and potential confrontation with a neighbour"]

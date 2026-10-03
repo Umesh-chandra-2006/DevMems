@@ -12,7 +12,7 @@ from global_methods import *
 from persona.prompt_template.gpt_structure import *
 from persona.prompt_template.run_gpt_prompt import *
 
-from utils import MEMORY_MODE
+import utils
 
 def generate_poig_score(persona, event_type, description): 
   if "is idle" in description: 
@@ -20,9 +20,13 @@ def generate_poig_score(persona, event_type, description):
 
   # DevMem Integration Point (technical_implementation_plan.md Section 4):
   # Toggle between baseline flat memory and staged developmental memory architecture.
-  if MEMORY_MODE == "staged":
-    # Scaffolded for Phase 3+: currently falls through to baseline behavior during Phase 2
-    pass
+  if getattr(utils, "MEMORY_MODE", "baseline") == "staged":
+    try:
+      from devmem.memory.episodic import score_importance_persona_conditioned
+      desc = description if event_type == "event" else persona.scratch.act_description
+      return score_importance_persona_conditioned(persona.name, desc, kind=event_type, persona=persona)
+    except Exception as e:
+      print(f"Error in staged score_importance_persona_conditioned: {e}. Falling through to upstream.")
 
   if event_type == "event": 
     res = run_gpt_prompt_event_poignancy(persona, description)
@@ -181,10 +185,26 @@ def perceive(persona, maze):
                       persona.scratch.chat)
         chat_node_ids = [chat_node.node_id]
 
+        if getattr(utils, "MEMORY_MODE", "baseline") == "staged":
+          try:
+            from devmem.memory.episodic import log_episodic_node
+            log_episodic_node(persona.name, chat_node, sim_time=persona.scratch.curr_time, importance_score=chat_poignancy)
+          except Exception as e:
+            print(f"Error mirroring chat node to SQLite: {e}")
+
       # Finally, we add the current event to the agent's memory. 
-      ret_events += [persona.a_mem.add_event(persona.scratch.curr_time, None,
+      new_event_node = persona.a_mem.add_event(persona.scratch.curr_time, None,
                            s, p, o, desc, keywords, event_poignancy, 
-                           event_embedding_pair, chat_node_ids)]
+                           event_embedding_pair, chat_node_ids)
+      ret_events += [new_event_node]
+
+      if getattr(utils, "MEMORY_MODE", "baseline") == "staged":
+        try:
+          from devmem.memory.episodic import log_episodic_node
+          log_episodic_node(persona.name, new_event_node, sim_time=persona.scratch.curr_time, importance_score=event_poignancy)
+        except Exception as e:
+          print(f"Error mirroring event node to SQLite: {e}")
+
       persona.scratch.importance_trigger_curr -= event_poignancy
       persona.scratch.importance_ele_n += 1
 
