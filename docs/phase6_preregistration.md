@@ -70,3 +70,31 @@ of counted and self-reinforced nights are reported separately.
   `SAME_DAY_COUNT` = 4 (a design choice, not measured).
 - Token cap: estimated with the router's own `estimate_tokens` heuristic (about 1.35 tokens per word); an estimate, not the
   provider's count; the Stop 3 report quotes ledger tokens as the measured figure.
+
+## 5. Addendum A1 (added after Phase 6 Stop 1 approval, before any Stage 4 code; the sections above are unchanged)
+
+Source: PM verdict on Stop 1. Path B gets the same loop guard as section 3.
+
+- An event scored while an active trait that **matches** it was present in its `identity_context` does not graduate by Path B.
+  "Matches" means: the cosine between the event text and the trait text is >= `REINFORCE_THRESHOLD`.
+- Such an event is recorded as `self_reinforced_pivotal` and its count is reported separately from Path B graduations.
+- With `IDENTITY_FEEDBACK=false` no trait is ever present in a scoring context, so nothing is excluded and the definition is
+  unchanged across the ablation.
+- Both texts are embedded with the run's embedding model; an event whose scoring context is `unknown` (section 3 of the Stop 1
+  design, status `unknown` in `event_scoring_context`) is treated as self-reinforced and counted under `self_reinforced_pivotal`.
+
+## 6. Other approvals recorded with this addendum (from the same verdict)
+
+- `SAME_DAY_COUNT` stays 4. At Stop 3 an offline sensitivity table reports how many entries would graduate by the same-day path
+  at 3, 4 and 5 on the fixture and on Step C data. It is not a retune.
+- `PIVOTAL_THRESHOLD` T = 9 is FROZEN AS PROVISIONAL. It is re-checked exactly once on the Step C Gemini scores with the rule
+  unchanged and the population written down before looking (written below in section 7, before Step C runs). If Step C has fewer
+  than 30 scored events the status is provisional again and the report says so. T is never tuned on Phase 7 events.
+- At Stop 3 the report counts how many Stage 3 merges fell in the 0.80 to 0.85 band, and the number of `unknown` scoring-context rows.
+
+## 7. Step C population for the T re-check (written before Step C runs)
+
+Reference population for the one re-check: every importance score returned by the scoring model during Step C (staged condition,
+Gemini, event and chat texts only) whose text does not contain "is idle" (those are rule-assigned 1 without a model call).
+Rule unchanged (smallest integer T in {8, 9, 10} with fewer than 5 percent of scores reaching it; 10 if none; provisional if fewer
+than 30 scores). It is applied to that population alone, reported next to the frozen T = 9, and not pooled with the earlier 95.
