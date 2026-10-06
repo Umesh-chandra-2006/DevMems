@@ -1,6 +1,8 @@
 # devmem/config/providers.yaml
 # LLM Provider Configuration for DevMem-Agents Fallback Router
 # Verified Free-Tier Limits Supplied from Provider Consoles (Task M1)
+# 2026-10-07: GROQ_KEY_10 to 18 and GEMINI_KEY_8, 10 to 17 verified with one call each (status 200). GROQ_KEY_19 has no value in .env (not verified).
+# GEMINI_KEY_9 returned 403 on chat and embedding and is excluded; GEMINI_KEY_3 and 7 are not chat keys here (3 is embedding-only, 7 returned 403 earlier).
 
 providers:
   - name: groq
@@ -18,6 +20,15 @@ providers:
       - env: GROQ_KEY_7
       - env: GROQ_KEY_8
       - env: GROQ_KEY_9
+      - env: GROQ_KEY_10
+      - env: GROQ_KEY_11
+      - env: GROQ_KEY_12
+      - env: GROQ_KEY_13
+      - env: GROQ_KEY_14
+      - env: GROQ_KEY_15
+      - env: GROQ_KEY_16
+      - env: GROQ_KEY_17
+      - env: GROQ_KEY_18
     rpm: 30
     rpd: 1000
     tpm: 8000
@@ -56,6 +67,15 @@ providers:
       - env: GEMINI_KEY_4
       - env: GEMINI_KEY_5
       - env: GEMINI_KEY_6
+      - env: GEMINI_KEY_8
+      - env: GEMINI_KEY_10
+      - env: GEMINI_KEY_11
+      - env: GEMINI_KEY_12
+      - env: GEMINI_KEY_13
+      - env: GEMINI_KEY_14
+      - env: GEMINI_KEY_15
+      - env: GEMINI_KEY_16
+      - env: GEMINI_KEY_17
     model_limits:
       gemini-3.1-flash-lite:
         rpm: 15

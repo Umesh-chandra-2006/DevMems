@@ -98,5 +98,155 @@
   "key": "NIM_KEY_6",
   "call": "llm max_tokens=5 nemotron",
   "status": 200
+ },
+ {
+  "key": "GROQ_KEY_10",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_11",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_12",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_13",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_14",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_15",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_16",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_17",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_18",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GROQ_KEY_19",
+  "call": "none",
+  "status": "env var not set"
+ },
+ {
+  "key": "GEMINI_KEY_8",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_8",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_9",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_9",
+  "call": "embed gemini-embedding-001",
+  "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_10",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_10",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_11",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_11",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_12",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_12",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_13",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_13",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_14",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_14",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_15",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_15",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_16",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_16",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_17",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_17",
+  "call": "embed gemini-embedding-001",
+  "status": 200
  }
 ]

@@ -6,7 +6,8 @@ model: "gemini-embedding-001"
 # GEMINI_KEY_2 is excluded until the Project Owner fixes it (HTTP 403 on embeddings, Step 0 probe).
 # GEMINI_KEY_3 to GEMINI_KEY_6 are separate projects (different accounts); all verified with 200.
 # GEMINI_KEY_7 returned 403 on both chat and embeddings and is excluded.
-key_envs: ["GEMINI_KEY_1", "GEMINI_KEY_3", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6"]
+key_envs: ["GEMINI_KEY_1", "GEMINI_KEY_3", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6", "GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16", "GEMINI_KEY_17"]
+# 2026-10-07: GEMINI_KEY_8 and 10 to 17 verified for embeddings (HTTP 200); GEMINI_KEY_9 returned 403 and is excluded.
 # Per-key daily request limit enforced pre-emptively from the router ledger (key_usage, composite key
 # {key_env}#{model}); whether a batch counts per request or per text is not yet established.
 rpd_per_key: 1000
