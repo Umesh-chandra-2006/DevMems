@@ -161,6 +161,7 @@ class IdentityBase(tc.StageThreeBase):
         self.db = cons.init_consolidation_db(self.tmp / name / "memory.db")
         identity.init_identity_db(self.db)
         self.persona.__dict__.pop("_devmem_swept_nights", None)
+        self.persona.__dict__.pop("_devmem_sleep_block_start", None)
         identity._PENDING.clear()
         identity._RENDERED.clear()
         self.trait_prompts, self.trait_calls = [], 0

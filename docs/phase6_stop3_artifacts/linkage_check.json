@@ -1,0 +1,196 @@
+{
+ "label": "offline: cached real embeddings, scripted theme labels, zero calls",
+ "settings": [
+  "single_0.78 (what Stop 3 used)",
+  "average_0.82"
+ ],
+ "nights": {
+  "1": {
+   "entries": 3,
+   "themes": {
+    "baking": 3
+   },
+   "min_same_theme_cosine": 0.8515,
+   "max_cross_theme_cosine": null,
+   "settings": {
+    "single_0.78 (what Stop 3 used)": {
+     "clusters": [
+      {
+       "size": 3,
+       "themes": {
+        "baking": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 1,
+     "same_theme_pairs_together": "3 of 3",
+     "cross_theme_pairs_merged": 0
+    },
+    "average_0.82": {
+     "clusters": [
+      {
+       "size": 3,
+       "themes": {
+        "baking": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 1,
+     "same_theme_pairs_together": "3 of 3",
+     "cross_theme_pairs_merged": 0
+    }
+   }
+  },
+  "2": {
+   "entries": 7,
+   "themes": {
+    "baking": 3,
+    "lease": 1,
+    "letters": 3
+   },
+   "min_same_theme_cosine": 0.7956,
+   "max_cross_theme_cosine": 0.8082,
+   "settings": {
+    "single_0.78 (what Stop 3 used)": {
+     "clusters": [
+      {
+       "size": 7,
+       "themes": {
+        "baking": 3,
+        "lease": 1,
+        "letters": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 0,
+     "same_theme_pairs_together": "6 of 6",
+     "cross_theme_pairs_merged": 15
+    },
+    "average_0.82": {
+     "clusters": [
+      {
+       "size": 3,
+       "themes": {
+        "baking": 3
+       }
+      },
+      {
+       "size": 2,
+       "themes": {
+        "letters": 2
+       }
+      },
+      {
+       "size": 1,
+       "themes": {
+        "letters": 1
+       }
+      },
+      {
+       "size": 1,
+       "themes": {
+        "lease": 1
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 1,
+     "same_theme_pairs_together": "4 of 6",
+     "cross_theme_pairs_merged": 0
+    }
+   }
+  },
+  "3": {
+   "entries": 8,
+   "themes": {
+    "cake_negative": 3,
+    "conflict": 5
+   },
+   "min_same_theme_cosine": 0.8009,
+   "max_cross_theme_cosine": 0.7361,
+   "settings": {
+    "single_0.78 (what Stop 3 used)": {
+     "clusters": [
+      {
+       "size": 5,
+       "themes": {
+        "conflict": 5
+       }
+      },
+      {
+       "size": 3,
+       "themes": {
+        "cake_negative": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 2,
+     "summarized_clusters_with_a_single_theme": 2,
+     "same_theme_pairs_together": "13 of 13",
+     "cross_theme_pairs_merged": 0
+    },
+    "average_0.82": {
+     "clusters": [
+      {
+       "size": 5,
+       "themes": {
+        "conflict": 5
+       }
+      },
+      {
+       "size": 3,
+       "themes": {
+        "cake_negative": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 2,
+     "summarized_clusters_with_a_single_theme": 2,
+     "same_theme_pairs_together": "13 of 13",
+     "cross_theme_pairs_merged": 0
+    }
+   }
+  },
+  "4": {
+   "entries": 3,
+   "themes": {
+    "baking": 3
+   },
+   "min_same_theme_cosine": 0.8331,
+   "max_cross_theme_cosine": null,
+   "settings": {
+    "single_0.78 (what Stop 3 used)": {
+     "clusters": [
+      {
+       "size": 3,
+       "themes": {
+        "baking": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 1,
+     "same_theme_pairs_together": "3 of 3",
+     "cross_theme_pairs_merged": 0
+    },
+    "average_0.82": {
+     "clusters": [
+      {
+       "size": 3,
+       "themes": {
+        "baking": 3
+       }
+      }
+     ],
+     "clusters_that_would_be_summarized": 1,
+     "summarized_clusters_with_a_single_theme": 1,
+     "same_theme_pairs_together": "3 of 3",
+     "cross_theme_pairs_merged": 0
+    }
+   }
+  }
+ }
+}

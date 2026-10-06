@@ -310,6 +310,7 @@ def run_identity_step(
     embed_fn: Optional[Callable[[str], Sequence[float]]] = None,
     pinned_model: Optional[str] = None,
     log_dir: Optional[Union[str, Path]] = None,
+    night: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Stage 4 for one agent and one night, after Stage 3's marker exists. Idempotent per (agent, night): a `done`
     identity marker makes a rerun a no-op. All SQLite effects (reinforcement rows, traits, the cap, the marker) commit in ONE
@@ -320,7 +321,7 @@ def run_identity_step(
     embed = embed_fn or consolidation._default_embed
     db = init_identity_db(db_path or episodic.get_db_path())
     out_dir = Path(log_dir) if log_dir else db.parent
-    night = consolidation.night_id(sweep_time, ccfg["night_boundary_hour"])
+    night = night if night is not None else consolidation.night_id(sweep_time, ccfg["night_boundary_hour"])
     t0 = time.time()
     thr = cfg["reinforce_threshold"]
 

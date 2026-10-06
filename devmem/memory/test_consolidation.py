@@ -69,8 +69,10 @@ class TestClustering(unittest.TestCase):
         with self.assertRaises(ValueError):
             cons.cluster_by_similarity(e, 0.9, "complete")
 
-    def test_default_linkage_is_single_in_config(self):
-        self.assertEqual(cons.load_config()["linkage"], "single")
+    def test_frozen_clustering_config_is_average_linkage_at_0_82(self):
+        # frozen for the Phase 7/9 runs (pre-launch P3, docs/phase6_stop3_artifacts/linkage_check.json); the previous setting was single 0.78
+        cfg = cons.load_config()
+        self.assertEqual((cfg["linkage"], cfg["cluster_similarity"]), ("average", 0.82))
 
     def test_mixed_dimensions_refused(self):
         with self.assertRaises(ValueError):
@@ -118,6 +120,7 @@ class StageThreeBase(unittest.TestCase):
         self.persona.scratch.act_description = "sleeping"
         self.llm_calls = []
         self.persona.__dict__.pop("_devmem_swept_nights", None)  # in-memory guard state is per persona object
+        self.persona.__dict__.pop("_devmem_sleep_block_start", None)
 
     def add(self, text, v, hh=9, mm=0, imp=5, day=D1):
         when = datetime.datetime.combine(day, datetime.time(hh, mm))

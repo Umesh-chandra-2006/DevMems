@@ -319,8 +319,11 @@ def run_nightly_sweep(
     embed_fn: Optional[Callable[[str], Sequence[float]]] = None,
     ledger_db: Optional[str] = None,
     log_path: Optional[Union[str, Path]] = None,
+    night: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Consolidate one agent's unconsolidated episodic entries up to `sweep_time`.
+    `night` is the night key; the sleep hook passes the key of the sleep block (see `sleep_block_night`), a final sweep of an awake
+    agent passes a negative key. When omitted it is derived from `sweep_time` as before.
 
     Idempotent per (agent, night): returns {"skipped": ...} if a `done` marker exists (unless force).
     All SQLite effects (semantic rows, consolidated flags, marker) commit in ONE transaction after every
@@ -334,7 +337,7 @@ def run_nightly_sweep(
     if stage4:
         identity.init_identity_db(db)
     log_file = Path(log_path) if log_path else db.parent / "consolidation_log.jsonl"
-    night = night_id(sweep_time, cfg["night_boundary_hour"])
+    night = night if night is not None else night_id(sweep_time, cfg["night_boundary_hour"])
     sim_day = episodic.calculate_sim_day(sweep_time)
     since = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
     t0 = time.time()
@@ -422,7 +425,7 @@ def run_nightly_sweep(
             res["source_contents"] = plan["prompt_entries"]
             res["importance"] = plan["importance"]
             results.append(res)
-        if stage4:  # Phase 6: the per-night record the identity step reads, written in this same transaction
+        if stage4 and night >= 0:  # Phase 6: the per-night record the identity step reads, written in this same transaction (not for final sweeps, negative keys)
             identity.record_consolidation_events(conn, agent, night, results)
         flagged = sorted({e for p in plans for e in p["sources"]})
         if flagged:
@@ -453,17 +456,47 @@ def run_nightly_sweep(
     return record
 
 
+def sleep_block_night(persona: Any, t: datetime, cfg: Dict[str, Any]) -> int:
+    """Night key of the CURRENT SLEEP BLOCK (PM-approved rule, docs/phase6_night_key_checkpoint.md 4.1): `night_id` of the instant the block
+    began, not of the current tick. The block start is remembered on the persona from the first sleeping tick after an awake tick; when
+    it is unknown (the first tick after a reload while asleep) it falls back to the start time of the current action, and to `t` if
+    that is absent or later than `t`. A tick at noon inside a sleep that began at 06:00 therefore stays in the previous night's key
+    instead of claiming the evening night."""
+    start = persona.__dict__.get("_devmem_sleep_block_start")
+    if start is not None and (start > t or t - start >= timedelta(hours=24)):
+        start = None  # a remembered start that is in the future or a day old is stale (no sleep block lasts a day; the awake ticks in between were not seen)
+    if start is None:
+        start = getattr(persona.scratch, "act_start_time", None)
+        if not isinstance(start, datetime) or start > t:
+            start = t
+        persona.__dict__["_devmem_sleep_block_start"] = start
+    return night_id(start, cfg["night_boundary_hour"])
+
+
 def force_sweep(persona: Any, sweep_time: Optional[datetime] = None, **kwargs: Any) -> Dict[str, Any]:
-    """Sweep regardless of any sleep signal (tests and end-of-run). Still idempotent per night unless force=True."""
+    """Sweep regardless of any sleep signal (tests and end-of-run). Still idempotent per night unless force=True.
+    Final-sweep rule (PM-approved, checkpoint 4.3 (i)): a SLEEPING agent is keyed by its sleep block like the hook; an AWAKE agent is
+    consolidated under a separate key namespace (night = minus the simulated day), which can never collide with a real night, and no
+    identity step runs for it (its Stage 3 merges are not counted by Stage 4)."""
     t = sweep_time or persona.scratch.curr_time
-    res = run_nightly_sweep(persona, t, **kwargs)
-    ident = _run_identity_after(persona, t, res, kwargs)
-    if ident is not None:
-        res["identity"] = ident
+    cfg = kwargs.get("config") or load_config()
+    sleeping = is_sleeping(persona.scratch.act_description, cfg["sleep_markers"])
+    night = sleep_block_night(persona, t, cfg) if sleeping else -episodic.calculate_sim_day(t)
+    res = run_nightly_sweep(persona, t, night=night, **kwargs)
+    res["final_sweep_of_awake_agent"] = not sleeping
+    if sleeping:
+        ident = _run_identity_after(persona, t, res, kwargs, night=night)
+        if ident is not None:
+            res["identity"] = ident
+    else:
+        from devmem.memory import identity
+        if identity.stage4_enabled():
+            res["identity"] = {"skipped": "final sweep of an awake agent: no identity step", "night": night}
     return res
 
 
-def _run_identity_after(persona: Any, sweep_time: datetime, res: Dict[str, Any], kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def _run_identity_after(persona: Any, sweep_time: datetime, res: Dict[str, Any], kwargs: Dict[str, Any],
+                        night: Optional[int] = None) -> Optional[Dict[str, Any]]:
     """Phase 6 hook: the Stage 4 step that follows consolidation (None when STAGE4_ENABLED is off)."""
     from devmem.memory import identity
     if not identity.stage4_enabled():
@@ -471,7 +504,7 @@ def _run_identity_after(persona: Any, sweep_time: datetime, res: Dict[str, Any],
     if res.get("status") == "failed":
         return {"skipped": "consolidation failed", "night": res.get("night")}
     return identity.run_identity_step(persona, sweep_time, db_path=kwargs.get("db_path"), embed_fn=kwargs.get("embed_fn"),
-                                      pinned_model=kwargs.get("pinned_model"))
+                                      pinned_model=kwargs.get("pinned_model"), night=night)
 
 
 def maybe_sweep_on_sleep(persona: Any, **kwargs: Any) -> Optional[Dict[str, Any]]:
@@ -481,20 +514,21 @@ def maybe_sweep_on_sleep(persona: Any, **kwargs: Any) -> Optional[Dict[str, Any]
     cfg = kwargs.get("config") or load_config()
     t = persona.scratch.curr_time
     if t is None or not is_sleeping(persona.scratch.act_description, cfg["sleep_markers"]):
+        persona.__dict__.pop("_devmem_sleep_block_start", None)  # awake: the next sleep is a new block
         return None
-    night = night_id(t, cfg["night_boundary_hour"])
+    night = sleep_block_night(persona, t, cfg)
     done = persona.__dict__.setdefault("_devmem_swept_nights", set())
     if night in done:
         return None
     try:
-        res = run_nightly_sweep(persona, t, **kwargs)
+        res = run_nightly_sweep(persona, t, night=night, **kwargs)
     except Exception as exc:
         logger.error("sleep sweep failed for %s: %s", persona.name, exc)
         return {"error": f"{type(exc).__name__}: {exc}"[:200]}
     if "skipped" in res or res.get("status") == "done":
         identity_ok = True
         try:
-            ident = _run_identity_after(persona, t, res, kwargs)
+            ident = _run_identity_after(persona, t, res, kwargs, night=night)
         except Exception as exc:
             logger.error("identity step failed for %s: %s", persona.name, exc)
             res["identity"] = {"error": f"{type(exc).__name__}: {exc}"[:200]}
