@@ -1,0 +1,1849 @@
+{
+ "label": "offline replay of saved live replies through upstream's own code; zero network, zero LLM calls",
+ "variants": [
+  "none",
+  "spaces",
+  "spaces+duration"
+ ],
+ "aggregate": {
+  "gemini-3.1-flash-lite | daily_plan": {
+   "none": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 4,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 2
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 4,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 2
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 4,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 2
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 4,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 2
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 6,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 6,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "gemini-3.1-flash-lite | hourly_schedule": {
+   "none": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 6,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 6,
+     "validator_passed": 6,
+     "valid": 6,
+     "valid_and_clean": 6,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-20b | daily_plan": {
+   "none": {
+    "all": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 5,
+     "validator_passed": 3,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-20b | hourly_schedule": {
+   "none": {
+    "all": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 0,
+     "validator_passed": 0,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  }
+ },
+ "fidelity_variant_none": {
+  "invocations": 17,
+  "identical_to_live": 17,
+  "not_identical": []
+ },
+ "limitation": "no saved reply is 500 characters long: replies are full length",
+ "results": [
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm",
+    "take a quick lunch break at 12:00 pm",
+    "work at the counter from 12:30 pm to 5:00 pm",
+    "source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm",
+    "invite customers to the event while working at the counter from 6:30 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm",
+    "take a quick lunch break at 12:00 pm",
+    "work at the counter from 12:30 pm to 5:00 pm",
+    "source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm",
+    "invite customers to the event while working at the counter from 6:30 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm",
+    "take a quick lunch break at 12:00 pm",
+    "work at the counter from 12:30 pm to 5:00 pm",
+    "source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm",
+    "invite customers to the event while working at the counter from 6:30 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm",
+    "take a quick lunch break at 12:00 pm",
+    "work at the counter from 12:30 pm to 5:00 pm",
+    "source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm",
+    "invite customers to the event while working at the counter from 6:30 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party materials and invite customers throughout the day at 10:00 am",
+    "close Hobbs Cafe at 8:00 pm",
+    "perform closing duties and prepare for tomorrow at 8:15 pm"
+   ],
+   "replay_output": null,
+   "exhausted_recorded_replies": true,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party materials and invite customers throughout the day at 10:00 am",
+    "close Hobbs Cafe at 8:00 pm",
+    "perform closing duties and prepare for tomorrow at 8:15 pm"
+   ],
+   "replay_output": null,
+   "exhausted_recorded_replies": true,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party materials and invite customers throughout the day at 10:00 am",
+    "close Hobbs Cafe at 8:00 pm",
+    "perform closing duties and prepare for tomorrow at 8:15 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party materials and invite customers throughout the day at 10:00 am",
+    "close Hobbs Cafe at 8:00 pm",
+    "perform closing duties and prepare for tomorrow at 8:15 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 3,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 3,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the day at 7:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "manage the cafe counter and serve customers from 9:00 am to 1:00 pm",
+    "take a short lunch break at 1:00 pm",
+    "resume counter work and distribute party invitations from 1:30 pm to 5:00 pm",
+    "shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm",
+    "return to the cafe to finish closing duties from 7:00 pm to 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the day at 7:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "manage the cafe counter and serve customers from 9:00 am to 1:00 pm",
+    "take a short lunch break at 1:00 pm",
+    "resume counter work and distribute party invitations from 1:30 pm to 5:00 pm",
+    "shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm",
+    "return to the cafe to finish closing duties from 7:00 pm to 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the day at 7:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "manage the cafe counter and serve customers from 9:00 am to 1:00 pm",
+    "take a short lunch break at 1:00 pm",
+    "resume counter work and distribute party invitations from 1:30 pm to 5:00 pm",
+    "shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm",
+    "return to the cafe to finish closing duties from 7:00 pm to 8:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the day at 7:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "manage the cafe counter and serve customers from 9:00 am to 1:00 pm",
+    "take a short lunch break at 1:00 pm",
+    "resume counter work and distribute party invitations from 1:30 pm to 5:00 pm",
+    "shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm",
+    "return to the cafe to finish closing duties from 7:00 pm to 8:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 4,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "waking up and completing her morning routine",
+   "replay_output": "waking up and completing her morning routine (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 4,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "waking up and completing her morning routine",
+   "replay_output": "waking up and completing her morning routine (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 4,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "waking up and completing her morning routine",
+   "replay_output": "waking up and completing her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day until 8:00 pm",
+    "spend time gathering party materials for the Valentine's Day event while working",
+    "invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "clean up the cafe and prepare for tomorrow"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day until 8:00 pm",
+    "spend time gathering party materials for the Valentine's Day event while working",
+    "invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "clean up the cafe and prepare for tomorrow"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day until 8:00 pm",
+    "spend time gathering party materials for the Valentine's Day event while working",
+    "invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "clean up the cafe and prepare for tomorrow"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day until 8:00 pm",
+    "spend time gathering party materials for the Valentine's Day event while working",
+    "invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "clean up the cafe and prepare for tomorrow"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 5,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 5,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 5,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 6,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "finish cleaning up the cafe and prepare for bed at 10:00 pm"
+   ],
+   "replay_output": null,
+   "exhausted_recorded_replies": true,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 6,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "finish cleaning up the cafe and prepare for bed at 10:00 pm"
+   ],
+   "replay_output": null,
+   "exhausted_recorded_replies": true,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 6,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "finish cleaning up the cafe and prepare for bed at 10:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "finish cleaning up the cafe and prepare for bed at 10:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 6,
+   "variant": "none",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 6,
+   "variant": "spaces",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 6,
+   "variant": "spaces+duration",
+   "live_variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "none",
+   "live_variant": "none",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces",
+   "live_variant": "none",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "live_variant": "none",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "none",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "none",
+   "live_variant": "none",
+   "replies_available": 3,
+   "replies_consumed": 3,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "spaces",
+   "live_variant": "none",
+   "replies_available": 3,
+   "replies_consumed": 3,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "live_variant": "none",
+   "replies_available": 3,
+   "replies_consumed": 3,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "none",
+   "live_variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "spaces",
+   "live_variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 4,
+   "variant": "spaces+duration",
+   "live_variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "none",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "spaces",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 5,
+   "variant": "spaces+duration",
+   "live_variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  }
+ ]
+}

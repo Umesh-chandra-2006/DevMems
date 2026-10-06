@@ -1,0 +1,792 @@
+{
+ "label": "live",
+ "seconds": 195.4,
+ "phases": {
+  "B1": {
+   "model": "gemini-3.1-flash-lite",
+   "cap": 24,
+   "router_counter": {
+    "count": 12,
+    "cap": 24,
+    "by_purpose": {
+     "planning": 12
+    },
+    "by_agent": {
+     "none": 12
+    }
+   },
+   "stopped": "completed all planned invocations",
+   "normalizer_applied": true,
+   "keys": [
+    "GEMINI_KEY_4",
+    "GEMINI_KEY_5",
+    "GEMINI_KEY_6"
+   ]
+  },
+  "B2": {
+   "model": "openai/gpt-oss-20b",
+   "cap": 16,
+   "router_counter": {
+    "count": 16,
+    "cap": 16,
+    "by_purpose": {
+     "planning": 16
+    },
+    "by_agent": {
+     "none": 16
+    }
+   },
+   "stopped": "router cap reached: router call cap 16 reached",
+   "normalizer_applied": false,
+   "keys": [
+    "GROQ_KEY_7",
+    "GROQ_KEY_8",
+    "GROQ_KEY_9"
+   ]
+  }
+ },
+ "summary": {
+  "B1 gemini-3.1-flash-lite (normalizer applied)": {
+   "daily_plan": {
+    "invocations": 6,
+    "valid": 6,
+    "usable_plan": 6,
+    "echo": 0,
+    "clean": 6,
+    "calls": 6,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 2322,
+    "tokens_out": 1519,
+    "exceptions": 0
+   },
+   "hourly_schedule": {
+    "invocations": 6,
+    "valid": 6,
+    "usable_plan": null,
+    "echo": 0,
+    "clean": 6,
+    "calls": 6,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 7128,
+    "tokens_out": 4995,
+    "exceptions": 0
+   }
+  },
+  "B2 openai/gpt-oss-20b (no normalizer)": {
+   "daily_plan": {
+    "invocations": 5,
+    "valid": 0,
+    "usable_plan": 0,
+    "echo": 0,
+    "clean": 0,
+    "calls": 16,
+    "calls_per_valid_result": null,
+    "tokens_in": 7040,
+    "tokens_out": 19976,
+    "exceptions": 0
+   }
+  }
+ },
+ "inputs": {
+  "persona": "Isabella Rodriguez (base fork saved state)",
+  "clock": "2023-02-13 00:00",
+  "wake_hour_asked": 6,
+  "hourly_slot": "07:00 AM",
+  "prior_schedule": "7 x sleeping",
+  "reference_daily_req": [
+   "wake up and complete the morning routine at 6:00 am",
+   "eat breakfast at 7:00 am",
+   "read a book from 8:00 am to 12:00 pm",
+   "have lunch at 12:00 pm",
+   "take a nap from 1:00 pm to 4:00 pm",
+   "relax and watch TV from 7:00 pm to 8:00 pm",
+   "go to bed at 11:00 pm"
+  ]
+ },
+ "detector": {
+  "markers": [
+   "TOKEN LIMIT EXCEEDED",
+   "ChatGPT ERROR",
+   "DevMem Router ERROR",
+   "Here are the completed entries"
+  ],
+  "regex": "^\\[.*Activity:"
+ },
+ "note": "raw replies are FULL (untruncated); `delivered` is what upstream saw after the optional normalizer",
+ "invocations": [
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "prepare for the cafe opening at 7:00 am (duration in minutes: 60, minutes left: 1020), 3) open Hobbs Cafe and work at the counter at 8:00 am (duration in minutes: 720, minutes left: 300), 4) gather Valentine's Day party supplies and invite customers at 5:00 pm (duration in minutes: 120, minutes left: 180), 5) close Hobbs Cafe at 8:00 pm (duration in minutes: 180, minutes left: 0), 6) wind down and go to bed at 11:00 pm (duration in minutes: 0, minutes left: 0).",
+     "delivered": "prepare for the cafe opening at 7:00 am, 3) open Hobbs Cafe and work at the counter at 8:00 am, 4) gather Valentine's Day party supplies and invite customers at 5:00 pm, 5) close Hobbs Cafe at 8:00 pm, 6) wind down and go to bed at 11:00 pm.",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 164
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_4",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "error": null,
+   "seconds": 12.2
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 0)\n[(ID:g4v29L) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day (duration in minutes: 60, minutes left: 0)\n[(ID:V9mZ1s) Monday February 13 -- 09:00 AM] Activity: Isabella is managing the cafe and inviting customers to the Valentine's Day party (duration in minutes: 60, minutes left: 0)\n[(ID:k2wP8x) Monday February 13 -- 10:00 AM] Activity: Isabella is serving customers and gathering party materials (duration in minutes: 60, minutes left: 0)\n[(ID:n9bQ4t) Monday February 13 -- 11:00 AM] Activity: Isabella is organizing decorations for the upcoming party (duration in minutes: 60, minutes left: 0)\n[(ID:m5rT2q) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while working at the counter (duration in minutes: 60, minutes left: 0)\n[(ID:p1vF7w) Monday February 13 -- 01:00 PM] Activity: Isabella is assisting customers and promoting the party (duration in minutes: 60, minutes left: 0)\n[(ID:x8sD3j) Monday February 13 -- 02:00 PM] Activity: Isabella is managing cafe operations and chatting with regulars (duration in minutes: 60, minutes left: 0)\n[(ID:j4kL9m) Monday February 13 -- 03:00 PM] Activity: Isabella is preparing party supplies and inventory (duration in minutes: 60, minutes left: 0)\n[(ID:c7hN2v) Monday February 13 -- 04:00 PM] Activity: Isabella is continuing to serve cafe customers (duration in minutes: 60, minutes left: 0)\n[(ID:b5mX1z) Monday February 13 -- 05:00 PM] Activity: Isabella is busy at the counter serving drinks and snacks (duration in minutes: 60, minutes left: 0)\n[(ID:q9zC4r) Monday February 13 -- 06:00 PM] Activity: Isabella is cleaning up the cafe area (duration in minutes: 60, minutes left: 0)\n[(ID:w3vB8k) Monday February 13 -- 07:00 PM] Activity: Isabella is closing the cafe and relaxing (duration in minutes: 60, minutes left: 0)\n[(ID:e2nJ6t) Monday February 13 -- 08:00 PM] Activity: Isabella is finishing her shift and heading home (duration in minutes: 60, minutes left: 0)\n[(ID:r5yM3p) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and watching TV (duration in minutes: 60, minutes left: 0)\n[(ID:t8uK9l) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed (duration in minutes: 60, minutes left: 0)\n[(ID:y4iO2s) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping (duration in minutes: 60, minutes left: 0)",
+     "delivered": "eating breakfast\n[(ID:g4v29L) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day\n[(ID:V9mZ1s) Monday February 13 -- 09:00 AM] Activity: Isabella is managing the cafe and inviting customers to the Valentine's Day party\n[(ID:k2wP8x) Monday February 13 -- 10:00 AM] Activity: Isabella is serving customers and gathering party materials\n[(ID:n9bQ4t) Monday February 13 -- 11:00 AM] Activity: Isabella is organizing decorations for the upcoming party\n[(ID:m5rT2q) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while working at the counter\n[(ID:p1vF7w) Monday February 13 -- 01:00 PM] Activity: Isabella is assisting customers and promoting the party\n[(ID:x8sD3j) Monday February 13 -- 02:00 PM] Activity: Isabella is managing cafe operations and chatting with regulars\n[(ID:j4kL9m) Monday February 13 -- 03:00 PM] Activity: Isabella is preparing party supplies and inventory\n[(ID:c7hN2v) Monday February 13 -- 04:00 PM] Activity: Isabella is continuing to serve cafe customers\n[(ID:b5mX1z) Monday February 13 -- 05:00 PM] Activity: Isabella is busy at the counter serving drinks and snacks\n[(ID:q9zC4r) Monday February 13 -- 06:00 PM] Activity: Isabella is cleaning up the cafe area\n[(ID:w3vB8k) Monday February 13 -- 07:00 PM] Activity: Isabella is closing the cafe and relaxing\n[(ID:e2nJ6t) Monday February 13 -- 08:00 PM] Activity: Isabella is finishing her shift and heading home\n[(ID:r5yM3p) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and watching TV\n[(ID:t8uK9l) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed\n[(ID:y4iO2s) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1186,
+     "tokens_out": 818
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_5",
+   "output": "eating breakfast",
+   "error": null,
+   "seconds": 15.7
+  },
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "prepare the cafe for opening at 7:00 am (duration in minutes: 60, minutes left: 1020), 3) open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm (duration in minutes: 240, minutes left: 780), 4) take a quick lunch break at 12:00 pm (duration in minutes: 30, minutes left: 750), 5) work at the counter from 12:30 pm to 5:00 pm (duration in minutes: 270, minutes left: 480), 6) source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm (duration in minutes: 90, minutes left: 390), 7) invite customers to the event while working at the counter from 6:30 pm to 8:00 pm (duration in minutes: 90, minutes left: 300), 8) close Hobbs Cafe at 8:00 pm (duration in minutes: 15, minutes left: 285), 9) tidy up the cafe and prepare for tomorrow from 8:15 pm to 9:15 pm (duration in minutes: 60, minutes left: 225), 10) have dinner and relax at 9:15 pm (duration in minutes: 105, minutes left: 120), 11) prepare for bed at 11:00 pm (duration in minutes: 0, minutes left: 0).",
+     "delivered": "prepare the cafe for opening at 7:00 am, 3) open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm, 4) take a quick lunch break at 12:00 pm, 5) work at the counter from 12:30 pm to 5:00 pm, 6) source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm, 7) invite customers to the event while working at the counter from 6:30 pm to 8:00 pm, 8) close Hobbs Cafe at 8:00 pm, 9) tidy up the cafe and prepare for tomorrow from 8:15 pm to 9:15 pm, 10) have dinner and relax at 9:15 pm, 11) prepare for bed at 11:00 pm.",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 371
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_6",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter from 8:00 am to 12:00 pm",
+    "take a quick lunch break at 12:00 pm",
+    "work at the counter from 12:30 pm to 5:00 pm",
+    "source and organize party decorations for the Valentine's Day event from 5:00 pm to 6:30 pm",
+    "invite customers to the event while working at the counter from 6:30 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "error": null,
+   "seconds": 9.0
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 0)\n[(ID:8tY5hJ) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and working at the counter (duration in minutes: 60, minutes left: 0)\n[(ID:kL2pWq) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and promoting the Valentine's Day party (duration in minutes: 60, minutes left: 0)\n[(ID:nB9vXz) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and gathering party supplies (duration in minutes: 60, minutes left: 0)\n[(ID:qR4mLo) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and organizing the cafe space (duration in minutes: 60, minutes left: 0)\n[(ID:wE7sDf) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while at the cafe (duration in minutes: 60, minutes left: 0)\n[(ID:aD3fGh) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and greeting customers (duration in minutes: 60, minutes left: 0)\n[(ID:sF8gHj) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and preparing party invitations (duration in minutes: 60, minutes left: 0)\n[(ID:dG2hJk) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and managing cafe operations (duration in minutes: 60, minutes left: 0)\n[(ID:fH9jKl) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and preparing for the evening rush (duration in minutes: 60, minutes left: 0)\n[(ID:gJ4kLm) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:hK7lMn) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and talking to customers about the party (duration in minutes: 60, minutes left: 0)\n[(ID:jL1mNp) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and tidying up the cafe (duration in minutes: 60, minutes left: 0)\n[(ID:kM6nOp) Monday February 13 -- 08:00 PM] Activity: Isabella is closing the cafe and heading home (duration in minutes: 60, minutes left: 0)\n[(ID:lN9oPq) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and preparing for tomorrow (duration in minutes: 60, minutes left: 0)\n[(ID:mO3pQr) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down for the night (duration in minutes: 60, minutes left: 0)\n[(ID:nP8qRs) Monday February 13 -- 11:00 PM] Activity: Isabella is going to bed (duration in minutes: 60, minutes left: 0)",
+     "delivered": "eating breakfast\n[(ID:8tY5hJ) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and working at the counter\n[(ID:kL2pWq) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and promoting the Valentine's Day party\n[(ID:nB9vXz) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and gathering party supplies\n[(ID:qR4mLo) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and organizing the cafe space\n[(ID:wE7sDf) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while at the cafe\n[(ID:aD3fGh) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and greeting customers\n[(ID:sF8gHj) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and preparing party invitations\n[(ID:dG2hJk) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and managing cafe operations\n[(ID:fH9jKl) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and preparing for the evening rush\n[(ID:gJ4kLm) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:hK7lMn) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and talking to customers about the party\n[(ID:jL1mNp) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and tidying up the cafe\n[(ID:kM6nOp) Monday February 13 -- 08:00 PM] Activity: Isabella is closing the cafe and heading home\n[(ID:lN9oPq) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and preparing for tomorrow\n[(ID:mO3pQr) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down for the night\n[(ID:nP8qRs) Monday February 13 -- 11:00 PM] Activity: Isabella is going to bed",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1189,
+     "tokens_out": 835
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_4",
+   "output": "eating breakfast",
+   "error": null,
+   "seconds": 11.1
+  },
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "prepare the cafe for opening at 7:00 am (duration in minutes: 60, minutes left: 1020), 3) open Hobbs Cafe and work at the counter at 8:00 am (duration in minutes: 720, minutes left: 300), 4) gather Valentine's Day party materials and invite customers throughout the day at 10:00 am (duration in minutes: 480, minutes left: 300), 5) close Hobbs Cafe at 8:00 pm (duration in minutes: 15, minutes left: 165), 6) perform closing duties and prepare for tomorrow at 8:15 pm (duration in minutes: 105, minutes left: 60), 7) go to bed at 11:00 pm (duration in minutes: 0, minutes left: 0)",
+     "delivered": "prepare the cafe for opening at 7:00 am, 3) open Hobbs Cafe and work at the counter at 8:00 am, 4) gather Valentine's Day party materials and invite customers throughout the day at 10:00 am, 5) close Hobbs Cafe at 8:00 pm, 6) perform closing duties and prepare for tomorrow at 8:15 pm, 7) go to bed at 11:00 pm",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 200
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_5",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare the cafe for opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party materials and invite customers throughout the day at 10:00 am",
+    "close Hobbs Cafe at 8:00 pm",
+    "perform closing duties and prepare for tomorrow at 8:15 pm"
+   ],
+   "error": null,
+   "seconds": 6.7
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 0)\n[(ID:8wT2Kq) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day (duration in minutes: 60, minutes left: 0)\n[(ID:sF9Lp2) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and inviting customers to the Valentine's Day party (duration in minutes: 60, minutes left: 0)\n[(ID:zX5Mb1) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and organizing party decorations (duration in minutes: 60, minutes left: 0)\n[(ID:qW3Nv8) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and chatting with customers (duration in minutes: 60, minutes left: 0)\n[(ID:mP7Jk4) Monday February 13 -- 12:00 PM] Activity: Isabella is eating lunch while monitoring the cafe (duration in minutes: 60, minutes left: 0)\n[(ID:vB4Hc9) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and finalizing party supply orders (duration in minutes: 60, minutes left: 0)\n[(ID:kL2Ds6) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and greeting patrons (duration in minutes: 60, minutes left: 0)\n[(ID:yR8Xw3) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and managing cafe operations (duration in minutes: 60, minutes left: 0)\n[(ID:nJ1Mf5) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and preparing for the evening rush (duration in minutes: 60, minutes left: 0)\n[(ID:hT6Vz7) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving coffee to customers (duration in minutes: 60, minutes left: 0)\n[(ID:gS9Qx2) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and cleaning the cafe (duration in minutes: 60, minutes left: 0)\n[(ID:fD4Wc8) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and closing up the shop (duration in minutes: 60, minutes left: 0)\n[(ID:pA3Kj1) Monday February 13 -- 08:00 PM] Activity: Isabella is finishing her shift and heading home (duration in minutes: 60, minutes left: 0)\n[(ID:uM5Bx9) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and preparing for tomorrow (duration in minutes: 60, minutes left: 0)\n[(ID:eN2Zq4) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down for the night (duration in minutes: 60, minutes left: 0)\n[(ID:oR7Yw6) Monday February 13 -- 11:00 PM] Activity: Isabella is going to bed (duration in minutes: 60, minutes left: 0)",
+     "delivered": "eating breakfast\n[(ID:8wT2Kq) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day\n[(ID:sF9Lp2) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and inviting customers to the Valentine's Day party\n[(ID:zX5Mb1) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and organizing party decorations\n[(ID:qW3Nv8) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and chatting with customers\n[(ID:mP7Jk4) Monday February 13 -- 12:00 PM] Activity: Isabella is eating lunch while monitoring the cafe\n[(ID:vB4Hc9) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and finalizing party supply orders\n[(ID:kL2Ds6) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and greeting patrons\n[(ID:yR8Xw3) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and managing cafe operations\n[(ID:nJ1Mf5) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and preparing for the evening rush\n[(ID:hT6Vz7) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving coffee to customers\n[(ID:gS9Qx2) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and cleaning the cafe\n[(ID:fD4Wc8) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and closing up the shop\n[(ID:pA3Kj1) Monday February 13 -- 08:00 PM] Activity: Isabella is finishing her shift and heading home\n[(ID:uM5Bx9) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing at home and preparing for tomorrow\n[(ID:eN2Zq4) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down for the night\n[(ID:oR7Yw6) Monday February 13 -- 11:00 PM] Activity: Isabella is going to bed",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1190,
+     "tokens_out": 840
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_6",
+   "output": "eating breakfast",
+   "error": null,
+   "seconds": 9.9
+  },
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 4,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "prepare for the day at 7:00 am (duration in minutes: 60, minutes left: 1020), 3) open Hobbs Cafe at 8:00 am (duration in minutes: 60, minutes left: 960), 4) manage the cafe counter and serve customers from 9:00 am to 1:00 pm (duration in minutes: 240, minutes left: 720), 5) take a short lunch break at 1:00 pm (duration in minutes: 30, minutes left: 690), 6) resume counter work and distribute party invitations from 1:30 pm to 5:00 pm (duration in minutes: 210, minutes left: 480), 7) shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm (duration in minutes: 120, minutes left: 360), 8) return to the cafe to finish closing duties from 7:00 pm to 8:00 pm (duration in minutes: 60, minutes left: 300), 9) have dinner at 8:00 pm (duration in minutes: 60, minutes left: 240), 10) relax and prepare for tomorrow at 9:00 pm (duration in minutes: 120, minutes left: 120), 11) go to bed at 11:00 pm (duration in minutes: 0, minutes left: 0).",
+     "delivered": "prepare for the day at 7:00 am, 3) open Hobbs Cafe at 8:00 am, 4) manage the cafe counter and serve customers from 9:00 am to 1:00 pm, 5) take a short lunch break at 1:00 pm, 6) resume counter work and distribute party invitations from 1:30 pm to 5:00 pm, 7) shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm, 8) return to the cafe to finish closing duties from 7:00 pm to 8:00 pm, 9) have dinner at 8:00 pm, 10) relax and prepare for tomorrow at 9:00 pm, 11) go to bed at 11:00 pm.",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 352
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_4",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the day at 7:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "manage the cafe counter and serve customers from 9:00 am to 1:00 pm",
+    "take a short lunch break at 1:00 pm",
+    "resume counter work and distribute party invitations from 1:30 pm to 5:00 pm",
+    "shop for Valentine's Day party supplies from 5:00 pm to 7:00 pm",
+    "return to the cafe to finish closing duties from 7:00 pm to 8:00 pm"
+   ],
+   "error": null,
+   "seconds": 15.3
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 4,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "waking up and completing her morning routine (duration in minutes: 60, minutes left: 0)\n[(ID:aB2kL9) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and starting her work shift (duration in minutes: 60, minutes left: 0)\n[(ID:cR4mN2) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers (duration in minutes: 60, minutes left: 0)\n[(ID:dF6gH8) Monday February 13 -- 10:00 AM] Activity: Isabella is managing cafe operations and promoting the Valentine's Day party (duration in minutes: 60, minutes left: 0)\n[(ID:jK8lL1) Monday February 13 -- 11:00 AM] Activity: Isabella is preparing party materials for tomorrow's event (duration in minutes: 60, minutes left: 0)\n[(ID:mN3bV5) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while monitoring the cafe floor (duration in minutes: 60, minutes left: 0)\n[(ID:pQ9wR4) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:sT2yU7) Monday February 13 -- 02:00 PM] Activity: Isabella is organizing the cafe space for the upcoming party (duration in minutes: 60, minutes left: 0)\n[(ID:vX5zI9) Monday February 13 -- 03:00 PM] Activity: Isabella is chatting with regulars and inviting them to the party (duration in minutes: 60, minutes left: 0)\n[(ID:bC8nO3) Monday February 13 -- 04:00 PM] Activity: Isabella is continuing her work at the counter (duration in minutes: 60, minutes left: 0)\n[(ID:fG1hJ6) Monday February 13 -- 05:00 PM] Activity: Isabella is serving afternoon coffee and snacks (duration in minutes: 60, minutes left: 0)\n[(ID:kL4mP2) Monday February 13 -- 06:00 PM] Activity: Isabella is managing cafe orders and cleaning tables (duration in minutes: 60, minutes left: 0)\n[(ID:qR7sT5) Monday February 13 -- 07:00 PM] Activity: Isabella is finishing up her work duties before closing (duration in minutes: 60, minutes left: 0)\n[(ID:uV9wX1) Monday February 13 -- 08:00 PM] Activity: Isabella is closing the cafe and heading home (duration in minutes: 60, minutes left: 0)\n[(ID:zY3aB8) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing and unwinding at home (duration in minutes: 60, minutes left: 0)\n[(ID:dE6fG4) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed (duration in minutes: 60, minutes left: 0)\n[(ID:hI2jK9) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping (duration in minutes: 60, minutes left: 0)",
+     "delivered": "waking up and completing her morning routine\n[(ID:aB2kL9) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and starting her work shift\n[(ID:cR4mN2) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers\n[(ID:dF6gH8) Monday February 13 -- 10:00 AM] Activity: Isabella is managing cafe operations and promoting the Valentine's Day party\n[(ID:jK8lL1) Monday February 13 -- 11:00 AM] Activity: Isabella is preparing party materials for tomorrow's event\n[(ID:mN3bV5) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch while monitoring the cafe floor\n[(ID:pQ9wR4) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:sT2yU7) Monday February 13 -- 02:00 PM] Activity: Isabella is organizing the cafe space for the upcoming party\n[(ID:vX5zI9) Monday February 13 -- 03:00 PM] Activity: Isabella is chatting with regulars and inviting them to the party\n[(ID:bC8nO3) Monday February 13 -- 04:00 PM] Activity: Isabella is continuing her work at the counter\n[(ID:fG1hJ6) Monday February 13 -- 05:00 PM] Activity: Isabella is serving afternoon coffee and snacks\n[(ID:kL4mP2) Monday February 13 -- 06:00 PM] Activity: Isabella is managing cafe orders and cleaning tables\n[(ID:qR7sT5) Monday February 13 -- 07:00 PM] Activity: Isabella is finishing up her work duties before closing\n[(ID:uV9wX1) Monday February 13 -- 08:00 PM] Activity: Isabella is closing the cafe and heading home\n[(ID:zY3aB8) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing and unwinding at home\n[(ID:dE6fG4) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed\n[(ID:hI2jK9) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1188,
+     "tokens_out": 831
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_5",
+   "output": "waking up and completing her morning routine",
+   "error": null,
+   "seconds": 6.0
+  },
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 5,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "open Hobbs Cafe at 8:00 am (duration in minutes: 120, minutes left: 960), 3) work at the counter and serve customers throughout the day until 8:00 pm (duration in minutes: 600, minutes left: 840), 4) spend time gathering party materials for the Valentine's Day event while working (duration in minutes: 120, minutes left: 240), 5) invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm (duration in minutes: 60, minutes left: 180), 6) close Hobbs Cafe at 8:00 pm (duration in minutes: 30, minutes left: 150), 7) clean up the cafe and prepare for tomorrow (duration in minutes: 90, minutes left: 60), 8) complete evening routine and go to bed at 11:00 pm (duration in minutes: 60, minutes left: 0).",
+     "delivered": "open Hobbs Cafe at 8:00 am, 3) work at the counter and serve customers throughout the day until 8:00 pm, 4) spend time gathering party materials for the Valentine's Day event while working, 5) invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm, 6) close Hobbs Cafe at 8:00 pm, 7) clean up the cafe and prepare for tomorrow, 8) complete evening routine and go to bed at 11:00 pm.",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 233
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_6",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day until 8:00 pm",
+    "spend time gathering party materials for the Valentine's Day event while working",
+    "invite customers to the party at Hobbs Cafe on February 14th from 5pm to 7pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "clean up the cafe and prepare for tomorrow"
+   ],
+   "error": null,
+   "seconds": 14.4
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 5,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 0)\n[(ID:gS2LpP) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day (duration in minutes: 60, minutes left: 0)\n[(ID:qW9kL1) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers (duration in minutes: 60, minutes left: 0)\n[(ID:aB3mN4) Monday February 13 -- 10:00 AM] Activity: Isabella is managing cafe operations and inviting customers to the Valentine's party (duration in minutes: 60, minutes left: 0)\n[(ID:xV5zR8) Monday February 13 -- 11:00 AM] Activity: Isabella is gathering party materials and decorations for the event (duration in minutes: 60, minutes left: 0)\n[(ID:mK9jH2) Monday February 13 -- 12:00 PM] Activity: Isabella is eating lunch while checking cafe inventory (duration in minutes: 60, minutes left: 0)\n[(ID:pL4tY6) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:vN7bU3) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:sQ1wE9) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:fR8dI4) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:hJ2kO7) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:yT5uP1) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:uI9oA3) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 0)\n[(ID:jK4lS8) Monday February 13 -- 08:00 PM] Activity: Isabella is closing Hobbs Cafe for the night (duration in minutes: 60, minutes left: 0)\n[(ID:bN6mC2) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing and watching TV at home (duration in minutes: 60, minutes left: 0)\n[(ID:dF3gH9) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed (duration in minutes: 60, minutes left: 0)\n[(ID:kL7jN5) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping (duration in minutes: 60, minutes left: 0)",
+     "delivered": "eating breakfast\n[(ID:gS2LpP) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and preparing for the day\n[(ID:qW9kL1) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers\n[(ID:aB3mN4) Monday February 13 -- 10:00 AM] Activity: Isabella is managing cafe operations and inviting customers to the Valentine's party\n[(ID:xV5zR8) Monday February 13 -- 11:00 AM] Activity: Isabella is gathering party materials and decorations for the event\n[(ID:mK9jH2) Monday February 13 -- 12:00 PM] Activity: Isabella is eating lunch while checking cafe inventory\n[(ID:pL4tY6) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:vN7bU3) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:sQ1wE9) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:fR8dI4) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:hJ2kO7) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:yT5uP1) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:uI9oA3) Monday February 13 -- 07:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:jK4lS8) Monday February 13 -- 08:00 PM] Activity: Isabella is closing Hobbs Cafe for the night\n[(ID:bN6mC2) Monday February 13 -- 09:00 PM] Activity: Isabella is relaxing and watching TV at home\n[(ID:dF3gH9) Monday February 13 -- 10:00 PM] Activity: Isabella is preparing for bed\n[(ID:kL7jN5) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1187,
+     "tokens_out": 827
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_4",
+   "output": "eating breakfast",
+   "error": null,
+   "seconds": 8.6
+  },
+  {
+   "phase": "B1",
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 6,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "prepare for the cafe opening at 7:00 am (duration in minutes: 60, minutes left: 1020), 3) open Hobbs Cafe and work at the counter at 8:00 am (duration in minutes: 720, minutes left: 300), 4) gather Valentine's Day party supplies and invite customers at 5:00 pm (duration in minutes: 180, minutes left: 120), 5) close Hobbs Cafe at 8:00 pm (duration in minutes: 180, minutes left: 120), 6) finish cleaning up the cafe and prepare for bed at 10:00 pm (duration in minutes: 60, minutes left: 60), 7) go to sleep at 11:00 pm (duration in minutes: 0, minutes left: 0)",
+     "delivered": "prepare for the cafe opening at 7:00 am, 3) open Hobbs Cafe and work at the counter at 8:00 am, 4) gather Valentine's Day party supplies and invite customers at 5:00 pm, 5) close Hobbs Cafe at 8:00 pm, 6) finish cleaning up the cafe and prepare for bed at 10:00 pm, 7) go to sleep at 11:00 pm",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 199
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_5",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare for the cafe opening at 7:00 am",
+    "open Hobbs Cafe and work at the counter at 8:00 am",
+    "gather Valentine's Day party supplies and invite customers at 5:00 pm",
+    "close Hobbs Cafe at 8:00 pm",
+    "finish cleaning up the cafe and prepare for bed at 10:00 pm"
+   ],
+   "error": null,
+   "seconds": 10.2
+  },
+  {
+   "phase": "B1",
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 6,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 60)\n[(ID:8t9L9M) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and working at the counter (duration in minutes: 60, minutes left: 60)\n[(ID:o0n1QW) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers (duration in minutes: 60, minutes left: 60)\n[(ID:p7v2ER) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and promoting the Valentine's party (duration in minutes: 60, minutes left: 60)\n[(ID:k9x3TY) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and preparing party materials (duration in minutes: 60, minutes left: 60)\n[(ID:z4c4UI) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch and checking cafe supplies (duration in minutes: 60, minutes left: 60)\n[(ID:m2b5OP) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and organizing party decorations (duration in minutes: 60, minutes left: 60)\n[(ID:n8v6KL) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and inviting customers to the party (duration in minutes: 60, minutes left: 60)\n[(ID:j3d7JH) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and finalizing party plans (duration in minutes: 60, minutes left: 60)\n[(ID:h5f8GF) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and serving customers (duration in minutes: 60, minutes left: 60)\n[(ID:g6s9DS) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and chatting with regulars (duration in minutes: 60, minutes left: 60)\n[(ID:a1a0AS) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and cleaning up the cafe (duration in minutes: 60, minutes left: 60)\n[(ID:s9d1DF) Monday February 13 -- 07:00 PM] Activity: Isabella is relaxing and watching TV after a long day (duration in minutes: 60, minutes left: 60)\n[(ID:d8f2GH) Monday February 13 -- 08:00 PM] Activity: Isabella is closing Hobbs Cafe and heading home (duration in minutes: 60, minutes left: 60)\n[(ID:f7g3JK) Monday February 13 -- 09:00 PM] Activity: Isabella is preparing for tomorrow's party at home (duration in minutes: 60, minutes left: 60)\n[(ID:g6h4LZ) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down and getting ready for bed (duration in minutes: 60, minutes left: 60)\n[(ID:h5j5XC) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping (duration in minutes: 60, minutes left: 60)",
+     "delivered": "eating breakfast\n[(ID:8t9L9M) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and working at the counter\n[(ID:o0n1QW) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and greeting customers\n[(ID:p7v2ER) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and promoting the Valentine's party\n[(ID:k9x3TY) Monday February 13 -- 11:00 AM] Activity: Isabella is working at the counter and preparing party materials\n[(ID:z4c4UI) Monday February 13 -- 12:00 PM] Activity: Isabella is having lunch and checking cafe supplies\n[(ID:m2b5OP) Monday February 13 -- 01:00 PM] Activity: Isabella is working at the counter and organizing party decorations\n[(ID:n8v6KL) Monday February 13 -- 02:00 PM] Activity: Isabella is working at the counter and inviting customers to the party\n[(ID:j3d7JH) Monday February 13 -- 03:00 PM] Activity: Isabella is working at the counter and finalizing party plans\n[(ID:h5f8GF) Monday February 13 -- 04:00 PM] Activity: Isabella is working at the counter and serving customers\n[(ID:g6s9DS) Monday February 13 -- 05:00 PM] Activity: Isabella is working at the counter and chatting with regulars\n[(ID:a1a0AS) Monday February 13 -- 06:00 PM] Activity: Isabella is working at the counter and cleaning up the cafe\n[(ID:s9d1DF) Monday February 13 -- 07:00 PM] Activity: Isabella is relaxing and watching TV after a long day\n[(ID:d8f2GH) Monday February 13 -- 08:00 PM] Activity: Isabella is closing Hobbs Cafe and heading home\n[(ID:f7g3JK) Monday February 13 -- 09:00 PM] Activity: Isabella is preparing for tomorrow's party at home\n[(ID:g6h4LZ) Monday February 13 -- 10:00 PM] Activity: Isabella is winding down and getting ready for bed\n[(ID:h5j5XC) Monday February 13 -- 11:00 PM] Activity: Isabella is sleeping",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1188,
+     "tokens_out": 844
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": true,
+   "first_key_env": "GEMINI_KEY_6",
+   "output": "eating breakfast",
+   "error": null,
+   "seconds": 9.6
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "1) 6:00\u202fam \u2013 wake up, complete morning routine, have a light breakfast  \n2) 7:00\u202fam \u2013 review inventory, restock coffee beans and pastries, plan menu for the day  \n3) 7:30\u202fam \u2013 start cafe cleaning and set up for opening; prepare Valentine\u2019s Day decorations (heart\u2011shaped balloons, ribbon, table centerpieces)  \n4) 8:00\u202fam \u2013 officially open Hobbs Cafe, greet regulars and new customers, begin daily sales  \n5) 10:00\u202fam \u2013 check on the party material: confirm orders of chocolate, roses, and party favors; arrange them on a display table  \n6) 12:00\u202fpm \u2013 lunch break, quick meal, check social media for any last\u2011minute RSVPs  \n7) 1:00\u202fpm \u2013 visit local florist for fresh roses, pick up a small vase for the Valentine\u2019s table  \n8) 2:00\u202fpm \u2013 shop at the grocery store for extra snacks and drinks needed for the party (e.g., mini cupcakes, sparkling water)  \n9) 3:00\u202fpm \u2013 return to the cafe, begin decorating the main seating area with Valentine\u2019s theme (red and pink lights, themed music playlist)  \n10) 4:00\u202fpm \u2013 rehearse the short toast for the party, test the sound system, and place a \u201cThank you for visiting!\u201d sign at the entrance  \n11) 5:00\u202fpm \u2013 finalize all d\u00e9cor, set up a dedicated \u201cValentine\u2019s Corner\u201d with a photo booth backdrop, and arrange a small welcome table for guests who arrive early tomorrow  \n12) 6:30\u202fpm \u2013 give a quick rundown to any staff about the event schedule, hand out any final supplies, and ensure everything is ready for the 5\u202fpm start on February\u202f14th  \n13) 7:30\u202fpm \u2013 start winding down regular service, clean tables, restock for the next day  \n14) 8:00\u202fpm \u2013 close the cafe, lock up, record closing logs, and head home  \n15) 10:30\u202fpm \u2013 light dinner and personal time, plan tomorrow\u2019s schedule  \n16) 11:00\u202fpm \u2013 sleep, ready for a fresh day at Hobbs Cafe and a successful Valentine\u2019s Day celebration tomorrow.",
+     "delivered": "1) 6:00\u202fam \u2013 wake up, complete morning routine, have a light breakfast  \n2) 7:00\u202fam \u2013 review inventory, restock coffee beans and pastries, plan menu for the day  \n3) 7:30\u202fam \u2013 start cafe cleaning and set up for opening; prepare Valentine\u2019s Day decorations (heart\u2011shaped balloons, ribbon, table centerpieces)  \n4) 8:00\u202fam \u2013 officially open Hobbs Cafe, greet regulars and new customers, begin daily sales  \n5) 10:00\u202fam \u2013 check on the party material: confirm orders of chocolate, roses, and party favors; arrange them on a display table  \n6) 12:00\u202fpm \u2013 lunch break, quick meal, check social media for any last\u2011minute RSVPs  \n7) 1:00\u202fpm \u2013 visit local florist for fresh roses, pick up a small vase for the Valentine\u2019s table  \n8) 2:00\u202fpm \u2013 shop at the grocery store for extra snacks and drinks needed for the party (e.g., mini cupcakes, sparkling water)  \n9) 3:00\u202fpm \u2013 return to the cafe, begin decorating the main seating area with Valentine\u2019s theme (red and pink lights, themed music playlist)  \n10) 4:00\u202fpm \u2013 rehearse the short toast for the party, test the sound system, and place a \u201cThank you for visiting!\u201d sign at the entrance  \n11) 5:00\u202fpm \u2013 finalize all d\u00e9cor, set up a dedicated \u201cValentine\u2019s Corner\u201d with a photo booth backdrop, and arrange a small welcome table for guests who arrive early tomorrow  \n12) 6:30\u202fpm \u2013 give a quick rundown to any staff about the event schedule, hand out any final supplies, and ensure everything is ready for the 5\u202fpm start on February\u202f14th  \n13) 7:30\u202fpm \u2013 start winding down regular service, clean tables, restock for the next day  \n14) 8:00\u202fpm \u2013 close the cafe, lock up, record closing logs, and head home  \n15) 10:30\u202fpm \u2013 light dinner and personal time, plan tomorrow\u2019s schedule  \n16) 11:00\u202fpm \u2013 sleep, ready for a fresh day at Hobbs Cafe and a successful Valentine\u2019s Day celebration tomorrow.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1073
+    },
+    {
+     "call_no": 2,
+     "exception": null,
+     "raw": "1. Wake up and complete morning routine \u2013 6:00\u202fam  \n2. Breakfast \u2013 6:30\u202fam  \n3. Check emails, social media, and respond to messages \u2013 7:00\u202fam  \n4. Begin gathering party materials (decorations, music playlist, snack supplies) \u2013 7:30\u202fam  \n5. Open Hobbs Caf\u00e9 for regular service \u2013 8:00\u202fam  \n6. Serve customers, take orders, and manage the counter \u2013 8:00\u202fam\u202f\u2013\u202f10:00\u202fam  \n7. Restock supplies and tidy the service area \u2013 10:00\u202fam\u202f\u2013\u202f10:30\u202fam  \n8. Continue serving and greet regulars \u2013 10:30\u202fam\u202f\u2013\u202f12:00\u202fpm  \n9. Lunch break for yourself \u2013 12:00\u202fpm\u202f\u2013\u202f12:30\u202fpm  \n10. Resume service, interact with guests, and remind them of the upcoming Valentine\u2019s Day party \u2013 12:30\u202fpm\u202f\u2013\u202f2:00\u202fpm  \n11. Post party invitation on Facebook, Instagram, and at the counter; distribute flyers \u2013 2:00\u202fpm\u202f\u2013\u202f3:00\u202fpm  \n12. Quick break and light workout (stretch or short walk) \u2013 3:00\u202fpm\u202f\u2013\u202f3:30\u202fpm  \n13. Finish up party preparations: set up decorations, arrange table settings, and prep a special menu \u2013 3:30\u202fpm\u202f\u2013\u202f5:00\u202fpm  \n14. Continue regular service, making sure the caf\u00e9 runs smoothly \u2013 5:00\u202fpm\u202f\u2013\u202f8:00\u202fpm  \n15. Close the caf\u00e9, run the closing checklist, and secure the premises \u2013 8:00\u202fpm  \n16. Dinner and unwind \u2013 8:30\u202fpm\u202f\u2013\u202f9:30\u202fpm  \n17. Relax with family/friends, read a book, or watch a show \u2013 9:30\u202fpm\u202f\u2013\u202f10:30\u202fpm  \n18. Bedtime routine and lights out \u2013 11:00\u202fpm",
+     "delivered": "1. Wake up and complete morning routine \u2013 6:00\u202fam  \n2. Breakfast \u2013 6:30\u202fam  \n3. Check emails, social media, and respond to messages \u2013 7:00\u202fam  \n4. Begin gathering party materials (decorations, music playlist, snack supplies) \u2013 7:30\u202fam  \n5. Open Hobbs Caf\u00e9 for regular service \u2013 8:00\u202fam  \n6. Serve customers, take orders, and manage the counter \u2013 8:00\u202fam\u202f\u2013\u202f10:00\u202fam  \n7. Restock supplies and tidy the service area \u2013 10:00\u202fam\u202f\u2013\u202f10:30\u202fam  \n8. Continue serving and greet regulars \u2013 10:30\u202fam\u202f\u2013\u202f12:00\u202fpm  \n9. Lunch break for yourself \u2013 12:00\u202fpm\u202f\u2013\u202f12:30\u202fpm  \n10. Resume service, interact with guests, and remind them of the upcoming Valentine\u2019s Day party \u2013 12:30\u202fpm\u202f\u2013\u202f2:00\u202fpm  \n11. Post party invitation on Facebook, Instagram, and at the counter; distribute flyers \u2013 2:00\u202fpm\u202f\u2013\u202f3:00\u202fpm  \n12. Quick break and light workout (stretch or short walk) \u2013 3:00\u202fpm\u202f\u2013\u202f3:30\u202fpm  \n13. Finish up party preparations: set up decorations, arrange table settings, and prep a special menu \u2013 3:30\u202fpm\u202f\u2013\u202f5:00\u202fpm  \n14. Continue regular service, making sure the caf\u00e9 runs smoothly \u2013 5:00\u202fpm\u202f\u2013\u202f8:00\u202fpm  \n15. Close the caf\u00e9, run the closing checklist, and secure the premises \u2013 8:00\u202fpm  \n16. Dinner and unwind \u2013 8:30\u202fpm\u202f\u2013\u202f9:30\u202fpm  \n17. Relax with family/friends, read a book, or watch a show \u2013 9:30\u202fpm\u202f\u2013\u202f10:30\u202fpm  \n18. Bedtime routine and lights out \u2013 11:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 968
+    }
+   ],
+   "validate": [
+    false,
+    true
+   ],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_7",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "error": null,
+   "seconds": 8.1
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00 am  \n2) commute to Hobbs Cafe at 6:30 am  \n3) prepare the cafe and gather party materials from 7:00 am to 8:00 am  \n4) open the cafe at 8:00 am  \n5) work at the counter until 12:00 pm  \n6) lunch break from 12:00 pm to 1:00 pm  \n7) work at the counter from 1:00 pm to 3:00 pm  \n8) gather party decorations and music playlist from 3:00 pm to 4:00 pm  \n9) post party invitations and flyers at 4:00 pm  \n10) continue working at the counter from 4:00 pm to 6:00 pm  \n11) close the cafe and wrap up at 8:00 pm  \n12) dinner at home from 8:30 pm to 9:30 pm  \n13) unwind and relax until bed at 11:00 pm",
+     "delivered": "1) wake up and complete the morning routine at 6:00 am  \n2) commute to Hobbs Cafe at 6:30 am  \n3) prepare the cafe and gather party materials from 7:00 am to 8:00 am  \n4) open the cafe at 8:00 am  \n5) work at the counter until 12:00 pm  \n6) lunch break from 12:00 pm to 1:00 pm  \n7) work at the counter from 1:00 pm to 3:00 pm  \n8) gather party decorations and music playlist from 3:00 pm to 4:00 pm  \n9) post party invitations and flyers at 4:00 pm  \n10) continue working at the counter from 4:00 pm to 6:00 pm  \n11) close the cafe and wrap up at 8:00 pm  \n12) dinner at home from 8:30 pm to 9:30 pm  \n13) unwind and relax until bed at 11:00 pm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1129
+    },
+    {
+     "call_no": 2,
+     "exception": null,
+     "raw": "1) 6:00\u202fam \u2013 Wake up, complete morning routine.  \n2) 6:30\u202fam \u2013 Have a quick breakfast and review the day's schedule.  \n3) 7:00\u202fam \u2013 Check emails, messages, and social\u2011media notifications; plan next\u2011day party promotion.  \n4) 7:30\u202fam \u2013 Prep the cafe for opening: clean counters, restock coffee, pastries, and drinks.  \n5) 8:00\u202fam \u2013 Open Hobbs Cafe, greet customers, begin service.  \n6) 9:30\u202fam \u2013 Review inventory; note items needed for tomorrow\u2019s Valentine\u2019s Day party (decorations, candles, music playlist).  \n7) 10:00\u202fam \u2013 Post a \u201cValentine\u2019s Day Party\u201d reminder on Instagram and Facebook; encourage reservations.  \n8) 11:30\u202fam \u2013 Quick staff meeting: assign roles for the upcoming party (music, decorations, service).  \n9) 12:00\u202fpm \u2013 Lunch break: eat a light meal, hydrate, relax for 30\u202fmin.  \n10) 12:30\u202fpm \u2013 Continue serving customers; ensure all orders are accurate and timely.  \n11) 2:00\u202fpm \u2013 Prepare a small batch of specialty drinks for the party; taste test and adjust recipes.  \n12) 3:00\u202fpm \u2013 Check and update the party guest list; send last\u2011minute reminders to confirmed guests.  \n13) 4:00\u202fpm \u2013 Begin assembling party d\u00e9cor: arrange table settings, centerpieces, and lighting.  \n14) 5:00\u202fpm \u2013 Open a temporary \u201cRSVP\u201d sign\u2011in board for walk\u2011in guests planning to attend tomorrow\u2019s party.  \n15) 6:00\u202fpm \u2013 Finish up day\u2019s sales, wrap up customer orders, and start closing preparations.  \n16) 7:00\u202fpm \u2013 Begin closing the cafe: clean up, sweep floors, put away supplies, and lock up.  \n17) 8:00\u202fpm \u2013 Close Hobbs Cafe; perform final inventory check.  \n18) 8:30\u202fpm \u2013 Relax and unwind: read a chapter of a book or watch a short TV show.  \n19) 10:00\u202fpm \u2013 Prepare for bed: set out tomorrow\u2019s clothes, review next day\u2019s to\u2011do list.  \n20) 10:30\u202fpm \u2013 Go to bed, aiming to sleep by 11:00\u202fpm.",
+     "delivered": "1) 6:00\u202fam \u2013 Wake up, complete morning routine.  \n2) 6:30\u202fam \u2013 Have a quick breakfast and review the day's schedule.  \n3) 7:00\u202fam \u2013 Check emails, messages, and social\u2011media notifications; plan next\u2011day party promotion.  \n4) 7:30\u202fam \u2013 Prep the cafe for opening: clean counters, restock coffee, pastries, and drinks.  \n5) 8:00\u202fam \u2013 Open Hobbs Cafe, greet customers, begin service.  \n6) 9:30\u202fam \u2013 Review inventory; note items needed for tomorrow\u2019s Valentine\u2019s Day party (decorations, candles, music playlist).  \n7) 10:00\u202fam \u2013 Post a \u201cValentine\u2019s Day Party\u201d reminder on Instagram and Facebook; encourage reservations.  \n8) 11:30\u202fam \u2013 Quick staff meeting: assign roles for the upcoming party (music, decorations, service).  \n9) 12:00\u202fpm \u2013 Lunch break: eat a light meal, hydrate, relax for 30\u202fmin.  \n10) 12:30\u202fpm \u2013 Continue serving customers; ensure all orders are accurate and timely.  \n11) 2:00\u202fpm \u2013 Prepare a small batch of specialty drinks for the party; taste test and adjust recipes.  \n12) 3:00\u202fpm \u2013 Check and update the party guest list; send last\u2011minute reminders to confirmed guests.  \n13) 4:00\u202fpm \u2013 Begin assembling party d\u00e9cor: arrange table settings, centerpieces, and lighting.  \n14) 5:00\u202fpm \u2013 Open a temporary \u201cRSVP\u201d sign\u2011in board for walk\u2011in guests planning to attend tomorrow\u2019s party.  \n15) 6:00\u202fpm \u2013 Finish up day\u2019s sales, wrap up customer orders, and start closing preparations.  \n16) 7:00\u202fpm \u2013 Begin closing the cafe: clean up, sweep floors, put away supplies, and lock up.  \n17) 8:00\u202fpm \u2013 Close Hobbs Cafe; perform final inventory check.  \n18) 8:30\u202fpm \u2013 Relax and unwind: read a chapter of a book or watch a short TV show.  \n19) 10:00\u202fpm \u2013 Prepare for bed: set out tomorrow\u2019s clothes, review next day\u2019s to\u2011do list.  \n20) 10:30\u202fpm \u2013 Go to bed, aiming to sleep by 11:00\u202fpm.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1191
+    },
+    {
+     "call_no": 3,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00 am  \n2) have a quick breakfast at 6:30 am  \n3) check inventory and restock supplies at 7:00 am  \n4) open the cafe at 8:00 am, greet customers and start the day\u2019s service  \n5) serve breakfast and lunch items, handle orders through mid\u2011morning  \n6) take a lunch break at 12:00 pm, enjoy a light meal and recharge  \n7) resume service, keep the cafe running smoothly until early afternoon  \n8) start setting up Valentine's Day decorations at 4:30 pm, arrange table settings and ambient lighting  \n9) send a friendly reminder to regulars and social media followers about tomorrow\u2019s party at 5:00 pm  \n10) close the cafe at 8:00 pm, perform end\u2011of\u2011day cleaning and cash\u2011count  \n11) review tomorrow\u2019s party checklist and prepare any remaining materials at 9:00 pm  \n12) wind down, relax with a book or light music, and go to bed at 11:00 pm",
+     "delivered": "1) wake up and complete the morning routine at 6:00 am  \n2) have a quick breakfast at 6:30 am  \n3) check inventory and restock supplies at 7:00 am  \n4) open the cafe at 8:00 am, greet customers and start the day\u2019s service  \n5) serve breakfast and lunch items, handle orders through mid\u2011morning  \n6) take a lunch break at 12:00 pm, enjoy a light meal and recharge  \n7) resume service, keep the cafe running smoothly until early afternoon  \n8) start setting up Valentine's Day decorations at 4:30 pm, arrange table settings and ambient lighting  \n9) send a friendly reminder to regulars and social media followers about tomorrow\u2019s party at 5:00 pm  \n10) close the cafe at 8:00 pm, perform end\u2011of\u2011day cleaning and cash\u2011count  \n11) review tomorrow\u2019s party checklist and prepare any remaining materials at 9:00 pm  \n12) wind down, relax with a book or light music, and go to bed at 11:00 pm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1236
+    },
+    {
+     "call_no": 4,
+     "exception": null,
+     "raw": "1) Wake up and complete morning routine at 6:00\u202fam.  \n2) Have a quick breakfast at 6:30\u202fam.  \n3) Prepare for opening: check inventory, set up front counter at 7:15\u202fam.  \n4) Open Hobbs Cafe at 8:00\u202fam.  \n5) Serve customers, handle orders until 12:00\u202fpm.  \n6) Take a break for lunch at 12:00\u202fpm.  \n7) Continue serving customers; work on Valentine\u2019s Day party preparations: gather decorations, order supplies at 2:00\u202fpm.  \n8) Check marketing: send out final invites to customers at 3:30\u202fpm.  \n9) Close cafe at 8:00\u202fpm, perform closing routine.  \n10) Relax at home, have a light dinner at 8:30\u202fpm.  \n11) Prepare for bed: wind down at 10:30\u202fpm.  \n12) Go to bed at 11:00\u202fpm.",
+     "delivered": "1) Wake up and complete morning routine at 6:00\u202fam.  \n2) Have a quick breakfast at 6:30\u202fam.  \n3) Prepare for opening: check inventory, set up front counter at 7:15\u202fam.  \n4) Open Hobbs Cafe at 8:00\u202fam.  \n5) Serve customers, handle orders until 12:00\u202fpm.  \n6) Take a break for lunch at 12:00\u202fpm.  \n7) Continue serving customers; work on Valentine\u2019s Day party preparations: gather decorations, order supplies at 2:00\u202fpm.  \n8) Check marketing: send out final invites to customers at 3:30\u202fpm.  \n9) Close cafe at 8:00\u202fpm, perform closing routine.  \n10) Relax at home, have a light dinner at 8:30\u202fpm.  \n11) Prepare for bed: wind down at 10:30\u202fpm.  \n12) Go to bed at 11:00\u202fpm.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1005
+    },
+    {
+     "call_no": 5,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00 am  \n2) make a quick breakfast and coffee for herself at 6:30 am  \n3) check email, messages, and social media for any cafe or party updates at 7:00 am  \n4) arrive at Hobbs Cafe and start cleaning and preparing the kitchen at 7:30 am  \n5) open the cafe at 8:00 am and greet the first customers  \n6) conduct a brief inventory check of party supplies (decorations, music, seating) at 10:00 am  \n7) lunch break and review party plan with staff at 12:00 pm  \n8) finalize Valentine\u2019s Day d\u00e9cor and order additional supplies at 2:00 pm  \n9) do a final run\u2011through of the party timeline and confirm staff roles at 4:00 pm  \n10) close the cafe at 8:00 pm, lock up, and head home  \n11) unwind with a light dinner at 8:30 pm  \n12) prepare for bed and go to sleep around 11:00 pm",
+     "delivered": "1) wake up and complete the morning routine at 6:00 am  \n2) make a quick breakfast and coffee for herself at 6:30 am  \n3) check email, messages, and social media for any cafe or party updates at 7:00 am  \n4) arrive at Hobbs Cafe and start cleaning and preparing the kitchen at 7:30 am  \n5) open the cafe at 8:00 am and greet the first customers  \n6) conduct a brief inventory check of party supplies (decorations, music, seating) at 10:00 am  \n7) lunch break and review party plan with staff at 12:00 pm  \n8) finalize Valentine\u2019s Day d\u00e9cor and order additional supplies at 2:00 pm  \n9) do a final run\u2011through of the party timeline and confirm staff roles at 4:00 pm  \n10) close the cafe at 8:00 pm, lock up, and head home  \n11) unwind with a light dinner at 8:30 pm  \n12) prepare for bed and go to sleep around 11:00 pm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 832
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_8",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "error": null,
+   "seconds": 22.1
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "1) Wake up and complete morning routine at 6:00\u202fam  \n2) Light workout or stretching at 6:45\u202fam  \n3) Quick coffee and review day\u2019s schedule at 7:15\u202fam  \n4) Prep cafe for opening, inventory check at 7:45\u202fam  \n5) Open Hobbs Cafe at 8:00\u202fam  \n6) Serve customers and manage counter duties until 12:00\u202fpm  \n7) Lunch break at 12:00\u202fpm (quick meal, relax a bit)  \n8) Resume counter duties at 12:30\u202fpm  \n9) Begin Valentine\u2019s Day party prep: gather decorations, draft social\u2011media posts, and send out digital invites at 1:00\u202fpm  \n10) Check inventory for party supplies, place orders if needed at 2:30\u202fpm  \n11) Staff meeting to assign party roles and schedule at 3:30\u202fpm  \n12) Continue party prep: set up sample d\u00e9cor layout and test lighting at 4:30\u202fpm  \n13) Take a short break and stretch at 6:00\u202fpm  \n14) Finalize party plan details and confirm reservations at 7:00\u202fpm  \n15) Close Hobbs Cafe at 8:00\u202fpm  \n16) Personal time: dinner and unwind at 8:30\u202fpm  \n17) Wind down, read or light TV at 10:00\u202fpm  \n18) Bedtime at 11:00\u202fpm",
+     "delivered": "1) Wake up and complete morning routine at 6:00\u202fam  \n2) Light workout or stretching at 6:45\u202fam  \n3) Quick coffee and review day\u2019s schedule at 7:15\u202fam  \n4) Prep cafe for opening, inventory check at 7:45\u202fam  \n5) Open Hobbs Cafe at 8:00\u202fam  \n6) Serve customers and manage counter duties until 12:00\u202fpm  \n7) Lunch break at 12:00\u202fpm (quick meal, relax a bit)  \n8) Resume counter duties at 12:30\u202fpm  \n9) Begin Valentine\u2019s Day party prep: gather decorations, draft social\u2011media posts, and send out digital invites at 1:00\u202fpm  \n10) Check inventory for party supplies, place orders if needed at 2:30\u202fpm  \n11) Staff meeting to assign party roles and schedule at 3:30\u202fpm  \n12) Continue party prep: set up sample d\u00e9cor layout and test lighting at 4:30\u202fpm  \n13) Take a short break and stretch at 6:00\u202fpm  \n14) Finalize party plan details and confirm reservations at 7:00\u202fpm  \n15) Close Hobbs Cafe at 8:00\u202fpm  \n16) Personal time: dinner and unwind at 8:30\u202fpm  \n17) Wind down, read or light TV at 10:00\u202fpm  \n18) Bedtime at 11:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1044
+    },
+    {
+     "call_no": 2,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) make breakfast and brew coffee for early customers at 6:30\u202fam  \n3) start preparing the caf\u00e9 interior for Valentine\u2019s Day decorations at 7:00\u202fam  \n4) open Hobbs Caf\u00e9 at 8:00\u202fam and greet the first wave of regulars  \n5) take orders, serve coffee, and chat with patrons until 10:00\u202fam  \n6) conduct a brief staff briefing on the Valentine\u2019s Day party plans at 10:30\u202fam  \n7) serve lunch specials and continue customer service from 12:00\u202fpm to 2:00\u202fpm  \n8) take a short break for lunch at 12:30\u202fpm, then resume work at 1:00\u202fpm  \n9) run the kitchen inventory and restock supplies from 2:00\u202fpm to 3:00\u202fpm  \n10) set up party materials, music playlist, and seating arrangements at 3:00\u202fpm  \n11) hold a quick staff check\u2011in and finalize the party schedule at 4:00\u202fpm  \n12) officially close the regular service and transition to party mode at 5:00\u202fpm  \n13) welcome guests for the Valentine\u2019s Day party from 5:00\u202fpm to 7:00\u202fpm  \n14) clean up and close the caf\u00e9 at 7:30\u202fpm, finishing all tasks by 8:00\u202fpm  \n15) enjoy a relaxed dinner at home around 9:00\u202fpm  \n16) wind down, prepare for bed, and aim to sleep by 11:00\u202fpm",
+     "delivered": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) make breakfast and brew coffee for early customers at 6:30\u202fam  \n3) start preparing the caf\u00e9 interior for Valentine\u2019s Day decorations at 7:00\u202fam  \n4) open Hobbs Caf\u00e9 at 8:00\u202fam and greet the first wave of regulars  \n5) take orders, serve coffee, and chat with patrons until 10:00\u202fam  \n6) conduct a brief staff briefing on the Valentine\u2019s Day party plans at 10:30\u202fam  \n7) serve lunch specials and continue customer service from 12:00\u202fpm to 2:00\u202fpm  \n8) take a short break for lunch at 12:30\u202fpm, then resume work at 1:00\u202fpm  \n9) run the kitchen inventory and restock supplies from 2:00\u202fpm to 3:00\u202fpm  \n10) set up party materials, music playlist, and seating arrangements at 3:00\u202fpm  \n11) hold a quick staff check\u2011in and finalize the party schedule at 4:00\u202fpm  \n12) officially close the regular service and transition to party mode at 5:00\u202fpm  \n13) welcome guests for the Valentine\u2019s Day party from 5:00\u202fpm to 7:00\u202fpm  \n14) clean up and close the caf\u00e9 at 7:30\u202fpm, finishing all tasks by 8:00\u202fpm  \n15) enjoy a relaxed dinner at home around 9:00\u202fpm  \n16) wind down, prepare for bed, and aim to sleep by 11:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1562
+    },
+    {
+     "call_no": 3,
+     "exception": null,
+     "raw": "6:00 AM \u2013 6:30 AM: Wake up and complete morning routine. (duration in minutes: 30, minutes left: 990)  \n6:30 AM \u2013 7:00 AM: Breakfast. (duration in minutes: 30, minutes left: 960)  \n7:00 AM \u2013 7:30 AM: Prep for opening (cleaning supplies, coffee machine prep). (duration in minutes: 30, minutes left: 930)  \n7:30 AM \u2013 8:00 AM: Clean the cafe interior, set up tables and chairs. (duration in minutes: 30, minutes left: 900)  \n8:00 AM \u2013 12:00 PM: Work at the counter, serve customers, manage orders. (duration in minutes: 240, minutes left: 660)  \n12:00 PM \u2013 12:30 PM: Lunch prep\u2014organize ingredients, set up display. (duration in minutes: 30, minutes left: 630)  \n12:30 PM \u2013 1:30 PM: Counter service during lunch rush. (duration in minutes: 60, minutes left: 570)  \n1:30 PM \u2013 2:00 PM: Clean up post\u2011lunch, restock supplies. (duration in minutes: 30, minutes left: 540)  \n2:00 PM \u2013 3:00 PM: Return to counter, serve afternoon customers. (duration in minutes: 60, minutes left: 480)  \n3:00 PM \u2013 3:30 PM: Short break \u2013 stretch, hydrate. (duration in minutes: 30, minutes left: 450)  \n3:30 PM \u2013 4:30 PM: Counter work, prep for evening specials. (duration in minutes: 60, minutes left: 390)  \n4:30 PM \u2013 5:00 PM: Prep for evening\u2014arrange decorations, check party supplies. (duration in minutes: 30, minutes left: 360)  \n5:00 PM \u2013 5:30 PM: Counter service, maintain smooth flow. (duration in minutes: 30, minutes left: 330)  \n5:30 PM \u2013 6:30 PM: Party preparation\u2014set up music, arrange seating, finalize invitations. (duration in minutes: 60, minutes left: 270)  \n6:30 PM \u2013 7:00 PM: Counter work, wrap up daily sales, secure cash. (duration in minutes: 30, minutes left: 240)  \n7:00 PM \u2013 7:30 PM: Short break \u2013 relax, review day\u2019s tasks. (duration in minutes: 30, minutes left: 210)  \n7:30 PM \u2013 8:00 PM: Final counter tasks, ensure cafe ready for closing. (duration in minutes: 30, minutes left: 180)  \n8:00 PM \u2013 8:30 PM: Close the cafe, lock up, perform final cleaning. (duration in minutes: 30, minutes left: 150)  \n8:30 PM \u2013 9:00 PM: Personal time\u2014read, relax. (duration in minutes: 30, minutes left: 120)  \n9:00 PM \u2013 9:30 PM: Dinner. (duration in minutes: 30, minutes left: 90)  \n9:30 PM \u2013 10:00 PM: Relaxation\u2014watch favorite show or listen to music. (duration in minutes: 30, minutes left: 60)  \n10:00 PM \u2013 10:30 PM: Hygiene routine, prepare for bed. (duration in minutes: 30, minutes left: 30)  \n10:30 PM \u2013 11:00 PM: Wind down, light reading, meditation. (duration in minutes: 30, minutes left: 0)  \n11:00 PM: Bedtime.",
+     "delivered": "6:00 AM \u2013 6:30 AM: Wake up and complete morning routine. (duration in minutes: 30, minutes left: 990)  \n6:30 AM \u2013 7:00 AM: Breakfast. (duration in minutes: 30, minutes left: 960)  \n7:00 AM \u2013 7:30 AM: Prep for opening (cleaning supplies, coffee machine prep). (duration in minutes: 30, minutes left: 930)  \n7:30 AM \u2013 8:00 AM: Clean the cafe interior, set up tables and chairs. (duration in minutes: 30, minutes left: 900)  \n8:00 AM \u2013 12:00 PM: Work at the counter, serve customers, manage orders. (duration in minutes: 240, minutes left: 660)  \n12:00 PM \u2013 12:30 PM: Lunch prep\u2014organize ingredients, set up display. (duration in minutes: 30, minutes left: 630)  \n12:30 PM \u2013 1:30 PM: Counter service during lunch rush. (duration in minutes: 60, minutes left: 570)  \n1:30 PM \u2013 2:00 PM: Clean up post\u2011lunch, restock supplies. (duration in minutes: 30, minutes left: 540)  \n2:00 PM \u2013 3:00 PM: Return to counter, serve afternoon customers. (duration in minutes: 60, minutes left: 480)  \n3:00 PM \u2013 3:30 PM: Short break \u2013 stretch, hydrate. (duration in minutes: 30, minutes left: 450)  \n3:30 PM \u2013 4:30 PM: Counter work, prep for evening specials. (duration in minutes: 60, minutes left: 390)  \n4:30 PM \u2013 5:00 PM: Prep for evening\u2014arrange decorations, check party supplies. (duration in minutes: 30, minutes left: 360)  \n5:00 PM \u2013 5:30 PM: Counter service, maintain smooth flow. (duration in minutes: 30, minutes left: 330)  \n5:30 PM \u2013 6:30 PM: Party preparation\u2014set up music, arrange seating, finalize invitations. (duration in minutes: 60, minutes left: 270)  \n6:30 PM \u2013 7:00 PM: Counter work, wrap up daily sales, secure cash. (duration in minutes: 30, minutes left: 240)  \n7:00 PM \u2013 7:30 PM: Short break \u2013 relax, review day\u2019s tasks. (duration in minutes: 30, minutes left: 210)  \n7:30 PM \u2013 8:00 PM: Final counter tasks, ensure cafe ready for closing. (duration in minutes: 30, minutes left: 180)  \n8:00 PM \u2013 8:30 PM: Close the cafe, lock up, perform final cleaning. (duration in minutes: 30, minutes left: 150)  \n8:30 PM \u2013 9:00 PM: Personal time\u2014read, relax. (duration in minutes: 30, minutes left: 120)  \n9:00 PM \u2013 9:30 PM: Dinner. (duration in minutes: 30, minutes left: 90)  \n9:30 PM \u2013 10:00 PM: Relaxation\u2014watch favorite show or listen to music. (duration in minutes: 30, minutes left: 60)  \n10:00 PM \u2013 10:30 PM: Hygiene routine, prepare for bed. (duration in minutes: 30, minutes left: 30)  \n10:30 PM \u2013 11:00 PM: Wind down, light reading, meditation. (duration in minutes: 30, minutes left: 0)  \n11:00 PM: Bedtime.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1841
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    true
+   ],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_9",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "error": null,
+   "seconds": 11.9
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 4,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "6:00\u202fam \u2013 Wake up and complete morning routine (get dressed, quick stretch, shower).  \n6:30\u202fam \u2013 Have breakfast, review the day's to\u2011do list, check inventory for the caf\u00e9.  \n8:00\u202fam \u2013 Open Hobbs Caf\u00e9, greet first customers, start counter operations.  \n10:00\u202fam \u2013 Take a short break (5\u202fmin), stretch, hydrate.  \n12:00\u202fpm \u2013 Lunch hour: serve lunch specials, chat with regulars, remind them about the Valentine\u2019s Day party at 5\u202fpm on February\u202f14th.  \n1:00\u202fpm \u2013 Continue serving, clean tables, restock supplies.  \n2:30\u202fpm \u2013 Prepare party materials: decorations, music playlist, special menu items for the Valentine\u2019s event.  \n3:30\u202fpm \u2013 Post reminder on social media and email list; ask customers to RSVP.  \n4:30\u202fpm \u2013 Quick check of all party supplies, ensure everything is ready by 5:00\u202fpm.  \n5:00\u202fpm \u2013 Start setting up the caf\u00e9 for the Valentine\u2019s Day party: table arrangements, lighting, music.  \n6:00\u202fpm \u2013 Continue serving customers while final touches are made.  \n7:00\u202fpm \u2013 Valentine\u2019s Day party begins: play music, serve special menu items, greet guests warmly.  \n7:30\u202fpm \u2013 Wrap up the party, thank guests, start cleaning up.  \n8:00\u202fpm \u2013 Close the caf\u00e9: shut down cash register, lock doors, take out trash, complete closing paperwork.  \n8:30\u202fpm \u2013 Quick clean of the kitchen and counter, set aside for next day.  \n10:00\u202fpm \u2013 Relax with a book or light music, prepare for bed.  \n11:00\u202fpm \u2013 Bedtime.",
+     "delivered": "6:00\u202fam \u2013 Wake up and complete morning routine (get dressed, quick stretch, shower).  \n6:30\u202fam \u2013 Have breakfast, review the day's to\u2011do list, check inventory for the caf\u00e9.  \n8:00\u202fam \u2013 Open Hobbs Caf\u00e9, greet first customers, start counter operations.  \n10:00\u202fam \u2013 Take a short break (5\u202fmin), stretch, hydrate.  \n12:00\u202fpm \u2013 Lunch hour: serve lunch specials, chat with regulars, remind them about the Valentine\u2019s Day party at 5\u202fpm on February\u202f14th.  \n1:00\u202fpm \u2013 Continue serving, clean tables, restock supplies.  \n2:30\u202fpm \u2013 Prepare party materials: decorations, music playlist, special menu items for the Valentine\u2019s event.  \n3:30\u202fpm \u2013 Post reminder on social media and email list; ask customers to RSVP.  \n4:30\u202fpm \u2013 Quick check of all party supplies, ensure everything is ready by 5:00\u202fpm.  \n5:00\u202fpm \u2013 Start setting up the caf\u00e9 for the Valentine\u2019s Day party: table arrangements, lighting, music.  \n6:00\u202fpm \u2013 Continue serving customers while final touches are made.  \n7:00\u202fpm \u2013 Valentine\u2019s Day party begins: play music, serve special menu items, greet guests warmly.  \n7:30\u202fpm \u2013 Wrap up the party, thank guests, start cleaning up.  \n8:00\u202fpm \u2013 Close the caf\u00e9: shut down cash register, lock doors, take out trash, complete closing paperwork.  \n8:30\u202fpm \u2013 Quick clean of the kitchen and counter, set aside for next day.  \n10:00\u202fpm \u2013 Relax with a book or light music, prepare for bed.  \n11:00\u202fpm \u2013 Bedtime.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 843
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_7",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "error": null,
+   "seconds": 2.9
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 5,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "1) 6:00\u202fam \u2013 Wake up and complete morning routine  \n2) 6:45\u202fam \u2013 Have breakfast  \n3) 7:15\u202fam \u2013 Travel to Hobbs Cafe  \n4) 8:00\u202fam \u2013 Open caf\u00e9, greet customers, begin regular day  \n5) 10:00\u202fam \u2013 Inventory check, reorder supplies as needed  \n6) 12:00\u202fpm \u2013 Lunch break  \n7) 12:30\u202fpm \u2013 Resume service, attend to customers  \n8) 2:00\u202fpm \u2013 Work on Valentine's Day party preparations: gather decorations, order flowers, plan special menu items  \n9) 4:00\u202fpm \u2013 Finalize party plan, send last reminders to customers via social media/email  \n10) 6:00\u202fpm \u2013 Begin closing routine: tidy up, restock for next day  \n11) 8:00\u202fpm \u2013 Close caf\u00e9, lock up, complete end\u2011of\u2011day report  \n12) 9:30\u202fpm \u2013 Personal relaxation time (e.g., light reading or TV)  \n13) 10:30\u202fpm \u2013 Wind down, prepare for bed  \n14) 11:00\u202fpm \u2013 Sleep  ",
+     "delivered": "1) 6:00\u202fam \u2013 Wake up and complete morning routine  \n2) 6:45\u202fam \u2013 Have breakfast  \n3) 7:15\u202fam \u2013 Travel to Hobbs Cafe  \n4) 8:00\u202fam \u2013 Open caf\u00e9, greet customers, begin regular day  \n5) 10:00\u202fam \u2013 Inventory check, reorder supplies as needed  \n6) 12:00\u202fpm \u2013 Lunch break  \n7) 12:30\u202fpm \u2013 Resume service, attend to customers  \n8) 2:00\u202fpm \u2013 Work on Valentine's Day party preparations: gather decorations, order flowers, plan special menu items  \n9) 4:00\u202fpm \u2013 Finalize party plan, send last reminders to customers via social media/email  \n10) 6:00\u202fpm \u2013 Begin closing routine: tidy up, restock for next day  \n11) 8:00\u202fpm \u2013 Close caf\u00e9, lock up, complete end\u2011of\u2011day report  \n12) 9:30\u202fpm \u2013 Personal relaxation time (e.g., light reading or TV)  \n13) 10:30\u202fpm \u2013 Wind down, prepare for bed  \n14) 11:00\u202fpm \u2013 Sleep  ",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1747
+    },
+    {
+     "call_no": 2,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) make a quick coffee and snack while checking the calendar for the Valentine's Day party details at 6:15\u202fam  \n3) do a full inventory sweep of the kitchen and front\u2011counter supplies, placing orders for any missing ingredients by 7:00\u202fam  \n4) prepare the Valentine\u2019s Day decorations (tables, balloons, music playlist) and gather party materials by 8:00\u202fam  \n5) open Hobbs Caf\u00e9 at 8:00\u202fam, greet early patrons and start the regular morning service  \n6) serve breakfast and brunch until 12:00\u202fpm  \n7) take a 30\u2011minute lunch break at 12:00\u202fpm, use the time to finalize the party menu and confirm the guest list  \n8) resume serving coffee, pastries, and light lunches from 12:30\u202fpm to 4:30\u202fpm  \n9) start setting up the Valentine\u2019s Day party area at 4:30\u202fpm, arranging seating, lighting, and sound systems  \n10) host the Valentine\u2019s Day party for guests from 5:00\u202fpm to 7:00\u202fpm, offering special drinks and desserts, playing music, and ensuring everyone feels welcome  \n11) clean up and wrap up the party, close the caf\u00e9 at 8:00\u202fpm, and shut down all operations for the day  \n12) wind down, prepare for the next day\u2019s schedule, and head to bed around 11:00\u202fpm.",
+     "delivered": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) make a quick coffee and snack while checking the calendar for the Valentine's Day party details at 6:15\u202fam  \n3) do a full inventory sweep of the kitchen and front\u2011counter supplies, placing orders for any missing ingredients by 7:00\u202fam  \n4) prepare the Valentine\u2019s Day decorations (tables, balloons, music playlist) and gather party materials by 8:00\u202fam  \n5) open Hobbs Caf\u00e9 at 8:00\u202fam, greet early patrons and start the regular morning service  \n6) serve breakfast and brunch until 12:00\u202fpm  \n7) take a 30\u2011minute lunch break at 12:00\u202fpm, use the time to finalize the party menu and confirm the guest list  \n8) resume serving coffee, pastries, and light lunches from 12:30\u202fpm to 4:30\u202fpm  \n9) start setting up the Valentine\u2019s Day party area at 4:30\u202fpm, arranging seating, lighting, and sound systems  \n10) host the Valentine\u2019s Day party for guests from 5:00\u202fpm to 7:00\u202fpm, offering special drinks and desserts, playing music, and ensuring everyone feels welcome  \n11) clean up and wrap up the party, close the caf\u00e9 at 8:00\u202fpm, and shut down all operations for the day  \n12) wind down, prepare for the next day\u2019s schedule, and head to bed around 11:00\u202fpm.",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1066
+    },
+    {
+     "call_no": 3,
+     "exception": null,
+     "raw": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) prepare and enjoy breakfast at 6:30\u202fam  \n3) review inventory and list needed items for the Valentine\u2019s Day party at 7:00\u202fam  \n4) open Hobbs\u202fCafe at 8:00\u202fam and begin serving customers  \n5) greet each patron, announce the upcoming Valentine\u2019s Day party, and distribute flyers from 8:00\u202fam to 4:00\u202fpm  \n6) serve lunch to customers at 12:00\u202fpm, pause for a brief break at 12:30\u202fpm  \n7) check and restock supplies, order any remaining items for the party at 1:30\u202fpm  \n8) prepare party decorations and special menu items (centerpieces, music playlist, heart\u2011shaped pastries) from 2:30\u202fpm to 4:30\u202fpm  \n9) perform a final walk\u2011through of the cafe to ensure everything is ready for the next day\u2019s event at 5:00\u202fpm  \n10) close the cafe at 8:00\u202fpm, clean up, and lock up  \n11) relax with a light dinner at 8:30\u202fpm, review the next day\u2019s schedule  \n12) wind down, prepare for bed, and sleep by 11:00\u202fpm",
+     "delivered": "1) wake up and complete the morning routine at 6:00\u202fam  \n2) prepare and enjoy breakfast at 6:30\u202fam  \n3) review inventory and list needed items for the Valentine\u2019s Day party at 7:00\u202fam  \n4) open Hobbs\u202fCafe at 8:00\u202fam and begin serving customers  \n5) greet each patron, announce the upcoming Valentine\u2019s Day party, and distribute flyers from 8:00\u202fam to 4:00\u202fpm  \n6) serve lunch to customers at 12:00\u202fpm, pause for a brief break at 12:30\u202fpm  \n7) check and restock supplies, order any remaining items for the party at 1:30\u202fpm  \n8) prepare party decorations and special menu items (centerpieces, music playlist, heart\u2011shaped pastries) from 2:30\u202fpm to 4:30\u202fpm  \n9) perform a final walk\u2011through of the cafe to ensure everything is ready for the next day\u2019s event at 5:00\u202fpm  \n10) close the cafe at 8:00\u202fpm, clean up, and lock up  \n11) relax with a light dinner at 8:30\u202fpm, review the next day\u2019s schedule  \n12) wind down, prepare for bed, and sleep by 11:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1134
+    },
+    {
+     "call_no": 4,
+     "exception": null,
+     "raw": "1) Wake up, complete morning routine at 6:00\u202fam  \n2) Breakfast at 6:30\u202fam  \n3) Prepare caf\u00e9: inventory check, clean counters, arrange seating at 7:15\u202fam  \n4) Open Hobbs Caf\u00e9 at 8:00\u202fam  \n5) Work at counter from 8:00\u202fam \u2013 12:00\u202fpm  \n6) Lunch break from 12:00\u202fpm \u2013 12:30\u202fpm  \n7) Resume service from 12:30\u202fpm \u2013 4:00\u202fpm  \n8) Prepare Valentine\u2019s Day party materials (decorations, music playlist, special menu) from 4:00\u202fpm \u2013 5:30\u202fpm  \n9) Post party announcement on social media and send invites at 5:30\u202fpm \u2013 6:00\u202fpm  \n10) Continue caf\u00e9 service from 6:00\u202fpm \u2013 8:00\u202fpm  \n11) Close Hobbs Caf\u00e9 at 8:00\u202fpm  \n12) Dinner at home from 8:30\u202fpm \u2013 9:30\u202fpm  \n13) Relax, watch TV or read from 9:30\u202fpm \u2013 10:30\u202fpm  \n14) Bedtime at 11:00\u202fpm",
+     "delivered": "1) Wake up, complete morning routine at 6:00\u202fam  \n2) Breakfast at 6:30\u202fam  \n3) Prepare caf\u00e9: inventory check, clean counters, arrange seating at 7:15\u202fam  \n4) Open Hobbs Caf\u00e9 at 8:00\u202fam  \n5) Work at counter from 8:00\u202fam \u2013 12:00\u202fpm  \n6) Lunch break from 12:00\u202fpm \u2013 12:30\u202fpm  \n7) Resume service from 12:30\u202fpm \u2013 4:00\u202fpm  \n8) Prepare Valentine\u2019s Day party materials (decorations, music playlist, special menu) from 4:00\u202fpm \u2013 5:30\u202fpm  \n9) Post party announcement on social media and send invites at 5:30\u202fpm \u2013 6:00\u202fpm  \n10) Continue caf\u00e9 service from 6:00\u202fpm \u2013 8:00\u202fpm  \n11) Close Hobbs Caf\u00e9 at 8:00\u202fpm  \n12) Dinner at home from 8:30\u202fpm \u2013 9:30\u202fpm  \n13) Relax, watch TV or read from 9:30\u202fpm \u2013 10:30\u202fpm  \n14) Bedtime at 11:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1257
+    },
+    {
+     "call_no": 5,
+     "exception": null,
+     "raw": "",
+     "delivered": "",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 2048
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_8",
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "error": null,
+   "seconds": 20.7
+  },
+  {
+   "phase": "B2",
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 6,
+   "calls": [],
+   "validate": [],
+   "normalizer_applied": false,
+   "first_key_env": "GROQ_KEY_9",
+   "output": null,
+   "error": "cut off by the cap",
+   "seconds": null
+  }
+ ]
+}

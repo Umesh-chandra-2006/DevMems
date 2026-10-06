@@ -42,8 +42,8 @@ class RecordedRepliesExhausted(BaseException):
     pass
 
 
-def main():
-    probe = json.loads((ART / "model_probe.json").read_text(encoding="utf-8"))
+def main(src="model_probe.json", tag="probe_replay"):
+    probe = json.loads((ART / src).read_text(encoding="utf-8"))
     markers = load_runner_config()["bad_schedule_markers"]
     echo_re = re.compile(r"^\[.*Activity:")
 
@@ -111,19 +111,21 @@ def main():
                 valid = validator_passed and isinstance(out, str) and out.strip() != ""
                 clean = valid and not is_echo(out) and not has_duration_suffix(out) and not has_exotic_space(out)
             results.append({"model": inv["model"], "task": inv["task"], "repeat": inv["repeat"], "variant": vname,
+                            "live_variant": "spaces+duration" if inv.get("normalizer_applied") else "none",
                             "replies_available": len(replies), "replies_consumed": len(replies) - sum(1 for _ in it) if not exhausted else len(replies),
-                            "reply_possibly_truncated": any(len(r or "") >= 500 for r in replies),
+                            "reply_possibly_truncated": any(len(r or "") == 500 for r in replies),
                             "recorded_live_validate": inv["validate"], "replay_validate": list(cur["validate"]),
                             "recorded_live_output": recorded_outputs, "replay_output": out, "exhausted_recorded_replies": exhausted,
                             "validator_passed": validator_passed, "valid": valid, "clean": clean,
-                            "fidelity_identical_to_live": (vname == "none" and out == recorded_outputs
+                            "fidelity_identical_to_live": (vname == ("spaces+duration" if inv.get("normalizer_applied") else "none")
+                                                           and out == recorded_outputs
                                                            and list(cur["validate"]) == inv["validate"])})
 
     # ---- aggregate -------------------------------------------------------------------------------------------------------
     # An invocation is FAITHFUL when the unmodified replay (variant none) reproduces the live outcome exactly; the others were
     # affected by the 500-character truncation of the saved replies and are reported separately, never silently dropped.
     faithful = {(r["model"], r["task"], r["repeat"]) for r in results
-                if r["variant"] == "none" and r["fidelity_identical_to_live"]}
+                if r["variant"] == r["live_variant"] and r["fidelity_identical_to_live"]}
 
     def cnt(rs):
         return {"invocations": len(rs), "validator_passed": sum(r["validator_passed"] for r in rs),
@@ -131,24 +133,27 @@ def main():
                 "exhausted_recorded_replies": sum(r["exhausted_recorded_replies"] for r in rs)}
 
     agg = {}
-    for model in probe["models"]:
-        for task in ("wake_up_hour", "daily_plan", "hourly_schedule"):
+    tasks_present = [t for t in ("wake_up_hour", "daily_plan", "hourly_schedule") if any(r["task"] == t for r in results)]
+    for model in sorted({r["model"] for r in results}):
+        for task in tasks_present:
             row = {}
             for vname in VARIANTS:
                 rs_all = [r for r in results if r["model"] == model and r["task"] == task and r["variant"] == vname]
                 rs_f = [r for r in rs_all if (r["model"], r["task"], r["repeat"]) in faithful]
                 row[vname] = {"all": cnt(rs_all), "faithful_only": cnt(rs_f)}
             agg[f"{model} | {task}"] = row
-    fid = [r for r in results if r["variant"] == "none"]
+    fid = [r for r in results if r["variant"] == r["live_variant"]]  # the variant that matches how the live run was made
     summary = {"label": "offline replay of saved live replies through upstream's own code; zero network, zero LLM calls",
                "variants": list(VARIANTS), "aggregate": agg,
                "fidelity_variant_none": {"invocations": len(fid), "identical_to_live": sum(r["fidelity_identical_to_live"] for r in fid),
                                          "not_identical": [{"model": r["model"], "task": r["task"], "repeat": r["repeat"],
                                                             "reply_possibly_truncated": r["reply_possibly_truncated"]}
                                                            for r in fid if not r["fidelity_identical_to_live"]]},
-               "limitation": "raw replies were saved truncated to 500 characters; daily-plan replays parse truncated text",
+               "limitation": ("some saved raw replies are exactly 500 characters long (truncated by the saving script); replays of those parse "
+                              "truncated text" if any(r["reply_possibly_truncated"] for r in results) else
+                              "no saved reply is 500 characters long: replies are full length"),
                "results": results}
-    (ART / "probe_replay.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
+    (ART / f"{tag}.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
     lines = ["| model | prompt | variant | all: valid / clean of n | faithful only: valid / clean of n |", "|---|---|---|---|---|"]
     for key, row in agg.items():
         m, t = key.split(" | ")
@@ -156,11 +161,11 @@ def main():
             a_, f_ = x["all"], x["faithful_only"]
             lines.append(f"| {m} | {t} | {v} | {a_['valid']} / {a_['valid_and_clean']} of {a_['invocations']} | "
                          f"{f_['valid']} / {f_['valid_and_clean']} of {f_['invocations']} |")
-    (ART / "probe_replay_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (ART / f"{tag}_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
     print("fidelity (variant none identical to the live outcome):", summary["fidelity_variant_none"]["identical_to_live"], "of",
           summary["fidelity_variant_none"]["invocations"], "| not identical:", summary["fidelity_variant_none"]["not_identical"])
 
 
 if __name__ == "__main__":
-    main()
+    main(*sys.argv[1:3])

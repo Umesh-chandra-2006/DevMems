@@ -1,23 +1,5 @@
 | model | prompt | variant | all: valid / clean of n | faithful only: valid / clean of n |
 |---|---|---|---|---|
-| openai/gpt-oss-20b | wake_up_hour | none | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-20b | wake_up_hour | spaces | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-20b | wake_up_hour | spaces+duration | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-20b | daily_plan | none | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-20b | daily_plan | spaces | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-20b | daily_plan | spaces+duration | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-20b | hourly_schedule | none | 2 / 0 of 2 | 2 / 0 of 2 |
-| openai/gpt-oss-20b | hourly_schedule | spaces | 2 / 0 of 2 | 2 / 0 of 2 |
-| openai/gpt-oss-20b | hourly_schedule | spaces+duration | 2 / 0 of 2 | 2 / 0 of 2 |
-| openai/gpt-oss-120b | wake_up_hour | none | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-120b | wake_up_hour | spaces | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-120b | wake_up_hour | spaces+duration | 3 / 3 of 3 | 3 / 3 of 3 |
-| openai/gpt-oss-120b | daily_plan | none | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-120b | daily_plan | spaces | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-120b | daily_plan | spaces+duration | 0 / 0 of 2 | 0 / 0 of 2 |
-| openai/gpt-oss-120b | hourly_schedule | none | 2 / 0 of 2 | 1 / 0 of 1 |
-| openai/gpt-oss-120b | hourly_schedule | spaces | 2 / 0 of 2 | 1 / 0 of 1 |
-| openai/gpt-oss-120b | hourly_schedule | spaces+duration | 2 / 0 of 2 | 1 / 0 of 1 |
 | gemini-3.1-flash-lite | wake_up_hour | none | 3 / 3 of 3 | 3 / 3 of 3 |
 | gemini-3.1-flash-lite | wake_up_hour | spaces | 3 / 3 of 3 | 3 / 3 of 3 |
 | gemini-3.1-flash-lite | wake_up_hour | spaces+duration | 3 / 3 of 3 | 3 / 3 of 3 |
@@ -27,3 +9,21 @@
 | gemini-3.1-flash-lite | hourly_schedule | none | 2 / 0 of 2 | 2 / 0 of 2 |
 | gemini-3.1-flash-lite | hourly_schedule | spaces | 2 / 0 of 2 | 2 / 0 of 2 |
 | gemini-3.1-flash-lite | hourly_schedule | spaces+duration | 2 / 2 of 2 | 2 / 2 of 2 |
+| openai/gpt-oss-120b | wake_up_hour | none | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-120b | wake_up_hour | spaces | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-120b | wake_up_hour | spaces+duration | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-120b | daily_plan | none | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-120b | daily_plan | spaces | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-120b | daily_plan | spaces+duration | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-120b | hourly_schedule | none | 2 / 0 of 2 | 1 / 0 of 1 |
+| openai/gpt-oss-120b | hourly_schedule | spaces | 2 / 0 of 2 | 1 / 0 of 1 |
+| openai/gpt-oss-120b | hourly_schedule | spaces+duration | 2 / 0 of 2 | 1 / 0 of 1 |
+| openai/gpt-oss-20b | wake_up_hour | none | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-20b | wake_up_hour | spaces | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-20b | wake_up_hour | spaces+duration | 3 / 3 of 3 | 3 / 3 of 3 |
+| openai/gpt-oss-20b | daily_plan | none | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-20b | daily_plan | spaces | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-20b | daily_plan | spaces+duration | 0 / 0 of 2 | 0 / 0 of 2 |
+| openai/gpt-oss-20b | hourly_schedule | none | 2 / 0 of 2 | 2 / 0 of 2 |
+| openai/gpt-oss-20b | hourly_schedule | spaces | 2 / 0 of 2 | 2 / 0 of 2 |
+| openai/gpt-oss-20b | hourly_schedule | spaces+duration | 2 / 0 of 2 | 2 / 0 of 2 |

@@ -6,7 +6,7 @@
   "spaces+duration"
  ],
  "aggregate": {
-  "openai/gpt-oss-20b | wake_up_hour": {
+  "gemini-3.1-flash-lite | wake_up_hour": {
    "none": {
     "all": {
      "invocations": 3,
@@ -56,17 +56,17 @@
     }
    }
   },
-  "openai/gpt-oss-20b | daily_plan": {
+  "gemini-3.1-flash-lite | daily_plan": {
    "none": {
     "all": {
      "invocations": 2,
-     "validator_passed": 1,
+     "validator_passed": 2,
      "valid": 0,
      "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 2,
+     "invocations": 1,
      "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
@@ -76,13 +76,13 @@
    "spaces": {
     "all": {
      "invocations": 2,
-     "validator_passed": 1,
+     "validator_passed": 2,
      "valid": 0,
      "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 2,
+     "invocations": 1,
      "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
@@ -92,21 +92,21 @@
    "spaces+duration": {
     "all": {
      "invocations": 2,
-     "validator_passed": 1,
-     "valid": 0,
-     "valid_and_clean": 0,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 2,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 2,
+     "invocations": 1,
      "validator_passed": 1,
-     "valid": 0,
-     "valid_and_clean": 0,
+     "valid": 1,
+     "valid_and_clean": 1,
      "exhausted_recorded_replies": 0
     }
    }
   },
-  "openai/gpt-oss-20b | hourly_schedule": {
+  "gemini-3.1-flash-lite | hourly_schedule": {
    "none": {
     "all": {
      "invocations": 2,
@@ -144,14 +144,14 @@
      "invocations": 2,
      "validator_passed": 2,
      "valid": 2,
-     "valid_and_clean": 0,
+     "valid_and_clean": 2,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
      "invocations": 2,
      "validator_passed": 2,
      "valid": 2,
-     "valid_and_clean": 0,
+     "valid_and_clean": 2,
      "exhausted_recorded_replies": 0
     }
    }
@@ -306,7 +306,7 @@
     }
    }
   },
-  "gemini-3.1-flash-lite | wake_up_hour": {
+  "openai/gpt-oss-20b | wake_up_hour": {
    "none": {
     "all": {
      "invocations": 3,
@@ -356,17 +356,17 @@
     }
    }
   },
-  "gemini-3.1-flash-lite | daily_plan": {
+  "openai/gpt-oss-20b | daily_plan": {
    "none": {
     "all": {
      "invocations": 2,
-     "validator_passed": 2,
+     "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 1,
+     "invocations": 2,
      "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
@@ -376,13 +376,13 @@
    "spaces": {
     "all": {
      "invocations": 2,
-     "validator_passed": 2,
+     "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 1,
+     "invocations": 2,
      "validator_passed": 1,
      "valid": 0,
      "valid_and_clean": 0,
@@ -392,21 +392,21 @@
    "spaces+duration": {
     "all": {
      "invocations": 2,
-     "validator_passed": 2,
-     "valid": 2,
-     "valid_and_clean": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
-     "invocations": 1,
+     "invocations": 2,
      "validator_passed": 1,
-     "valid": 1,
-     "valid_and_clean": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     }
    }
   },
-  "gemini-3.1-flash-lite | hourly_schedule": {
+  "openai/gpt-oss-20b | hourly_schedule": {
    "none": {
     "all": {
      "invocations": 2,
@@ -444,14 +444,14 @@
      "invocations": 2,
      "validator_passed": 2,
      "valid": 2,
-     "valid_and_clean": 2,
+     "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     },
     "faithful_only": {
      "invocations": 2,
      "validator_passed": 2,
      "valid": 2,
-     "valid_and_clean": 2,
+     "valid_and_clean": 0,
      "exhausted_recorded_replies": 0
     }
    }
@@ -475,13 +475,14 @@
    }
   ]
  },
- "limitation": "raw replies were saved truncated to 500 characters; daily-plan replays parse truncated text",
+ "limitation": "some saved raw replies are exactly 500 characters long (truncated by the saving script); replays of those parse truncated text",
  "results": [
   {
    "model": "openai/gpt-oss-20b",
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -504,6 +505,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -526,6 +528,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -548,6 +551,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -570,6 +574,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -592,6 +597,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -614,6 +620,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -636,6 +643,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -658,6 +666,7 @@
    "task": "wake_up_hour",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -680,6 +689,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -728,6 +738,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -776,6 +787,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -824,6 +836,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -872,6 +885,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -920,6 +934,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -968,6 +983,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1006,6 +1022,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1044,6 +1061,7 @@
    "task": "daily_plan",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1082,6 +1100,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1104,6 +1123,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1126,6 +1146,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1148,6 +1169,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1170,6 +1192,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1192,6 +1215,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1214,6 +1238,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1236,6 +1261,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1258,6 +1284,7 @@
    "task": "hourly_schedule",
    "repeat": 1,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1280,6 +1307,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1302,6 +1330,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1324,6 +1353,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1346,6 +1376,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1368,6 +1399,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1390,6 +1422,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -1412,6 +1445,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1434,6 +1468,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1456,6 +1491,7 @@
    "task": "wake_up_hour",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1478,6 +1514,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
@@ -1506,6 +1543,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
@@ -1534,6 +1572,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
@@ -1562,6 +1601,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -1596,6 +1636,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -1630,6 +1671,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 5,
    "replies_consumed": 5,
    "reply_possibly_truncated": true,
@@ -1664,6 +1706,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1698,6 +1741,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1732,6 +1776,7 @@
    "task": "daily_plan",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1766,6 +1811,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 4,
    "replies_consumed": 4,
    "reply_possibly_truncated": true,
@@ -1794,6 +1840,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 4,
    "replies_consumed": 4,
    "reply_possibly_truncated": true,
@@ -1822,6 +1869,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 4,
    "replies_consumed": 4,
    "reply_possibly_truncated": true,
@@ -1850,6 +1898,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1872,6 +1921,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1894,6 +1944,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1916,6 +1967,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1938,6 +1990,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1960,6 +2013,7 @@
    "task": "hourly_schedule",
    "repeat": 2,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": true,
@@ -1982,6 +2036,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2004,6 +2059,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2026,6 +2082,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2048,6 +2105,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2070,6 +2128,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2092,6 +2151,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 1,
    "replies_consumed": 1,
    "reply_possibly_truncated": false,
@@ -2114,6 +2174,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "none",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
@@ -2138,6 +2199,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
@@ -2162,6 +2224,7 @@
    "task": "wake_up_hour",
    "repeat": 3,
    "variant": "spaces+duration",
+   "live_variant": "none",
    "replies_available": 2,
    "replies_consumed": 2,
    "reply_possibly_truncated": true,
