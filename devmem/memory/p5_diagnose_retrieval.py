@@ -76,8 +76,9 @@ def rebuild(tag):
     return persona, sems
 
 
-def run(tag):
-    saved = json.load(open(ROOT / "docs/phase5_step1_artifacts" / f"scripted_sweep_{tag}.json", encoding="utf-8"))
+def run(tag, saved_dir="phase5_step1_artifacts", out_dir=None, full=False):
+    """`full=True` also stores every node's components under rows_all (used by the demo exporter)."""
+    saved = json.load(open(ROOT / "docs" / saved_dir / f"scripted_sweep_{tag}.json", encoding="utf-8"))
     persona, sems = rebuild(tag)
     cons._CONFIG_CACHE.clear(); cons._CONFIG_CACHE.update(cons.load_config())
     weight = cons._CONFIG_CACHE["consolidated_weight"]
@@ -139,6 +140,8 @@ def run(tag):
             run_out[fname] = {"order": order, "summary_ranks": {s: order.index(s) + 1 for s in summary_ids},
                               "rows_top3": {nid: rows[nid] for nid in order[:3]},
                               "rows_summaries": {s: rows[s] for s in summary_ids}}
+            if full:
+                run_out[fname]["rows_all"] = rows
         out["runs"][label] = run_out
     cons._CONFIG_CACHE["consolidated_weight"] = weight
     # reproduction check against the original run's artifact
@@ -150,7 +153,9 @@ def run(tag):
                      == saved["retrieval"]["runs"]["weight_1.0"][fname]["summary_ranks"])
     out["reproduces_saved_summary_ranks"] = ok
     out["nodes_total"] = n_all
-    (ART / f"diag_retrieval_{tag}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    out["consolidated_node_ids"] = sorted(cons.consolidated_node_ids(persona.a_mem))
+    (Path(out_dir) if out_dir else ART).mkdir(parents=True, exist_ok=True)
+    ((Path(out_dir) if out_dir else ART) / f"diag_retrieval_{tag}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     return out
 
 

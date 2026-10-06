@@ -1,0 +1,879 @@
+{
+ "label": "live",
+ "phase": "continue",
+ "sim_code": "p5_staged_live",
+ "pinned_model": "openai/gpt-oss-20b",
+ "start_clock": "2023-02-13 00:00:10",
+ "start_step": 1,
+ "resumed": true,
+ "caps": {
+  "soft_llm": 266,
+  "hard_llm": 400,
+  "soft_embed": 100,
+  "hard_embed": 150
+ },
+ "budget": {
+  "phase": "continue",
+  "per_key": {
+   "GROQ_KEY_1": {
+    "used_today": 200079,
+    "limit": 200000,
+    "remaining": 0
+   },
+   "GROQ_KEY_2": {
+    "used_today": 174079,
+    "limit": 200000,
+    "remaining": 25921
+   },
+   "GROQ_KEY_3": {
+    "used_today": 13529,
+    "limit": 200000,
+    "remaining": 186471
+   },
+   "GROQ_KEY_4": {
+    "used_today": 106209,
+    "limit": 200000,
+    "remaining": 93791
+   },
+   "GROQ_KEY_5": {
+    "used_today": 33498,
+    "limit": 200000,
+    "remaining": 166502
+   },
+   "GROQ_KEY_6": {
+    "used_today": 0,
+    "limit": 200000,
+    "remaining": 200000
+   }
+  },
+  "remaining_total": 672685,
+  "projected_need": 583072.0,
+  "soft_llm": 266,
+  "hard_llm": 400
+ },
+ "outcome": "soft LLM cap 266 reached at a step boundary",
+ "saved": true,
+ "final_step": 2851,
+ "final_clock": "2023-02-13 07:55:10",
+ "steps_run": 2850,
+ "wall_seconds": 1900.1,
+ "counted": {
+  "llm_calls": 266,
+  "embed_requests": 23
+ },
+ "router_failures": {
+  "count": 0,
+  "by_function": {},
+  "last_errors": []
+ },
+ "autosave_steps": [
+  90,
+  180,
+  270,
+  360,
+  450,
+  540,
+  630,
+  720,
+  810,
+  900,
+  990,
+  1080,
+  1170,
+  1260,
+  1350,
+  1440,
+  1530,
+  1620,
+  1710,
+  1800,
+  1890,
+  1980,
+  2070,
+  2160,
+  2250,
+  2340,
+  2430,
+  2520,
+  2610,
+  2700,
+  2790,
+  2851
+ ],
+ "embedding_stats": {
+  "model": "gemini-embedding-001",
+  "fail_loud": true,
+  "http_requests": 23,
+  "texts_requested": 24,
+  "cache_hits": 1,
+  "cache_misses": 23,
+  "failures": 0,
+  "fallbacks": 0,
+  "http_status_counts": {
+   "200": 23
+  },
+  "requests_by_key_env": {
+   "GEMINI_KEY_1": 6,
+   "GEMINI_KEY_3": 6,
+   "GEMINI_KEY_4": 6,
+   "GEMINI_KEY_5": 5
+  },
+  "keys_skipped": {},
+  "offline": false,
+  "dimensions_seen": [
+   3072
+  ]
+ },
+ "schedule_check": {
+  "status": "findings",
+  "step": 2851,
+  "scans_run": 32,
+  "findings": [
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:abC12d) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:qgNe5t) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[(ID:Q1a2b3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 5,
+    "marker": "model_echo",
+    "text": "[(ID:abc123) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 6,
+    "marker": "model_echo",
+    "text": "[(ID:ab12cd) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:cB0Vi3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 10,
+    "marker": "model_echo",
+    "text": "[(ID:GY5leH) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 12,
+    "marker": "model_echo",
+    "text": "[(ID:Z3kL9B) Monday February 13 -- 12:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[(ID:tIRd0I) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[(ID:1A2B3C) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 15,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 16,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule",
+    "index": 17,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping (ID:Zk3mL1)"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:abC12d) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:qgNe5t) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[(ID:Q1a2b3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 5,
+    "marker": "model_echo",
+    "text": "[(ID:abc123) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 6,
+    "marker": "model_echo",
+    "text": "[(ID:ab12cd) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:cB0Vi3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 10,
+    "marker": "model_echo",
+    "text": "[(ID:GY5leH) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 12,
+    "marker": "model_echo",
+    "text": "[(ID:Z3kL9B) Monday February 13 -- 12:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[(ID:tIRd0I) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[(ID:1A2B3C) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 15,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 16,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 17,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping (ID:Zk3mL1)"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 4,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 5,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 6,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 8,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 10,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 12,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 15,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 16,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 17,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 18,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 19,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 20,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 21,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 22,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 23,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 24,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 25,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 26,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 27,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 28,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 29,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 30,
+    "marker": "model_echo",
+    "text": "[(ID:ABCDEF) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 31,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 32,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 33,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 35,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule",
+    "index": 36,
+    "marker": "model_echo",
+    "text": "[(ID:VhTj5l) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:KJ1qLZ) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:18pwgg) Monday February 13 -- 07:00 AM] Activity: Klaus wakes up, completes morning routine, an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 4,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 5,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 6,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:A1B2C3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 8,
+    "marker": "model_echo",
+    "text": "[(ID:ABCDEF) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 10,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c3) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[(ID:VhTj5l) Monday February 13 -- 00:00 AM] Activity: Klaus is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:fE8nUR) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:Q1a2b3) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[(ID:frQYYE) Monday February 13 -- 12:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 4,
+    "marker": "model_echo",
+    "text": "[(ID:AB12CD) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 8,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 12,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c3) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule",
+    "index": 15,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: late-night study at home"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 1,
+    "marker": "model_echo",
+    "text": "[(ID:fE8nUR) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 2,
+    "marker": "model_echo",
+    "text": "[(ID:Q1a2b3) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 3,
+    "marker": "model_echo",
+    "text": "[(ID:frQYYE) Monday February 13 -- 12:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 4,
+    "marker": "model_echo",
+    "text": "[(ID:AB12CD) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 7,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 8,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 9,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 11,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 12,
+    "marker": "model_echo",
+    "text": "[(ID:a1b2c3) Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 13,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 14,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 12:00 AM] Activity: Maria is sleeping"
+   },
+   {
+    "agent": "Maria Lopez",
+    "field": "f_daily_schedule_hourly_org",
+    "index": 15,
+    "marker": "model_echo",
+    "text": "[Monday February 13 -- 00:00 AM] Activity: late-night study at home"
+   }
+  ]
+ },
+ "consolidation_sweeps_rows": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 0,
+   "sweep_time": "2023-02-13 00:00:00",
+   "max_node_id": 7,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Maria Lopez",
+   "night": 0,
+   "sweep_time": "2023-02-13 00:00:00",
+   "max_node_id": 7,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Klaus Mueller",
+   "night": 0,
+   "sweep_time": "2023-02-13 00:00:00",
+   "max_node_id": 6,
+   "attempts": 1,
+   "status": "done"
+  }
+ ],
+ "episodic_rows_by_agent_in_mirror": {
+  "Isabella Rodriguez": 8,
+  "Klaus Mueller": 39,
+  "Maria Lopez": 8
+ }
+}

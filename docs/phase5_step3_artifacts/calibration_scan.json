@@ -1,0 +1,944 @@
+{
+ "label": "offline scan of a saved live run; no threshold chosen or frozen",
+ "floor": 3,
+ "datasets": {
+  "p5_staged_live_continue": {
+   "Isabella Rodriguez": {
+    "nodes_by_type": {
+     "event": 8,
+     "thought": 1
+    },
+    "poignancy_histogram": {
+     "1": 7,
+     "3": 1,
+     "5": 1
+    },
+    "eligible_for_sweep": {
+     "n": 1,
+     "dims": [
+      3072
+     ],
+     "settings": {}
+    },
+    "all_nodes": {
+     "n": 9,
+     "dims": [
+      3072
+     ],
+     "settings": {
+      "single@0.7": {
+       "histogram": {
+        "9": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 9,
+       "entries_in_clusters_ge_3": 9
+      },
+      "single@0.72": {
+       "histogram": {
+        "9": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 9,
+       "entries_in_clusters_ge_3": 9
+      },
+      "single@0.74": {
+       "histogram": {
+        "3": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 9
+      },
+      "single@0.76": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.78": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.8": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.82": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.84": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.86": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.88": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.9": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.7": {
+       "histogram": {
+        "3": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 9
+      },
+      "average@0.72": {
+       "histogram": {
+        "3": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 9
+      },
+      "average@0.74": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "average@0.76": {
+       "histogram": {
+        "1": 1,
+        "2": 2,
+        "4": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 4,
+       "entries_in_clusters_ge_3": 4
+      },
+      "average@0.78": {
+       "histogram": {
+        "1": 1,
+        "2": 2,
+        "4": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 4,
+       "entries_in_clusters_ge_3": 4
+      },
+      "average@0.8": {
+       "histogram": {
+        "1": 1,
+        "2": 2,
+        "4": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 4,
+       "entries_in_clusters_ge_3": 4
+      },
+      "average@0.82": {
+       "histogram": {
+        "1": 3,
+        "2": 3
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.84": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.86": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.88": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.9": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      }
+     },
+     "pairwise_cosine": {
+      "min": 0.5427,
+      "median": 0.7167,
+      "p90": 0.8292,
+      "max": 0.8704
+     }
+    },
+    "eligible_texts": [
+     "bed is occupied"
+    ]
+   },
+   "Klaus Mueller": {
+    "nodes_by_type": {
+     "event": 39,
+     "thought": 1
+    },
+    "poignancy_histogram": {
+     "1": 27,
+     "2": 10,
+     "4": 1,
+     "5": 2
+    },
+    "eligible_for_sweep": {
+     "n": 2,
+     "dims": [
+      3072
+     ],
+     "settings": {
+      "single@0.7": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.72": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.74": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.76": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.78": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.8": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.82": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.84": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.86": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.88": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.9": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.7": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.72": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.74": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.76": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.78": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.8": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.82": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.84": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.86": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.88": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.9": {
+       "histogram": {
+        "1": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      }
+     },
+     "pairwise_cosine": {
+      "min": 0.5929,
+      "median": 0.5929,
+      "p90": 0.5929,
+      "max": 0.5929
+     }
+    },
+    "all_nodes": {
+     "n": 40,
+     "dims": [
+      3072
+     ],
+     "settings": {
+      "single@0.7": {
+       "histogram": {
+        "3": 1,
+        "37": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 37,
+       "entries_in_clusters_ge_3": 40
+      },
+      "single@0.72": {
+       "histogram": {
+        "1": 1,
+        "3": 1,
+        "36": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 36,
+       "entries_in_clusters_ge_3": 39
+      },
+      "single@0.74": {
+       "histogram": {
+        "1": 1,
+        "3": 1,
+        "36": 1
+       },
+       "clusters_ge_3": 2,
+       "largest": 36,
+       "entries_in_clusters_ge_3": 39
+      },
+      "single@0.76": {
+       "histogram": {
+        "1": 3,
+        "3": 1,
+        "4": 1,
+        "30": 1
+       },
+       "clusters_ge_3": 3,
+       "largest": 30,
+       "entries_in_clusters_ge_3": 37
+      },
+      "single@0.78": {
+       "histogram": {
+        "1": 4,
+        "3": 1,
+        "4": 1,
+        "29": 1
+       },
+       "clusters_ge_3": 3,
+       "largest": 29,
+       "entries_in_clusters_ge_3": 36
+      },
+      "single@0.8": {
+       "histogram": {
+        "1": 5,
+        "3": 1,
+        "4": 1,
+        "28": 1
+       },
+       "clusters_ge_3": 3,
+       "largest": 28,
+       "entries_in_clusters_ge_3": 35
+      },
+      "single@0.82": {
+       "histogram": {
+        "1": 8,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "23": 1
+       },
+       "clusters_ge_3": 3,
+       "largest": 23,
+       "entries_in_clusters_ge_3": 30
+      },
+      "single@0.84": {
+       "histogram": {
+        "1": 11,
+        "2": 3,
+        "3": 2,
+        "4": 1,
+        "13": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 13,
+       "entries_in_clusters_ge_3": 23
+      },
+      "single@0.86": {
+       "histogram": {
+        "1": 12,
+        "2": 4,
+        "3": 2,
+        "4": 1,
+        "10": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 10,
+       "entries_in_clusters_ge_3": 20
+      },
+      "single@0.88": {
+       "histogram": {
+        "1": 16,
+        "2": 4,
+        "3": 2,
+        "10": 1
+       },
+       "clusters_ge_3": 3,
+       "largest": 10,
+       "entries_in_clusters_ge_3": 16
+      },
+      "single@0.9": {
+       "histogram": {
+        "1": 16,
+        "2": 4,
+        "3": 3,
+        "7": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 7,
+       "entries_in_clusters_ge_3": 16
+      },
+      "average@0.7": {
+       "histogram": {
+        "1": 4,
+        "3": 2,
+        "4": 1,
+        "26": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 26,
+       "entries_in_clusters_ge_3": 36
+      },
+      "average@0.72": {
+       "histogram": {
+        "1": 4,
+        "3": 2,
+        "4": 1,
+        "26": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 26,
+       "entries_in_clusters_ge_3": 36
+      },
+      "average@0.74": {
+       "histogram": {
+        "1": 4,
+        "3": 2,
+        "4": 1,
+        "10": 1,
+        "16": 1
+       },
+       "clusters_ge_3": 5,
+       "largest": 16,
+       "entries_in_clusters_ge_3": 36
+      },
+      "average@0.76": {
+       "histogram": {
+        "1": 5,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "10": 1,
+        "16": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 16,
+       "entries_in_clusters_ge_3": 33
+      },
+      "average@0.78": {
+       "histogram": {
+        "1": 5,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "10": 1,
+        "16": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 16,
+       "entries_in_clusters_ge_3": 33
+      },
+      "average@0.8": {
+       "histogram": {
+        "1": 8,
+        "2": 1,
+        "3": 2,
+        "4": 1,
+        "10": 2
+       },
+       "clusters_ge_3": 5,
+       "largest": 10,
+       "entries_in_clusters_ge_3": 30
+      },
+      "average@0.82": {
+       "histogram": {
+        "1": 8,
+        "2": 3,
+        "3": 2,
+        "4": 1,
+        "6": 1,
+        "10": 1
+       },
+       "clusters_ge_3": 5,
+       "largest": 10,
+       "entries_in_clusters_ge_3": 26
+      },
+      "average@0.84": {
+       "histogram": {
+        "1": 11,
+        "2": 5,
+        "3": 3,
+        "10": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 10,
+       "entries_in_clusters_ge_3": 19
+      },
+      "average@0.86": {
+       "histogram": {
+        "1": 12,
+        "2": 6,
+        "3": 2,
+        "4": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 16
+      },
+      "average@0.88": {
+       "histogram": {
+        "1": 16,
+        "2": 4,
+        "3": 2,
+        "4": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 4,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 16
+      },
+      "average@0.9": {
+       "histogram": {
+        "1": 16,
+        "2": 4,
+        "3": 4,
+        "4": 1
+       },
+       "clusters_ge_3": 5,
+       "largest": 4,
+       "entries_in_clusters_ge_3": 16
+      }
+     },
+     "pairwise_cosine": {
+      "min": 0.4821,
+      "median": 0.6631,
+      "p90": 0.8202,
+      "max": 1.0
+     }
+    },
+    "eligible_texts": [
+     "Klaus Mueller is leaving the house",
+     "bed is occupied by Klaus Mueller"
+    ]
+   },
+   "Maria Lopez": {
+    "nodes_by_type": {
+     "event": 8,
+     "thought": 1
+    },
+    "poignancy_histogram": {
+     "1": 8,
+     "5": 1
+    },
+    "eligible_for_sweep": {
+     "n": 0,
+     "dims": [],
+     "settings": {}
+    },
+    "all_nodes": {
+     "n": 9,
+     "dims": [
+      3072
+     ],
+     "settings": {
+      "single@0.7": {
+       "histogram": {
+        "9": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 9,
+       "entries_in_clusters_ge_3": 9
+      },
+      "single@0.72": {
+       "histogram": {
+        "9": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 9,
+       "entries_in_clusters_ge_3": 9
+      },
+      "single@0.74": {
+       "histogram": {
+        "1": 1,
+        "8": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 8,
+       "entries_in_clusters_ge_3": 8
+      },
+      "single@0.76": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.78": {
+       "histogram": {
+        "1": 1,
+        "2": 1,
+        "6": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 6,
+       "entries_in_clusters_ge_3": 6
+      },
+      "single@0.8": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "single@0.82": {
+       "histogram": {
+        "1": 4,
+        "2": 1,
+        "3": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 3,
+       "entries_in_clusters_ge_3": 3
+      },
+      "single@0.84": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.86": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.88": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "single@0.9": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.7": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "average@0.72": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "average@0.74": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "average@0.76": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "average@0.78": {
+       "histogram": {
+        "1": 2,
+        "2": 1,
+        "5": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 5,
+       "entries_in_clusters_ge_3": 5
+      },
+      "average@0.8": {
+       "histogram": {
+        "1": 4,
+        "2": 1,
+        "3": 1
+       },
+       "clusters_ge_3": 1,
+       "largest": 3,
+       "entries_in_clusters_ge_3": 3
+      },
+      "average@0.82": {
+       "histogram": {
+        "1": 5,
+        "2": 2
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.84": {
+       "histogram": {
+        "1": 7,
+        "2": 1
+       },
+       "clusters_ge_3": 0,
+       "largest": 2,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.86": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.88": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      },
+      "average@0.9": {
+       "histogram": {
+        "1": 9
+       },
+       "clusters_ge_3": 0,
+       "largest": 1,
+       "entries_in_clusters_ge_3": 0
+      }
+     },
+     "pairwise_cosine": {
+      "min": 0.5235,
+      "median": 0.7026,
+      "p90": 0.809,
+      "max": 0.8548
+     }
+    },
+    "eligible_texts": []
+   }
+  }
+ }
+}

@@ -1,0 +1,2474 @@
+{
+ "label": "scripted events; saved live embeddings and summaries; ranking recomputed offline",
+ "agent": "Isabella Rodriguez",
+ "day": "2023-02-13",
+ "fixture_note": "Hand-written events for one simulated day of Isabella Rodriguez (written by the Senior Developer, not captured from a run). group = the intended relationship, used only to check the result; importance is scripted, not scored.",
+ "events": [
+  {
+   "t": "08:05",
+   "importance": 4,
+   "group": "baking",
+   "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe"
+  },
+  {
+   "t": "08:40",
+   "importance": 4,
+   "group": "baking",
+   "text": "Isabella Rodriguez is kneading dough for the morning pastries"
+  },
+  {
+   "t": "09:15",
+   "importance": 5,
+   "group": "baking",
+   "text": "Isabella Rodriguez is taking fresh bread out of the oven"
+  },
+  {
+   "t": "11:30",
+   "importance": 4,
+   "group": "baking",
+   "text": "Isabella Rodriguez is decorating cupcakes for a customer's order"
+  },
+  {
+   "t": "14:10",
+   "importance": 4,
+   "group": "baking",
+   "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush"
+  },
+  {
+   "t": "10:20",
+   "importance": 7,
+   "group": "neighbor_conflict",
+   "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe"
+  },
+  {
+   "t": "10:35",
+   "importance": 7,
+   "group": "neighbor_conflict",
+   "text": "Isabella Rodriguez argued with her neighbor about the late-night noise"
+  },
+  {
+   "t": "10:50",
+   "importance": 6,
+   "group": "neighbor_conflict",
+   "text": "Isabella Rodriguez apologized to the upset neighbor and offered free coffee"
+  },
+  {
+   "t": "13:00",
+   "importance": 6,
+   "group": "neighbor_conflict",
+   "text": "Isabella Rodriguez felt tense after the dispute with her neighbor"
+  },
+  {
+   "t": "12:15",
+   "importance": 5,
+   "group": "isolated",
+   "text": "Isabella Rodriguez is reading a letter from her sister who lives in another city"
+  },
+  {
+   "t": "15:30",
+   "importance": 3,
+   "group": "isolated",
+   "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window"
+  },
+  {
+   "t": "16:45",
+   "importance": 5,
+   "group": "isolated",
+   "text": "The town clock tower struck five while Isabella Rodriguez waited at the bus stop"
+  },
+  {
+   "t": "07:10",
+   "importance": 2,
+   "group": "below_floor",
+   "text": "Isabella Rodriguez is brushing her teeth"
+  },
+  {
+   "t": "07:20",
+   "importance": 1,
+   "group": "idle",
+   "text": "bed is idle"
+  },
+  {
+   "t": "07:20",
+   "importance": 1,
+   "group": "idle",
+   "text": "closet is idle"
+  },
+  {
+   "t": "17:00",
+   "importance": 1,
+   "group": "idle",
+   "text": "refrigerator is idle"
+  }
+ ],
+ "runs": {
+  "0.78 (approved default)": {
+   "tag": "threshold_0_78_default_third_person",
+   "threshold": 0.78,
+   "cluster_size_histogram": {
+    "1": 1,
+    "4": 1,
+    "7": 1
+   },
+   "entries_considered": 12,
+   "entries_flagged": 11,
+   "episodic_final": [
+    {
+     "entry_id": "Isabella Rodriguez:node_1",
+     "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_10",
+     "text": "Isabella Rodriguez is reading a letter from her sister who lives in another city",
+     "importance": 5.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_11",
+     "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+     "importance": 3.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_12",
+     "text": "The town clock tower struck five while Isabella Rodriguez waited at the bus stop",
+     "importance": 5.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_13",
+     "text": "Isabella Rodriguez is brushing her teeth",
+     "importance": 2.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_14",
+     "text": "bed is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_15",
+     "text": "closet is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_16",
+     "text": "refrigerator is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_2",
+     "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_3",
+     "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+     "importance": 5.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_4",
+     "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_5",
+     "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_6",
+     "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe",
+     "importance": 7.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_7",
+     "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+     "importance": 7.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_8",
+     "text": "Isabella Rodriguez apologized to the upset neighbor and offered free coffee",
+     "importance": 6.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_9",
+     "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+     "importance": 6.0,
+     "consolidated": true
+    }
+   ],
+   "event_groups": {
+    "Isabella Rodriguez:node_1": "baking",
+    "Isabella Rodriguez:node_2": "baking",
+    "Isabella Rodriguez:node_3": "baking",
+    "Isabella Rodriguez:node_4": "baking",
+    "Isabella Rodriguez:node_5": "baking",
+    "Isabella Rodriguez:node_6": "neighbor_conflict",
+    "Isabella Rodriguez:node_7": "neighbor_conflict",
+    "Isabella Rodriguez:node_8": "neighbor_conflict",
+    "Isabella Rodriguez:node_9": "neighbor_conflict",
+    "Isabella Rodriguez:node_10": "isolated",
+    "Isabella Rodriguez:node_11": "isolated",
+    "Isabella Rodriguez:node_12": "isolated",
+    "Isabella Rodriguez:node_13": "below_floor",
+    "Isabella Rodriguez:node_14": "idle",
+    "Isabella Rodriguez:node_15": "idle",
+    "Isabella Rodriguez:node_16": "idle"
+   },
+   "summaries": [
+    {
+     "entry_id": "Isabella Rodriguez:node_17",
+     "summary": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011oriented multitasking, balancing culinary duties with personal care and maintenance to support both her coworkers and customers.",
+     "importance": 4,
+     "sources": [
+      "Isabella Rodriguez:node_1",
+      "Isabella Rodriguez:node_2",
+      "Isabella Rodriguez:node_3",
+      "Isabella Rodriguez:node_4",
+      "Isabella Rodriguez:node_10",
+      "Isabella Rodriguez:node_5",
+      "Isabella Rodriguez:node_11"
+     ],
+     "source_texts": [
+      "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "Isabella Rodriguez is kneading dough for the morning pastries",
+      "Isabella Rodriguez is taking fresh bread out of the oven",
+      "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "Isabella Rodriguez is reading a letter from her sister who lives in another city",
+      "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "Isabella Rodriguez is fixing a loose latch on the cafe's back window"
+     ]
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_18",
+     "summary": "Isabella Rodriguez tends to smooth over conflicts by apologizing and offering compensation, prioritizing harmony even when she feels tense.",
+     "importance": 2,
+     "sources": [
+      "Isabella Rodriguez:node_6",
+      "Isabella Rodriguez:node_7",
+      "Isabella Rodriguez:node_8",
+      "Isabella Rodriguez:node_9"
+     ],
+     "source_texts": [
+      "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe",
+      "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "Isabella Rodriguez apologized to the upset neighbor and offered free coffee",
+      "Isabella Rodriguez felt tense after the dispute with her neighbor"
+     ]
+    }
+   ],
+   "second_sweep": {
+    "skipped": "already swept",
+    "night": 1
+   },
+   "ranking": {
+    "neighbor_argument": {
+     "focal_text": "Isabella had an argument with a neighbor about the noise",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.659,
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 2.375,
+       "recency": 0.3535,
+       "relevance": 2.3955,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 1.968,
+       "recency": 0.1746,
+       "relevance": 2.1605,
+       "importance": 1.6
+      },
+      {
+       "rank": 4,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.785,
+       "recency": 0.2814,
+       "relevance": 1.6891,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.731,
+       "recency": 0.0693,
+       "relevance": 0.4621,
+       "importance": 1.2
+      },
+      {
+       "rank": 6,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.159,
+       "recency": 0.5,
+       "relevance": 0.659,
+       "importance": 0.0
+      },
+      {
+       "rank": 7,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 1.073,
+       "recency": 0.21,
+       "relevance": 0.7367,
+       "importance": 1.2
+      },
+      {
+       "rank": 8,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 1.035,
+       "recency": 0.3899,
+       "relevance": 0.4799,
+       "importance": 1.2
+      },
+      {
+       "rank": 9,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 0.961,
+       "recency": 0.0,
+       "relevance": 0.161,
+       "importance": 0.8
+      },
+      {
+       "rank": 10,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 0.919,
+       "recency": 0.4264,
+       "relevance": 0.6125,
+       "importance": 0.8
+      },
+      {
+       "rank": 11,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 0.814,
+       "recency": 0.0346,
+       "relevance": 0.7789,
+       "importance": 0.0
+      },
+      {
+       "rank": 12,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 0.741,
+       "recency": 0.2456,
+       "relevance": 0.437,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 0.703,
+       "recency": 0.1393,
+       "relevance": 0.4674,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.632,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 0.552,
+       "recency": 0.1042,
+       "relevance": 0.6008,
+       "importance": 0.4
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 5.317,
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 4.749,
+       "recency": 0.3535,
+       "relevance": 2.3955,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 3.935,
+       "recency": 0.1746,
+       "relevance": 2.1605,
+       "importance": 1.6
+      },
+      {
+       "rank": 4,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.57,
+       "recency": 0.2814,
+       "relevance": 1.6891,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 2.147,
+       "recency": 0.21,
+       "relevance": 0.7367,
+       "importance": 1.2
+      },
+      {
+       "rank": 6,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 2.07,
+       "recency": 0.3899,
+       "relevance": 0.4799,
+       "importance": 1.2
+      },
+      {
+       "rank": 7,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.839,
+       "recency": 0.4264,
+       "relevance": 0.6125,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.731,
+       "recency": 0.0693,
+       "relevance": 0.4621,
+       "importance": 1.2
+      },
+      {
+       "rank": 9,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.483,
+       "recency": 0.2456,
+       "relevance": 0.437,
+       "importance": 0.8
+      },
+      {
+       "rank": 10,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.407,
+       "recency": 0.1393,
+       "relevance": 0.4674,
+       "importance": 0.8
+      },
+      {
+       "rank": 11,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 1.263,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 12,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.159,
+       "recency": 0.5,
+       "relevance": 0.659,
+       "importance": 0.0
+      },
+      {
+       "rank": 13,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 1.105,
+       "recency": 0.1042,
+       "relevance": 0.6008,
+       "importance": 0.4
+      },
+      {
+       "rank": 14,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 0.961,
+       "recency": 0.0,
+       "relevance": 0.161,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 0.814,
+       "recency": 0.0346,
+       "relevance": 0.7789,
+       "importance": 0.0
+      }
+     ]
+    },
+    "conflict_handling": {
+     "focal_text": "How does Isabella handle conflict with other people?",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 3.035,
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.0
+      },
+      {
+       "rank": 2,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.208,
+       "recency": 0.2814,
+       "relevance": 2.1348,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 2.111,
+       "recency": 0.3535,
+       "relevance": 2.269,
+       "importance": 1.6
+      },
+      {
+       "rank": 4,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 1.999,
+       "recency": 0.0,
+       "relevance": 1.1987,
+       "importance": 0.8
+      },
+      {
+       "rank": 5,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 1.827,
+       "recency": 0.2456,
+       "relevance": 1.4075,
+       "importance": 2.0
+      },
+      {
+       "rank": 6,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.663,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      {
+       "rank": 7,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.62,
+       "recency": 0.3174,
+       "relevance": 1.3233,
+       "importance": 1.6
+      },
+      {
+       "rank": 8,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.593,
+       "recency": 0.5,
+       "relevance": 1.0926,
+       "importance": 0.0
+      },
+      {
+       "rank": 9,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 1.208,
+       "recency": 0.3899,
+       "relevance": 0.8252,
+       "importance": 1.2
+      },
+      {
+       "rank": 10,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 0.924,
+       "recency": 0.1393,
+       "relevance": 0.5079,
+       "importance": 1.2
+      },
+      {
+       "rank": 11,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 0.863,
+       "recency": 0.1042,
+       "relevance": 0.8219,
+       "importance": 0.8
+      },
+      {
+       "rank": 12,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 0.8,
+       "recency": 0.4264,
+       "relevance": 0.7743,
+       "importance": 0.4
+      },
+      {
+       "rank": 13,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 0.77,
+       "recency": 0.21,
+       "relevance": 0.529,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 0.707,
+       "recency": 0.1746,
+       "relevance": 0.4401,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.488,
+       "recency": 0.0693,
+       "relevance": 0.106,
+       "importance": 0.8
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 4.416,
+       "recency": 0.2814,
+       "relevance": 2.1348,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 4.222,
+       "recency": 0.3535,
+       "relevance": 2.269,
+       "importance": 1.6
+      },
+      {
+       "rank": 3,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 3.653,
+       "recency": 0.2456,
+       "relevance": 1.4075,
+       "importance": 2.0
+      },
+      {
+       "rank": 4,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.241,
+       "recency": 0.3174,
+       "relevance": 1.3233,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 3.035,
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.0
+      },
+      {
+       "rank": 6,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 2.415,
+       "recency": 0.3899,
+       "relevance": 0.8252,
+       "importance": 1.2
+      },
+      {
+       "rank": 7,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 1.999,
+       "recency": 0.0,
+       "relevance": 1.1987,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 1.847,
+       "recency": 0.1393,
+       "relevance": 0.5079,
+       "importance": 1.2
+      },
+      {
+       "rank": 9,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.726,
+       "recency": 0.1042,
+       "relevance": 0.8219,
+       "importance": 0.8
+      },
+      {
+       "rank": 10,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.663,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      {
+       "rank": 11,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 1.601,
+       "recency": 0.4264,
+       "relevance": 0.7743,
+       "importance": 0.4
+      },
+      {
+       "rank": 12,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.593,
+       "recency": 0.5,
+       "relevance": 1.0926,
+       "importance": 0.0
+      },
+      {
+       "rank": 13,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.539,
+       "recency": 0.21,
+       "relevance": 0.529,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.415,
+       "recency": 0.1746,
+       "relevance": 0.4401,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.975,
+       "recency": 0.0693,
+       "relevance": 0.106,
+       "importance": 0.8
+      }
+     ]
+    },
+    "baking": {
+     "focal_text": "What has Isabella been baking at the cafe today?",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 2.057,
+       "recency": 0.0,
+       "relevance": 1.2571,
+       "importance": 0.8
+      },
+      {
+       "rank": 2,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 2.023,
+       "recency": 0.4631,
+       "relevance": 0.3601,
+       "importance": 1.2
+      },
+      {
+       "rank": 3,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 2.006,
+       "recency": 0.1393,
+       "relevance": 2.6717,
+       "importance": 1.2
+      },
+      {
+       "rank": 4,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 1.953,
+       "recency": 0.2456,
+       "relevance": 1.6604,
+       "importance": 2.0
+      },
+      {
+       "rank": 5,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.945,
+       "recency": 0.1042,
+       "relevance": 2.9854,
+       "importance": 0.8
+      },
+      {
+       "rank": 6,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 1.935,
+       "recency": 0.0693,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 7,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.858,
+       "recency": 0.21,
+       "relevance": 2.7068,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.795,
+       "recency": 0.1746,
+       "relevance": 2.6159,
+       "importance": 0.8
+      },
+      {
+       "rank": 9,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.686,
+       "recency": 0.3174,
+       "relevance": 1.4554,
+       "importance": 1.6
+      },
+      {
+       "rank": 10,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 1.588,
+       "recency": 0.4264,
+       "relevance": 2.3496,
+       "importance": 0.4
+      },
+      {
+       "rank": 11,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.577,
+       "recency": 0.5,
+       "relevance": 1.0773,
+       "importance": 0.0
+      },
+      {
+       "rank": 12,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 1.38,
+       "recency": 0.3899,
+       "relevance": 1.1695,
+       "importance": 1.2
+      },
+      {
+       "rank": 13,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 1.242,
+       "recency": 0.3535,
+       "relevance": 0.53,
+       "importance": 1.6
+      },
+      {
+       "rank": 14,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 1.205,
+       "recency": 0.2814,
+       "relevance": 0.1291,
+       "importance": 2.0
+      },
+      {
+       "rank": 15,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 0.035,
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 4.011,
+       "recency": 0.1393,
+       "relevance": 2.6717,
+       "importance": 1.2
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 3.906,
+       "recency": 0.2456,
+       "relevance": 1.6604,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 3.89,
+       "recency": 0.1042,
+       "relevance": 2.9854,
+       "importance": 0.8
+      },
+      {
+       "rank": 4,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 3.869,
+       "recency": 0.0693,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 5,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 3.717,
+       "recency": 0.21,
+       "relevance": 2.7068,
+       "importance": 0.8
+      },
+      {
+       "rank": 6,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 3.59,
+       "recency": 0.1746,
+       "relevance": 2.6159,
+       "importance": 0.8
+      },
+      {
+       "rank": 7,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.373,
+       "recency": 0.3174,
+       "relevance": 1.4554,
+       "importance": 1.6
+      },
+      {
+       "rank": 8,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": true,
+       "score": 3.176,
+       "recency": 0.4264,
+       "relevance": 2.3496,
+       "importance": 0.4
+      },
+      {
+       "rank": 9,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": true,
+       "score": 2.759,
+       "recency": 0.3899,
+       "relevance": 1.1695,
+       "importance": 1.2
+      },
+      {
+       "rank": 10,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 2.484,
+       "recency": 0.3535,
+       "relevance": 0.53,
+       "importance": 1.6
+      },
+      {
+       "rank": 11,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.41,
+       "recency": 0.2814,
+       "relevance": 0.1291,
+       "importance": 2.0
+      },
+      {
+       "rank": 12,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez demonstrates a pattern of proactive, community\u2011orie",
+       "consolidated_source": false,
+       "score": 2.057,
+       "recency": 0.0,
+       "relevance": 1.2571,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 2.023,
+       "recency": 0.4631,
+       "relevance": 0.3601,
+       "importance": 1.2
+      },
+      {
+       "rank": 14,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.577,
+       "recency": 0.5,
+       "relevance": 1.0773,
+       "importance": 0.0
+      },
+      {
+       "rank": 15,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez tends to smooth over conflicts by apologizing and o",
+       "consolidated_source": false,
+       "score": 0.035,
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      }
+     ]
+    }
+   }
+  },
+  "0.82 (calibrated on this one day)": {
+   "tag": "threshold_0_82_calibrated_third_person",
+   "threshold": 0.82,
+   "cluster_size_histogram": {
+    "1": 3,
+    "4": 1,
+    "5": 1
+   },
+   "entries_considered": 12,
+   "entries_flagged": 9,
+   "episodic_final": [
+    {
+     "entry_id": "Isabella Rodriguez:node_1",
+     "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_10",
+     "text": "Isabella Rodriguez is reading a letter from her sister who lives in another city",
+     "importance": 5.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_11",
+     "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+     "importance": 3.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_12",
+     "text": "The town clock tower struck five while Isabella Rodriguez waited at the bus stop",
+     "importance": 5.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_13",
+     "text": "Isabella Rodriguez is brushing her teeth",
+     "importance": 2.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_14",
+     "text": "bed is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_15",
+     "text": "closet is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_16",
+     "text": "refrigerator is idle",
+     "importance": 1.0,
+     "consolidated": false
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_2",
+     "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_3",
+     "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+     "importance": 5.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_4",
+     "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_5",
+     "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+     "importance": 4.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_6",
+     "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe",
+     "importance": 7.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_7",
+     "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+     "importance": 7.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_8",
+     "text": "Isabella Rodriguez apologized to the upset neighbor and offered free coffee",
+     "importance": 6.0,
+     "consolidated": true
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_9",
+     "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+     "importance": 6.0,
+     "consolidated": true
+    }
+   ],
+   "event_groups": {
+    "Isabella Rodriguez:node_1": "baking",
+    "Isabella Rodriguez:node_2": "baking",
+    "Isabella Rodriguez:node_3": "baking",
+    "Isabella Rodriguez:node_4": "baking",
+    "Isabella Rodriguez:node_5": "baking",
+    "Isabella Rodriguez:node_6": "neighbor_conflict",
+    "Isabella Rodriguez:node_7": "neighbor_conflict",
+    "Isabella Rodriguez:node_8": "neighbor_conflict",
+    "Isabella Rodriguez:node_9": "neighbor_conflict",
+    "Isabella Rodriguez:node_10": "isolated",
+    "Isabella Rodriguez:node_11": "isolated",
+    "Isabella Rodriguez:node_12": "isolated",
+    "Isabella Rodriguez:node_13": "below_floor",
+    "Isabella Rodriguez:node_14": "idle",
+    "Isabella Rodriguez:node_15": "idle",
+    "Isabella Rodriguez:node_16": "idle"
+   },
+   "summaries": [
+    {
+     "entry_id": "Isabella Rodriguez:node_17",
+     "summary": "Isabella Rodriguez consistently prepares a variety of baked goods at Hobbs Cafe, demonstrating her dedication to her craft and her role as a reliable baker.",
+     "importance": 4,
+     "sources": [
+      "Isabella Rodriguez:node_1",
+      "Isabella Rodriguez:node_2",
+      "Isabella Rodriguez:node_3",
+      "Isabella Rodriguez:node_4",
+      "Isabella Rodriguez:node_5"
+     ],
+     "source_texts": [
+      "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "Isabella Rodriguez is kneading dough for the morning pastries",
+      "Isabella Rodriguez is taking fresh bread out of the oven",
+      "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "Isabella Rodriguez is preparing cookie dough for the afternoon rush"
+     ]
+    },
+    {
+     "entry_id": "Isabella Rodriguez:node_18",
+     "summary": "Isabella Rodriguez consistently prioritizes harmony by smoothing over conflicts and offering conciliatory gestures, even though it leaves her feeling tense.",
+     "importance": 4,
+     "sources": [
+      "Isabella Rodriguez:node_6",
+      "Isabella Rodriguez:node_7",
+      "Isabella Rodriguez:node_8",
+      "Isabella Rodriguez:node_9"
+     ],
+     "source_texts": [
+      "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe",
+      "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "Isabella Rodriguez apologized to the upset neighbor and offered free coffee",
+      "Isabella Rodriguez felt tense after the dispute with her neighbor"
+     ]
+    }
+   ],
+   "second_sweep": {
+    "skipped": "already swept",
+    "night": 1
+   },
+   "ranking": {
+    "neighbor_argument": {
+     "focal_text": "Isabella had an argument with a neighbor about the noise",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.659,
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 2.396,
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.304,
+       "recency": 0.21,
+       "relevance": 0.8944,
+       "importance": 1.2
+      },
+      {
+       "rank": 4,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 1.997,
+       "recency": 0.1746,
+       "relevance": 2.219,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.908,
+       "recency": 0.0693,
+       "relevance": 0.639,
+       "importance": 1.2
+      },
+      {
+       "rank": 6,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.831,
+       "recency": 0.2814,
+       "relevance": 1.7804,
+       "importance": 1.6
+      },
+      {
+       "rank": 7,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 1.752,
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.322,
+       "recency": 0.5,
+       "relevance": 0.8221,
+       "importance": 0.0
+      },
+      {
+       "rank": 9,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 1.272,
+       "recency": 0.1042,
+       "relevance": 0.768,
+       "importance": 0.4
+      },
+      {
+       "rank": 10,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 1.123,
+       "recency": 0.3899,
+       "relevance": 0.6556,
+       "importance": 1.2
+      },
+      {
+       "rank": 11,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.003,
+       "recency": 0.4264,
+       "relevance": 0.7789,
+       "importance": 0.8
+      },
+      {
+       "rank": 12,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 0.831,
+       "recency": 0.2456,
+       "relevance": 0.6156,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 0.8,
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 0.792,
+       "recency": 0.1393,
+       "relevance": 0.6439,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.736,
+       "recency": 0.4631,
+       "relevance": 0.2091,
+       "importance": 0.8
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 5.317,
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 4.791,
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 3.994,
+       "recency": 0.1746,
+       "relevance": 2.219,
+       "importance": 1.6
+      },
+      {
+       "rank": 4,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.662,
+       "recency": 0.2814,
+       "relevance": 1.7804,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.304,
+       "recency": 0.21,
+       "relevance": 0.8944,
+       "importance": 1.2
+      },
+      {
+       "rank": 6,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 2.246,
+       "recency": 0.3899,
+       "relevance": 0.6556,
+       "importance": 1.2
+      },
+      {
+       "rank": 7,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 2.005,
+       "recency": 0.4264,
+       "relevance": 0.7789,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.908,
+       "recency": 0.0693,
+       "relevance": 0.639,
+       "importance": 1.2
+      },
+      {
+       "rank": 9,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 1.752,
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      {
+       "rank": 10,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.661,
+       "recency": 0.2456,
+       "relevance": 0.6156,
+       "importance": 0.8
+      },
+      {
+       "rank": 11,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.583,
+       "recency": 0.1393,
+       "relevance": 0.6439,
+       "importance": 0.8
+      },
+      {
+       "rank": 12,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 1.472,
+       "recency": 0.4631,
+       "relevance": 0.2091,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.322,
+       "recency": 0.5,
+       "relevance": 0.8221,
+       "importance": 0.0
+      },
+      {
+       "rank": 14,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 1.272,
+       "recency": 0.1042,
+       "relevance": 0.768,
+       "importance": 0.4
+      },
+      {
+       "rank": 15,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 0.8,
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      }
+     ]
+    },
+    "conflict_handling": {
+     "focal_text": "How does Isabella handle conflict with other people?",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 3.835,
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 2,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.525,
+       "recency": 0.3899,
+       "relevance": 0.935,
+       "importance": 1.2
+      },
+      {
+       "rank": 3,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.35,
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      {
+       "rank": 4,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 2.262,
+       "recency": 0.3535,
+       "relevance": 2.5708,
+       "importance": 1.6
+      },
+      {
+       "rank": 5,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 1.92,
+       "recency": 0.2456,
+       "relevance": 1.5947,
+       "importance": 2.0
+      },
+      {
+       "rank": 6,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.738,
+       "recency": 0.5,
+       "relevance": 1.2379,
+       "importance": 0.0
+      },
+      {
+       "rank": 7,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.708,
+       "recency": 0.3174,
+       "relevance": 1.4992,
+       "importance": 1.6
+      },
+      {
+       "rank": 8,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 1.704,
+       "recency": 0.4264,
+       "relevance": 0.8772,
+       "importance": 0.4
+      },
+      {
+       "rank": 9,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.663,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      {
+       "rank": 10,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 1.129,
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      {
+       "rank": 11,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 0.957,
+       "recency": 0.1393,
+       "relevance": 0.5755,
+       "importance": 1.2
+      },
+      {
+       "rank": 12,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 0.918,
+       "recency": 0.1042,
+       "relevance": 0.9312,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 0.805,
+       "recency": 0.21,
+       "relevance": 0.5994,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 0.737,
+       "recency": 0.1746,
+       "relevance": 0.4986,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.495,
+       "recency": 0.0693,
+       "relevance": 0.1201,
+       "importance": 0.8
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 4.7,
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      {
+       "rank": 2,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 4.524,
+       "recency": 0.3535,
+       "relevance": 2.5708,
+       "importance": 1.6
+      },
+      {
+       "rank": 3,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 3.84,
+       "recency": 0.2456,
+       "relevance": 1.5947,
+       "importance": 2.0
+      },
+      {
+       "rank": 4,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 3.835,
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 5,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.417,
+       "recency": 0.3174,
+       "relevance": 1.4992,
+       "importance": 1.6
+      },
+      {
+       "rank": 6,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.525,
+       "recency": 0.3899,
+       "relevance": 0.935,
+       "importance": 1.2
+      },
+      {
+       "rank": 7,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 1.915,
+       "recency": 0.1393,
+       "relevance": 0.5755,
+       "importance": 1.2
+      },
+      {
+       "rank": 8,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.835,
+       "recency": 0.1042,
+       "relevance": 0.9312,
+       "importance": 0.8
+      },
+      {
+       "rank": 9,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.738,
+       "recency": 0.5,
+       "relevance": 1.2379,
+       "importance": 0.0
+      },
+      {
+       "rank": 10,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 1.704,
+       "recency": 0.4264,
+       "relevance": 0.8772,
+       "importance": 0.4
+      },
+      {
+       "rank": 11,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 1.663,
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      {
+       "rank": 12,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.609,
+       "recency": 0.21,
+       "relevance": 0.5994,
+       "importance": 0.8
+      },
+      {
+       "rank": 13,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.473,
+       "recency": 0.1746,
+       "relevance": 0.4986,
+       "importance": 0.8
+      },
+      {
+       "rank": 14,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 1.129,
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      {
+       "rank": 15,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 0.989,
+       "recency": 0.0693,
+       "relevance": 0.1201,
+       "importance": 0.8
+      }
+     ]
+    },
+    "baking": {
+     "focal_text": "What has Isabella been baking at the cafe today?",
+     "weight_0.5": [
+      {
+       "rank": 1,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 3.8,
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 2,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 3.049,
+       "recency": 0.4264,
+       "relevance": 2.2224,
+       "importance": 0.4
+      },
+      {
+       "rank": 3,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.708,
+       "recency": 0.3899,
+       "relevance": 1.1179,
+       "importance": 1.2
+      },
+      {
+       "rank": 4,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 2.023,
+       "recency": 0.4631,
+       "relevance": 0.3603,
+       "importance": 1.2
+      },
+      {
+       "rank": 5,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 1.932,
+       "recency": 0.1393,
+       "relevance": 2.5238,
+       "importance": 1.2
+      },
+      {
+       "rank": 6,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 1.911,
+       "recency": 0.2456,
+       "relevance": 1.5773,
+       "importance": 2.0
+      },
+      {
+       "rank": 7,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 1.861,
+       "recency": 0.1042,
+       "relevance": 2.8175,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 1.85,
+       "recency": 0.0693,
+       "relevance": 2.8311,
+       "importance": 0.8
+      },
+      {
+       "rank": 9,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 1.783,
+       "recency": 0.21,
+       "relevance": 2.5567,
+       "importance": 0.8
+      },
+      {
+       "rank": 10,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 1.723,
+       "recency": 0.1746,
+       "relevance": 2.4717,
+       "importance": 0.8
+      },
+      {
+       "rank": 11,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 1.651,
+       "recency": 0.3174,
+       "relevance": 1.3854,
+       "importance": 1.6
+      },
+      {
+       "rank": 12,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.532,
+       "recency": 0.5,
+       "relevance": 1.0316,
+       "importance": 0.0
+      },
+      {
+       "rank": 13,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 1.236,
+       "recency": 0.3535,
+       "relevance": 0.5193,
+       "importance": 1.6
+      },
+      {
+       "rank": 14,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 1.213,
+       "recency": 0.2814,
+       "relevance": 0.1442,
+       "importance": 2.0
+      },
+      {
+       "rank": 15,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 0.835,
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      }
+     ],
+     "weight_1.0": [
+      {
+       "rank": 1,
+       "node": "node_3",
+       "type": "event",
+       "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+       "consolidated_source": true,
+       "score": 3.863,
+       "recency": 0.1393,
+       "relevance": 2.5238,
+       "importance": 1.2
+      },
+      {
+       "rank": 2,
+       "node": "node_6",
+       "type": "event",
+       "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+       "consolidated_source": true,
+       "score": 3.823,
+       "recency": 0.2456,
+       "relevance": 1.5773,
+       "importance": 2.0
+      },
+      {
+       "rank": 3,
+       "node": "node_17",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+       "consolidated_source": false,
+       "score": 3.8,
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      {
+       "rank": 4,
+       "node": "node_2",
+       "type": "event",
+       "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+       "consolidated_source": true,
+       "score": 3.722,
+       "recency": 0.1042,
+       "relevance": 2.8175,
+       "importance": 0.8
+      },
+      {
+       "rank": 5,
+       "node": "node_1",
+       "type": "event",
+       "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+       "consolidated_source": true,
+       "score": 3.7,
+       "recency": 0.0693,
+       "relevance": 2.8311,
+       "importance": 0.8
+      },
+      {
+       "rank": 6,
+       "node": "node_5",
+       "type": "event",
+       "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+       "consolidated_source": true,
+       "score": 3.567,
+       "recency": 0.21,
+       "relevance": 2.5567,
+       "importance": 0.8
+      },
+      {
+       "rank": 7,
+       "node": "node_4",
+       "type": "event",
+       "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+       "consolidated_source": true,
+       "score": 3.446,
+       "recency": 0.1746,
+       "relevance": 2.4717,
+       "importance": 0.8
+      },
+      {
+       "rank": 8,
+       "node": "node_8",
+       "type": "event",
+       "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+       "consolidated_source": true,
+       "score": 3.303,
+       "recency": 0.3174,
+       "relevance": 1.3854,
+       "importance": 1.6
+      },
+      {
+       "rank": 9,
+       "node": "node_11",
+       "type": "event",
+       "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+       "consolidated_source": false,
+       "score": 3.049,
+       "recency": 0.4264,
+       "relevance": 2.2224,
+       "importance": 0.4
+      },
+      {
+       "rank": 10,
+       "node": "node_10",
+       "type": "event",
+       "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+       "consolidated_source": false,
+       "score": 2.708,
+       "recency": 0.3899,
+       "relevance": 1.1179,
+       "importance": 1.2
+      },
+      {
+       "rank": 11,
+       "node": "node_9",
+       "type": "event",
+       "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+       "consolidated_source": true,
+       "score": 2.473,
+       "recency": 0.3535,
+       "relevance": 0.5193,
+       "importance": 1.6
+      },
+      {
+       "rank": 12,
+       "node": "node_7",
+       "type": "event",
+       "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+       "consolidated_source": true,
+       "score": 2.426,
+       "recency": 0.2814,
+       "relevance": 0.1442,
+       "importance": 2.0
+      },
+      {
+       "rank": 13,
+       "node": "node_12",
+       "type": "event",
+       "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+       "consolidated_source": false,
+       "score": 2.023,
+       "recency": 0.4631,
+       "relevance": 0.3603,
+       "importance": 1.2
+      },
+      {
+       "rank": 14,
+       "node": "node_13",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth",
+       "consolidated_source": false,
+       "score": 1.532,
+       "recency": 0.5,
+       "relevance": 1.0316,
+       "importance": 0.0
+      },
+      {
+       "rank": 15,
+       "node": "node_18",
+       "type": "thought",
+       "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+       "consolidated_source": false,
+       "score": 0.835,
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      }
+     ]
+    }
+   }
+  }
+ }
+}

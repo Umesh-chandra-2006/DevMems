@@ -14,6 +14,7 @@ providers:
       - env: GROQ_KEY_3
       - env: GROQ_KEY_4
       - env: GROQ_KEY_5
+      - env: GROQ_KEY_6
     rpm: 30
     rpd: 1000
     tpm: 8000
@@ -29,6 +30,8 @@ providers:
     keys:
       - env: NIM_KEY_1
       - env: NIM_KEY_2
+      - env: NIM_KEY_3
+      - env: NIM_KEY_4
     rpm: 40
     rpd: null
     tpm: null
@@ -46,6 +49,7 @@ providers:
       - env: GEMINI_KEY_1
       - env: GEMINI_KEY_2
       - env: GEMINI_KEY_4
+      - env: GEMINI_KEY_5
     model_limits:
       gemini-3.1-flash-lite:
         rpm: 15

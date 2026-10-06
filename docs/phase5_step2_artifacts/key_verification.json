@@ -28,5 +28,30 @@
   "key": "NIM_KEY_2",
   "call": "llm max_tokens=5 nemotron",
   "status": 200
+ },
+ {
+  "key": "GROQ_KEY_6",
+  "call": "llm max_tokens=5 openai/gpt-oss-20b",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_5",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_5",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "NIM_KEY_3",
+  "call": "llm max_tokens=5 nemotron",
+  "status": 200
+ },
+ {
+  "key": "NIM_KEY_4",
+  "call": "llm max_tokens=5 nemotron",
+  "status": 200
  }
 ]

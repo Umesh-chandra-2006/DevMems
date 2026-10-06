@@ -1,0 +1,2246 @@
+{
+ "label": "offline reconstruction from saved run DB + cached vectors; real new_retrieve; zero network/LLM",
+ "tag": "threshold_0_82_calibrated_third_person",
+ "summary_nodes": {
+  "node_17": "Isabella Rodriguez consistently prepares a variety of baked goods at Hobbs Cafe, demonstrating her dedication to her craft and her role as a reliable baker.",
+  "node_18": "Isabella Rodriguez consistently prioritizes harmony by smoothing over conflicts and offering conciliatory gestures, even though it leaves her feeling tense."
+ },
+ "consolidated_weight": 0.5,
+ "runs": {
+  "weight_configured": {
+   "neighbor_argument": {
+    "order": [
+     "node_7",
+     "node_6",
+     "node_10",
+     "node_9",
+     "node_12",
+     "node_8",
+     "node_18",
+     "node_13",
+     "node_11",
+     "node_3",
+     "node_2",
+     "node_4",
+     "node_17",
+     "node_5",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 13,
+     "node_18": 7
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.8126,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7166,
+      "relevance_norm": 0.2981,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 0.8944,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 13,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6246,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 7,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.719,
+      "relevance_norm": 0.3058,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.8126,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7166,
+      "relevance_norm": 0.2981,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 0.8944,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 4,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8528,
+      "relevance_norm": 0.7397,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.219,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 5,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6903,
+      "relevance_norm": 0.213,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 0.639,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 6,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8077,
+      "relevance_norm": 0.5935,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 1.7804,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 7,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.719,
+      "relevance_norm": 0.3058,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 8,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.7092,
+      "relevance_norm": 0.274,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 0.8221,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 9,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7036,
+      "relevance_norm": 0.256,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 0.768,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 10,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.692,
+      "relevance_norm": 0.2185,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 0.6556,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 11,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7047,
+      "relevance_norm": 0.2596,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 0.7789,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6879,
+      "relevance_norm": 0.2052,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 0.6156,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 13,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6246,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 14,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6908,
+      "relevance_norm": 0.2146,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 0.6439,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 15,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6461,
+      "relevance_norm": 0.0697,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.2091,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_18",
+     "node_10",
+     "node_7",
+     "node_9",
+     "node_6",
+     "node_13",
+     "node_8",
+     "node_11",
+     "node_12",
+     "node_17",
+     "node_3",
+     "node_2",
+     "node_5",
+     "node_4",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 10,
+     "node_18": 1
+    },
+    "rows_top3": {
+     "node_18": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7923,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6953,
+      "relevance_norm": 0.3117,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 0.935,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8062,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 10,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6668,
+      "relevance_norm": 0.1097,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7923,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_18": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7923,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6953,
+      "relevance_norm": 0.3117,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 0.935,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8062,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 4,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 0.8569,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.5708,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 5,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7263,
+      "relevance_norm": 0.5316,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5947,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 6,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.7095,
+      "relevance_norm": 0.4126,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 1.2379,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 7,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7218,
+      "relevance_norm": 0.4997,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 1.4992,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 8,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.6926,
+      "relevance_norm": 0.2924,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 0.8772,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 9,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6513,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 10,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6668,
+      "relevance_norm": 0.1097,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 11,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6784,
+      "relevance_norm": 0.1918,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 0.5755,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6951,
+      "relevance_norm": 0.3104,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 0.9312,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 13,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6795,
+      "relevance_norm": 0.1998,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 0.5994,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 14,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6748,
+      "relevance_norm": 0.1662,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 0.4986,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 15,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.657,
+      "relevance_norm": 0.04,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 0.1201,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_17",
+     "node_11",
+     "node_10",
+     "node_12",
+     "node_3",
+     "node_6",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_8",
+     "node_13",
+     "node_9",
+     "node_7",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7427,
+      "relevance_norm": 0.7408,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 2.2224,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6846,
+      "relevance_norm": 0.3726,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 1.1179,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6257,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7427,
+      "relevance_norm": 0.7408,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 2.2224,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6846,
+      "relevance_norm": 0.3726,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 1.1179,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 4,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6447,
+      "relevance_norm": 0.1201,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.3603,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 5,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7585,
+      "relevance_norm": 0.8413,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 2.5238,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 6,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7087,
+      "relevance_norm": 0.5258,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5773,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 7,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.774,
+      "relevance_norm": 0.9392,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 2.8175,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 8,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7747,
+      "relevance_norm": 0.9437,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 2.8311,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 9,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7603,
+      "relevance_norm": 0.8522,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 2.5567,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 10,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7558,
+      "relevance_norm": 0.8239,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.4717,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 11,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6986,
+      "relevance_norm": 0.4618,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 1.3854,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.68,
+      "relevance_norm": 0.3439,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 1.0316,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 13,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6531,
+      "relevance_norm": 0.1731,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 0.5193,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 14,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.6333,
+      "relevance_norm": 0.0481,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 0.1442,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6257,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  },
+  "weight_1.0": {
+   "neighbor_argument": {
+    "order": [
+     "node_7",
+     "node_6",
+     "node_9",
+     "node_8",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_12",
+     "node_18",
+     "node_4",
+     "node_5",
+     "node_1",
+     "node_13",
+     "node_11",
+     "node_17"
+    ],
+    "summary_ranks": {
+     "node_17": 15,
+     "node_18": 9
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.8126,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8528,
+      "relevance_norm": 0.7397,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.219,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6246,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 9,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.719,
+      "relevance_norm": 0.3058,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.8126,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.4377,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8528,
+      "relevance_norm": 0.7397,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.219,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 4,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8077,
+      "relevance_norm": 0.5935,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 1.7804,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 5,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7166,
+      "relevance_norm": 0.2981,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 0.8944,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 6,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.692,
+      "relevance_norm": 0.2185,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 0.6556,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 7,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7047,
+      "relevance_norm": 0.2596,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 0.7789,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 8,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6903,
+      "relevance_norm": 0.213,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 0.639,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 9,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.719,
+      "relevance_norm": 0.3058,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.9174,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 10,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6879,
+      "relevance_norm": 0.2052,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 0.6156,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 11,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6908,
+      "relevance_norm": 0.2146,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 0.6439,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6461,
+      "relevance_norm": 0.0697,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.2091,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 13,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.7092,
+      "relevance_norm": 0.274,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 0.8221,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 14,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7036,
+      "relevance_norm": 0.256,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 0.768,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6246,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_7",
+     "node_9",
+     "node_6",
+     "node_18",
+     "node_8",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_13",
+     "node_11",
+     "node_12",
+     "node_5",
+     "node_4",
+     "node_17",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 14,
+     "node_18": 4
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8062,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 0.8569,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.5708,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 3,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7263,
+      "relevance_norm": 0.5316,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5947,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 14,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6668,
+      "relevance_norm": 0.1097,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 4,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7923,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8062,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.4187,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 0.8569,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.5708,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 3,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7263,
+      "relevance_norm": 0.5316,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5947,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 4,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7923,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 5,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7218,
+      "relevance_norm": 0.4997,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 1.4992,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 6,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6953,
+      "relevance_norm": 0.3117,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 0.935,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 7,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6784,
+      "relevance_norm": 0.1918,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 0.5755,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 8,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6951,
+      "relevance_norm": 0.3104,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 0.9312,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 9,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.7095,
+      "relevance_norm": 0.4126,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 1.2379,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 10,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.6926,
+      "relevance_norm": 0.2924,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 0.8772,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 11,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6513,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.0,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6795,
+      "relevance_norm": 0.1998,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 0.5994,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 13,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6748,
+      "relevance_norm": 0.1662,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 0.4986,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 14,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6668,
+      "relevance_norm": 0.1097,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.3291,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 15,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.657,
+      "relevance_norm": 0.04,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 0.1201,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_3",
+     "node_6",
+     "node_17",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_8",
+     "node_11",
+     "node_10",
+     "node_9",
+     "node_7",
+     "node_12",
+     "node_13",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 3,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_3": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7585,
+      "relevance_norm": 0.8413,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 2.5238,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7087,
+      "relevance_norm": 0.5258,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5773,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6257,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_all": {
+     "node_3": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7585,
+      "relevance_norm": 0.8413,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 2.5238,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7087,
+      "relevance_norm": 0.5258,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.5773,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prepares a variety of baked goods at H",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7836,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_2": {
+      "rank": 4,
+      "type": "event",
+      "text": "Isabella Rodriguez is kneading dough for the morning pastries",
+      "recency_raw": 0.94162,
+      "recency_norm": 0.2084,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.774,
+      "relevance_norm": 0.9392,
+      "weighted": {
+       "recency": 0.1042,
+       "relevance": 2.8175,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_1": {
+      "rank": 5,
+      "type": "event",
+      "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7747,
+      "relevance_norm": 0.9437,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 2.8311,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_5": {
+      "rank": 6,
+      "type": "event",
+      "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7603,
+      "relevance_norm": 0.8522,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 2.5567,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_4": {
+      "rank": 7,
+      "type": "event",
+      "text": "Isabella Rodriguez is decorating cupcakes for a customer's order",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.7558,
+      "relevance_norm": 0.8239,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.4717,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 8,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6986,
+      "relevance_norm": 0.4618,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 1.3854,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 9,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7427,
+      "relevance_norm": 0.7408,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 2.2224,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 10,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6846,
+      "relevance_norm": 0.3726,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 1.1179,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 11,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6531,
+      "relevance_norm": 0.1731,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 0.5193,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 12,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.6333,
+      "relevance_norm": 0.0481,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 0.1442,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 13,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6447,
+      "relevance_norm": 0.1201,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 0.3603,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 14,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.68,
+      "relevance_norm": 0.3439,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 1.0316,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "Isabella Rodriguez consistently prioritizes harmony by smoothing over ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 4,
+      "importance_norm": 0.4,
+      "relevance_raw_cos": 0.6257,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.8
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  }
+ },
+ "reproduces_saved_summary_ranks": {
+  "neighbor_argument": true,
+  "conflict_handling": true,
+  "baking": true
+ },
+ "nodes_total": 18,
+ "consolidated_node_ids": [
+  "node_1",
+  "node_2",
+  "node_3",
+  "node_4",
+  "node_5",
+  "node_6",
+  "node_7",
+  "node_8",
+  "node_9"
+ ]
+}

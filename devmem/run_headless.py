@@ -14,7 +14,7 @@ upstream folder copy (`copyanything`) for that one constructor call.
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 import yaml
 
@@ -94,6 +94,7 @@ class HeadlessRunner:
 
         if resume:
             # Re-open the saved folder in place: skip upstream's copytree(fork -> sim).
+            self._ensure_env_for_saved_step(sim_code)
             original = _reverie_mod.copyanything
             _reverie_mod.copyanything = lambda src, dst: None
             try:
@@ -113,6 +114,8 @@ class HeadlessRunner:
         self.autosave_interval_steps = max(1, (minutes * 60) // int(self.rs.sec_per_step))
         self.autosave_steps: List[int] = []
         self.db_path = get_db_path(sim_code)
+        self.should_stop: Optional[Callable[[], bool]] = None  # checked at step boundaries only
+        self._write_schedule_check("not_run")
 
         self.reconcile_results: List[Dict[str, Any]] = []
         self.consolidation_reconcile: List[Dict[str, Any]] = []
@@ -128,6 +131,18 @@ class HeadlessRunner:
             from devmem.memory.consolidation import reconcile_consolidation
             self.consolidation_reconcile = [reconcile_consolidation(p, self.db_path)
                                             for p in self.rs.personas.values()]
+
+    @staticmethod
+    def _ensure_env_for_saved_step(sim_code: str) -> None:
+        """The upstream constructor reads environment/{saved step}.json, but the loop only creates the file for step N
+        at the start of iteration N, so a save taken right after a step has none. Build it from movement/{N-1}.json
+        exactly as the loop would."""
+        import json
+        sim_folder = f"{utils.fs_storage}/{sim_code}"
+        with open(f"{sim_folder}/reverie/meta.json", encoding="utf-8") as f:
+            saved_step = int(json.load(f)["step"])
+        if saved_step > 0:
+            step_environment_bridge(sim_folder, saved_step)  # no-op if the file already exists
 
     def _tag_agents(self) -> None:
         """Wrap each persona's move() so router calls made during it are logged with that persona's agent_id
@@ -174,10 +189,16 @@ class HeadlessRunner:
         self.autosave_steps.append(self.rs.step)
         self.schedule_findings = scan_saved_schedules(self.sim_code, self.markers)
         if self.schedule_findings:
-            import json
             print(f"WARNING: {len(self.schedule_findings)} router-failure/model-echo entries in saved schedules")
-            with open(self.db_path.parent / "schedule_check.json", "w", encoding="utf-8") as fh:
-                json.dump({"step": self.rs.step, "findings": self.schedule_findings}, fh, indent=1)
+        self._write_schedule_check("findings" if self.schedule_findings else "clean")
+
+    def _write_schedule_check(self, status: str) -> None:
+        """schedule_check.json status: not_run (no successful save yet) | clean | findings. Rewritten after every
+        successful save (the scan runs on the saved scratch.json files)."""
+        import json
+        with open(self.db_path.parent / "schedule_check.json", "w", encoding="utf-8") as fh:
+            json.dump({"status": status, "step": self.rs.step, "scans_run": len(self.autosave_steps),
+                       "findings": self.schedule_findings}, fh, indent=1)
 
     def run(self, steps: int) -> None:
         """Run `steps` steps. Autosave when the step counter hits the interval; save on clean
@@ -190,6 +211,8 @@ class HeadlessRunner:
                 self._advance()
                 if self.rs.step % self.autosave_interval_steps == 0:
                     self._save()
+                if self.should_stop is not None and self.should_stop():
+                    break  # graceful stop at a step boundary; falls through to the clean-exit save
         except KeyboardInterrupt:
             self._final_sweep()
             self._save()

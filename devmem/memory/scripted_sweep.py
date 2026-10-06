@@ -120,6 +120,7 @@ def run_scripted_sweep(tag: str, threshold: Optional[float] = None, artifacts_di
         for fname, ftext in focals.items():
             order = [n.node_id for n in res[ftext]]
             run[fname] = {
+                "order": [{"node_id": n.node_id, "type": n.type, "description": n.description} for n in res[ftext]],
                 "top5": [{"node_id": n.node_id, "type": n.type, "description": n.description} for n in res[ftext][:5]],
                 "summary_ranks": {sid: order.index(sid) + 1 for sid in summary_ids},
                 "mean_rank_of_consolidated_sources": _mean_rank(order, consolidated),

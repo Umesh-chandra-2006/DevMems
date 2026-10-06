@@ -291,7 +291,19 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
         r = self._scripted_runner()
         self.assertTrue(utils.FAIL_LOUD_LLM)
         self.assertEqual(load_runner_config()["autosave_interval_sim_minutes"], 15)
+        check_f = r.db_path.parent / "schedule_check.json"
+        self.assertEqual(json.loads(check_f.read_text())["status"], "not_run", "no successful save yet")
         r.run(1)  # saves on exit
+        self.assertEqual(json.loads(check_f.read_text())["status"], "clean", "scan runs after every successful save")
+        name0 = list(r.rs.personas)[0]
+        r.rs.personas[name0].scratch.f_daily_schedule_hourly_org.append(["TOKEN LIMIT EXCEEDED", 60])
+        r.run(1)  # next successful save contains the failure string
+        chk = json.loads(check_f.read_text())
+        self.assertEqual((chk["status"], chk["findings"][0]["marker"], chk["findings"][0]["agent"]),
+                         ("findings", "TOKEN LIMIT EXCEEDED", name0))
+        r.rs.personas[name0].scratch.f_daily_schedule_hourly_org.pop()
+        r.run(1)
+        self.assertEqual(json.loads(check_f.read_text())["status"], "clean")
         markers = r.markers
         self.assertIn("TOKEN LIMIT EXCEEDED", markers)
         self.assertEqual(scan_saved_schedules(self.SIM, markers), [], "a clean saved run has no findings")
@@ -320,6 +332,28 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
             self.assertEqual(res["status"], "done", name)
             self.assertEqual(res["summaries_written"], 1, name)
         self.assertEqual(sorted(calls), sorted(r.rs.personas))
+
+    def test_resume_right_after_a_clean_exit_save_builds_the_missing_environment_file(self):
+        """Regression (found in the live run): a save taken at the end of step N has no environment/N.json yet."""
+        import utils
+        r1 = self._scripted_runner()
+        k0 = r1.rs.step
+        r1.run(2)  # clean-exit save at k0 + 2
+        env_f = Path(BACKEND_DIR) / utils.fs_storage / self.SIM / "environment" / f"{k0 + 2}.json"
+        self.assertFalse(env_f.exists(), "the loop has not created the next step's environment file yet")
+        r2 = self._scripted_runner(tag="resumed", resume=True)  # used to raise FileNotFoundError
+        self.assertEqual(r2.rs.step, k0 + 2)
+        self.assertTrue(env_f.exists())
+        r2.run(1)
+        self.assertEqual(r2.rs.step, k0 + 3)
+
+    def test_should_stop_breaks_at_a_step_boundary_with_a_clean_save(self):
+        r = self._scripted_runner()
+        k0 = r.rs.step
+        r.should_stop = lambda: r.rs.step >= k0 + 3
+        r.run(50)
+        self.assertEqual(r.rs.step, k0 + 3)
+        self.assertEqual(r.autosave_steps[-1], k0 + 3, "stopped at a boundary and saved")
 
     def test_persona_move_runs_with_agent_tag_for_ledger_logging(self):
         from persona.persona import Persona

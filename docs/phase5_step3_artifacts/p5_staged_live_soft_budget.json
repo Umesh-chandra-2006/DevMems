@@ -1,0 +1,39 @@
+{
+ "phase": "soft",
+ "per_key": {
+  "GROQ_KEY_1": {
+   "used_today": 102735,
+   "limit": 200000,
+   "remaining": 97265
+  },
+  "GROQ_KEY_2": {
+   "used_today": 69755,
+   "limit": 200000,
+   "remaining": 130245
+  },
+  "GROQ_KEY_3": {
+   "used_today": 6985,
+   "limit": 200000,
+   "remaining": 193015
+  },
+  "GROQ_KEY_4": {
+   "used_today": 45486,
+   "limit": 200000,
+   "remaining": 154514
+  },
+  "GROQ_KEY_5": {
+   "used_today": 16679,
+   "limit": 200000,
+   "remaining": 183321
+  },
+  "GROQ_KEY_6": {
+   "used_today": 0,
+   "limit": 200000,
+   "remaining": 200000
+  }
+ },
+ "remaining_total": 958360,
+ "projected_need": 548000.0,
+ "soft_llm": 250,
+ "hard_llm": 375
+}
