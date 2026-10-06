@@ -1,0 +1,25 @@
+{
+  "model": "gemini-embedding-001",
+  "fail_loud": true,
+  "http_requests": 88,
+  "texts_requested": 106,
+  "cache_hits": 18,
+  "cache_misses": 88,
+  "failures": 0,
+  "fallbacks": 0,
+  "http_status_counts": {
+    "200": 88
+  },
+  "requests_by_key_env": {
+    "GEMINI_KEY_1": 18,
+    "GEMINI_KEY_3": 18,
+    "GEMINI_KEY_4": 18,
+    "GEMINI_KEY_5": 17,
+    "GEMINI_KEY_6": 17
+  },
+  "keys_skipped": {},
+  "offline": false,
+  "dimensions_seen": [
+    3072
+  ]
+}

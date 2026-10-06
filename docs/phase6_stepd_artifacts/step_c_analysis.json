@@ -1,0 +1,252 @@
+{
+ "label": "offline analysis of the live Step C raw-reply log",
+ "total_router_calls_logged": 904,
+ "instances": 903,
+ "calls_by_agent": {
+  "Isabella Rodriguez": 833,
+  "Klaus Mueller": 43,
+  "Maria Lopez": 28
+ },
+ "by_prompt_type": {
+  "staged_importance_scoring": {
+   "instances": 445,
+   "calls": 445,
+   "first_attempt_accepted": 445,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 445,
+   "raw_with_annotation": 0
+  },
+  "generate_pronunciatio": {
+   "instances": 98,
+   "calls": 98,
+   "first_attempt_accepted": 98,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 98,
+   "raw_with_annotation": 0
+  },
+  "generate_event_triple": {
+   "instances": 98,
+   "calls": 98,
+   "first_attempt_accepted": 98,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 98,
+   "raw_with_annotation": 62
+  },
+  "generate_hourly_schedule": {
+   "instances": 50,
+   "calls": 50,
+   "first_attempt_accepted": 50,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 50,
+   "raw_with_annotation": 50
+  },
+  "action_location_sector": {
+   "instances": 49,
+   "calls": 49,
+   "first_attempt_accepted": 49,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 49,
+   "raw_with_annotation": 46
+  },
+  "action_location_object": {
+   "instances": 49,
+   "calls": 49,
+   "first_attempt_accepted": 49,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 49,
+   "raw_with_annotation": 37
+  },
+  "action_object": {
+   "instances": 49,
+   "calls": 49,
+   "first_attempt_accepted": 49,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 49,
+   "raw_with_annotation": 4
+  },
+  "generate_obj_event": {
+   "instances": 49,
+   "calls": 49,
+   "first_attempt_accepted": 49,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 49,
+   "raw_with_annotation": 0
+  },
+  "task_decomp": {
+   "instances": 10,
+   "calls": 10,
+   "first_attempt_accepted": 10,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 10,
+   "decomp_format_checked": 10,
+   "normalizer_applied_calls": 0,
+   "raw_with_annotation": 10
+  },
+  "wake_up_hour": {
+   "instances": 3,
+   "calls": 4,
+   "first_attempt_accepted": 2,
+   "attempts_2_to_4": 1,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 4,
+   "raw_with_annotation": 4
+  },
+  "daily_planning": {
+   "instances": 3,
+   "calls": 3,
+   "first_attempt_accepted": 3,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 3,
+   "raw_with_annotation": 3
+  }
+ },
+ "schedule_prompts_by_agent": {
+  "Isabella Rodriguez": {
+   "wake_up_hour": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "daily_planning": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "generate_hourly_schedule": {
+    "instances": 18,
+    "calls": 18,
+    "first_attempt_accepted": 18,
+    "attempts_5": 0,
+    "final_clean": 18
+   }
+  },
+  "Maria Lopez": {
+   "wake_up_hour": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "daily_planning": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "generate_hourly_schedule": {
+    "instances": 15,
+    "calls": 15,
+    "first_attempt_accepted": 15,
+    "attempts_5": 0,
+    "final_clean": 15
+   }
+  },
+  "Klaus Mueller": {
+   "wake_up_hour": {
+    "instances": 1,
+    "calls": 2,
+    "first_attempt_accepted": 0,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "daily_planning": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "generate_hourly_schedule": {
+    "instances": 17,
+    "calls": 17,
+    "first_attempt_accepted": 17,
+    "attempts_5": 0,
+    "final_clean": 17
+   }
+  }
+ },
+ "unclassified_calls": 0,
+ "models_in_log": [
+  "gemini-3.1-flash-lite"
+ ]
+}

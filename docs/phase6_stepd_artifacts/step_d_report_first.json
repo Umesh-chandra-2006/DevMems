@@ -1,0 +1,126 @@
+{
+ "label": "live",
+ "sim_code": "p6_step_d_gemini",
+ "invocation": "first",
+ "model": "gemini-3.1-flash-lite",
+ "start_clock": "2023-02-13 06:00:00",
+ "final_clock": "2023-02-13 13:45:10",
+ "final_step": 2791,
+ "outcome": "soft stop: 900 router calls reached at a step boundary",
+ "saved": true,
+ "cap": 1200,
+ "soft_stop_at": 900,
+ "embedding_caps": [
+  130,
+  150
+ ],
+ "exception": null,
+ "per_agent_progress": {
+  "Isabella Rodriguez": {
+   "act_description_at_stop": "having a quick lunch break (drinking a glass of water)",
+   "scratch_clock": "2023-02-13 13:45:00",
+   "memory_nodes": 586
+  },
+  "Maria Lopez": {
+   "act_description_at_stop": "sleeping",
+   "scratch_clock": "2023-02-13 13:45:00",
+   "memory_nodes": 9
+  },
+  "Klaus Mueller": {
+   "act_description_at_stop": "returning to the library to continue research",
+   "scratch_clock": "2023-02-13 13:45:00",
+   "memory_nodes": 16
+  }
+ },
+ "router_counter_this_process": {
+  "count": 904,
+  "cap": 1200,
+  "by_purpose": {
+   "planning": 410,
+   "dialogue": 49,
+   "importance_scoring": 445
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 833,
+   "Maria Lopez": 28,
+   "Klaus Mueller": 43
+  }
+ },
+ "router_calls_total": 904,
+ "embedding_requests_this_process": 88,
+ "embedding_requests_total": 88,
+ "chat_key_requests_ledger": {
+  "GEMINI_KEY_4#gemini-3.1-flash-lite": 314,
+  "GEMINI_KEY_5#gemini-3.1-flash-lite": 297,
+  "GEMINI_KEY_6#gemini-3.1-flash-lite": 293
+ },
+ "calls_by_first_key": {
+  "GEMINI_KEY_4": 302,
+  "GEMINI_KEY_5": 301,
+  "GEMINI_KEY_6": 301
+ },
+ "wall_seconds": 8788.6,
+ "normalizer_stats": {
+  "wake_up_hour": {
+   "applied": 4,
+   "changed": 4
+  },
+  "daily_plan": {
+   "applied": 3,
+   "changed": 3
+  },
+  "hourly_schedule": {
+   "applied": 50,
+   "changed": 50
+  },
+  "call_path": {
+   "applied": 837,
+   "changed": 149
+  }
+ },
+ "router_failures": {
+  "count": 0,
+  "by_function": {},
+  "last_errors": []
+ },
+ "autosave_steps": [
+  90,
+  180,
+  270,
+  360,
+  450,
+  540,
+  630,
+  720,
+  810,
+  900,
+  990,
+  1080,
+  1170,
+  1260,
+  1350,
+  1440,
+  1530,
+  1620,
+  1710,
+  1800,
+  1890,
+  1980,
+  2070,
+  2160,
+  2250,
+  2340,
+  2430,
+  2520,
+  2610,
+  2700,
+  2790,
+  2791
+ ],
+ "schedule_check": {
+  "status": "clean",
+  "step": 2791,
+  "scans_run": 32,
+  "findings": []
+ }
+}

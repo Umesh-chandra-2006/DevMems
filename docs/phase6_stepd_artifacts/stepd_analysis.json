@@ -1,0 +1,775 @@
+{
+ "label": "offline analysis of live Step D artifacts",
+ "raw_log_ledger_alignment_ok": true,
+ "records": 904,
+ "windows": [
+  {
+   "window": "step_0_day_start_planning",
+   "sim_clock_end": "2023-02-13 06:00:10",
+   "calls": 85,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 1,
+     "tokens_in": 354,
+     "tokens_out": 120
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 1,
+     "tokens_in": 589,
+     "tokens_out": 25
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 1,
+     "tokens_in": 320,
+     "tokens_out": 2
+    },
+    "Isabella Rodriguez | daily_planning": {
+     "calls": 1,
+     "tokens_in": 387,
+     "tokens_out": 392
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 2,
+     "tokens_in": 532,
+     "tokens_out": 27
+    },
+    "Isabella Rodriguez | generate_hourly_schedule": {
+     "calls": 18,
+     "tokens_in": 27188,
+     "tokens_out": 8616
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 1,
+     "tokens_in": 118,
+     "tokens_out": 6
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 2,
+     "tokens_in": 134,
+     "tokens_out": 14
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1003,
+     "tokens_out": 283
+    },
+    "Isabella Rodriguez | wake_up_hour": {
+     "calls": 1,
+     "tokens_in": 321,
+     "tokens_out": 298
+    },
+    "Klaus Mueller | action_location_object": {
+     "calls": 1,
+     "tokens_in": 382,
+     "tokens_out": 7
+    },
+    "Klaus Mueller | action_location_sector": {
+     "calls": 1,
+     "tokens_in": 617,
+     "tokens_out": 25
+    },
+    "Klaus Mueller | action_object": {
+     "calls": 1,
+     "tokens_in": 313,
+     "tokens_out": 1
+    },
+    "Klaus Mueller | daily_planning": {
+     "calls": 1,
+     "tokens_in": 329,
+     "tokens_out": 297
+    },
+    "Klaus Mueller | generate_event_triple": {
+     "calls": 2,
+     "tokens_in": 527,
+     "tokens_out": 23
+    },
+    "Klaus Mueller | generate_hourly_schedule": {
+     "calls": 17,
+     "tokens_in": 24052,
+     "tokens_out": 7957
+    },
+    "Klaus Mueller | generate_obj_event": {
+     "calls": 1,
+     "tokens_in": 112,
+     "tokens_out": 8
+    },
+    "Klaus Mueller | generate_pronunciatio": {
+     "calls": 2,
+     "tokens_in": 130,
+     "tokens_out": 14
+    },
+    "Klaus Mueller | task_decomp": {
+     "calls": 2,
+     "tokens_in": 1896,
+     "tokens_out": 508
+    },
+    "Klaus Mueller | wake_up_hour": {
+     "calls": 2,
+     "tokens_in": 526,
+     "tokens_out": 306
+    },
+    "Maria Lopez | action_location_object": {
+     "calls": 1,
+     "tokens_in": 380,
+     "tokens_out": 24
+    },
+    "Maria Lopez | action_location_sector": {
+     "calls": 1,
+     "tokens_in": 604,
+     "tokens_out": 25
+    },
+    "Maria Lopez | action_object": {
+     "calls": 1,
+     "tokens_in": 315,
+     "tokens_out": 1
+    },
+    "Maria Lopez | daily_planning": {
+     "calls": 1,
+     "tokens_in": 366,
+     "tokens_out": 199
+    },
+    "Maria Lopez | generate_event_triple": {
+     "calls": 2,
+     "tokens_in": 526,
+     "tokens_out": 24
+    },
+    "Maria Lopez | generate_hourly_schedule": {
+     "calls": 15,
+     "tokens_in": 19793,
+     "tokens_out": 5309
+    },
+    "Maria Lopez | generate_obj_event": {
+     "calls": 1,
+     "tokens_in": 112,
+     "tokens_out": 8
+    },
+    "Maria Lopez | generate_pronunciatio": {
+     "calls": 2,
+     "tokens_in": 130,
+     "tokens_out": 14
+    },
+    "Maria Lopez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 961,
+     "tokens_out": 253
+    },
+    "Maria Lopez | wake_up_hour": {
+     "calls": 1,
+     "tokens_in": 299,
+     "tokens_out": 238
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_07:00",
+   "sim_clock_end": "2023-02-13 07:00:00",
+   "calls": 6,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 2,
+     "tokens_in": 873,
+     "tokens_out": 8
+    },
+    "Klaus Mueller | staged_importance_scoring": {
+     "calls": 2,
+     "tokens_in": 759,
+     "tokens_out": 8
+    },
+    "Maria Lopez | staged_importance_scoring": {
+     "calls": 2,
+     "tokens_in": 831,
+     "tokens_out": 8
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_08:00",
+   "sim_clock_end": "2023-02-13 08:00:00",
+   "calls": 126,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 10,
+     "tokens_in": 3557,
+     "tokens_out": 76
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 10,
+     "tokens_in": 5925,
+     "tokens_out": 242
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 10,
+     "tokens_in": 3207,
+     "tokens_out": 64
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 20,
+     "tokens_in": 5338,
+     "tokens_out": 264
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 10,
+     "tokens_in": 1239,
+     "tokens_out": 73
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 20,
+     "tokens_in": 1360,
+     "tokens_out": 153
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 45,
+     "tokens_in": 19579,
+     "tokens_out": 701
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1003,
+     "tokens_out": 298
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_09:00",
+   "sim_clock_end": "2023-02-13 09:00:00",
+   "calls": 157,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 10,
+     "tokens_in": 3441,
+     "tokens_out": 156
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 10,
+     "tokens_in": 5917,
+     "tokens_out": 205
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 10,
+     "tokens_in": 3321,
+     "tokens_out": 31
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 20,
+     "tokens_in": 5417,
+     "tokens_out": 441
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 10,
+     "tokens_in": 1306,
+     "tokens_out": 105
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 20,
+     "tokens_in": 1406,
+     "tokens_out": 156
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 76,
+     "tokens_in": 33316,
+     "tokens_out": 3547
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1011,
+     "tokens_out": 244
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_10:00",
+   "sim_clock_end": "2023-02-13 10:00:00",
+   "calls": 128,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 8,
+     "tokens_in": 2799,
+     "tokens_out": 126
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 8,
+     "tokens_in": 4775,
+     "tokens_out": 149
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 8,
+     "tokens_in": 2663,
+     "tokens_out": 27
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 16,
+     "tokens_in": 4369,
+     "tokens_out": 320
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 8,
+     "tokens_in": 1097,
+     "tokens_out": 109
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 16,
+     "tokens_in": 1156,
+     "tokens_out": 123
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 63,
+     "tokens_in": 27707,
+     "tokens_out": 2518
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1013,
+     "tokens_out": 328
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_11:00",
+   "sim_clock_end": "2023-02-13 11:00:00",
+   "calls": 55,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 4,
+     "tokens_in": 1382,
+     "tokens_out": 68
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 4,
+     "tokens_in": 2370,
+     "tokens_out": 81
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 4,
+     "tokens_in": 1318,
+     "tokens_out": 14
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 8,
+     "tokens_in": 2185,
+     "tokens_out": 222
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 4,
+     "tokens_in": 534,
+     "tokens_out": 67
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 8,
+     "tokens_in": 577,
+     "tokens_out": 62
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 23,
+     "tokens_in": 10175,
+     "tokens_out": 1234
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_12:00",
+   "sim_clock_end": "2023-02-13 12:00:00",
+   "calls": 101,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 3,
+     "tokens_in": 1044,
+     "tokens_out": 38
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 3,
+     "tokens_in": 1785,
+     "tokens_out": 62
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 3,
+     "tokens_in": 996,
+     "tokens_out": 26
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 6,
+     "tokens_in": 1643,
+     "tokens_out": 153
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 3,
+     "tokens_in": 408,
+     "tokens_out": 48
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 6,
+     "tokens_in": 438,
+     "tokens_out": 50
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 77,
+     "tokens_in": 33852,
+     "tokens_out": 4016
+    }
+   }
+  },
+  {
+   "window": "hour_ending_2023-02-13_13:00",
+   "sim_clock_end": "2023-02-13 13:00:00",
+   "calls": 92,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 1.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 4,
+     "tokens_in": 1388,
+     "tokens_out": 68
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 4,
+     "tokens_in": 2383,
+     "tokens_out": 82
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 4,
+     "tokens_in": 1307,
+     "tokens_out": 14
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 8,
+     "tokens_in": 2183,
+     "tokens_out": 235
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 4,
+     "tokens_in": 539,
+     "tokens_out": 59
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 8,
+     "tokens_in": 575,
+     "tokens_out": 63
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 59,
+     "tokens_in": 25953,
+     "tokens_out": 3100
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1016,
+     "tokens_out": 211
+    }
+   }
+  },
+  {
+   "window": "final_partial_hour",
+   "sim_clock_end": "2023-02-13 13:45:10",
+   "calls": 154,
+   "sleeping_step_fraction": {
+    "Isabella Rodriguez": 0.0,
+    "Maria Lopez": 1.0,
+    "Klaus Mueller": 0.0
+   },
+   "by_agent_and_prompt_type": {
+    "Isabella Rodriguez | action_location_object": {
+     "calls": 6,
+     "tokens_in": 2057,
+     "tokens_out": 87
+    },
+    "Isabella Rodriguez | action_location_sector": {
+     "calls": 6,
+     "tokens_in": 3582,
+     "tokens_out": 89
+    },
+    "Isabella Rodriguez | action_object": {
+     "calls": 6,
+     "tokens_in": 1973,
+     "tokens_out": 17
+    },
+    "Isabella Rodriguez | generate_event_triple": {
+     "calls": 12,
+     "tokens_in": 3226,
+     "tokens_out": 113
+    },
+    "Isabella Rodriguez | generate_obj_event": {
+     "calls": 6,
+     "tokens_in": 770,
+     "tokens_out": 61
+    },
+    "Isabella Rodriguez | generate_pronunciatio": {
+     "calls": 12,
+     "tokens_in": 822,
+     "tokens_out": 93
+    },
+    "Isabella Rodriguez | staged_importance_scoring": {
+     "calls": 94,
+     "tokens_in": 41269,
+     "tokens_out": 4756
+    },
+    "Isabella Rodriguez | task_decomp": {
+     "calls": 1,
+     "tokens_in": 1027,
+     "tokens_out": 302
+    },
+    "Klaus Mueller | action_location_object": {
+     "calls": 1,
+     "tokens_in": 358,
+     "tokens_out": 16
+    },
+    "Klaus Mueller | action_location_sector": {
+     "calls": 1,
+     "tokens_in": 629,
+     "tokens_out": 20
+    },
+    "Klaus Mueller | action_object": {
+     "calls": 1,
+     "tokens_in": 318,
+     "tokens_out": 2
+    },
+    "Klaus Mueller | generate_event_triple": {
+     "calls": 2,
+     "tokens_in": 537,
+     "tokens_out": 40
+    },
+    "Klaus Mueller | generate_obj_event": {
+     "calls": 1,
+     "tokens_in": 121,
+     "tokens_out": 10
+    },
+    "Klaus Mueller | generate_pronunciatio": {
+     "calls": 2,
+     "tokens_in": 138,
+     "tokens_out": 15
+    },
+    "Klaus Mueller | staged_importance_scoring": {
+     "calls": 2,
+     "tokens_in": 768,
+     "tokens_out": 177
+    },
+    "Klaus Mueller | task_decomp": {
+     "calls": 1,
+     "tokens_in": 950,
+     "tokens_out": 261
+    }
+   }
+  }
+ ],
+ "awake_vs_sleeping_by_agent": {
+  "Isabella Rodriguez": {
+   "awake": {
+    "calls": 804,
+    "tokens_in": 291572,
+    "tokens_out": 25955,
+    "agent_windows": 8
+   },
+   "sleeping": {
+    "calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "agent_windows": 0
+   }
+  },
+  "Maria Lopez": {
+   "awake": {
+    "calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "agent_windows": 0
+   },
+   "sleeping": {
+    "calls": 2,
+    "tokens_in": 831,
+    "tokens_out": 8,
+    "agent_windows": 8
+   }
+  },
+  "Klaus Mueller": {
+   "awake": {
+    "calls": 11,
+    "tokens_in": 3819,
+    "tokens_out": 541,
+    "agent_windows": 1
+   },
+   "sleeping": {
+    "calls": 2,
+    "tokens_in": 759,
+    "tokens_out": 8,
+    "agent_windows": 7
+   }
+  }
+ },
+ "T_recheck": {
+  "population": "LLM-scored events from Step D, rule-assigned 'is idle' rows excluded (section 8, committed a28a44b)",
+  "mirror_rows": 608,
+  "idle_rows_excluded": 163,
+  "llm_scored_events": 445,
+  "scoring_calls_in_raw_log": 445,
+  "histogram": {
+   "1": 238,
+   "2": 183,
+   "3": 17,
+   "4": 5,
+   "5": 0,
+   "6": 2,
+   "7": 0,
+   "8": 0,
+   "9": 0,
+   "10": 0
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 439,
+   "Maria Lopez": 2,
+   "Klaus Mueller": 4
+  },
+  "fraction_reaching": {
+   "8": 0.0,
+   "9": 0.0,
+   "10": 0.0
+  },
+  "T_from_this_population": 8,
+  "status": "rule applied",
+  "frozen_provisional_T": 9,
+  "T_would_change": true,
+  "config_changed": false
+ },
+ "provider_errors_by_key_and_status": {
+  "GEMINI_KEY_4 HTTP 503": 21,
+  "GEMINI_KEY_5 HTTP 503": 25,
+  "GEMINI_KEY_6 HTTP 503": 33
+ },
+ "timeouts_by_key": {
+  "GEMINI_KEY_5": 5,
+  "GEMINI_KEY_6": 1,
+  "GEMINI_KEY_4": 1
+ },
+ "consolidation_sweeps": [
+  {
+   "agent": "Maria Lopez",
+   "sim_time": "2023-02-13 06:00:00",
+   "night": 0,
+   "entries_considered": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "status": "done"
+  },
+  {
+   "agent": "Klaus Mueller",
+   "sim_time": "2023-02-13 06:00:00",
+   "night": 0,
+   "entries_considered": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "status": "done"
+  },
+  {
+   "agent": "Maria Lopez",
+   "sim_time": "2023-02-13 12:00:00",
+   "night": 1,
+   "entries_considered": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "status": "done"
+  },
+  {
+   "agent": "Klaus Mueller",
+   "sim_time": "2023-02-13 12:00:00",
+   "night": 1,
+   "entries_considered": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "status": "done"
+  }
+ ],
+ "calls_by_purpose_prompt_type": {
+  "wake_up_hour": 4,
+  "daily_planning": 3,
+  "generate_hourly_schedule": 50,
+  "task_decomp": 10,
+  "action_location_sector": 49,
+  "action_location_object": 49,
+  "action_object": 49,
+  "generate_pronunciatio": 98,
+  "generate_event_triple": 98,
+  "generate_obj_event": 49,
+  "staged_importance_scoring": 445
+ },
+ "tokens_by_prompt_type": {
+  "action_location_object": {
+   "in": 17142,
+   "out": 786
+  },
+  "action_location_sector": {
+   "in": 29176,
+   "out": 1005
+  },
+  "action_object": {
+   "in": 16051,
+   "out": 199
+  },
+  "daily_planning": {
+   "in": 1082,
+   "out": 888
+  },
+  "generate_event_triple": {
+   "in": 26483,
+   "out": 1862
+  },
+  "generate_hourly_schedule": {
+   "in": 71033,
+   "out": 21882
+  },
+  "generate_obj_event": {
+   "in": 6356,
+   "out": 554
+  },
+  "generate_pronunciatio": {
+   "in": 6866,
+   "out": 757
+  },
+  "staged_importance_scoring": {
+   "in": 195082,
+   "out": 20073
+  },
+  "task_decomp": {
+   "in": 9880,
+   "out": 2688
+  },
+  "wake_up_hour": {
+   "in": 1146,
+   "out": 842
+  }
+ }
+}
