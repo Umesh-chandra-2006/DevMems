@@ -1,0 +1,21 @@
+=== devmem.router.test_router
+Ran 33 tests in 3.478s
+OK
+=== devmem.memory.test_priors
+Ran 9 tests in 1.968s
+OK
+=== devmem.memory.test_episodic
+Ran 10 tests in 1.695s
+OK
+=== devmem.memory.test_reconcile
+Ran 7 tests in 23.271s
+OK
+=== devmem.memory.test_gpt_structure_touch
+Ran 5 tests in 0.028s
+OK
+=== devmem.memory.test_consolidation
+Ran 21 tests in 2.031s
+OK (skipped=1)
+=== devmem.embeddings.test_vector_store
+Ran 14 tests in 1.343s
+OK (skipped=1)

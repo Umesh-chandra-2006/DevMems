@@ -3,7 +3,12 @@
 # One embedding model per run, identical across conditions. Vectors from different models
 # (or the 768-dim deterministic fallback) are never comparable.
 model: "gemini-embedding-001"
-key_envs: ["GEMINI_KEY_1", "GEMINI_KEY_2"]
+# GEMINI_KEY_2 is excluded until the Project Owner fixes it (HTTP 403 on embeddings, Step 0 probe).
+# GEMINI_KEY_3 is a separate project for embeddings only.
+key_envs: ["GEMINI_KEY_1", "GEMINI_KEY_3"]
+# Per-key daily request limit enforced pre-emptively from the router ledger (key_usage, composite key
+# {key_env}#{model}); whether a batch counts per request or per text is not yet established.
+rpd_per_key: 1000
 # fail_loud: any embedding failure raises EmbeddingError and is counted. The deterministic fallback
 # is available only when a store is created with allow_fallback=True (offline unit tests).
 fail_loud: true

@@ -180,7 +180,10 @@ def reflect(persona):
   Output: 
     None
   """
-  if reflection_trigger(persona): 
+  # DevMem D1 (sanctioned touch point 4): in staged mode Stage 3 replaces importance-triggered reflection
+  # unless the config flag staged_reflection is true (ablation). No-op in baseline mode.
+  from devmem.memory.consolidation import staged_reflection_disabled
+  if reflection_trigger(persona) and not staged_reflection_disabled(): 
     run_reflect(persona)
     reset_reflection_counter(persona)
 

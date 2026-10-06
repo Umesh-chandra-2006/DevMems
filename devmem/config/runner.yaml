@@ -1,5 +1,16 @@
 # devmem/config/runner.yaml
-# Headless runner settings (Phase 5, P5.0a).
-# autosave_interval_sim_minutes: simulated minutes between autosaves (default one simulated hour).
-# The interval in steps is derived from the run's sec_per_step (60 min at 10 s/step = 360 steps).
-autosave_interval_sim_minutes: 60
+# Headless runner settings (Phase 5).
+# autosave_interval_sim_minutes: simulated minutes between autosaves. Default 15 (was 60 in Step 0;
+# changed at the Stop 1 verdict so a crash loses at most 15 simulated minutes).
+# The interval in steps is derived from the run's sec_per_step (15 min at 10 s/step = 90 steps).
+autosave_interval_sim_minutes: 15
+# fail_loud_llm: GPT_request and the other upstream request wrappers re-raise router exceptions (after
+# counting them in gpt_structure.ROUTER_FAILURES) instead of returning "TOKEN LIMIT EXCEEDED" etc.
+# Upstream's safe_generate_response still catches and retries; the counter is the authoritative record.
+fail_loud_llm: true
+# Strings that mark a router failure (or a model echo) leaking into a saved daily schedule.
+bad_schedule_markers:
+  - "TOKEN LIMIT EXCEEDED"
+  - "ChatGPT ERROR"
+  - "DevMem Router ERROR"
+  - "Here are the completed entries"

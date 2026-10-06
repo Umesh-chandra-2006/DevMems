@@ -236,6 +236,11 @@ class Persona:
     perceived = self.perceive(maze)
     retrieved = self.retrieve(perceived)
     plan = self.plan(maze, personas, new_day, retrieved)
+    # DevMem sleep hook (sanctioned touch point 4, staged mode only): Stage 3 nightly sweep, once per night.
+    import utils as _devmem_utils
+    if getattr(_devmem_utils, "MEMORY_MODE", "baseline") == "staged":
+      from devmem.memory.consolidation import maybe_sweep_on_sleep
+      maybe_sweep_on_sleep(self)
     self.reflect()
 
     # <execution> is a triple set that contains the following components: 

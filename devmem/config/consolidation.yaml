@@ -1,0 +1,33 @@
+# devmem/config/consolidation.yaml
+# Stage 3 settings (Phase 5). All values are config; thresholds are starting points approved at Stop 1
+# (decision D4) and are frozen before Phase 9, calibrated only on non-evaluation data.
+
+# Single-linkage clustering threshold (cosine). Evidence at Stop 1: idle/object events already score
+# 0.80-0.88 against each other with gemini-embedding-001, so the importance floor and idle filter matter.
+cluster_similarity: 0.78
+# Match threshold for reinforcing an existing semantic memory instead of creating a new one.
+match_threshold: 0.80
+min_cluster_size: 3
+# Cap on source entries placed in one summarization prompt (Groq TPM is 8,000; prompt is ~650 tokens).
+max_entries_per_prompt: 12
+# Entries below this importance, or whose description contains an excluded substring, are not clustered.
+importance_floor: 3
+exclude_description_substrings: ["idle"]
+max_summaries_per_night: 6
+# A sweep that fails writes no marker and may retry on a later tick, up to this many attempts per night.
+max_attempts_per_night: 3
+
+# Router tier for summaries; tests and comparison runs pass pinned_model="openai/gpt-oss-20b".
+summary_tier: strong
+
+# D2 (ii): retrieval score multiplier for consolidated source entries (staged mode only).
+consolidated_weight: 0.5
+
+# D1: false = Option A (staged mode disables the importance-triggered upstream reflection; Stage 3
+# replaces it). true = Option B (keep both) for the ablation.
+staged_reflection: false
+
+# A new action whose description contains one of these starts a sleep.
+sleep_markers: ["sleeping", "asleep"]
+# A sleep signal before this hour belongs to the previous night (night key = sim_day of the evening onset).
+night_boundary_hour: 12

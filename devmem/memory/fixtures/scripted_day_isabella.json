@@ -1,0 +1,24 @@
+{
+  "label": "scripted",
+  "note": "Hand-written events for one simulated day of Isabella Rodriguez (written by the Senior Developer, not captured from a run). group = the intended relationship, used only to check the result; importance is scripted, not scored.",
+  "agent": "Isabella Rodriguez",
+  "day": "2023-02-13",
+  "events": [
+    {"t": "08:05", "importance": 4, "group": "baking", "text": "Isabella Rodriguez is baking a batch of croissants at Hobbs Cafe"},
+    {"t": "08:40", "importance": 4, "group": "baking", "text": "Isabella Rodriguez is kneading dough for the morning pastries"},
+    {"t": "09:15", "importance": 5, "group": "baking", "text": "Isabella Rodriguez is taking fresh bread out of the oven"},
+    {"t": "11:30", "importance": 4, "group": "baking", "text": "Isabella Rodriguez is decorating cupcakes for a customer's order"},
+    {"t": "14:10", "importance": 4, "group": "baking", "text": "Isabella Rodriguez is preparing cookie dough for the afternoon rush"},
+    {"t": "10:20", "importance": 7, "group": "neighbor_conflict", "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from the cafe"},
+    {"t": "10:35", "importance": 7, "group": "neighbor_conflict", "text": "Isabella Rodriguez argued with her neighbor about the late-night noise"},
+    {"t": "10:50", "importance": 6, "group": "neighbor_conflict", "text": "Isabella Rodriguez apologized to the upset neighbor and offered free coffee"},
+    {"t": "13:00", "importance": 6, "group": "neighbor_conflict", "text": "Isabella Rodriguez felt tense after the dispute with her neighbor"},
+    {"t": "12:15", "importance": 5, "group": "isolated", "text": "Isabella Rodriguez is reading a letter from her sister who lives in another city"},
+    {"t": "15:30", "importance": 3, "group": "isolated", "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window"},
+    {"t": "16:45", "importance": 5, "group": "isolated", "text": "The town clock tower struck five while Isabella Rodriguez waited at the bus stop"},
+    {"t": "07:10", "importance": 2, "group": "below_floor", "text": "Isabella Rodriguez is brushing her teeth"},
+    {"t": "07:20", "importance": 1, "group": "idle", "text": "bed is idle"},
+    {"t": "07:20", "importance": 1, "group": "idle", "text": "closet is idle"},
+    {"t": "17:00", "importance": 1, "group": "idle", "text": "refrigerator is idle"}
+  ]
+}

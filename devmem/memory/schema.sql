@@ -68,3 +68,15 @@ CREATE TABLE key_usage (
     requests_used        INTEGER DEFAULT 0,
     PRIMARY KEY (provider, key_id, date)
 );
+
+-- Stage 3 sweep guard (Phase 5, decision D7, additive, approved at Stop 1): one row per (agent, night).
+-- night = sim_day of the evening onset; max_node_id/sweep_time let reload reconciliation roll a sweep back.
+CREATE TABLE consolidation_sweeps (
+    agent_id     TEXT NOT NULL,
+    night        INTEGER NOT NULL,
+    sweep_time   TEXT NOT NULL,
+    max_node_id  INTEGER NOT NULL,
+    attempts     INTEGER NOT NULL DEFAULT 0,
+    status       TEXT NOT NULL,        -- done | failed
+    PRIMARY KEY (agent_id, night)
+);

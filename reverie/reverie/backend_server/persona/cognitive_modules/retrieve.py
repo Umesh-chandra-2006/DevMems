@@ -248,6 +248,10 @@ def new_retrieve(persona, focal_points, n_count=30):
                      + persona.scratch.relevance_w*relevance_out[key]*gw[1] 
                      + persona.scratch.importance_w*importance_out[key]*gw[2])
 
+    # DevMem D2 (sanctioned touch point 5): down-weight consolidated source entries (staged mode only;
+    # returns master_out unchanged in baseline mode).
+    from devmem.memory.consolidation import apply_consolidated_weight
+    master_out = apply_consolidated_weight(persona, master_out)
     master_out = top_highest_x_values(master_out, len(master_out.keys()))
     for key, val in master_out.items(): 
       print (persona.a_mem.id_to_node[key].embedding_key, val)

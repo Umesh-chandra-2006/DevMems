@@ -25,6 +25,19 @@ openai.api_key = openai_api_key
 def temp_sleep(seconds=1.0):
   time.sleep(seconds)
 
+# DEVMEM: router failures used to be swallowed into fail-safe strings ("TOKEN LIMIT EXCEEDED",
+# "ChatGPT ERROR"). Every one is now counted; with utils.FAIL_LOUD_LLM set (HeadlessRunner does this)
+# the exception is re-raised after counting. Default (flag unset) keeps the upstream behavior.
+ROUTER_FAILURES = {"count": 0, "by_function": {}, "last_errors": []}
+
+def _count_router_failure(where, exc):
+  ROUTER_FAILURES["count"] += 1
+  ROUTER_FAILURES["by_function"][where] = ROUTER_FAILURES["by_function"].get(where, 0) + 1
+  ROUTER_FAILURES["last_errors"] = (ROUTER_FAILURES["last_errors"] + [f"{where}: {type(exc).__name__}"])[-20:]
+  import utils as _utils
+  if getattr(_utils, "FAIL_LOUD_LLM", False):
+    raise exc
+
 def _infer_purpose(prompt_text: str) -> str:
   lower = str(prompt_text).lower()
   if "rate how important" in lower or "poignancy" in lower or "on a scale of 1 to 10" in lower:
@@ -53,6 +66,7 @@ def ChatGPT_single_request(prompt, purpose="dialogue"):
     return call_llm(prompt, tier="fast", purpose=purpose, condition=mode)
   except Exception as e:
     print(f"DevMem Router ERROR in ChatGPT_single_request: {e}")
+    _count_router_failure("ChatGPT_single_request", e)
     return "ChatGPT ERROR"
 
 
@@ -91,6 +105,7 @@ def GPT4_request(prompt, purpose="planning"):
     return call_llm(prompt, tier="strong", purpose=purpose, condition=mode)
   except Exception as e:
     print(f"DevMem Router ERROR in GPT4_request: {e}")
+    _count_router_failure("GPT4_request", e)
     return "ChatGPT ERROR"
 
 
@@ -125,6 +140,7 @@ def ChatGPT_request(prompt, purpose="dialogue"):
     return call_llm(prompt, tier="fast", purpose=purpose, condition=mode)
   except Exception as e:
     print(f"DevMem Router ERROR in ChatGPT_request: {e}")
+    _count_router_failure("ChatGPT_request", e)
     return "ChatGPT ERROR"
 
 
@@ -338,6 +354,7 @@ def GPT_request(prompt, gpt_parameter, purpose=None):
     return _clean_completion_continuation(prompt, str(raw_resp), stop=stop)
   except Exception as e:
     print(f"DevMem Router ERROR in GPT_request: {e}")
+    _count_router_failure("GPT_request", e)
     return "TOKEN LIMIT EXCEEDED"
 
 
@@ -396,6 +413,17 @@ def safe_generate_response(prompt,
 
 
 _EMBEDDING_CACHE = {}
+_EMBEDDING_STORE = None
+
+def _get_embedding_store():
+  global _EMBEDDING_STORE
+  if _EMBEDDING_STORE is None:
+    from devmem.embeddings.vector_store import EmbeddingStore
+    from devmem.memory.episodic import get_db_path
+    _EMBEDDING_STORE = EmbeddingStore(
+      offline=os.environ.get("DEVMEM_EMBEDDING_MODE", "live") == "offline",
+      stats_path=get_db_path().parent / "embedding_stats.json")
+  return _EMBEDDING_STORE
 
 def get_embedding(text, model="text-embedding-ada-002"):
   text = text.replace("\n", " ").strip()
@@ -404,6 +432,14 @@ def get_embedding(text, model="text-embedding-ada-002"):
 
   if text in _EMBEDDING_CACHE:
     return _EMBEDDING_CACHE[text]
+
+  # DEVMEM: route through EmbeddingStore (router key pool and cooldowns, persistent on-disk cache,
+  # fail-loud, per-run stats), identical for both conditions. DEVMEM_EMBEDDING_MODE=offline (unit tests
+  # only) returns deterministic vectors without network; "legacy" runs the original code below.
+  if os.environ.get("DEVMEM_EMBEDDING_MODE", "live") != "legacy":
+    emb = _get_embedding_store().embed_texts([text], batch=False)[0]
+    _EMBEDDING_CACHE[text] = emb
+    return emb
 
   # ORIGINAL OPENAI CODE PATH (disabled for DevMem free-tier routing):
   # return openai.Embedding.create(

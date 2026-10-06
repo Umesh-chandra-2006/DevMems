@@ -6,6 +6,7 @@ Classes under test are the real upstream AssociativeMemory / Persona / ReverieSe
 SQLite file; the only scripted part is what happens inside each simulated step.
 """
 
+import devmem.testing_env  # noqa: F401  (offline by default; DEVMEM_LIVE_TESTS=1 for live)
 import datetime
 import json
 import os
@@ -15,6 +16,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 BACKEND_DIR = PROJECT_ROOT / "reverie" / "reverie" / "backend_server"
@@ -215,6 +217,7 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
                 rs.step += 1
                 rs.curr_time += datetime.timedelta(seconds=rs.sec_per_step)
 
+        kwargs.setdefault("final_sweep", False)
         runner = Scripted(fork_sim_code=self.FORK, sim_code=self.SIM, memory_mode="staged",
                           autosave_interval_sim_minutes=1, **kwargs)
         runner.first_step = runner.rs.step
@@ -278,6 +281,45 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
             self.assertTrue(any("replayed step 6" in c for c in mirror.values()))
             self.assertFalse(any("original step 6" in c for c in mirror.values()))
         self.assertEqual(r2.autosave_steps[-1], r2.rs.step, "clean exit saved")
+
+    def test_runner_sets_fail_loud_and_scan_flags_router_failure_strings(self):
+        import utils
+        from devmem.run_headless import scan_saved_schedules, load_runner_config
+        orig = getattr(utils, "FAIL_LOUD_LLM", None)
+        self.addCleanup(lambda: setattr(utils, "FAIL_LOUD_LLM", orig) if orig is not None
+                        else (delattr(utils, "FAIL_LOUD_LLM") if hasattr(utils, "FAIL_LOUD_LLM") else None))
+        r = self._scripted_runner()
+        self.assertTrue(utils.FAIL_LOUD_LLM)
+        self.assertEqual(load_runner_config()["autosave_interval_sim_minutes"], 15)
+        r.run(1)  # saves on exit
+        markers = r.markers
+        self.assertIn("TOKEN LIMIT EXCEEDED", markers)
+        self.assertEqual(scan_saved_schedules(self.SIM, markers), [], "a clean saved run has no findings")
+        scratch_f = Path(BACKEND_DIR) / utils.fs_storage / self.SIM / "personas" / "Isabella Rodriguez" /             "bootstrap_memory" / "scratch.json"
+        data = json.loads(scratch_f.read_text(encoding="utf-8"))
+        data["f_daily_schedule_hourly_org"].append(["TOKEN LIMIT EXCEEDED", 60])
+        data["f_daily_schedule"].append(["[(ID:A1B2C3) Monday February 13 -- 09:00 AM] Activity: Isabella is x", 60])
+        scratch_f.write_text(json.dumps(data), encoding="utf-8")
+        found = scan_saved_schedules(self.SIM, markers)
+        self.assertEqual(sorted(f["marker"] for f in found), ["TOKEN LIMIT EXCEEDED", "model_echo"])
+        self.assertTrue(all(f["agent"] == "Isabella Rodriguez" for f in found))
+
+    def test_clean_exit_forces_a_sweep_for_every_agent_staged_only(self):
+        from devmem.memory import consolidation as cons
+        calls = []
+        def fake_llm(prompt, **kw):
+            calls.append(kw.get("agent_id"))
+            return "A steady pattern of scripted events."
+        sweep_kwargs = {"embed_fn": lambda t: [0.1, 0.2, 0.3], "config": {**cons.load_config(), "min_cluster_size": 2}}
+        r = self._scripted_runner(sweep_kwargs=sweep_kwargs)
+        r.final_sweep = True  # _scripted_runner disables it by default so other tests make no LLM calls
+        with mock.patch.object(cons, "call_llm", fake_llm),              mock.patch.object(cons.episodic, "score_importance_persona_conditioned", return_value=5):
+            r.run(3)
+        self.assertEqual(sorted(r.final_sweep_results), sorted(r.rs.personas))
+        for name, res in r.final_sweep_results.items():
+            self.assertEqual(res["status"], "done", name)
+            self.assertEqual(res["summaries_written"], 1, name)
+        self.assertEqual(sorted(calls), sorted(r.rs.personas))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,186 @@
+{
+ "label": "live embeddings (gemini-embedding-001) of scripted events",
+ "dim": 3072,
+ "http_requests": 1,
+ "cache_hits": 0,
+ "thresholds": {
+  "0.6": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10",
+    "isolated:11"
+   ]
+  ],
+  "0.65": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10",
+    "isolated:11"
+   ]
+  ],
+  "0.68": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10",
+    "isolated:11"
+   ]
+  ],
+  "0.7": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10",
+    "isolated:11"
+   ]
+  ],
+  "0.72": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10",
+    "isolated:11"
+   ]
+  ],
+  "0.75": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8",
+    "isolated:9",
+    "isolated:10"
+   ],
+   [
+    "isolated:11"
+   ]
+  ],
+  "0.78": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "isolated:9",
+    "isolated:10"
+   ],
+   [
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8"
+   ],
+   [
+    "isolated:11"
+   ]
+  ],
+  "0.8": [
+   [
+    "baking:0",
+    "baking:1",
+    "baking:2",
+    "baking:3",
+    "baking:4",
+    "isolated:10"
+   ],
+   [
+    "neighbor_conflict:5",
+    "neighbor_conflict:6",
+    "neighbor_conflict:7",
+    "neighbor_conflict:8"
+   ],
+   [
+    "isolated:9"
+   ],
+   [
+    "isolated:11"
+   ]
+  ]
+ },
+ "within_group_cosine": {
+  "baking": {
+   "n": 10,
+   "min": 0.801,
+   "mean": 0.8479,
+   "max": 0.9239
+  },
+  "neighbor_conflict": {
+   "n": 6,
+   "min": 0.8175,
+   "mean": 0.8454,
+   "max": 0.9004
+  },
+  "isolated": {
+   "n": 3,
+   "min": 0.7186,
+   "mean": 0.7325,
+   "max": 0.7575
+  },
+  "idle": {
+   "n": 3,
+   "min": 0.8053,
+   "mean": 0.808,
+   "max": 0.8131
+  }
+ },
+ "cross_group_cosine_baking_conflict_isolated": {
+  "n": 47,
+  "min": 0.6699,
+  "mean": 0.7394,
+  "max": 0.8116
+ },
+ "idle_vs_idle": {
+  "n": 3,
+  "min": 0.8053,
+  "mean": 0.808,
+  "max": 0.8131
+ }
+}

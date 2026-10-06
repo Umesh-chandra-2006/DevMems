@@ -4,6 +4,7 @@ Verifies loading 6 hand-authored personas, prompt context generation,
 error handling (PersonaNotFoundError, PersonaSchemaError), and baseline injection.
 """
 
+import devmem.testing_env  # noqa: F401  (offline by default; DEVMEM_LIVE_TESTS=1 for live)
 from datetime import datetime
 import os
 from pathlib import Path

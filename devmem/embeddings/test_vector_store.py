@@ -12,6 +12,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+from devmem.router.cooldown import CooldownManager
 from devmem.embeddings.vector_store import (
     EmbeddingError,
     EmbeddingStore,
@@ -70,6 +71,8 @@ class TestEmbeddingStore(unittest.TestCase):
     def store(self, post, **kw):
         kw.setdefault("key_envs", ["TEST_EMB_KEY_1", "TEST_EMB_KEY_2"])
         kw.setdefault("cache_path", self.cache)
+        kw.setdefault("db_path", str(self.tmp / "ledger.db"))
+        kw.setdefault("cooldown_mgr", CooldownManager(state_file=self.tmp / f"cd_{id(post)}.json"))
         return EmbeddingStore(model="test-model", post=post, **kw)
 
     def test_batch_is_one_http_request_and_single_is_one_per_text(self):
@@ -107,8 +110,9 @@ class TestEmbeddingStore(unittest.TestCase):
         s.embed_texts(["same", "same", "same"])
         self.assertEqual(len(post.calls[0]["json"]["requests"]), 1)
         post_m = FakePost()
-        other_model = EmbeddingStore(model="another-model", post=post_m, cache_path=self.cache,
-                                     key_envs=["TEST_EMB_KEY_1"])
+        other_model = EmbeddingStore(
+            model="another-model", post=post_m, cache_path=self.cache, key_envs=["TEST_EMB_KEY_1"],
+            db_path=str(self.tmp / "ledger.db"), cooldown_mgr=CooldownManager(state_file=self.tmp / "cd_m.json"))
         other_model.embed_texts(["same"])
         self.assertEqual(len(post_m.calls), 1, "same text, different model: cache miss")
 
@@ -141,6 +145,7 @@ class TestEmbeddingStore(unittest.TestCase):
             s_strict.embed_texts(["x"])
         # a store that produced fallback vectors refuses to later return real ones
         s._post = FakePost()
+        s.cooldown.reset_for_test()  # keys were put on cooldown by the failures above
         with self.assertRaises(EmbeddingError):
             s.embed_texts(["a brand new text"])
 
@@ -174,10 +179,66 @@ class TestEmbeddingStore(unittest.TestCase):
         self.assertEqual(used, ["KEY-ONE-SECRET", "KEY-TWO-SECRET"])
         self.assertEqual(s.stats["requests_by_key_env"], {"TEST_EMB_KEY_1": 1, "TEST_EMB_KEY_2": 1})
 
+    def test_403_skips_key_for_the_day_and_other_key_succeeds(self):
+        class Post(FakePost):
+            def __call__(inner, url, headers=None, json=None, timeout=None):
+                if headers["x-goog-api-key"] == "KEY-ONE-SECRET":
+                    inner.calls.append({"url": url, "headers": headers})
+                    return FakeResp(403, {"error": {"message": "denied"}})
+                return super().__call__(url, headers=headers, json=json, timeout=timeout)
+        post = Post()
+        s = self.store(post)
+        out = s.embed_texts(["first"], batch=False)
+        self.assertEqual(len(out), 1)  # key 1 failed (403), key 2 answered: no raise
+        s.embed_texts(["second"], batch=False)
+        used = [c["headers"]["x-goog-api-key"] for c in post.calls]
+        self.assertEqual(used, ["KEY-ONE-SECRET", "KEY-TWO-SECRET", "KEY-TWO-SECRET"],
+                         "key 1 is not retried after the 403")
+        self.assertIn("TEST_EMB_KEY_1", s.stats["keys_skipped"])
+
+    def test_requests_are_counted_in_router_ledger_with_composite_key(self):
+        from devmem.router import key_pool
+        s = self.store(FakePost())
+        s.embed_texts(["a"], batch=False)
+        s.embed_texts(["b"], batch=False)
+        total = sum(key_pool.get_usage("gemini", env, model="test-model", db_path=str(self.tmp / "ledger.db"))
+                    for env in ("TEST_EMB_KEY_1", "TEST_EMB_KEY_2"))
+        self.assertEqual(total, 2)
+        conn = key_pool.get_db_connection(str(self.tmp / "ledger.db"))
+        ids = {r[0] for r in conn.execute("SELECT key_id FROM key_usage")}
+        conn.close()
+        self.assertEqual(ids, {"TEST_EMB_KEY_1#test-model", "TEST_EMB_KEY_2#test-model"})
+
+    def test_per_key_daily_limit_skips_key_from_ledger(self):
+        post = FakePost()
+        s = self.store(post, rpd_per_key=1)
+        s.embed_texts(["a"], batch=False)   # key 1 now at its limit
+        s.embed_texts(["b"], batch=False)   # key 2
+        self.assertEqual(len(post.calls), 2)
+        with self.assertRaises(EmbeddingError):  # both keys at their limit: nothing usable
+            s.embed_texts(["c"], batch=False)
+        self.assertEqual(len(post.calls), 2, "no request was sent past the limit")
+
     def test_no_key_raises(self):
         s = self.store(FakePost(), key_envs=["DEFINITELY_UNSET_KEY_ENV"])
         with self.assertRaises(EmbeddingError):
             s.embed_texts(["x"])
+
+
+@unittest.skipUnless(os.environ.get("DEVMEM_LIVE_TESTS") == "1", "live test: set DEVMEM_LIVE_TESTS=1")
+class TestLiveEmbedding(unittest.TestCase):
+    """live: 1 real embedding request (1 text) through the production configuration."""
+
+    def test_real_endpoint_returns_3072_dim_vector(self):
+        from dotenv import load_dotenv
+        load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")
+        tmp = Path(tempfile.mkdtemp(prefix="p5_live_"))
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        s = EmbeddingStore(cache_path=tmp / "c.db", db_path=str(tmp / "l.db"),
+                           cooldown_mgr=CooldownManager(state_file=tmp / "cd.json"))
+        vec = s.embed_texts(["devmem live embedding test sentence"], batch=False)[0]
+        self.assertEqual(len(vec), 3072)
+        self.assertEqual(s.stats["http_requests"], 1)
 
 
 if __name__ == "__main__":

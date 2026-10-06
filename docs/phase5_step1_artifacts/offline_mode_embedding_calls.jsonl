@@ -1,0 +1,6 @@
+{"modules": ["devmem.memory.test_priors"], "tests_run": 9, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}
+{"modules": ["devmem.memory.test_episodic"], "tests_run": 10, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}
+{"modules": ["devmem.memory.test_reconcile"], "tests_run": 7, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}
+{"modules": ["devmem.memory.test_consolidation"], "tests_run": 21, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}
+{"modules": ["devmem.memory.test_gpt_structure_touch"], "tests_run": 5, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}
+{"modules": ["devmem.embeddings.test_vector_store"], "tests_run": 14, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}

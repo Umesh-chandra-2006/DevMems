@@ -4,6 +4,7 @@ Verifies prompt construction, persona-conditioned scoring, SQLite episodic mirro
 sim_day calculation, baseline vs staged mode differences, and reload idempotency.
 """
 
+import devmem.testing_env  # noqa: F401  (offline by default; DEVMEM_LIVE_TESTS=1 for live)
 from datetime import datetime, date
 import os
 from pathlib import Path

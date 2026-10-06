@@ -24,6 +24,10 @@ import numpy as np
 import requests
 import yaml
 
+from devmem.router import key_pool
+from devmem.router.classifier import classify_429
+from devmem.router.cooldown import CooldownManager
+
 _DEVMEM_DIR = Path(__file__).resolve().parent.parent
 CONFIG_PATH = _DEVMEM_DIR / "config" / "embeddings.yaml"
 FALLBACK_DIM = 768
@@ -67,16 +71,26 @@ class EmbeddingStore:
         key_envs: Optional[Sequence[str]] = None,
         timeout: Optional[float] = None,
         post=requests.post,
+        db_path: Optional[str] = None,
+        cooldown_mgr: Optional[CooldownManager] = None,
+        rpd_per_key: Optional[int] = None,
+        offline: bool = False,
     ):
         cfg = load_config()
         self.model = model or cfg["model"]
         self.fail_loud = cfg["fail_loud"] if fail_loud is None else fail_loud
         self.allow_fallback = allow_fallback
+        self.offline = offline  # unit tests only: deterministic vectors, no network, no cache
         self.key_envs = list(key_envs if key_envs is not None else cfg["key_envs"])
         self.timeout = timeout or cfg["timeout_seconds"]
         self.cache_path = Path(cache_path) if cache_path else _DEVMEM_DIR / cfg["cache_path"]
         self.stats_path = Path(stats_path) if stats_path else None
         self._post = post
+        self.db_path = db_path or key_pool.DEFAULT_DB_PATH
+        if cooldown_mgr is None:
+            from devmem.router.llm_router import cooldown_manager as cooldown_mgr  # shared router state
+        self.cooldown = cooldown_mgr
+        self.rpd_per_key = rpd_per_key if rpd_per_key is not None else cfg.get("rpd_per_key")
         self._source: Optional[str] = None  # "real" or "fallback"; switching raises
         self._key_cursor = 0
         self.stats: Dict[str, Any] = {
@@ -90,6 +104,8 @@ class EmbeddingStore:
             "fallbacks": 0,
             "http_status_counts": {},
             "requests_by_key_env": {},
+            "keys_skipped": {},
+            "offline": offline,
             "dimensions_seen": [],
         }
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -131,37 +147,68 @@ class EmbeddingStore:
             conn.close()
 
     # ---- http --------------------------------------------------------------------------
-    def _next_key(self):
+    PROVIDER = "gemini"  # ledger/cooldown provider name; the composite key carries the embedding model
+
+    def _candidate_keys(self):
+        """Keys in round-robin order, skipping keys that are cooling down (including the daily skip set
+        on 401/403) or at the configured per-key daily request limit (ledger: key_usage)."""
         keys = [(env, os.environ.get(env)) for env in self.key_envs]
         keys = [(e, v) for e, v in keys if v]
         if not keys:
             raise EmbeddingError(f"no embedding key set (looked for {self.key_envs})")
-        env, val = keys[self._key_cursor % len(keys)]
+        start = self._key_cursor % len(keys)
         self._key_cursor += 1
-        return env, val
+        ordered = keys[start:] + keys[:start]
+        usable = []
+        for env, val in ordered:
+            cooling, secs = self.cooldown.is_cooling_down(self.PROVIDER, env, self.model)
+            if cooling:
+                self.stats["keys_skipped"][env] = f"cooldown {int(secs)}s"
+                continue
+            if self.rpd_per_key is not None and not key_pool.is_key_available(
+                self.PROVIDER, env, self.rpd_per_key, model=self.model, db_path=self.db_path
+            ):
+                self.stats["keys_skipped"][env] = "daily request limit (ledger)"
+                continue
+            usable.append((env, val))
+        return usable
 
     def _request(self, endpoint: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        env, key = self._next_key()
+        """Try usable keys in order; fail loud only when all of them fail. 429 and auth handling is the
+        router's: classify_429 decides the kind, CooldownManager.set_cooldown applies it."""
         url = f"{_BASE_URL}/{self.model}:{endpoint}"
-        self.stats["http_requests"] += 1
-        self.stats["requests_by_key_env"][env] = self.stats["requests_by_key_env"].get(env, 0) + 1
-        try:
-            resp = self._post(
-                url,
-                headers={"Content-Type": "application/json", "x-goog-api-key": key},
-                json=payload,
-                timeout=self.timeout,
-            )
-        except Exception as exc:
+        statuses = []
+        for env, key in self._candidate_keys():
+            key_pool.increment_usage(self.PROVIDER, env, model=self.model, db_path=self.db_path)
+            self.stats["http_requests"] += 1
+            self.stats["requests_by_key_env"][env] = self.stats["requests_by_key_env"].get(env, 0) + 1
             counts = self.stats["http_status_counts"]
-            counts["exception"] = counts.get("exception", 0) + 1
-            raise EmbeddingError(f"embedding request failed: {type(exc).__name__}") from None
-        code = str(resp.status_code)
-        counts = self.stats["http_status_counts"]
-        counts[code] = counts.get(code, 0) + 1
-        if resp.status_code != 200:
-            raise EmbeddingError(f"embedding request returned HTTP {resp.status_code}")
-        return resp.json()
+            try:
+                resp = self._post(
+                    url,
+                    headers={"Content-Type": "application/json", "x-goog-api-key": key},
+                    json=payload,
+                    timeout=self.timeout,
+                )
+            except Exception as exc:
+                counts["exception"] = counts.get("exception", 0) + 1
+                statuses.append(f"{env}:{type(exc).__name__}")
+                continue
+            counts[str(resp.status_code)] = counts.get(str(resp.status_code), 0) + 1
+            if resp.status_code == 200:
+                self.cooldown.record_success(self.PROVIDER, env, self.model)
+                return resp.json()
+            try:
+                body = resp.json()
+            except Exception:
+                body = None
+            result = classify_429(self.PROVIDER, resp.status_code, dict(getattr(resp, "headers", {}) or {}), body)
+            self.cooldown.set_cooldown(
+                self.PROVIDER, env, self.model, result.kind, retry_after=result.retry_after,
+                reason=f"embedding HTTP {resp.status_code}",
+            )
+            statuses.append(f"{env}:HTTP {resp.status_code}")
+        raise EmbeddingError(f"all embedding keys failed or unavailable: {statuses or 'none usable'}")
 
     def _embed_real(self, texts: List[str], batch: bool) -> List[List[float]]:
         if batch:
@@ -193,6 +240,10 @@ class EmbeddingStore:
         norm = [normalize_text(t) for t in texts]
         hashes = [text_hash(t) for t in norm]
         self.stats["texts_requested"] += len(norm)
+        if self.offline:
+            self.stats["fallbacks"] += len(norm)
+            self.flush_stats()
+            return [deterministic_fallback_vector(t) for t in norm]
         cached = self._cache_get(sorted(set(hashes)))
         self.stats["cache_hits"] += sum(1 for h in hashes if h in cached)
         self.stats["cache_misses"] += sum(1 for h in hashes if h not in cached)
