@@ -1,0 +1,122 @@
+{
+ "label": "offline post-processing of live probe data",
+ "calls_counted": 40,
+ "models": {
+  "openai/gpt-oss-20b": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "calls": 3,
+    "upstream_validator_passed_some_attempt": 3,
+    "fail_safe_returned": 0,
+    "answers": [
+     6,
+     6,
+     6
+    ],
+    "tokens_in": 1137,
+    "tokens_out": 366
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "calls": 7,
+    "upstream_validator_passed_some_attempt": 1,
+    "fail_safe_returned": 1,
+    "usable_plan": 0,
+    "validator_passed_but_empty_items": 1,
+    "tokens_in": 3080,
+    "tokens_out": 7575
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "calls": 5,
+    "upstream_validator_passed_some_attempt": 2,
+    "fail_safe_returned": 0,
+    "echo": 2,
+    "contaminated_duration_suffix": 0,
+    "clean_hourly": 0,
+    "tokens_in": 5543,
+    "tokens_out": 9591
+   }
+  },
+  "openai/gpt-oss-120b": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "calls": 3,
+    "upstream_validator_passed_some_attempt": 3,
+    "fail_safe_returned": 0,
+    "answers": [
+     6,
+     6,
+     6
+    ],
+    "tokens_in": 1137,
+    "tokens_out": 241
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "calls": 10,
+    "upstream_validator_passed_some_attempt": 1,
+    "fail_safe_returned": 1,
+    "usable_plan": 0,
+    "validator_passed_but_empty_items": 1,
+    "tokens_in": 4400,
+    "tokens_out": 15218
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "calls": 2,
+    "upstream_validator_passed_some_attempt": 2,
+    "fail_safe_returned": 0,
+    "echo": 1,
+    "contaminated_duration_suffix": 0,
+    "clean_hourly": 1,
+    "tokens_in": 2223,
+    "tokens_out": 3234
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "calls": 4,
+    "upstream_validator_passed_some_attempt": 3,
+    "fail_safe_returned": 0,
+    "answers": [
+     6,
+     6,
+     6
+    ],
+    "tokens_in": 1284,
+    "tokens_out": 1018
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "calls": 2,
+    "upstream_validator_passed_some_attempt": 2,
+    "fail_safe_returned": 0,
+    "usable_plan": 0,
+    "validator_passed_but_empty_items": 2,
+    "tokens_in": 774,
+    "tokens_out": 657
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "calls": 2,
+    "upstream_validator_passed_some_attempt": 2,
+    "fail_safe_returned": 0,
+    "echo": 0,
+    "contaminated_duration_suffix": 2,
+    "clean_hourly": 0,
+    "tokens_in": 2378,
+    "tokens_out": 1627
+   }
+  }
+ },
+ "cut_off_by_cap": [
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 3,
+   "calls_used": 2
+  }
+ ]
+}

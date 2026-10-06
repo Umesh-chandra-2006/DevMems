@@ -192,3 +192,13 @@ Questions:
 4. Router key skew (Section 5, item 4): leave, or have the router balance by remaining budget?
 
 REQUEST: Approval of this round and decisions on the questions above. Halting here.
+
+---
+
+## ERRATUM (appended after review; no other number in this report was changed)
+
+**Continuation LLM call count.** Section 3 states 266 LLM calls for the continuation. The router ledger (`ART/p5_staged_live_continue_hourly_ledger.jsonl`, excluding the day-start record) shows **286 calls**: planning 253, dialogue 13, importance_scoring 20. The per-hour table in Section 3 already summed to 286 (6 + 16 + 264); only the headline figures "266 calls", "108,626 in + 108,002 out tokens" (which are ledger tokens and correct for all 286 calls), and the caps text were inconsistent with it.
+
+**Cause.** The 266 is the value of my live cap counter, which wraps `gpt_structure.call_llm`, i.e. the upstream request wrappers (planning, dialogue, reflection paths). The 20 staged importance-scoring calls (6 in the first hour, 14 in the last partial hour) are made by `devmem/memory/episodic.py` through its own `call_llm` import, so they never passed through the counter. It is not a step-boundary effect: the counter stopped the run at a step boundary exactly when it reached 266 (the soft cap), and the 20 uncounted scoring calls had already happened. Phase 1 is unaffected: its counter (138) equals its ledger count (138), because no staged scoring calls occurred in step 0. The earlier 100-call smoke run is also unaffected (ledger 100).
+
+**Consequences.** (1) The cap rules were enforced on non-scoring calls only; measured by the ledger, the continuation used 286 calls, below the 400 hard cap but above the 266 soft cap I reported. (2) The embedding counter was not affected (it counts HTTP requests at the store). (3) Future capped runs should count at the router (or count both `gpt_structure.call_llm` and `episodic.call_llm`); I will do that in any further run.

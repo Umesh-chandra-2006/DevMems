@@ -1,0 +1,933 @@
+{
+ "label": "live",
+ "cap": 40,
+ "calls_counted": 40,
+ "stopped": "cap reached: cap 40 reached (invocation in progress at the cap is recorded as incomplete)",
+ "seconds": 229.3,
+ "models": [
+  "openai/gpt-oss-20b",
+  "openai/gpt-oss-120b",
+  "gemini-3.1-flash-lite"
+ ],
+ "repeats": 3,
+ "summary": {
+  "openai/gpt-oss-20b": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "valid": 3,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 3,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 1137,
+    "tokens_out": 366,
+    "exceptions": 0
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "valid": 0,
+    "valid_rate": 0.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": null,
+    "calls_total": 7,
+    "calls_per_valid_result": null,
+    "tokens_in": 3080,
+    "tokens_out": 7575,
+    "exceptions": 0
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "valid": 2,
+    "valid_rate": 1.0,
+    "echo_among_valid": 2,
+    "echo_rate_among_valid": 1.0,
+    "calls_total": 5,
+    "calls_per_valid_result": 2.5,
+    "tokens_in": 5543,
+    "tokens_out": 9591,
+    "exceptions": 0
+   },
+   "ALL": {
+    "invocations": 7,
+    "valid": 5,
+    "valid_rate": 0.714,
+    "echo_among_valid": 2,
+    "echo_rate_among_valid": 0.4,
+    "calls_total": 15,
+    "calls_per_valid_result": 3.0,
+    "tokens_in": 9760,
+    "tokens_out": 17532,
+    "exceptions": 0
+   }
+  },
+  "openai/gpt-oss-120b": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "valid": 3,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 3,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 1137,
+    "tokens_out": 241,
+    "exceptions": 0
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "valid": 0,
+    "valid_rate": 0.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": null,
+    "calls_total": 10,
+    "calls_per_valid_result": null,
+    "tokens_in": 4400,
+    "tokens_out": 15218,
+    "exceptions": 0
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "valid": 2,
+    "valid_rate": 1.0,
+    "echo_among_valid": 1,
+    "echo_rate_among_valid": 0.5,
+    "calls_total": 2,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 2223,
+    "tokens_out": 3234,
+    "exceptions": 0
+   },
+   "ALL": {
+    "invocations": 7,
+    "valid": 5,
+    "valid_rate": 0.714,
+    "echo_among_valid": 1,
+    "echo_rate_among_valid": 0.2,
+    "calls_total": 15,
+    "calls_per_valid_result": 3.0,
+    "tokens_in": 7760,
+    "tokens_out": 18693,
+    "exceptions": 0
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "wake_up_hour": {
+    "invocations": 3,
+    "valid": 3,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 4,
+    "calls_per_valid_result": 1.33,
+    "tokens_in": 1284,
+    "tokens_out": 1018,
+    "exceptions": 0
+   },
+   "daily_plan": {
+    "invocations": 2,
+    "valid": 2,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 2,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 774,
+    "tokens_out": 657,
+    "exceptions": 0
+   },
+   "hourly_schedule": {
+    "invocations": 2,
+    "valid": 2,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 2,
+    "calls_per_valid_result": 1.0,
+    "tokens_in": 2378,
+    "tokens_out": 1627,
+    "exceptions": 0
+   },
+   "ALL": {
+    "invocations": 7,
+    "valid": 7,
+    "valid_rate": 1.0,
+    "echo_among_valid": 0,
+    "echo_rate_among_valid": 0.0,
+    "calls_total": 8,
+    "calls_per_valid_result": 1.14,
+    "tokens_in": 4436,
+    "tokens_out": 3302,
+    "exceptions": 0
+   }
+  }
+ },
+ "detector": {
+  "markers": [
+   "TOKEN LIMIT EXCEEDED",
+   "ChatGPT ERROR",
+   "DevMem Router ERROR",
+   "Here are the completed entries"
+  ],
+  "regex": "^\\[.*Activity:"
+ },
+ "inputs": {
+  "persona": "Isabella Rodriguez (base fork saved state)",
+  "clock": "2023-02-13 00:00",
+  "wake_hour_asked": 6,
+  "hourly_slot": "07:00 AM",
+  "prior_schedule": "7 x sleeping",
+  "reference_daily_req": [
+   "wake up and complete the morning routine at 6:00 am",
+   "eat breakfast at 7:00 am",
+   "read a book from 8:00 am to 12:00 pm",
+   "have lunch at 12:00 pm",
+   "take a nap from 1:00 pm to 4:00 pm",
+   "relax and watch TV from 7:00 pm to 8:00 pm",
+   "go to bed at 11:00 pm"
+  ]
+ },
+ "invocations": [
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 1,
+     "exception": null,
+     "raw": "6am",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 72
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 4.1
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 2,
+     "exception": null,
+     "raw": "6am",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 73
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 1.9
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 3,
+     "exception": null,
+     "raw": "6am\n\nDaily plan for Monday February 13:\n- Wake up and get ready for the day (duration in minutes: 60, minutes left: 1020)\n- Travel to Hobbs Cafe (duration in minutes: 30, minutes left: 990)\n- Open Hobbs Cafe and prepare for the morning rush (duration in minutes: 30, minutes left: 960)\n- Work at the counter serving customers (duration in minutes: 360, minutes left: 600)\n- Take a break for lunch and gather Valentine's Day party supplies (duration in minutes: 60, minutes left: 540)\n- Return to work",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 321,
+     "tokens_out": 252
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 8.8
+  },
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 4,
+     "exception": null,
+     "raw": "1) Wake up and complete morning routine at 6:00 am  \n2) Check email and messages from customers and suppliers at 6:30 am  \n3) Prepare breakfast items for the cafe at 7:00 am  \n4) Open Hobbs Cafe at 8:00 am, greet early patrons, and start regular service  \n5) Take inventory of supplies, especially decorations and party materials, at 10:00 am  \n6) Order fresh flowers and a cake for Valentine\u2019s Day at 11:00 am  \n7) Send out a final reminder to customers about the Valentine's Day party at 12:00 pm  ",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 443
+    },
+    {
+     "call_no": 5,
+     "exception": null,
+     "raw": "1) Wake up, complete the morning routine, and have a light breakfast at 6:00\u202fam.  \n2) Check emails and messages for the caf\u00e9\u2019s social media and customer inquiries at 6:30\u202fam.  \n3) Walk through the caf\u00e9 to inspect inventory, restock any low supplies, and note items needed for the Valentine\u2019s Day party at 7:00\u202fam.  \n4) Place orders for fresh flowers, chocolate, and special pastries for the party at 8:30\u202fam.  \n5) Begin preparing the Valentine's Day menu items (e.g., heart\u2011shaped croissants, chocola",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 867
+    },
+    {
+     "call_no": 6,
+     "exception": null,
+     "raw": "1) 6:00\u202fam \u2013 wake up and complete morning routine (brush teeth, shower, dress, quick stretch).  \n2) 6:30\u202fam \u2013 prepare and enjoy a light breakfast, review the day\u2019s schedule.  \n3) 7:30\u202fam \u2013 arrive at Hobbs Cafe, run a quick inventory check, and set up the counter for opening.  \n4) 8:00\u202fam \u2013 open the cafe, greet customers, and start the day\u2019s service.  \n5) 12:00\u202fpm \u2013 take a 1\u2011hour lunch break; use the time to review the Valentine\u2019s Day party plan and confirm the guest list.  \n6) 1:00\u202fpm \u2013 return t",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 894
+    },
+    {
+     "call_no": 7,
+     "exception": null,
+     "raw": "2) 7:00 am: have breakfast and review the day\u2019s schedule.  \n3) 8:00 am: open Hobbs Cafe, greet first customers.  \n4) 10:00 am: inventory check for Valentine\u2019s Day party supplies.  \n5) 12:00 pm: lunch break \u2013 1 hour.  \n6) 1:00 pm: start setting up decorations and preparing refreshments for the party.  \n7) 3:00 pm: finalize music playlist and set up sound system.  \n8) 4:30 pm: run final check of party setup, adjust lighting.  \n9) 5:00 pm \u2013 7:00 pm: host Valentine\u2019s Day party.  \n10) 7:00 pm: begin ",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1181
+    },
+    {
+     "call_no": 8,
+     "exception": null,
+     "raw": "1) Wake up and complete the morning routine at 6:00\u202fam  \n2) Open Hobbs Cafe at 8:00\u202fam, greet customers, and check inventory  \n3) 9:00\u202fam \u2013 Begin setting up Valentine-themed decorations in the caf\u00e9  \n4) 10:30\u202fam \u2013 Place orders for party supplies and confirm delivery times  \n5) 12:00\u202fpm \u2013 Lunch break and quick review of the party schedule  \n6) 1:00\u202fpm \u2013 Finalize the special Valentine menu items and taste test drinks  \n7) 2:00\u202fpm \u2013 Train staff on the special service flow for the party  \n8) 3:00\u202fpm",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1239
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "error": null,
+   "seconds": 19.2
+  },
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 9,
+     "exception": null,
+     "raw": "2) Prepare a quick breakfast and coffee for yourself at 6:30\u202fam (duration in minutes: 30, minutes left: 1020)  \n3) Commute to Hobbs\u202fCafe and arrive by 7:30\u202fam (duration in minutes: 30, minutes left: 990)  \n4) Do final prep in the cafe before opening (cleaning, restocking) from 7:30\u202fam to 8:00\u202fam (duration in minutes: 30, minutes left: 960)  \n5) Open Hobbs\u202fCafe at 8:00\u202fam (duration in minutes: 10, minutes left: 950)  \n6) Serve breakfast and morning customers from 8:10\u202fam to 10:00\u202fam (duration in ",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 2948
+    },
+    {
+     "call_no": 10,
+     "exception": null,
+     "raw": "2) Prepare Valentine's Day party materials and decorations (e.g., order balloons, print flyers, arrange seating) from 6:30\u202fam to 8:00\u202fam.  \n3) Open Hobbs Caf\u00e9 and start working at the counter at 8:00\u202fam.  \n4) Serve morning customers (breakfast items, coffee) from 8:00\u202fam to 11:00\u202fam, while checking inventory for the Valentine's Day party.  \n5) Take a short mid\u2011morning break (quick snack, stretch) at 11:00\u202fam for 15\u202fminutes.  \n6) Continue serving customers and finalize party set\u2011up (place tablecl",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 913
+    },
+    {
+     "call_no": 11,
+     "exception": null,
+     "raw": "1) Wake up and complete the morning routine at 6:00\u202fam  \n2) Prepare and eat breakfast, check emails and messages at 6:30\u202fam  \n3) Get dressed and gather any needed items for the caf\u00e9 at 6:45\u202fam  \n4) Commute to Hobbs Caf\u00e9, arrive by 7:30\u202fam  \n5) Unlock the caf\u00e9, turn on lights and equipment, and open the doors at 8:00\u202fam  \n6) Greet staff, brief them on the day\u2019s schedule, and start serving customers at 8:10\u202fam  \n7) Review Valentine's Day party inventory, make a quick list of any missing items at 9",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1159
+    },
+    {
+     "call_no": 12,
+     "exception": null,
+     "raw": "2) Prepare breakfast and coffee at 6:45\u202fam (duration in minutes: 30, minutes left: 1335)  \n3) Review Valentine\u2019s Day party checklist and order supplies at 7:15\u202fam (duration in minutes: 45, minutes left: 1290)  \n4) Open Hobbs\u202fCafe and set up the counter at 8:00\u202fam (duration in minutes: 15, minutes left: 1275)  \n5) Serve customers at the counter from 8:15\u202fam to 12:00\u202fpm (duration in minutes: 225, minutes left: 1050)  \n6) Lunch break and quick rest from 12:00\u202fpm to 12:45\u202fpm (duration in minutes: 45",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1373
+    },
+    {
+     "call_no": 13,
+     "exception": null,
+     "raw": "1) Wake up and complete morning routine (6:00\u202fam) (duration in minutes: 30, minutes left: 990)  \n2) Prepare and eat breakfast (6:30\u202fam\u202f\u2013\u202f7:00\u202fam) (duration in minutes: 30, minutes left: 960)  \n3) Review Valentine's Day party checklist and order supplies (7:00\u202fam\u202f\u2013\u202f7:45\u202fam) (duration in minutes: 45, minutes left: 915)  \n4) Travel to supplier / pick up party items (7:45\u202fam\u202f\u2013\u202f8:15\u202fam) (duration in minutes: 30, minutes left: 885)  \n5) Arrive at Hobbs Caf\u00e9, set up for opening (8:15\u202fam\u202f\u2013\u202f8:30\u202fam) (dur",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1573
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "error": null,
+   "seconds": 30.3
+  },
+  {
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 14,
+     "exception": null,
+     "raw": "prepare breakfast and have coffee at 6:30 am (duration in minutes: 30, minutes left: 1020), 3) commute to Hobbs Cafe at 7:30 am (duration in minutes: 30, minutes left: 990), 4) open Hobbs Cafe and set up the shop at 8:00 am (duration in minutes: 30, minutes left: 960), 5) work at the counter serving customers from 8:30 am to 12:00 pm (duration in minutes: 210, minutes left: 750), 6) have a quick lunch break at 12:00 pm (duration in minutes: 30, minutes left: 720), 7) work at the counter serving ",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 464
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "error": null,
+   "seconds": 4.8
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 15,
+     "exception": null,
+     "raw": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine  \n[(ID:GHIJKL) Monday February 13 -- 08:00 AM] Activity: Isabella opens Hobbs Cafe  \n[(ID:MNOOPQ) Monday February 13 -- 09:00 AM] Activity: Isabella works at the counter  \n[(ID:RSTUVW) Monday February 13 -- 10:00 AM] Activity: Isabella works at the counter  \n[(ID:XYZABC) Monday February 13 -- 11:00 AM] Activity: Isabella works at the counter  \n[(ID:DEF123) Monday February 13 -- 12:00 PM] Ac",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 1107,
+     "tokens_out": 1399
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "error": null,
+   "seconds": 3.9
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 16,
+     "exception": null,
+     "raw": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping  \n[(ID:35E5EU) Monday February 13 -- 01:00 AM] Activity: Isabella is sleeping  \n[(ID:TxYi0V) Monday February 13 -- 02:00 AM] Activity: Isabella is sleeping  \n[(ID:AWLZIc) Monday February 13 -- 03:00 AM] Activity: Isabella is sleeping  \n[(ID:TJHcpY) Monday February 13 -- 04:00 AM] Activity: Isabella is sleeping  \n[(ID:0oxCB6) Monday February 13 -- 05:00 AM] Activity: Isabella is sleeping  \n[(ID:U7k9Qz) Monday February 13 ",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 1110,
+     "tokens_out": 1831
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "error": null,
+   "seconds": 7.4
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 1,
+   "calls": [
+    {
+     "call_no": 17,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 0)\n[(ID:g4F8Wq) Monday February 13 -- 08:00 AM] Activity: Isabella is opening Hobbs Cafe and reading a book (duration in minutes: 60, minutes left: 0)\n[(ID:H2k9Lp) Monday February 13 -- 09:00 AM] Activity: Isabella is working at the counter and reading a book (duration in minutes: 60, minutes left: 0)\n[(ID:m5V3Nx) Monday February 13 -- 10:00 AM] Activity: Isabella is working at the counter and reading a book (duration in minutes: 60, minut",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1187,
+     "tokens_out": 818
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "error": null,
+   "seconds": 10.1
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 18,
+     "exception": null,
+     "raw": "6am",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 159
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 2.4
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 19,
+     "exception": null,
+     "raw": "6am",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 96
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 2.7
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 20,
+     "exception": null,
+     "raw": "6am.\n\nDaily Plan:\n1. Wake up and get ready (duration in minutes: 60, minutes left: 1020)\n2. Travel to Hobbs Cafe (duration in minutes: 30, minutes left: 990)\n3. Open Hobbs Cafe and prepare for customers (duration in minutes: 30, minutes left: 960)\n4. Work at the counter serving customers (duration in minutes: 480, minutes left: 480)\n5. Gather party materials for Valentine's Day (duration in minutes: 60, minutes left: 420)\n6. Invite customers to the Valentine's Day party (duration in minutes: 60,",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 321,
+     "tokens_out": 260
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 7.0
+  },
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 21,
+     "exception": null,
+     "raw": "1) 6:00 am \u2013 wake up and complete morning routine (duration in minutes: 30, minutes left: 990)  \n2) 6:30 am \u2013 have breakfast (duration in minutes: 30, minutes left: 960)  \n3) 7:00 am \u2013 inventory check and prep for the day (duration in minutes: 30, minutes left: 930)  \n4) 7:30 am \u2013 travel to the cafe and set up (duration in minutes: 30, minutes left: 900)  \n5) 8:00 am \u2013 open Hobbs Cafe (duration in minutes: 0, minutes left: 900)  \n6) 8:00 am \u2013 serve customers, greet guests (duration in minutes: 2",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 2027
+    },
+    {
+     "call_no": 22,
+     "exception": null,
+     "raw": "Here is Isabella\u2019s plan today in broad\u2011strokes:\n\n1) wake up and complete the morning routine at 6:00\u202fam  \n2) open Hobbs Cafe at 8:00\u202fam  \n3) run a quick inventory check and restock pastries by 8:30\u202fam  \n4) start preparing Valentine\u2019s Day decorations and table settings (cardiogram hearts, rose petals) from 9:00\u202fam to 11:30\u202fam  \n5) craft and print Valentine's flyers, and schedule social media posts for the party from 12:00\u202fpm to 1:00\u202fpm  \n6) serve lunch specials and greet regulars while keeping a ",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 924
+    }
+   ],
+   "validate": [
+    false,
+    true
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "error": null,
+   "seconds": 8.3
+  },
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 23,
+     "exception": null,
+     "raw": "1) Wake up and complete morning routine \u2013 6:00\u202fam\u202fto\u202f6:30\u202fam (duration in minutes: 30, minutes left: 990)  \n2) Prepare and have breakfast \u2013 6:30\u202fam\u202fto\u202f7:00\u202fam (duration in minutes: 30, minutes left: 960)  \n3) Review daily schedule and check Valentine\u2019s party prep \u2013 7:00\u202fam\u202fto\u202f7:30\u202fam (duration in minutes: 30, minutes left: 930)  \n4) Set up cafe (clean, stock, arrange tables) \u2013 7:30\u202fam\u202fto\u202f8:00\u202fam (duration in minutes: 30, minutes left: 900)  \n5) Work at the counter serving customers \u2013 8:00\u202fam\u202fto\u202f",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1658
+    },
+    {
+     "call_no": 24,
+     "exception": null,
+     "raw": "2) Complete morning routine (brush teeth, shower, quick breakfast) \u2013 finish by 6:30\u202fam  \n3) Review inventory and place orders for Valentine\u2019s Day decorations, pastries, and drinks \u2013 6:30\u202fam to 7:00\u202fam  \n4) Prepare the cafe for opening (turn on equipment, set tables, check reservations) \u2013 7:00\u202fam to 7:45\u202fam  \n5) Open Hobbs\u202fCafe and begin serving customers at the counter \u2013 8:00\u202fam  \n6) Mid\u2011morning check\u2011in: confirm Valentine\u2019s Day party supplies have arrived and begin arranging d\u00e9cor (balloons, ca",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 908
+    },
+    {
+     "call_no": 25,
+     "exception": null,
+     "raw": "1) Wake up and complete the morning routine (6:00\u202fam \u2013 6:30\u202fam) (duration in minutes: 30, minutes left: 990)  \n2) Prepare the cafe (clean, brew coffee, arrange tables) (6:30\u202fam \u2013 7:15\u202fam) (duration in minutes: 45, minutes left: 945)  \n3) Travel to the cafe / final checks (7:15\u202fam \u2013 7:45\u202fam) (duration in minutes: 30, minutes left: 915)  \n4) Open Hobbs Caf\u00e9 (7:45\u202fam \u2013 8:00\u202fam) (duration in minutes: 15, minutes left: 900)  \n5) Work at the counter (8:00\u202fam \u2013 10:00\u202fam) (duration in minutes: 120, minu",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1789
+    },
+    {
+     "call_no": 26,
+     "exception": null,
+     "raw": "1) Wake up and complete the morning routine at 6:00\u202fam.  \n2) Prepare and eat a quick breakfast, then review the day\u2019s to\u2011do list at 6:30\u202fam.  \n3) Leave home and arrive at Hobbs Caf\u00e9 to begin opening preparations at 7:30\u202fam.  \n4) Open Hobbs Caf\u00e9 to customers at 8:00\u202fam and start working at the counter.  \n5) Serve breakfast customers, restock pastries, and check inventory from 8:00\u202fam\u202f\u2013\u202f11:00\u202fam.  \n6) Take a short personal break (coffee, stretch) at 11:00\u202fam.  \n7) Continue serving lunch rush, taki",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 857
+    },
+    {
+     "call_no": 27,
+     "exception": null,
+     "raw": "6:00\u202fam\u202f\u2013\u202f6:30\u202fam: Wake up and complete morning routine (duration in minutes: 30, minutes left: 990)  \n6:30\u202fam\u202f\u2013\u202f7:00\u202fam: Prepare and eat breakfast (duration in minutes: 30, minutes left: 960)  \n7:00\u202fam\u202f\u2013\u202f7:30\u202fam: Commute to Hobbs\u202fCafe (duration in minutes: 30, minutes left: 930)  \n7:30\u202fam\u202f\u2013\u202f8:00\u202fam: Final cafe prep before opening (duration in minutes: 30, minutes left: 900)  \n8:00\u202fam\u202f\u2013\u202f12:00\u202fpm: Work at the counter (duration in minutes: 240, minutes left: 660)  \n12:00\u202fpm\u202f\u2013\u202f12:30\u202fpm: Lunch break",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 2040
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "error": null,
+   "seconds": 30.0
+  },
+  {
+   "task": "daily_plan",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 28,
+     "exception": null,
+     "raw": "open Hobbs Cafe at 8:00 am (duration in minutes: 60, minutes left: 960), 3) work at the counter and serve customers throughout the day from 9:00 am to 5:00 pm (duration in minutes: 480, minutes left: 900), 4) gather party materials for the Valentine's Day event and invite customers from 5:00 pm to 8:00 pm (duration in minutes: 180, minutes left: 420), 5) close Hobbs Cafe at 8:00 pm (duration in minutes: 15, minutes left: 240), 6) enjoy a quiet dinner and prepare for bed from 8:15 pm to 11:00 pm ",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 387,
+     "tokens_out": 193
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "error": null,
+   "seconds": 13.6
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 29,
+     "exception": null,
+     "raw": "",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 1109,
+     "tokens_out": 2048
+    },
+    {
+     "call_no": 30,
+     "exception": null,
+     "raw": "",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 1109,
+     "tokens_out": 2048
+    },
+    {
+     "call_no": 31,
+     "exception": null,
+     "raw": "",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 1109,
+     "tokens_out": 2048
+    },
+    {
+     "call_no": 32,
+     "exception": null,
+     "raw": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine  \n[(ID:ABC456) Monday February 13 -- 08:00 AM] Activity: Isabella opens Hobbs Cafe and begins working at the counter  \n[(ID:DEF789) Monday February 13 -- 09:00 AM] Activity: Isabella works at the counter, serving customers and managing orders  \n[(ID:GHI012) Monday February 13 -- 10:00 AM] Activity: Isabella works at the counter, preparing drinks and pastries  \n[(ID:JKL345) Monday February 1",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 1109,
+     "tokens_out": 2048
+    }
+   ],
+   "validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "error": null,
+   "seconds": 20.9
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 33,
+     "exception": null,
+     "raw": "[(ID:3eXYtJ) Monday February 13 -- 07:00 AM] Activity: Isabella is having breakfast and reviewing the day\u2019s schedule  \n[(ID:Z9kL2Q) Monday February 13 -- 08:00 AM] Activity: Isabella opens Hobbs Cafe and begins working at the counter  \n[(ID:U4mNpV) Monday February 13 -- 09:00 AM] Activity: Isabella is serving customers and taking orders at Hobbs Cafe  \n[(ID:W8sJ1R) Monday February 13 -- 10:00 AM] Activity: Isabella is preparing coffee drinks and pastries for the morning rush  \n[(ID:Q3bTdX) Monda",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 1113,
+     "tokens_out": 1403
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": "having breakfast and reviewing the day\u2019s schedule",
+   "error": null,
+   "seconds": 5.5
+  },
+  {
+   "task": "hourly_schedule",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 2,
+   "calls": [
+    {
+     "call_no": 34,
+     "exception": null,
+     "raw": "eating breakfast (duration in minutes: 60, minutes left: 60)\n[(ID:8P2uQ1) Monday February 13 -- 08:00 AM] Activity: Isabella opens Hobbs Cafe and begins serving customers (duration in minutes: 60, minutes left: 60)\n[(ID:9kLpZ2) Monday February 13 -- 09:00 AM] Activity: Isabella manages the cafe and invites customers to the Valentine's Day party (duration in minutes: 60, minutes left: 60)\n[(ID:3jNqW8) Monday February 13 -- 10:00 AM] Activity: Isabella orders party supplies for the Valentine's Day",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 1191,
+     "tokens_out": 809
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "error": null,
+   "seconds": 16.9
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 35,
+     "exception": null,
+     "raw": "6am",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 135
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 3.3
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "openai/gpt-oss-120b",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 36,
+     "exception": null,
+     "raw": "6\u202fam",
+     "ledger_models": [
+      "openai/gpt-oss-120b"
+     ],
+     "tokens_in": 379,
+     "tokens_out": 72
+    }
+   ],
+   "validate": [
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 2.6
+  },
+  {
+   "task": "wake_up_hour",
+   "model": "gemini-3.1-flash-lite",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 37,
+     "exception": null,
+     "raw": "6:00 AM (duration in minutes: 0, minutes left: 1020)\n6:00 AM - 8:00 AM: Prepare for the day, exercise, and have breakfast (duration in minutes: 120, minutes left: 900)\n8:00 AM - 5:00 PM: Open Hobbs Cafe and work at the counter serving customers (duration in minutes: 540, minutes left: 360)\n5:00 PM - 7:00 PM: Continue working at the cafe while inviting customers to the Valentine's Day party (duration in minutes: 120, minutes left: 240)\n7:00 PM - 8:00 PM: Finish cafe shift and close Hobbs Cafe (du",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 321,
+     "tokens_out": 295
+    },
+    {
+     "call_no": 38,
+     "exception": null,
+     "raw": "6am.\n\nDaily Plan:\n1. Wake up and prepare for the day (duration in minutes: 60, minutes left: 1020)\n2. Open Hobbs Cafe and begin serving customers (duration in minutes: 60, minutes left: 960)\n3. Manage cafe operations and greet customers at the counter (duration in minutes: 480, minutes left: 480)\n4. Purchase Valentine's Day decorations and party supplies (duration in minutes: 120, minutes left: 360)\n5. Return to Hobbs Cafe to finish the workday (duration in minutes: 240, minutes left: 120)\n6. In",
+     "ledger_models": [
+      "gemini-3.1-flash-lite"
+     ],
+     "tokens_in": 321,
+     "tokens_out": 211
+    }
+   ],
+   "validate": [
+    false,
+    true
+   ],
+   "output": 6,
+   "error": null,
+   "seconds": 14.2
+  },
+  {
+   "task": "daily_plan",
+   "model": "openai/gpt-oss-20b",
+   "repeat": 3,
+   "calls": [
+    {
+     "call_no": 39,
+     "exception": null,
+     "raw": "",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 2048
+    },
+    {
+     "call_no": 40,
+     "exception": null,
+     "raw": "1) 6:00\u202fAM \u2013 wake up and complete morning routine  \n2) 6:30\u202fAM \u2013 have breakfast at home  \n3) 7:00\u202fAM \u2013 leave for Hobbs Cafe  \n4) 7:45\u202fAM \u2013 arrive at cafe, brief staff on Valentine\u2019s Party plan  \n5) 8:00\u202fAM \u2013 open cafe, begin regular day operations  \n6) 10:00\u202fAM \u2013 inventory check, restock supplies for party decorations  \n7) 11:30\u202fAM \u2013 prepare special Valentine\u2019s menu items  \n8) 12:00\u202fPM \u2013 lunch break (12:30\u202fPM)  \n9) 1:00\u202fPM \u2013 continue serving customers; set up party table area  \n10) 3:00\u202fPM \u2013 fin",
+     "ledger_models": [
+      "openai/gpt-oss-20b"
+     ],
+     "tokens_in": 440,
+     "tokens_out": 1288
+    }
+   ],
+   "validate": [
+    false,
+    false
+   ],
+   "output": null,
+   "error": "cut off by the cap",
+   "seconds": null
+  }
+ ]
+}

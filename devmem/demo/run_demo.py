@@ -14,6 +14,10 @@ import json
 import sys
 from pathlib import Path
 
+for _stream in (sys.stdout, sys.stderr):  # Windows consoles default to cp1252; model text contains e.g. U+2011
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
 REPLAY = ROOT / "docs" / "phase5_step3_artifacts" / "demo_replay_data.json"

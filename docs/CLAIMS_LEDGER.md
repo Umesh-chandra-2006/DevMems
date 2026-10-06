@@ -1,0 +1,86 @@
+# Claims ledger
+
+Every claim that could appear in a paper, with its evidence, its label and the caveat that must be printed with it. A claim may
+not be stated without its caveat. Where a number comes from a document rather than from an artifact that was re-derived, the row
+says so. Status as of the Phase 5 work (commit history up to the model-qualification probe).
+
+Labels: **live** (real provider calls), **scripted** (hand-written events or scripted steps), **captured** (observed and saved
+from a real run or provider), **offline-captured** (recomputed from saved live data with no network), **synthetic** (constructed
+data or stubbed network), **documented** (taken from provider or upstream documentation).
+
+Paths are relative to the repository root.
+
+## A. Stage 1 and Stage 2 (persona priors and persona-conditioned scoring)
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| A1 | The staged importance prompt equals the upstream prompt plus the priors block, byte for byte; the baseline branch of `perceive.py` is unchanged. | `devmem/memory/test_episodic.py` (`test_staged_prompt_equals_upstream_plus_priors`); `docs/technical_implementation_plan.md` Section 6 | scripted (offline test) | This shows the prompts differ only by the priors block. It does not show any effect of that block. |
+| A2 | The priors add about 126 input tokens per scoring call, raise output tokens by about 62 percent and total tokens by about 39 percent (pinned `openai/gpt-oss-20b`, Isabella Rodriguez). | `devmem/memory/task7b_differential_results.json`, `devmem/memory/task4_1_control_results.json`; figures as written in `docs/technical_implementation_plan.md` Section 6 | live | One persona, 25 events x 3 repeats, one model. The aggregate figures are quoted from the plan; they were not re-derived in the Phase 5 work. |
+| A3 | Persona-flavored text raises the importance score of social-friction events: mean shift +0.75 (staged vs baseline), +0.50 (another persona's priors), -0.33 (neutral text of equal length); staged vs neutral +1.08 (5 events up, 0 down, 3 flat). | same artifacts as A2 | live | The events were written to intersect the priors, so this tests a mechanism, not general performance. Single events swing 1 to 3 points under any added text. |
+| A4 | Staged priors versus another persona's priors: +0.25 (4 up, 3 down, 1 tie), **not distinguishable from zero** at this sample size. | same artifacts as A2 | live | Do not state or imply a persona-specific effect. The control result is inconclusive. |
+
+## B. Embeddings and retrieval inputs
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| B1 | The deterministic 768-dimensional fallback embedding is unusable for retrieval: its ranking of six personality priors for one focal point is uncorrelated with the real embedding ranking (Spearman -0.086). | `docs/phase5_step0_artifacts/p5_0b_probe_results.json`, `p5_0b_vectors_7texts.json` | live (real vectors) + scripted (fallback computed offline) | One focal point, six items, one embedding model. Shows the fallback must never be used in evaluation; says nothing about local models. |
+| B2 | `gemini-embedding-001` returns 3072-dimensional vectors; a single request and a batch request return the same vector (cosine 1.000000); a batch of 50 texts is accepted (18 s). | `docs/phase5_step0_artifacts/p5_0b_probe_results.json`, `embedding_stats_p5_0b_probe*.json` | live | Whether a batch counts as one request or many against the daily quota is **unresolved** (documentation silent). |
+| B3 | Real embeddings of idle and object events are highly similar to each other (cosine 0.80 to 0.88; 34 of 93 pairs at or above 0.75 in one saved run), which is why an importance floor and idle filter are needed before clustering. | `docs/phase5_step0_artifacts/p5_0_pairwise_cosine.json` | captured (saved Phase 2 memory) + offline computation | Three agents, 9 vectors each, a few simulated seconds of activity. |
+| B4 | A local sentence-embedding model is not installable in the pinned Python 3.9 environment with current package releases. | `docs/phase5_step0_artifacts/pypi_wheel_sizes.json` | documented (PyPI metadata) | Older releases were **not checked**; nothing was installed or measured. |
+| B5 | One of the Gemini keys (`GEMINI_KEY_2`) returned HTTP 403 on the embeddings endpoint; keys 1, 3, 4, 5 returned 200. | `docs/phase5_step0_artifacts/embedding_stats_p5_0b_probe_run1_key2_403.json`, `docs/phase5_step2_artifacts/key_verification.json` | live | Cause not investigated. |
+
+## C. Stage 3 (sleep-triggered consolidation), scripted evidence
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| C1 | On a scripted day, the nightly sweep clusters unconsolidated episodic entries, writes one semantic memory per multi-entry cluster with correct source references, flips the `consolidated` flag for exactly those sources, leaves idle, below-floor and isolated entries untouched, and does nothing on a second sweep. | `docs/phase5_step1_artifacts/scripted_sweep_threshold_*.json`, `docs/phase5_step2_artifacts/scripted_sweep_*_third_person.json`; tests in `devmem/memory/test_consolidation.py` | scripted events, live embeddings and LLM (pinned `openai/gpt-oss-20b`) | 16 hand-written events for one persona; 4 runs at two thresholds. This is a mechanism check on scripted data, **not** a simulation result. |
+| C2 | Cluster membership depends strongly on the threshold: at the approved 0.78 single linkage chains unrelated events into a cluster; on this day a clean split exists only between 0.82 and 0.83 (single) or 0.80 and 0.82 (average). | `docs/phase5_step1_artifacts/scripted_day_cosines.json`, `docs/phase5_step2_artifacts/linkage_comparison.json` | live embeddings, offline-captured clustering | One day, 12 eligible events. No threshold is frozen; do not report 0.82 as a recommended value. |
+| C3 | With a third-person prompt, all four generated summaries are third person and name the agent, and the conflict summary ranks first for a conflict-handling query in both runs (it ranked 11th and 7th for a neighbor-argument query). | `docs/phase5_step2_artifacts/scripted_sweep_*_third_person.json` | scripted events, live LLM | Single runs; the model's wording and the importance score (2 vs 4) varied between runs; the cause of the rank change was not isolated. |
+| C4 | The retrieval weight for consolidated source entries (0.5 vs 1.0) moves the sources down and unconsolidated events up in the ranking. | `docs/phase5_step1_artifacts/scripted_sweep_*.json`, `docs/phase5_step3_artifacts/demo_replay_data.json`; test `test_d2_weight_demotes_consolidated_sources_in_real_new_retrieve` | scripted, offline-captured ranking | 18 scripted nodes. Describes ranking mechanics, **not** recall quality. |
+| C5 | Generated summaries reuse wording from the priors text (for example "harmony", "smooth over", "tense"). | summaries in the C1 artifacts | scripted events, live LLM | Observation only: no control run without the priors block, so no causal claim. |
+| C6 | The sleep hook is reached inside the real `Persona.move()`, fires once per night, and is not reached in baseline mode. | `devmem/memory/test_consolidation.py` class `TestSleepHookInsideRealMove` | scripted (perceive, plan and execute stubbed; no network) | Shows wiring only. |
+| C7 | After a crash and reload from an older autosave, the SQLite mirror and the Stage 3 tables are rolled back consistently (orphan rows, markers, flags) and replay does not collide. | `devmem/memory/test_reconcile.py`, `devmem/memory/test_consolidation.py` (`TestSleepGuardAndReload`) | scripted (real `AssociativeMemory`, `Persona`, `ReverieServer`, SQLite) | Scripted steps, not a long run. |
+
+## D. Live observations
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| D1 | The sleep hook fired inside a live simulated step 0 for all three agents, found no entries to sweep (as expected) and wrote three `done` markers for night 0, with no router failures. | `docs/phase5_step3_artifacts/p5_staged_live_soft_report.json`, `..._continue_report.json` | live | **No live sweep has consolidated anything.** The run covers 00:00 to 07:55 only. |
+| D2 | With `openai/gpt-oss-20b` the generated daily schedules are largely degenerate: 102 schedule entries were model echoes of the prompt's own formatting; Isabella and Maria were scheduled as "sleeping" through the morning; Klaus's wake-up line repeats 13 times. | `docs/phase5_step3_artifacts/p5_staged_live_continue_schedule_check.json`, saved scratch files in the run folder | live | One run, one seed, one model. Not a router failure (router failure count 0). |
+| D3 | Router failures are silently turned into schedule text by upstream's `GPT_request` (the string "TOKEN LIMIT EXCEEDED" appears as an activity in saved Phase 2 schedules); the runner now counts them and can re-raise. | `reverie/environment/frontend_server/storage/baseline_validation_run/personas/*/bootstrap_memory/scratch.json`; `devmem/memory/test_gpt_structure_touch.py` | captured (saved state) + scripted (tests) | Phase 2 run was 2 steps long. |
+| D4 | Model qualification (pinned, fixed inputs, Isabella's saved state): all three models answer the wake-up-hour prompt (9 of 9, all "6"); **no model produced a usable daily plan** (0 of 6 usable under upstream's parser: each gpt-oss model fell back to upstream's fail-safe plan in 1 of 2 repeats and in the other passed the validator with only the prepended wake-up line; Gemini passed the validator in both repeats but yielded only empty items); for the hourly-schedule prompt both gpt-oss models produced echo-format output in 3 of 4 cases, Gemini produced no echo but appended "(duration in minutes ...)" to both outputs. | `docs/phase5_step4_artifacts/model_probe.json`, `model_probe_summary.json`, `model_probe_summary.md` | live | 40-call cap: 3 wake-up repeats, 2 plan and 2 hourly repeats per model. The raw plan replies were sensible text in formats the upstream parser rejects (for example U+202F spaces, duration suffixes); the cause of the formats was **not tested** (no run without the repo's system prompt). Do not claim any model "cannot plan". |
+
+## E. Retrieval finding about upstream code
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| E1 | In upstream `new_retrieve`, the oldest node receives the highest raw recency and the newest the lowest (list sorted ascending by `last_accessed`, then `decay**i` assigned in that order; min-max normalization maps the newest node to 0), so a freshly written summary starts with the lowest recency. | `reverie/reverie/backend_server/persona/cognitive_modules/retrieve.py` lines 132, 145-146, 224-231, 271; `docs/phase5_step2_artifacts/diag_retrieval_tables.md`, `diag_retrieval_*.json` | offline-captured (real `new_retrieve` on memory rebuilt from saved runs; reproduces all saved ranks) | A property of upstream code observed on scripted memory. No edit was made. Do not infer its effect on the original paper's results. |
+| E2 | The conflict summary in the first-person runs had the lowest raw relevance of all ranked nodes (cosine 0.52 to 0.67), which min-max normalization turned into relevance 0.000 in 5 of 6 cases. | `docs/phase5_step2_artifacts/diag_retrieval_tables.md` | offline-captured | First-person phrasing was one possible factor; whether the third-person change fixed it was only partly observed (C3). |
+
+## F. Capacity and cost measurements
+
+| ID | Claim | Evidence | Label | Caveat that must accompany it |
+|---|---|---|---|---|
+| F1 | Day-start planning for three agents cost 138 LLM calls and 285,754 tokens (122,933 in, 162,821 out), 3 embedding requests, in 888 s (pinned `openai/gpt-oss-20b`). By agent: Isabella 44 calls, Maria 50, Klaus 44. | `docs/phase5_step3_artifacts/p5_staged_live_soft_report.json`, `..._soft_hourly_ledger.jsonl` | live | One run. The model's schedule echo behavior may inflate the number of retries. |
+| F2 | While all agents slept, five simulated hours cost 0 LLM calls. | `docs/phase5_step3_artifacts/p5_staged_live_continue_hourly_ledger.jsonl` | live | Because the agents' schedules were degenerate (Section D2). |
+| F3 | One awake agent (Klaus, 07:00 to 07:55:10) cost 248 LLM calls and 195,582 tokens in 55 simulated minutes (about 8 calls per 5-minute action). | same ledger | live | One agent, one partial hour, a degenerate schedule with 5-minute actions. **Not** an estimate for a typical agent-hour; the earlier "about 50 calls per awake agent-hour" figure was a derived assumption (`docs/phase5_step0_artifacts/p5_0d_cost_estimate.json`, label derived) and is contradicted by this one measurement. |
+| F4 | Continuation LLM call count: 286 (ledger) although the run's counter read 266, because staged importance-scoring calls bypassed the counter. | erratum in `docs/phase5_stop4_report.md`; ledger rows | live | Quote the ledger figure. |
+| F5 | The router fills lower-numbered Groq keys first, so per-key daily token budgets are exhausted unevenly (keys 1, 2, 4 near 200K tokens, key 6 unused at the time). | `docs/phase5_step3_artifacts/p5_staged_live_continue_budget.json` and the ledger | live | Behavior of the current router; the Groq daily token limit binds before the request limit. |
+| F6 | Under the stated assumptions, a full simulated day for three agents needs several times the free daily Groq token capacity. | `docs/phase5_step0_artifacts/p5_0d_cost_estimate.json` | **derived** (assumptions, not measured) | Rests on assumptions about actions per hour; only F1 to F3 are measured. |
+
+## G. Things NOT demonstrated
+
+Do not claim any of the following. Each is either untested, untestable with the current data, or contradicted.
+
+1. That staged memory improves recall of past events, coherence, or any task metric over the baseline. No baseline-versus-staged comparison run exists.
+2. That consolidation reduces tokens, calls or cost. Stage 3 adds calls (about 2 per summary); no efficiency measurement against baseline exists. Any efficiency claim is unsupported.
+3. That any live simulated sleep produced a semantic memory from real events. The only live sweeps found nothing to consolidate; the one consolidation evidence is scripted (C1).
+4. A clustering threshold. None is frozen; the live calibration data has 1, 2 and 0 eligible entries for three agents.
+5. A persona-specific effect of the priors (A4 is inconclusive), or that the effect generalizes beyond Isabella, the scripted events and one model.
+6. Any behavior after 07:55 simulated time, multi-day behavior, reinforcement across days (`times_reinforced` and `distinct_days_reinforced` over real days), or identity promotion (Stage 4 is not built).
+7. The effect of removing upstream reflection (decision D1 Option A versus B) on any outcome; no ablation run exists.
+8. Quality of retrieval of consolidated summaries when relevant (C3 and E2 are single scripted runs).
+9. That any model is able or unable to run the simulation: the probe (D4) is a 40-call sample on three prompts, and the cause of the failures was not isolated.
+10. Healthy-schedule behavior: all live evidence uses degenerate schedules produced by `openai/gpt-oss-20b`.
+11. Local embedding model performance, batch-quota accounting, or Gemini or NVIDIA behavior at exhaustion.
+12. Evaluation-harness metrics (recall accuracy, coherence tracker, efficiency logger): Phase 7 is not built.
