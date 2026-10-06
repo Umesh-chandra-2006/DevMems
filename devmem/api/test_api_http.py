@@ -69,7 +69,8 @@ class TestApiHttp(unittest.TestCase):
         self.assertEqual(self.c.get("/compare?a=x").status_code, 422)
 
     def test_no_route_accepts_a_write_method(self):
-        paths = ["/runs", f"/runs/{STEPD}/label", f"/runs/{STEPD}/agents", f"/runs/{STEPD}/agents/Isabella%20Rodriguez/state",
+        paths = ["/runs", f"/runs/{STEPD}/movement/meta", f"/runs/{STEPD}/movement/frames?from_step=0&to_step=5", f"/runs/{STEPD}/status",
+                 f"/runs/{STEPD}/agents/Isabella%20Rodriguez/thoughts", "/town-assets/the_ville/visuals/the_ville_jan7.json", f"/runs/{STEPD}/label", f"/runs/{STEPD}/agents", f"/runs/{STEPD}/agents/Isabella%20Rodriguez/state",
                  f"/runs/{STEPD}/timeline", f"/runs/{STEPD}/ledger/summary", "/compare?a=x&b=y&agent=z"]
         before = {r: sha(ROOT / "docs" / r / "memory.db") for r in (STEPD, STOP3)}
         for p in paths:
@@ -84,13 +85,50 @@ class TestApiHttp(unittest.TestCase):
         self.assertEqual(html.status_code, 200)
         self.assertNotIn("http://", html.text.replace("http://www.w3.org", ""))
         self.assertNotIn("https://", html.text)
-        for f in ("vendor/react.production.min.js", "vendor/react-dom.production.min.js", "app.js", "style.css"):
+        own = ("app.js", "common.js", "town.js", "cost.js", "style.css")
+        for f in ("vendor/react.production.min.js", "vendor/react-dom.production.min.js", "vendor/phaser.js") + own:
             self.assertEqual(self.c.get("/ui/" + f).status_code, 200, f)
-        js = self.c.get("/ui/app.js").text
+        self.assertTrue(html.headers.get("cache-control") == "no-cache" or self.c.get("/ui/app.js").headers.get("cache-control") == "no-cache")
+        js = "\n".join(self.c.get("/ui/" + f).text for f in own if f.endswith(".js"))
         self.assertNotIn("https://", js)
-        for banned in ("POST", "method:", "XMLHttpRequest", "sendBeacon", "WebSocket"):
+        self.assertNotIn("http://", js)
+        for banned in ("POST", "method:", "XMLHttpRequest", "sendBeacon", "WebSocket", "EventSource"):
             self.assertNotIn(banned, js, banned)
         self.assertEqual(js.count("fetch("), 1, "the single helper `api` issues every request, GET only")
+        ui_text = (js + html.text + self.c.get("/ui/style.css").text).lower()
+        for word in ("better", "improved", "improvement", "winner", "outperform", "superior", "worse"):
+            self.assertNotIn(word, ui_text, word)
+        order = [html.text.index(x) for x in ("vendor/phaser.js", "common.js", "town.js", "cost.js", "app.js")]
+        self.assertEqual(order, sorted(order))
+
+    def test_movement_status_and_thoughts_endpoints(self):
+        m = self.get(f"/runs/{STEPD}/movement/meta")
+        self.assertTrue(m["available"])
+        self.assertEqual(m["frames"], 2791)
+        f = self.get(f"/runs/{STEPD}/movement/frames?from_step=1000&to_step=1001")
+        self.assertEqual([x["s"] for x in f["frames"]], [1000, 1001])
+        self.assertEqual(len(f["frames"][0]["p"]["Isabella Rodriguez"]), 5)
+        self.get(f"/runs/{STEPD}/movement/frames?from_step=5&to_step=2", 422)
+        self.get(f"/runs/{STEPD}/movement/frames?from_step=0&to_step=10&stride=0", 422)
+        self.get(f"/runs/{STEPD}/movement/frames?from_step=0&to_step=10&stride=361", 422)
+        self.assertFalse(self.get(f"/runs/{STOP3}/movement/meta")["available"])
+        th = self.get(f"/runs/{STEPD}/agents/Isabella%20Rodriguez/thoughts?t=2023-02-13%2007:00:00")
+        self.assertEqual(th["up_to_t"], 1)
+        st = self.get(f"/runs/{STEPD}/status")
+        self.assertFalse(st["available"])
+        self.get("/runs/nope/movement/meta", 404)
+        self.get("/runs/nope/status", 404)
+
+    def test_town_assets_are_served_read_only_and_cannot_escape_their_folder(self):
+        r = self.c.get("/town-assets/the_ville/visuals/the_ville_jan7.json")
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(self.c.get("/town-assets/characters/atlas.json").status_code, 200)
+        self.assertEqual(self.c.get("/town-assets/characters/Isabella_Rodriguez.png").status_code, 200)
+        for bad in ("/town-assets/../../../../.env", "/town-assets/%2e%2e/%2e%2e/%2e%2e/%2e%2e/.env", "/town-assets/..%5c..%5c..%5c.env",
+                    "/town-assets/../../../static_dirs/../../../.env"):
+            self.assertIn(self.c.get(bad).status_code, (400, 403, 404), bad)
+        for method in ("post", "put", "delete"):
+            self.assertEqual(getattr(self.c, method)("/town-assets/the_ville/visuals/the_ville_jan7.json").status_code, 405)
 
     def test_no_key_or_secret_is_served(self):
         blob = json.dumps(self.get("/runs")) + self.c.get("/ui/app.js").text + self.c.get("/ui/index.html").text

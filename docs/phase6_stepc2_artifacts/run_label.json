@@ -1,0 +1,8 @@
+{
+ "mode": "recorded",
+ "origin": "natural (agents followed their own generated schedules; no injected or scripted events)",
+ "model": "gemini-3.1-flash-lite",
+ "normalizer": "on",
+ "stages": "staged mode, Stage 4 off; 3 agents; 2 simulated hours (06:00 to 08:00); OFFLINE deterministic embeddings (ledger row H3), so retrieval relevance in this run is not meaningful",
+ "note": "Step C rerun (docs/phase6_stepc2_report.md)."
+}

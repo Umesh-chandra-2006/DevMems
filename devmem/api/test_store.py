@@ -53,6 +53,19 @@ class TestRunsAndLabels(unittest.TestCase):
         self.assertTrue(lab["mode"].startswith("recorded (inferred"), lab["mode"])
         self.assertIn("none", lab["label_source"])
 
+    def test_a_label_that_declares_recorded_wins_over_a_fresh_file_but_a_running_status_file_makes_it_live(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = Path(tmp) / "r"
+            run.mkdir()
+            sqlite3.connect(str(run / "memory.db")).close()                       # just created: very fresh
+            (run / "run_label.json").write_text(json.dumps({"mode": "recorded", "origin": "natural", "model": "m"}))
+            with mock.patch.dict(os.environ, {"DEVMEM_API_ROOTS": tmp}):
+                self.assertEqual(store.run_label("r")["mode"], "recorded")
+                (run / "run_status.json").write_text(json.dumps({"state": "running", "router_calls_total": 1}))
+                self.assertTrue(store.run_label("r")["mode"].startswith("live"))
+                (run / "run_status.json").write_text(json.dumps({"state": "finished: completed"}))
+                self.assertEqual(store.run_label("r")["mode"], "recorded")
+
     def test_a_database_written_in_the_last_two_minutes_is_labelled_live(self):
         with tempfile.TemporaryDirectory() as tmp:
             run = Path(tmp) / "r"

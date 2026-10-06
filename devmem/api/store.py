@@ -118,7 +118,13 @@ def run_label(run: str) -> Dict[str, Any]:
     declared = _json(d / "run_label.json") or {}
     report = _json(d / "step_d_report_first.json") or _json(d / "stop3_report.json") or {}
     age = time.time() - (d / "memory.db").stat().st_mtime
-    live_hint = age < LIVE_WINDOW_SECONDS
+    # A label that DECLARES the run recorded wins (a fresh copy or checkout of a recording must not look live). Without a declaration, a
+    # database written in the last LIVE_WINDOW_SECONDS is labelled live; a run that is writing run_status.json with a running state is live.
+    status_live = False
+    sf = d / "run_status.json"
+    if sf.is_file() and time.time() - sf.stat().st_mtime < LIVE_WINDOW_SECONDS:
+        status_live = str((_json(sf) or {}).get("state", "")).startswith(("running", "starting"))
+    live_hint = status_live or (age < LIVE_WINDOW_SECONDS and declared.get("mode") != "recorded")
     return {
         "run": run,
         "mode": "live (database written in the last %d s)" % LIVE_WINDOW_SECONDS if live_hint else declared.get("mode", "recorded (inferred: the database was not written in the last %d s)" % LIVE_WINDOW_SECONDS),
@@ -445,3 +451,48 @@ def ledger_summary(run: str) -> Dict[str, Any]:
 
 def compare(a: str, b: str, agent: str, t: Optional[str] = None) -> Dict[str, Any]:
     return {"agent": agent, "t": norm_t(t), "a": agent_state(a, agent, t), "b": agent_state(b, agent, t)}
+
+
+# ---------------------------------------------------------------------------------------------
+# town replay support (Phase 8 Stop 2): movement frames, thoughts, live status
+# ---------------------------------------------------------------------------------------------
+def _movement(run: str):
+    from devmem.api.movement_archive import MovementSource
+    src = MovementSource.open(run_dir(run), run)
+    return src
+
+
+def movement_meta(run: str) -> Dict[str, Any]:
+    src = _movement(run)
+    if src is None:
+        return {"run": run, "available": False,
+                "reason": "no movement.zip in the run folder and no simulation folder with movement files for this run"}
+    return {"run": run, "available": True, **src.describe()}
+
+
+def movement_frames(run: str, from_step: int, to_step: int, stride: int = 1) -> Dict[str, Any]:
+    src = _movement(run)
+    if src is None:
+        raise NotFound("no movement recorded for this run")
+    if to_step < from_step:
+        raise ValueError("to_step must not be below from_step")
+    return {"run": run, **src.frames(from_step, to_step, stride)}
+
+
+def agent_thoughts(run: str, agent: str, t: Optional[str] = None) -> Dict[str, Any]:
+    src = _movement(run)
+    if src is None:
+        return {"run": run, "agent": agent, "available": False, "reason": "no saved memory with thought nodes is available for this run"}
+    return {"run": run, "available": True, **src.thoughts(agent, norm_t(t) if t else None)}
+
+
+def run_status(run: str) -> Dict[str, Any]:
+    """The live call counter of a run that is writing run_status.json (the arm runner does). `fresh` means the file changed in the
+    last LIVE_WINDOW_SECONDS; otherwise no live segment is running and the numbers are the last recorded ones."""
+    f = run_dir(run) / "run_status.json"
+    data = _json(f)
+    if data is None:
+        return {"run": run, "available": False, "fresh": False, "reason": "this run folder has no run_status.json"}
+    age = time.time() - f.stat().st_mtime
+    return {"run": run, "available": True, "fresh": age < LIVE_WINDOW_SECONDS and str(data.get("state", "")).startswith(("running", "starting")),
+            "age_seconds": round(age), "status": data}

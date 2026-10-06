@@ -28,6 +28,15 @@ def guarded(fn, *args, **kwargs):
         raise HTTPException(status_code=422, detail=str(exc))
 
 
+@app.middleware("http")
+async def no_cache_for_the_ui(request, call_next):
+    """The UI files are small and change during development and rehearsal: always revalidate (the town assets keep normal caching)."""
+    response = await call_next(request)
+    if request.url.path.startswith("/ui/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 @app.get("/")
 def root():
     return RedirectResponse("/ui/index.html")
@@ -64,9 +73,33 @@ def ledger(run: str):
     return guarded(store.ledger_summary, run)
 
 
+@app.get("/runs/{run}/movement/meta")
+def movement_meta(run: str):
+    return guarded(store.movement_meta, run)
+
+
+@app.get("/runs/{run}/movement/frames")
+def movement_frames(run: str, from_step: int = Query(0, ge=0), to_step: int = Query(2159, ge=0), stride: int = Query(1, ge=1, le=360)):
+    return guarded(store.movement_frames, run, from_step, to_step, stride)
+
+
+@app.get("/runs/{run}/agents/{agent}/thoughts")
+def thoughts(run: str, agent: str, t: Optional[str] = None):
+    return guarded(store.agent_thoughts, run, agent, t)
+
+
+@app.get("/runs/{run}/status")
+def status(run: str):
+    return guarded(store.run_status, run)
+
+
 @app.get("/compare")
 def compare(a: str, b: str, agent: str, t: Optional[str] = None):
     return guarded(store.compare, a, b, agent, t)
 
 
+TOWN_ASSETS = Path(__file__).resolve().parent.parent.parent / "reverie" / "environment" / "frontend_server" / "static_dirs" / "assets"
+# upstream's town assets (map, tilesets, character atlases, speech bubble), served READ-ONLY from where they already live; nothing is copied
+# and no upstream file is touched. Starlette's StaticFiles refuses paths that escape the directory.
+app.mount("/town-assets", StaticFiles(directory=str(TOWN_ASSETS)), name="town-assets")
 app.mount("/ui", StaticFiles(directory=str(WEB), html=True), name="ui")

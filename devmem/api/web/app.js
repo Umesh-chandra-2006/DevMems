@@ -1,44 +1,13 @@
-/* DevMem memory inspector, Phase 8 Stop 1: timeline player and agent memory panel.
-   Read-only: only GET requests to this server. No CDN, no JSX, no compiler: React.createElement through the helper `h`. */
+/* DevMem memory inspector: the app shell (Phase 8 Stop 1 and 2). Tabs: town replay (two synchronized panes, click an avatar to inspect),
+   memory inspector (timeline player and the four-stage memory panel of Stop 1), cost view. The label bar is always visible and there is a
+   live-calls panel. Read-only: only GET requests to this server. No CDN, no JSX, no compiler. */
 (function () {
   "use strict";
-  var h = function (type, props) { return React.createElement.apply(null, [type, props].concat([].slice.call(arguments, 2))); };
+  var DM = window.DM, h = DM.h, api = DM.api, toMin = DM.toMin, fromMin = DM.fromMin, pretty = DM.pretty, STAGE = DM.STAGE;
   var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef, useMemo = React.useMemo;
-
-  var STAGE = {
-    0: { name: "infrastructure (sleep windows, ledger windows)", color: "var(--s0)" },
-    1: { name: "Stage 1 priors", color: "var(--s1)" },
-    2: { name: "Stage 2 episodic", color: "var(--s2)" },
-    3: { name: "Stage 3 semantic", color: "var(--s3)" },
-    4: { name: "Stage 4 identity", color: "var(--s4)" }
-  };
   var LANE = { 1: 0, 2: 1, 3: 2, 4: 3, 0: 4 };
   var SPEEDS = [10, 30, 120, 600];
-
-  function api(path) {
-    return fetch(path).then(function (r) {
-      return r.json().then(function (j) { if (!r.ok) { throw new Error(j.detail || ("HTTP " + r.status)); } return j; });
-    });
-  }
-  function toMin(s) { return Date.parse(s.replace(" ", "T") + "Z") / 60000; }
-  function fromMin(m) { return new Date(Math.round(m) * 60000).toISOString().slice(0, 19).replace("T", " "); }
-  function pretty(s) {
-    var d = new Date(s.replace(" ", "T") + "Z");
-    return d.toUTCString().slice(0, 16).replace(/^\w+, /, "") + " " + s.slice(11, 19);
-  }
-
-  function LabelBar(p) {
-    var l = p.label || {};
-    var kv = function (k, v) { return h("span", { className: "kv" }, k + " ", h("b", null, v == null ? "unknown" : String(v))); };
-    return h("div", null,
-      h("div", { className: "labelbar" },
-        h("span", { className: "title" }, "DevMem Memory Inspector"),
-        kv("run", l.run), kv("recorded or live", l.mode), kv("scripted or natural", l.origin), kv("model", l.model),
-        kv("normalizer", l.normalizer), kv("stages", l.stages),
-        h("span", { className: "ro" }, "read only")),
-      h("div", { className: "nonclaim" }, "This view displays what was recorded in the run. It makes no claim about recall, coherence or efficiency. Label source: " +
-        (l.label_source || "none") + (l.note ? ". " + l.note : "")));
-  }
+  var Q = new URLSearchParams(location.search);
 
   function Track(p) {
     var ev = p.events, lo = p.tMin, hi = p.tMax, W = 1000, H = 86, span = Math.max(1, hi - lo);
@@ -66,159 +35,64 @@
       ticks, hours, h("line", { x1: x(p.t), x2: x(p.t), y1: 0, y2: H, stroke: "var(--gold-hi)", strokeWidth: 2 }));
   }
 
-  function Player(p) {
+  function Clock(p) {   /* play, pause, speed, scrubber and the simulated clock; the town tab passes events=null (a plain scrubber) */
     return h("div", { className: "player" },
       h("div", { className: "bar" },
         h("button", { className: p.playing ? "on" : "", onClick: p.onToggle }, p.playing ? "Pause" : "Play"),
         h("button", { onClick: function () { p.onSeek(p.tMin); } }, "Start"),
         h("span", { className: "kv" }, "speed (simulated minutes per second) "),
-        SPEEDS.map(function (s) {
-          return h("button", { key: s, className: p.speed === s ? "on" : "", onClick: function () { p.onSpeed(s); } }, String(s));
-        }),
+        SPEEDS.map(function (s) { return h("button", { key: s, className: p.speed === s ? "on" : "", onClick: function () { p.onSpeed(s); } }, String(s)); }),
         h("span", { className: "clock" }, pretty(fromMin(p.t))),
-        h("span", { className: "legend" }, [1, 2, 3, 4, 0].map(function (s) {
+        p.events ? h("span", { className: "legend" }, [1, 2, 3, 4, 0].map(function (s) {
           return h("span", { key: s }, h("span", { className: "swatch", style: { background: STAGE[s].color } }), STAGE[s].name);
-        }))),
-      h(Track, { events: p.events, tMin: p.tMin, tMax: p.tMax, t: p.t, agent: p.agent, onSeek: p.onSeek }),
-      h("input", { className: "scrub", type: "range", min: p.tMin, max: p.tMax, step: 1, value: Math.round(p.t),
+        })) : null),
+      p.events ? h(Track, { events: p.events, tMin: p.tMin, tMax: p.tMax, t: p.t, agent: p.agent, onSeek: p.onSeek }) : null,
+      h("input", { className: "scrub", type: "range", min: p.tMin, max: p.tMax, step: 1, value: Math.round(Math.min(Math.max(p.t, p.tMin), p.tMax)),
         onChange: function (e) { p.onSeek(Number(e.target.value)); } }),
-      h("div", { className: "hint" }, p.count + " recorded events on this timeline. Ticks of the selected agent are bright; other agents are faint. " +
-        "Sleep and ledger ticks are per-window records, not exact instants."));
+      h("div", { className: "hint" }, p.hint));
   }
 
-  function Col(p) {
-    return h("section", { className: "col", style: { "--c": p.color } },
-      h("h2", null, p.title), h("div", { className: "sub" }, p.sub), p.extra, h("div", { className: "body" }, p.children));
+  function useClock(range, startAt) {
+    var _a = useState(startAt != null ? startAt : (range ? range[0] : 0)), t = _a[0], setT = _a[1];
+    var _b = useState(false), playing = _b[0], setPlaying = _b[1];
+    var _c = useState(120), speed = _c[0], setSpeed = _c[1];
+    useEffect(function () {
+      if (!playing || !range) { return; }
+      var id = setInterval(function () {
+        setT(function (cur) { var n = cur + speed * 0.1; if (n >= range[1]) { setPlaying(false); return range[1]; } return n; });
+      }, 100);
+      return function () { clearInterval(id); };
+    }, [playing, speed, range && range[0], range && range[1]]);
+    return { t: t, setT: setT, playing: playing, setPlaying: setPlaying, speed: speed, setSpeed: setSpeed };
   }
 
-  function Priors(p) {
-    var s = p.state.stage1_priors;
-    return h(Col, { title: "Stage 1: priors", color: STAGE[1].color, sub: s.statements.length + " statements (source " + s.source + ")" },
-      s.statements.length === 0 ? h("div", { className: "empty" }, "no persona file found for this agent") :
-        s.statements.map(function (x, i) {
-          return h("div", { className: "item", key: i }, x.statement, h("div", { className: "meta" }, h("span", { className: "chip" }, x.category)));
-        }));
-  }
-
-  function Episodic(p) {
-    var st = p.state.stage2_episodic, hide = p.hideIdle;
-    var list = st.entries.filter(function (e) { return !(hide && e.is_idle_text); }).slice().reverse();
-    var shown = list.slice(0, 400);
-    var toggle = h("div", { className: "toggle" },
-      h("input", { type: "checkbox", id: "hide-idle", checked: hide, onChange: function (e) { p.onHideIdle(e.target.checked); } }),
-      h("label", { htmlFor: "hide-idle" }, "hide entries whose text contains \"idle\" (" + st.idle_text_entries + " up to this time)"));
-    return h(Col, { title: "Stage 2: episodic", color: STAGE[2].color, extra: toggle,
-      sub: st.entries_total_up_to_t + " entries up to this time, newest first" + (list.length > shown.length ? ", showing 400 of " + list.length : "") },
-      shown.length === 0 ? h("div", { className: "empty" }, "nothing recorded yet at this time") :
-        shown.map(function (e) {
-          var cls = "item" + (p.hl[e.entry_id] ? " hl" : "") + (e.is_idle_text ? " dim" : "");
-          var sc = e.scoring.status === "not recorded" ? "scoring context: not recorded" :
-            "scored " + e.scoring.status + (e.scoring.trait_ids_in_prompt && e.scoring.trait_ids_in_prompt.length ? " with " + e.scoring.trait_ids_in_prompt.length + " trait(s) in the prompt" : "");
-          return h("div", { className: cls, key: e.entry_id, id: "ep-" + e.entry_id },
-            e.text,
-            h("div", { className: "meta" },
-              h("span", null, e.sim_time.slice(5, 16)),
-              h("span", { className: "chip imp" }, "importance " + (e.importance == null ? "n/a" : e.importance)),
-              h("span", { className: "chip" }, sc),
-              e.consolidated_into ? h("span", { className: "chip" }, "in summary " + e.consolidated_into.split(":")[1]) : null,
-              h("span", null, e.entry_id.split(":")[1])));
-        }));
-  }
-
-  function Semantic(p) {
-    var st = p.state.stage3_semantic;
-    var list = st.summaries.slice().reverse();
-    var sub = !st.available ? "no semantic table in this run" : (st.summaries.length + " summaries, " + st.sweeps.length + " sweep marker(s) up to this time");
-    return h(Col, { title: "Stage 3: semantic", color: STAGE[3].color, sub: sub },
-      list.length === 0 ? h("div", { className: "empty" }, st.available ? "no summary recorded up to this time" : "Stage 3 not present in this run") :
-        list.map(function (s) {
-          var cls = "item click" + (p.sel && p.sel.type === "summary" && p.sel.id === s.entry_id ? " sel" : "") + (p.hlSummary[s.entry_id] ? " hl" : "");
-          var r = s.stage4_reinforcement;
-          return h("div", { className: cls, key: s.entry_id, onClick: function () { p.onSelect({ type: "summary", id: s.entry_id }); } },
-            s.summary,
-            h("div", { className: "meta" },
-              h("span", null, s.created_at.slice(5, 16)), h("span", { className: "chip imp" }, "importance " + s.importance),
-              h("span", { className: "chip" }, s.source_entry_ids.length + " source entries"),
-              h("span", { className: "chip" }, "reinforced " + s.times_reinforced + "x"),
-              r ? h("span", { className: "chip" }, "counted nights " + JSON.stringify(r.day_set)) : null,
-              h("span", null, s.entry_id.split(":")[1])));
-        }));
-  }
-
-  function Identity(p) {
-    var st = p.state.stage4_identity, ctx = p.state.identity_context_at_t;
-    var traits = (st.traits || []).slice().reverse();
-    var toggle = h("div", { className: "toggle" },
-      h("input", { type: "checkbox", id: "diag", checked: p.diag, onChange: function (e) { p.onDiag(e.target.checked); } }),
-      h("label", { htmlFor: "diag" }, "provenance diagnostic (cached embeddings only, no network)"));
-    var sub = !st.available ? "no identity tables in this run" : (traits.length + " trait(s) created up to this time");
-    return h(Col, { title: "Stage 4: identity", color: STAGE[4].color, sub: sub, extra: st.available ? toggle : null },
-      traits.length === 0 ? h("div", { className: "empty" }, st.available ? "no trait recorded up to this time" : "Stage 4 not present in this run") :
-        traits.map(function (t) {
-          var open = p.sel && p.sel.type === "trait" && p.sel.id === t.trait_id;
-          var pv = t.provenance;
-          return h("div", { className: "item click" + (open ? " sel" : ""), key: t.trait_id, onClick: function () { p.onSelect({ type: "trait", id: t.trait_id }); } },
-            t.text,
-            h("div", { className: "meta" },
-              h("span", { className: "chip path" }, t.path),
-              h("span", null, "night " + t.created_night + ", " + t.created_sim_time.slice(5, 16)),
-              h("span", { className: "chip" }, t.active_now ? "active now" : "not active now"),
-              h("span", null, t.trait_id.split(":")[1])),
-            open ? h("div", { className: "diag" },
-              h("div", null, h("b", null, "sources "), t.source_semantic_ids.length ? t.source_semantic_ids.map(function (x) { return x.split(":")[1]; }).join(", ") + " (semantic) " : "",
-                t.source_event_ids.length ? t.source_event_ids.map(function (x) { return x.split(":")[1]; }).join(", ") + " (event)" : ""),
-              h("div", null, h("b", null, "path "), t.path === "pivotal" ? "pivotal: a single event scored at or above the threshold" :
-                (t.path === "same_day" ? "same day: enough new source entries attached to one summary in one night" : "count based: counted on enough distinct nights")),
-              h("div", null, h("b", null, "provenance diagnostic "), pv && pv.available ?
-                ("cosine to priors text " + pv.cosine_to_priors_text + "; to sources " + pv.cosine_to_sources.map(function (c) { return c.cosine; }).join(", ") +
-                  "; closer to the priors than to its best source: " + (pv.closer_to_priors_than_to_best_source ? "yes" : "no") + ". " + pv.note) :
-                (pv ? pv.reason : "not available"))) : null);
-        }),
-      st.available ? h("div", null,
-        h("div", { className: "sub", style: { borderTop: "1px solid var(--line)", paddingTop: 8 } }, "identity_context rendered at this time (what the scorer would add after the priors)"),
-        h("div", { className: "ctxbox", style: { margin: "0 10px 12px" } }, ctx.text || ("(empty)" + (ctx.note ? " " + ctx.note : "")))) : null);
-  }
-
-  function App() {
-    var _a = useState([]), runs = _a[0], setRuns = _a[1];
-    var _b = useState(null), run = _b[0], setRun = _b[1];
-    var _c = useState(null), meta = _c[0], setMeta = _c[1];
-    var _d = useState(null), agent = _d[0], setAgent = _d[1];
-    var _e = useState({ events: [], t_min: null, t_max: null, count: 0 }), tl = _e[0], setTl = _e[1];
-    var _f = useState(0), t = _f[0], setT = _f[1];
-    var _g = useState(false), playing = _g[0], setPlaying = _g[1];
-    var _h = useState(120), speed = _h[0], setSpeed = _h[1];
+  /* ---------------------------------------------------------------- memory inspector (Stop 1) */
+  function Inspector(p) {
+    var run = p.run;
+    var _a = useState(null), meta = _a[0], setMeta = _a[1];
+    var _b = useState(null), agent = _b[0], setAgent = _b[1];
+    var _c = useState({ events: [], t_min: null, t_max: null, count: 0 }), tl = _c[0], setTl = _c[1];
     var _i = useState(null), state = _i[0], setState = _i[1];
-    var _j = useState(true), hideIdle = _j[0], setHideIdle = _j[1];
+    var _j = useState(Q.get("idle") !== "show"), hideIdle = _j[0], setHideIdle = _j[1];
     var _k = useState(null), sel = _k[0], setSel = _k[1];
-    var _l = useState(false), diag = _l[0], setDiag = _l[1];
+    var _l = useState(Q.get("diag") === "1"), diag = _l[0], setDiag = _l[1];
     var _m = useState(null), error = _m[0], setError = _m[1];
+    var range = tl.t_min ? [toMin(tl.t_min), toMin(tl.t_max)] : null;
+    var clk = useClock(range, Q.get("t") ? toMin(Q.get("t")) : null);
     var seq = useRef(0);
 
     useEffect(function () {
-      api("/runs").then(function (r) {
-        setRuns(r.runs);
-        var pick = new URLSearchParams(location.search).get("run");
-        var first = (pick && r.runs.find(function (x) { return x.run === pick; })) || r.runs.find(function (x) { return x.agents.length && x.label.label_source === "run_label.json"; }) || r.runs.find(function (x) { return x.agents.length; });
-        if (first) { setRun(first.run); }
-      }).catch(function (e) { setError(String(e)); });
-    }, []);
-
-    useEffect(function () {
       if (!run) { return; }
-      setPlaying(false); setState(null);
+      clk.setPlaying(false); setState(null);
       Promise.all([api("/runs/" + encodeURIComponent(run) + "/agents"), api("/runs/" + encodeURIComponent(run) + "/timeline")]).then(function (res) {
-        setMeta(res[0]);
-        var wanted = new URLSearchParams(location.search).get("agent");
+        setMeta(res[0]); p.onLabel(res[0].label);
+        var wanted = Q.get("agent");
         var names = res[0].agents.map(function (a) { return a.agent; });
         setAgent(names.indexOf(wanted) >= 0 ? wanted : names[0]);
         setTl(res[1]);
-        var q = new URLSearchParams(location.search).get("t");
-        setT(q ? toMin(q) : toMin(res[1].t_min));
-        var pre = new URLSearchParams(location.search).get("select");   /* e.g. select=trait:Isabella Rodriguez:trait_2 (reproducible views) */
+        clk.setT(Q.get("t") ? toMin(Q.get("t")) : toMin(res[1].t_min));
+        var pre = Q.get("select");
         if (pre && pre.indexOf(":") > 0) { setSel({ type: pre.split(":")[0], id: pre.slice(pre.indexOf(":") + 1) }); }
-        if (new URLSearchParams(location.search).get("diag") === "1") { setDiag(true); }
-        if (new URLSearchParams(location.search).get("idle") === "show") { setHideIdle(false); }
       }).catch(function (e) { setError(String(e)); });
     }, [run]);
 
@@ -226,66 +100,123 @@
       if (!run || !agent || tl.t_min == null) { return; }
       var my = ++seq.current;
       var timer = setTimeout(function () {
-        api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/state?t=" + encodeURIComponent(fromMin(t)) + (diag ? "&diagnostics=true" : ""))
+        api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/state?t=" + encodeURIComponent(fromMin(clk.t)) + (diag ? "&diagnostics=true" : ""))
           .then(function (s) { if (my === seq.current) { setState(s); setError(null); } })
           .catch(function (e) { if (my === seq.current) { setError(String(e)); } });
       }, 120);
       return function () { clearTimeout(timer); };
-    }, [run, agent, t, diag, tl]);
+    }, [run, agent, clk.t, diag, tl]);
 
+    var sets = DM.highlightSets(state, sel);
     useEffect(function () {
-      if (!playing) { return; }
-      var tMax = toMin(tl.t_max);
-      var id = setInterval(function () {
-        setT(function (cur) { var n = cur + speed * 0.1; if (n >= tMax) { setPlaying(false); return tMax; } return n; });
-      }, 100);
-      return function () { clearInterval(id); };
-    }, [playing, speed, tl]);
-
-    var hl = {}, hlSummary = {};
-    if (state && sel) {
-      var sums = state.stage3_semantic.summaries;
-      if (sel.type === "summary") {
-        var s = sums.find(function (x) { return x.entry_id === sel.id; });
-        if (s) { s.source_entry_ids.forEach(function (e) { hl[e] = true; }); }
-      } else {
-        var tr = (state.stage4_identity.traits || []).find(function (x) { return x.trait_id === sel.id; });
-        if (tr) {
-          tr.source_event_ids.forEach(function (e) { hl[e] = true; });
-          tr.source_semantic_ids.forEach(function (sid) {
-            hlSummary[sid] = true;
-            var ss = sums.find(function (x) { return x.entry_id === sid; });
-            if (ss) { ss.source_entry_ids.forEach(function (e) { hl[e] = true; }); }
-          });
-        }
-      }
-    }
-    useEffect(function () {
-      var first = Object.keys(hl)[0];
+      var first = Object.keys(sets.hl)[0];
       if (first) { var el = document.getElementById("ep-" + first); if (el) { el.scrollIntoView({ block: "nearest" }); } }
     }, [sel]);
     function select(x) { setSel(sel && sel.type === x.type && sel.id === x.id ? null : x); }
 
     return h("div", null,
-      h(LabelBar, { label: state ? state.label : (meta ? meta.label : null) }),
       error ? h("div", { className: "err" }, error) : null,
-      h("div", { className: "controls" },
-        h("label", null, "run"),
-        h("select", { value: run || "", onChange: function (e) { setSel(null); setRun(e.target.value); } },
-          runs.map(function (r) { return h("option", { key: r.run, value: r.run }, r.run + (r.agents.length ? " (" + r.agents.length + " agent" + (r.agents.length > 1 ? "s" : "") + ")" : " (no episodic data)")); })),
-        h("span", { className: "kv" }, tl.t_min ? "recorded span " + tl.t_min + " to " + tl.t_max : "")),
-      tl.t_min ? h(Player, { events: tl.events, count: tl.count, tMin: toMin(tl.t_min), tMax: toMin(tl.t_max), t: t, agent: agent, playing: playing, speed: speed,
-        onToggle: function () { if (!playing && t >= toMin(tl.t_max)) { setT(toMin(tl.t_min)); } setPlaying(!playing); },
-        onSeek: function (m) { setPlaying(false); setT(m); }, onSpeed: setSpeed }) : null,
+      h("div", { className: "controls" }, h("span", { className: "kv" }, tl.t_min ? "recorded span " + tl.t_min + " to " + tl.t_max : "")),
+      tl.t_min ? h(Clock, { events: tl.events, tMin: range[0], tMax: range[1], t: clk.t, agent: agent, playing: clk.playing, speed: clk.speed,
+        onToggle: function () { if (!clk.playing && clk.t >= range[1]) { clk.setT(range[0]); } clk.setPlaying(!clk.playing); },
+        onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
+        hint: tl.count + " recorded events on this timeline. Ticks of the selected agent are bright; other agents are faint. Sleep and ledger ticks are per-window records, not exact instants." }) : null,
       meta ? h("div", { className: "agents" }, meta.agents.map(function (a) {
         return h("button", { key: a.agent, className: agent === a.agent ? "on" : "", onClick: function () { setAgent(a.agent); setSel(null); } }, a.agent);
       })) : null,
       state ? h("div", { className: "cols" },
-        h(Priors, { state: state }),
-        h(Episodic, { state: state, hl: hl, hideIdle: hideIdle, onHideIdle: setHideIdle }),
-        h(Semantic, { state: state, sel: sel, hlSummary: hlSummary, onSelect: select }),
-        h(Identity, { state: state, sel: sel, onSelect: select, diag: diag, onDiag: setDiag })) :
+        h(DM.Priors, { state: state }),
+        h(DM.Episodic, { state: state, hl: sets.hl, hideIdle: hideIdle, onHideIdle: setHideIdle }),
+        h(DM.Semantic, { state: state, sel: sel, hlSummary: sets.hlSummary, onSelect: select }),
+        h(DM.Identity, { state: state, sel: sel, onSelect: select, diag: diag, onDiag: setDiag })) :
         h("div", { className: "empty", style: { padding: 18 } }, "loading recorded state..."));
+  }
+
+  /* ---------------------------------------------------------------- town tab: two panes, one clock */
+  function TownTab(p) {
+    var _a = useState({}), metas = _a[0], setMetas = _a[1];
+    var los = ["left", "right"].map(function (k) { return metas[k] && metas[k].available ? toMin(metas[k].t_min) : null; }).filter(function (x) { return x != null; });
+    var his = ["left", "right"].map(function (k) { return metas[k] && metas[k].available ? toMin(metas[k].t_max) : null; }).filter(function (x) { return x != null; });
+    var range = los.length ? [Math.min.apply(null, los), Math.max.apply(null, his)] : null;
+    var clk = useClock(range, Q.get("t") ? toMin(Q.get("t")) : null);
+    var seeded = useRef(false);
+    useEffect(function () { if (range && !seeded.current) { seeded.current = true; clk.setT(Q.get("t") ? toMin(Q.get("t")) : range[0]); } }, [range && range[0]]);
+    function onMeta(id, m) { setMetas(function (o) { var n = Object.assign({}, o); n[id] = m; return n; }); }
+    return h("div", null,
+      range ? h(Clock, { events: null, tMin: range[0], tMax: range[1], t: clk.t, playing: clk.playing, speed: clk.speed,
+        onToggle: function () { if (!clk.playing && clk.t >= range[1]) { clk.setT(range[0]); } clk.setPlaying(!clk.playing); },
+        onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
+        hint: "One clock drives both panes. A pane whose run has no frame at this time says so and keeps the avatars where they were last recorded." }) :
+        h("div", { className: "empty", style: { padding: 18 } }, "loading movement metadata..."),
+      h("div", { className: "panes" },
+        ["left", "right"].map(function (id) {
+          return h(window.Town.TownPane, { key: id, id: id, run: id === "left" ? p.runA : p.runB, runs: p.runs, t: clk.t, playing: clk.playing,
+            onRun: p.onRun, onMeta: onMeta, onLabel: p.onLabel });
+        })));
+  }
+
+  function LivePanel(p) {
+    var _a = useState([]), rows = _a[0], setRows = _a[1];
+    useEffect(function () {
+      var alive = true;
+      function poll() {
+        Promise.all([p.runA, p.runB].filter(Boolean).map(function (r) { return api("/runs/" + encodeURIComponent(r) + "/status").catch(function () { return { run: r, available: false }; }); }))
+          .then(function (res) { if (alive) { setRows(res); } });
+      }
+      poll();
+      var id = setInterval(poll, 5000);
+      return function () { alive = false; clearInterval(id); };
+    }, [p.runA, p.runB]);
+    var live = rows.filter(function (r) { return r.available && r.fresh; });
+    return h("div", { className: "livepanel" },
+      h("b", null, "Live calls "),
+      live.length ? live.map(function (r) {
+        var s = r.status;
+        return h("span", { key: r.run, className: "kv" }, r.run + ": " + s.router_calls_total + " router calls, " + (s.quota_pauses || 0) + " quota pauses, clock " + s.sim_clock + ", injection pass " + (s.injection ? s.injection.pass + " of " + s.injection.resolved : "n/a") + " ");
+      }) : h("span", { className: "kv" }, "no live segment is running (this panel shows the router call counter of a run that is writing run_status.json, and nothing otherwise)"));
+  }
+
+  function App() {
+    var _a = useState([]), runs = _a[0], setRuns = _a[1];
+    var _b = useState(Q.get("a") || Q.get("run") || null), runA = _b[0], setRunA = _b[1];
+    var _c = useState(Q.get("b") || null), runB = _c[0], setRunB = _c[1];
+    var _d = useState(Q.get("tab") || "town"), tab = _d[0], setTab = _d[1];
+    var _e = useState({}), labels = _e[0], setLabels = _e[1];
+    var _f = useState(null), error = _f[0], setError = _f[1];
+    useEffect(function () {
+      api("/runs").then(function (r) {
+        setRuns(r.runs);
+        var declared = r.runs.filter(function (x) { return x.agents.length && x.label.label_source === "run_label.json"; });
+        var any = r.runs.filter(function (x) { return x.agents.length; });
+        var pick = declared.concat(any);
+        setRunA(function (cur) { return cur || (pick[0] && pick[0].run); });
+        setRunB(function (cur) { return cur || (pick[1] && pick[1].run) || (pick[0] && pick[0].run); });
+      }).catch(function (e) { setError(String(e)); });
+    }, []);
+    useEffect(function () {   /* the label bar must always show the runs on screen, whichever tab is open */
+      [["left", runA], ["right", runB]].forEach(function (x) {
+        if (x[1]) { api("/runs/" + encodeURIComponent(x[1]) + "/label").then(function (l) { onLabel(x[0], l); }).catch(function () {}); }
+      });
+    }, [runA, runB]);
+    function onLabel(side, l) { setLabels(function (o) { var n = Object.assign({}, o); n[side] = l; return n; }); }
+    function onRun(side, run) { if (side === "left") { setRunA(run); } else { setRunB(run); } }
+    var shown = tab === "inspector" ? [labels.insp || labels.left] : [labels.left, labels.right];
+    var tabBtn = function (id, text) { return h("button", { className: tab === id ? "on" : "", onClick: function () { setTab(id); } }, text); };
+    var select2 = function (value, set) { return h("select", { value: value || "", onChange: function (e) { set(e.target.value); } }, runs.map(function (r) { return h("option", { key: r.run, value: r.run }, r.run); })); };
+    return h("div", null,
+      h(DM.LabelBar, { labels: shown }),
+      error ? h("div", { className: "err" }, error) : null,
+      h("div", { className: "tabs" }, tabBtn("town", "Town replay"), tabBtn("inspector", "Memory inspector"), tabBtn("cost", "Cost view"),
+        h("span", { className: "kv" }, "runs found: " + runs.length)),
+      h(LivePanel, { runA: runA, runB: runB }),
+      !runA ? h("div", { className: "empty", style: { padding: 18 } }, "loading runs...") :
+        tab === "town" ? h(TownTab, { runs: runs, runA: runA, runB: runB, onRun: onRun, onLabel: onLabel }) :
+        tab === "cost" ? h("div", null,
+          h("div", { className: "controls" }, h("label", null, "left"), select2(runA, setRunA), h("label", null, "right"), select2(runB, setRunB)),
+          h(window.Cost.CostView, { runA: runA, runB: runB })) :
+        h("div", null,
+          h("div", { className: "controls" }, h("label", null, "run"), select2(runA, setRunA)),
+          h(Inspector, { key: runA, run: runA, onLabel: function (l) { onLabel("insp", l); } })));
   }
 
   ReactDOM.createRoot(document.getElementById("root")).render(h(App));

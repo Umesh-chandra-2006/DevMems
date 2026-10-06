@@ -1,3 +1,47 @@
+# Presentation mode: the memory inspector with the town replay (Phase 8)
+
+This is the PRESENTATION ENTRY POINT. It replays a RECORDED run in upstream's town with a clock shared by two side-by-side panes, lets you click an
+avatar to open that agent's memory panel at the replay time, and has a memory inspector tab and a cost view. It is READ ONLY: it never calls an LLM,
+never writes to a run, needs no API key and sends nothing off the machine (React and Phaser are vendored; the town assets are served from
+`reverie/environment/frontend_server/static_dirs/assets`). The Stage 3 replay further below stays as the SCRIPTED FALLBACK.
+
+## One command (system Python with fastapi and uvicorn; versions in `devmem/api/REQUIREMENTS.md`)
+
+Git Bash or PowerShell, from the repository root:
+
+```bash
+"/c/Users/H S R KRISHNA/AppData/Local/Programs/Python/Python313/python.exe" devmem/api/serve.py --a <left run> --b <right run> --open
+```
+
+`--a` and `--b` are run ids from `GET /runs` (a folder with a `memory.db`; a run ships `movement.zip` for the town). For the final demo they are the Phase 7/9
+baseline and staged runs. Until those exist, the test recordings can be shown: `--a phase6_stepd_artifacts --b phase6_stepd_artifacts` (the natural Step D
+run, partial, on both sides) or `--tab inspector --a phase6_stop3_artifacts` (the scripted Stop 3 run with all four stages). Other options: `--tab town|inspector|cost`,
+`--t "2023-02-13 07:30:00"`, `--port 8765`. Stop it with Ctrl+C.
+
+Make a recording replayable: `python -m devmem.api.movement_archive export <simulation folder> <run folder>/movement.zip` (one compressed archive with a loader;
+a run that is still executing is read straight from its simulation folder, so the part already recorded can be replayed while it grows).
+
+## What is on the screen
+- **Label bar (always visible):** run id, recorded or live, scripted or natural, model, normalizer, stages, for each side. Fields the run did not declare say `unknown`.
+- **Town replay:** left and right panes, one clock (play, pause, speed, scrubber). Click an avatar: its current action, where it is, dialogue lines, thoughts, and the four memory
+  columns at that time (priors, episodic, semantic, identity); click a summary or a trait to highlight its sources. Drag to pan, scroll to zoom. A pane says so when its run has no
+  frame at the clock time.
+- **Memory inspector:** the Stop 1 timeline player and memory panel for one run.
+- **Cost view:** calls and tokens by purpose per recorded ledger window (simulated hour), two runs side by side.
+- **Live calls panel:** shows the router call counter of a run that is writing `run_status.json` (the arm runner does, about every simulated hour); otherwise it says no live segment is running.
+It makes no claim about recall, coherence or efficiency, and it shows no score the recording does not contain.
+
+## Rehearsal checklist (offline; run it the day before and again before the room opens)
+1. `python devmem/api/serve.py --check --a <left> --b <right>` (standard library only) prints `rehearsal check: ok` and notes any missing movement or ledger for a run.
+2. Start the server, open the printed URL, confirm the label bar names both runs, the clock moves when you press Play (the page must be the visible tab: browsers pause animation in a hidden tab).
+3. Click one avatar in each pane; confirm the card shows an action and the four columns fill.
+4. Open the Cost view and the Memory inspector tab; confirm no error banner.
+5. Disconnect the network and repeat 2 to 4 (nothing may be requested outside `127.0.0.1`).
+6. If anything fails: run the scripted fallback below (`devmem/demo/run_demo.py`), which also needs no network or key.
+7. Optional live segment: start a short run that writes `run_status.json` into its run folder and watch the Live calls panel; a live segment uses live LLM calls (Groq keys are kept for this).
+
+---
+
 # Stage 3 demo
 
 **Label: SCRIPTED.** The day shown is a hand-written set of 16 events for Isabella Rodriguez
