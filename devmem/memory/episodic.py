@@ -296,6 +296,24 @@ def score_importance_persona_conditioned(
     Stage 2: Score importance of an event or conversation conditioned on Stage 1 personality priors.
     Augments the upstream prompt with the agent's priors block.
     """
+    # Phase 6 (Stage 4): when the caller gave no identity_context and Stage 4 feedback is on, the scorer renders the agent's
+    # active traits itself (no upstream edit). With the flag off this block does nothing and the prompt is byte-identical to Phase 5.
+    sim_time = getattr(getattr(persona, "scratch", None), "curr_time", None) if persona is not None else None
+    stage4_ctx = None
+    from devmem.memory import identity
+    if identity.stage4_enabled():
+        stage4_ctx = identity
+        trait_ids, known = [], True
+        if not (identity_context and identity_context.strip()) and identity.feedback_active():
+            try:
+                identity_context, trait_ids = identity.load_identity_context(agent_id, db_path or get_db_path())
+            except Exception as e:
+                known = False
+                logger.error("identity context unavailable for '%s': %s", agent_id, e)
+        elif identity_context and identity_context.strip():
+            known = False  # caller-supplied context: the trait ids are not known here
+        identity.note_scoring_context(agent_id, sim_time, observation, trait_ids, known)
+
     prompt = build_staged_prompt(
         agent_id=agent_id,
         observation=observation,
@@ -304,6 +322,11 @@ def score_importance_persona_conditioned(
         identity_context=identity_context,
         personas_dir=personas_dir,
     )
+    if stage4_ctx is not None and identity_context and identity_context.strip():
+        try:
+            stage4_ctx.log_prompt_render(db_path or get_db_path(), agent_id, sim_time, prompt, trait_ids)
+        except Exception as e:
+            logger.error("identity prompt render not saved for '%s': %s", agent_id, e)
 
     kwargs: Dict[str, Any] = {
         "prompt": prompt,
@@ -397,7 +420,7 @@ def log_episodic_node(
     ts = sim_time or getattr(node, "created", datetime.now())
     score = importance_score if importance_score is not None else getattr(node, "poignancy", 1)
 
-    return log_episodic_memory(
+    logged = log_episodic_memory(
         agent_id=agent_id,
         content=content,
         sim_timestamp=ts,
@@ -407,6 +430,10 @@ def log_episodic_node(
         db_path=db_path,
         sim_code=sim_code,
     )
+    from devmem.memory import identity  # Phase 6: record whether the event was scored with traits present (Stage 4 only)
+    if identity.stage4_enabled():
+        identity.write_scoring_context(init_episodic_db(db_path=db_path, sim_code=sim_code), agent_id, entry_id, content, ts)
+    return logged
 
 
 def get_unconsolidated(

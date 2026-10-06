@@ -1,0 +1,42 @@
+=== devmem.router.test_router
+Ran 33 tests in 3.956s
+OK
+=== devmem.router.test_call_counter
+Ran 4 tests in 1.863s
+OK
+=== devmem.router.test_output_normalizer
+Ran 4 tests in 0.000s
+OK
+=== devmem.router.test_normalizer_wiring
+Ran 8 tests in 2.261s
+OK
+=== devmem.router.test_normalizer_rule
+Ran 9 tests in 0.163s
+OK
+=== devmem.router.test_normalizer_call_path
+Ran 7 tests in 5.685s
+OK
+=== devmem.memory.test_priors
+Ran 9 tests in 1.997s
+OK
+=== devmem.memory.test_episodic
+Ran 10 tests in 1.721s
+OK
+=== devmem.memory.test_reconcile
+Ran 10 tests in 50.595s
+OK
+=== devmem.memory.test_gpt_structure_touch
+Ran 5 tests in 0.031s
+OK
+=== devmem.memory.test_consolidation
+Ran 27 tests in 9.696s
+OK (skipped=1)
+=== devmem.memory.test_identity
+Ran 35 tests in 80.575s
+OK
+=== devmem.embeddings.test_vector_store
+Ran 14 tests in 1.429s
+OK (skipped=1)
+=== devmem.demo.test_demo
+Ran 2 tests in 0.008s
+OK

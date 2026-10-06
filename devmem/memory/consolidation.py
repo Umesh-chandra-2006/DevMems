@@ -329,6 +329,10 @@ def run_nightly_sweep(
     agent = persona.name
     embed = embed_fn or _default_embed
     db = init_consolidation_db(db_path or episodic.get_db_path())
+    from devmem.memory import identity  # Stage 4 (Phase 6); lazy because identity imports this module
+    stage4 = identity.stage4_enabled()
+    if stage4:
+        identity.init_identity_db(db)
     log_file = Path(log_path) if log_path else db.parent / "consolidation_log.jsonl"
     night = night_id(sweep_time, cfg["night_boundary_hour"])
     sim_day = episodic.calculate_sim_day(sweep_time)
@@ -418,6 +422,8 @@ def run_nightly_sweep(
             res["source_contents"] = plan["prompt_entries"]
             res["importance"] = plan["importance"]
             results.append(res)
+        if stage4:  # Phase 6: the per-night record the identity step reads, written in this same transaction
+            identity.record_consolidation_events(conn, agent, night, results)
         flagged = sorted({e for p in plans for e in p["sources"]})
         if flagged:
             conn.execute(f"UPDATE episodic_memory SET consolidated = 1 WHERE entry_id IN ({','.join('?' * len(flagged))})",
@@ -449,7 +455,23 @@ def run_nightly_sweep(
 
 def force_sweep(persona: Any, sweep_time: Optional[datetime] = None, **kwargs: Any) -> Dict[str, Any]:
     """Sweep regardless of any sleep signal (tests and end-of-run). Still idempotent per night unless force=True."""
-    return run_nightly_sweep(persona, sweep_time or persona.scratch.curr_time, **kwargs)
+    t = sweep_time or persona.scratch.curr_time
+    res = run_nightly_sweep(persona, t, **kwargs)
+    ident = _run_identity_after(persona, t, res, kwargs)
+    if ident is not None:
+        res["identity"] = ident
+    return res
+
+
+def _run_identity_after(persona: Any, sweep_time: datetime, res: Dict[str, Any], kwargs: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """Phase 6 hook: the Stage 4 step that follows consolidation (None when STAGE4_ENABLED is off)."""
+    from devmem.memory import identity
+    if not identity.stage4_enabled():
+        return None
+    if res.get("status") == "failed":
+        return {"skipped": "consolidation failed", "night": res.get("night")}
+    return identity.run_identity_step(persona, sweep_time, db_path=kwargs.get("db_path"), embed_fn=kwargs.get("embed_fn"),
+                                      pinned_model=kwargs.get("pinned_model"))
 
 
 def maybe_sweep_on_sleep(persona: Any, **kwargs: Any) -> Optional[Dict[str, Any]]:
@@ -470,7 +492,19 @@ def maybe_sweep_on_sleep(persona: Any, **kwargs: Any) -> Optional[Dict[str, Any]
         logger.error("sleep sweep failed for %s: %s", persona.name, exc)
         return {"error": f"{type(exc).__name__}: {exc}"[:200]}
     if "skipped" in res or res.get("status") == "done":
-        done.add(night)
+        identity_ok = True
+        try:
+            ident = _run_identity_after(persona, t, res, kwargs)
+        except Exception as exc:
+            logger.error("identity step failed for %s: %s", persona.name, exc)
+            res["identity"] = {"error": f"{type(exc).__name__}: {exc}"[:200]}
+            identity_ok = False
+        else:
+            if ident is not None:
+                res["identity"] = ident
+                identity_ok = "skipped" in ident or ident.get("status") == "done"
+        if identity_ok:
+            done.add(night)
     return res
 
 

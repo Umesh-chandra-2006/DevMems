@@ -119,6 +119,7 @@ class HeadlessRunner:
 
         self.reconcile_results: List[Dict[str, Any]] = []
         self.consolidation_reconcile: List[Dict[str, Any]] = []
+        self.identity_reconcile: List[Dict[str, Any]] = []
         # D7: on clean exit, force a sweep for agents that have not swept the current night (staged only)
         self.final_sweep = (memory_mode == "staged") if final_sweep is None else final_sweep
         self.sweep_kwargs = sweep_kwargs or {}
@@ -131,6 +132,9 @@ class HeadlessRunner:
             from devmem.memory.consolidation import reconcile_consolidation
             self.consolidation_reconcile = [reconcile_consolidation(p, self.db_path)
                                             for p in self.rs.personas.values()]
+            from devmem.memory import identity  # Phase 6: Stage 4 rollback, only when the flag is on
+            self.identity_reconcile = (identity.reconcile_run_identity(self.rs.personas, self.db_path)
+                                       if identity.stage4_enabled() else [])
 
     @staticmethod
     def _ensure_env_for_saved_step(sim_code: str) -> None:

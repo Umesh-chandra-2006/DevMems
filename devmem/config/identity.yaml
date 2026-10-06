@@ -1,0 +1,32 @@
+# devmem/config/identity.yaml
+# Stage 4 settings (Phase 6). Design approved at Stop 1 (docs/phase6_stop1_report.md); rules pre-registered in
+# docs/phase6_preregistration.md. The environment variables STAGE4_ENABLED and IDENTITY_FEEDBACK override the two flags.
+
+# Stage 4 is off by default: with it off no Stage 4 code path runs and Phase 5 behavior and artifacts are unchanged.
+stage4_enabled: false
+# Ablation flag: when false, traits are stored but the scoring prompt receives no identity context.
+identity_feedback: true
+
+# Path A, count based: distinct counted nights including the birth night.
+count_threshold_days: 3
+# Path A, same day: new source events attached to one entry in one night. A design choice, not measured.
+same_day_count: 4
+# Cosine at or above which a night's summary reinforces an existing entry for Stage 4. Starting value 0.85; tuned ONCE at
+# Stop 2 by the committed protocol (docs/phase6_preregistration.md section 2) on the scripted fixture with the real embedding
+# model: min positive 0.8923, max negative 0.8583 (author-chosen negative), so 0.88. FROZEN: never retuned on Step D or Phase 7 data.
+# Artifact: docs/phase6_stop2_artifacts/reinforce_tuning.json.
+reinforce_threshold: 0.88
+# Path B, pivotal: importance at or above this graduates a single event. Frozen as provisional (pre-registration section 1).
+pivotal_threshold: 9
+
+# Feed-forward caps (spec 3.4). Tokens are estimated with the router's estimate_tokens heuristic (about 1.35 per word).
+max_identity_traits: 5
+identity_token_cap: 120
+identity_header: "Traits this agent has developed through experience:"
+
+# Trait generation (third person, one sentence).
+trait_max_words: 35
+trait_retries: 1
+trait_tier: strong
+# An identity step that fails writes no done marker and may retry on a later tick, up to this many attempts per night.
+max_attempts_per_night: 3

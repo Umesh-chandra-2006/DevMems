@@ -1,0 +1,164 @@
+{
+ "label": "live embeddings (cache first), scripted text, no LLM calls",
+ "embedding_model": "gemini-embedding-001",
+ "embedding_requests_made": 1,
+ "embedding_request_cap": 40,
+ "embedding_stats": {
+  "model": "gemini-embedding-001",
+  "fail_loud": true,
+  "http_requests": 1,
+  "texts_requested": 6,
+  "cache_hits": 0,
+  "cache_misses": 6,
+  "failures": 0,
+  "fallbacks": 0,
+  "http_status_counts": {
+   "200": 1
+  },
+  "requests_by_key_env": {
+   "GEMINI_KEY_1": 1
+  },
+  "keys_skipped": {},
+  "offline": false,
+  "dimensions_seen": [
+   3072
+  ]
+ },
+ "dimension": 3072,
+ "starting_value": 0.85,
+ "positives": [
+  {
+   "a": "baking n1",
+   "b": "baking n4",
+   "same_theme": true,
+   "cosine": 0.8923,
+   "a_text": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "b_text": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers."
+  },
+  {
+   "a": "baking n1",
+   "b": "baking n2",
+   "same_theme": true,
+   "cosine": 0.9202,
+   "a_text": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "b_text": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe."
+  },
+  {
+   "a": "baking n2",
+   "b": "baking n4",
+   "same_theme": true,
+   "cosine": 0.9432,
+   "a_text": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe.",
+   "b_text": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers."
+  }
+ ],
+ "negatives": [
+  {
+   "a": "baking n1",
+   "b": "cake_negative n3",
+   "same_theme": false,
+   "cosine": 0.8583,
+   "a_text": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "b_text": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+  },
+  {
+   "a": "baking n4",
+   "b": "cake_negative n3",
+   "same_theme": false,
+   "cosine": 0.8526,
+   "a_text": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers.",
+   "b_text": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+  },
+  {
+   "a": "baking n2",
+   "b": "cake_negative n3",
+   "same_theme": false,
+   "cosine": 0.8441,
+   "a_text": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe.",
+   "b_text": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+  },
+  {
+   "a": "letters n2",
+   "b": "cake_negative n3",
+   "same_theme": false,
+   "cosine": 0.7651,
+   "a_text": "Isabella Rodriguez cherishes staying in touch with her sister through letters.",
+   "b_text": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+  },
+  {
+   "a": "conflict n3",
+   "b": "letters n2",
+   "same_theme": false,
+   "cosine": 0.7627,
+   "a_text": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness.",
+   "b_text": "Isabella Rodriguez cherishes staying in touch with her sister through letters."
+  },
+  {
+   "a": "baking n2",
+   "b": "letters n2",
+   "same_theme": false,
+   "cosine": 0.7564,
+   "a_text": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe.",
+   "b_text": "Isabella Rodriguez cherishes staying in touch with her sister through letters."
+  },
+  {
+   "a": "baking n1",
+   "b": "letters n2",
+   "same_theme": false,
+   "cosine": 0.7432,
+   "a_text": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "b_text": "Isabella Rodriguez cherishes staying in touch with her sister through letters."
+  },
+  {
+   "a": "baking n4",
+   "b": "letters n2",
+   "same_theme": false,
+   "cosine": 0.74,
+   "a_text": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers.",
+   "b_text": "Isabella Rodriguez cherishes staying in touch with her sister through letters."
+  },
+  {
+   "a": "baking n1",
+   "b": "conflict n3",
+   "same_theme": false,
+   "cosine": 0.7357,
+   "a_text": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "b_text": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness."
+  },
+  {
+   "a": "baking n2",
+   "b": "conflict n3",
+   "same_theme": false,
+   "cosine": 0.7331,
+   "a_text": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe.",
+   "b_text": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness."
+  },
+  {
+   "a": "conflict n3",
+   "b": "cake_negative n3",
+   "same_theme": false,
+   "cosine": 0.7315,
+   "a_text": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness.",
+   "b_text": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+  },
+  {
+   "a": "baking n4",
+   "b": "conflict n3",
+   "same_theme": false,
+   "cosine": 0.7224,
+   "a_text": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers.",
+   "b_text": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness."
+  }
+ ],
+ "decision": {
+  "min_positive": 0.8923,
+  "max_negative": 0.8583,
+  "margin": 0.034,
+  "unclipped_candidate": 0.88,
+  "chosen": 0.88,
+  "rule": "groups separate and max(negatives) < chosen: protocol step 2",
+  "clipped": false
+ },
+ "stage3_match_threshold": 0.8,
+ "note": "Positives are only the three baking pairs (the fixture has one recurring theme); the negative set contains the author-chosen topically similar 'cake_negative'. The margin is a property of those choices, not a measurement of how Stage 3 summaries from a natural run will behave."
+}

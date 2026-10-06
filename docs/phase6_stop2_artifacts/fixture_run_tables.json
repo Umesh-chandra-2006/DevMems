@@ -1,0 +1,428 @@
+{
+ "label": "scripted events, synthetic vectors, stubbed generators; no live call",
+ "reinforce_threshold": 0.88,
+ "semantic_reinforcement": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "semantic_id": "Isabella Rodriguez:node_4",
+   "day_set_json": "[1, 2, 4]",
+   "distinct_days": 3,
+   "same_day_max": 3,
+   "last_night": 4,
+   "self_reinforced_json": "[]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "semantic_id": "Isabella Rodriguez:node_12",
+   "day_set_json": "[2]",
+   "distinct_days": 1,
+   "same_day_max": 3,
+   "last_night": 2,
+   "self_reinforced_json": "[]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "semantic_id": "Isabella Rodriguez:node_21",
+   "day_set_json": "[3]",
+   "distinct_days": 1,
+   "same_day_max": 5,
+   "last_night": 3,
+   "self_reinforced_json": "[]"
+  }
+ ],
+ "identity_traits": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "trait_id": "Isabella Rodriguez:trait_1",
+   "text": "Isabella Rodriguez understands that her cafe's future is uncertain and treasures it deeply.",
+   "path": "pivotal",
+   "source_semantic_ids_json": "[]",
+   "source_event_ids_json": "[\"Isabella Rodriguez:node_11\"]",
+   "created_night": 2,
+   "created_sim_time": "2023-02-14 22:00:00",
+   "active": 1
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "trait_id": "Isabella Rodriguez:trait_2",
+   "text": "Isabella Rodriguez meets conflict with apology and kindness.",
+   "path": "same_day",
+   "source_semantic_ids_json": "[\"Isabella Rodriguez:node_21\"]",
+   "source_event_ids_json": "[]",
+   "created_night": 3,
+   "created_sim_time": "2023-02-15 22:00:00",
+   "active": 1
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "trait_id": "Isabella Rodriguez:trait_3",
+   "text": "Isabella Rodriguez is devoted to the careful craft of baking.",
+   "path": "count_based",
+   "source_semantic_ids_json": "[\"Isabella Rodriguez:node_4\"]",
+   "source_event_ids_json": "[]",
+   "created_night": 4,
+   "created_sim_time": "2023-02-16 22:00:00",
+   "active": 1
+  }
+ ],
+ "identity_sweeps": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 1,
+   "status": "done",
+   "sweep_time": "2023-02-13 22:00:00",
+   "attempts": 1
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 2,
+   "status": "done",
+   "sweep_time": "2023-02-14 22:00:00",
+   "attempts": 1
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 3,
+   "status": "done",
+   "sweep_time": "2023-02-15 22:00:00",
+   "attempts": 1
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 4,
+   "status": "done",
+   "sweep_time": "2023-02-16 22:00:00",
+   "attempts": 1
+  }
+ ],
+ "consolidation_events": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 1,
+   "semantic_id": "Isabella Rodriguez:node_4",
+   "action": "created",
+   "match_similarity": null,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_1\", \"Isabella Rodriguez:node_2\", \"Isabella Rodriguez:node_3\"]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 2,
+   "semantic_id": "Isabella Rodriguez:node_4",
+   "action": "reinforced",
+   "match_similarity": 0.95,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_5\", \"Isabella Rodriguez:node_6\", \"Isabella Rodriguez:node_7\"]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 2,
+   "semantic_id": "Isabella Rodriguez:node_12",
+   "action": "created",
+   "match_similarity": null,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_8\", \"Isabella Rodriguez:node_9\", \"Isabella Rodriguez:node_10\"]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 3,
+   "semantic_id": "Isabella Rodriguez:node_21",
+   "action": "created",
+   "match_similarity": null,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_13\", \"Isabella Rodriguez:node_14\", \"Isabella Rodriguez:node_15\", \"Isabella Rodriguez:node_16\", \"Isabella Rodriguez:node_17\"]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 3,
+   "semantic_id": "Isabella Rodriguez:node_4",
+   "action": "reinforced",
+   "match_similarity": 0.87,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_18\", \"Isabella Rodriguez:node_19\", \"Isabella Rodriguez:node_20\"]"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 4,
+   "semantic_id": "Isabella Rodriguez:node_4",
+   "action": "reinforced",
+   "match_similarity": 0.95,
+   "new_source_ids_json": "[\"Isabella Rodriguez:node_22\", \"Isabella Rodriguez:node_23\", \"Isabella Rodriguez:node_24\"]"
+  }
+ ],
+ "event_scoring_context": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_1",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_2",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_3",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_5",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_6",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_7",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_8",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_9",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_10",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_11",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_13",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_14",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_15",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_16",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_17",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_18",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_19",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_20",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_22",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_23",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "entry_id": "Isabella Rodriguez:node_24",
+   "trait_ids_json": "[]",
+   "status": "ok"
+  }
+ ],
+ "consolidation_sweeps": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 1,
+   "sweep_time": "2023-02-13 22:00:00",
+   "max_node_id": 4,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 2,
+   "sweep_time": "2023-02-14 22:00:00",
+   "max_node_id": 12,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 3,
+   "sweep_time": "2023-02-15 22:00:00",
+   "max_node_id": 21,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 4,
+   "sweep_time": "2023-02-16 22:00:00",
+   "max_node_id": 24,
+   "attempts": 1,
+   "status": "done"
+  }
+ ],
+ "semantic_memory": [
+  {
+   "entry_id": "Isabella Rodriguez:node_4",
+   "agent_id": "Isabella Rodriguez",
+   "summary": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+   "source_entry_ids": "[\"Isabella Rodriguez:node_1\", \"Isabella Rodriguez:node_2\", \"Isabella Rodriguez:node_3\", \"Isabella Rodriguez:node_5\", \"Isabella Rodriguez:node_6\", \"Isabella Rodriguez:node_7\", \"Isabella Rodriguez:node_18\", \"Isabella Rodriguez:node_19\", \"Isabella Rodriguez:node_20\", \"Isabella Rodriguez:node_22\", \"Isabella Rodriguez:node_23\", \"Isabella Rodriguez:node_24\"]",
+   "importance_score": 6.0,
+   "times_reinforced": 4,
+   "distinct_days_reinforced": 4,
+   "graduated": 0
+  },
+  {
+   "entry_id": "Isabella Rodriguez:node_12",
+   "agent_id": "Isabella Rodriguez",
+   "summary": "Isabella Rodriguez cherishes staying in touch with her sister through letters.",
+   "source_entry_ids": "[\"Isabella Rodriguez:node_8\", \"Isabella Rodriguez:node_9\", \"Isabella Rodriguez:node_10\"]",
+   "importance_score": 6.0,
+   "times_reinforced": 1,
+   "distinct_days_reinforced": 1,
+   "graduated": 0
+  },
+  {
+   "entry_id": "Isabella Rodriguez:node_21",
+   "agent_id": "Isabella Rodriguez",
+   "summary": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness.",
+   "source_entry_ids": "[\"Isabella Rodriguez:node_13\", \"Isabella Rodriguez:node_14\", \"Isabella Rodriguez:node_15\", \"Isabella Rodriguez:node_16\", \"Isabella Rodriguez:node_17\"]",
+   "importance_score": 6.0,
+   "times_reinforced": 1,
+   "distinct_days_reinforced": 1,
+   "graduated": 0
+  }
+ ],
+ "episodic_flags": [
+  [
+   "Isabella Rodriguez:node_1",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_2",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_3",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_5",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_6",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_7",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_8",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_9",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_10",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_11",
+   0
+  ],
+  [
+   "Isabella Rodriguez:node_13",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_14",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_15",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_16",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_17",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_18",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_19",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_20",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_22",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_23",
+   1
+  ],
+  [
+   "Isabella Rodriguez:node_24",
+   1
+  ]
+ ]
+}

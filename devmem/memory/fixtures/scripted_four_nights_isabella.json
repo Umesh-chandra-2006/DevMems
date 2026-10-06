@@ -1,0 +1,92 @@
+{
+  "label": "scripted",
+  "note": "Hand-written by the Senior Developer for Phase 6 (spec 5.1); not captured from a run. Four simulated nights for Isabella Rodriguez. 'summaries' are the sentences a summarizer is scripted to return for a cluster (night -> sentence); 'trait' is the sentence the trait generator is scripted to return. 'cake_negative' is the author-chosen topically similar but different theme. Importance values are scripted, not scored.",
+  "agent": "Isabella Rodriguez",
+  "first_night_date": "2023-02-13",
+  "expected": {
+    "baking": "recurs on nights 1, 2 and 4: graduates by Path A (count_based) on night 4",
+    "conflict": "5 events on night 3 only: graduates by the same-day path on night 3",
+    "letters": "one theme on night 2 only (3 events): never graduates",
+    "lease": "one event scored 10 on night 2: Path B (pivotal) on night 2",
+    "cake_negative": "topically similar to baking, merged by Stage 3 on night 3 but below REINFORCE_THRESHOLD: adds no Stage 4 day"
+  },
+  "themes": {
+    "baking": {
+      "summaries": {
+        "1": "Isabella Rodriguez takes pride in baking fresh pastries and bread with careful craftsmanship every morning.",
+        "2": "Isabella Rodriguez shows steady dedication to the craft of baking bread and pastries at the cafe.",
+        "4": "Isabella Rodriguez keeps devoting herself to careful, high quality baking for the cafe's customers."
+      },
+      "trait": "Isabella Rodriguez is devoted to the careful craft of baking."
+    },
+    "conflict": {
+      "summaries": {
+        "3": "Isabella Rodriguez responds to conflict with her neighbors by apologizing and offering kindness."
+      },
+      "trait": "Isabella Rodriguez meets conflict with apology and kindness."
+    },
+    "letters": {
+      "summaries": {
+        "2": "Isabella Rodriguez cherishes staying in touch with her sister through letters."
+      },
+      "trait": "Isabella Rodriguez values her bond with her sister."
+    },
+    "cake_negative": {
+      "summaries": {
+        "3": "Isabella Rodriguez enjoys decorating cakes and cupcakes for customers' special celebrations."
+      },
+      "trait": "Isabella Rodriguez enjoys making celebrations special for customers."
+    },
+    "lease": {
+      "summaries": {},
+      "trait": "Isabella Rodriguez understands that her cafe's future is uncertain and treasures it deeply."
+    }
+  },
+  "nights": [
+    {
+      "night": 1,
+      "sleep": "2023-02-13 22:00:00",
+      "events": [
+        {"t": "08:05", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is kneading dough for the morning pastries"},
+        {"t": "08:40", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is taking fresh croissants out of the oven"},
+        {"t": "09:15", "importance": 4, "theme": "baking", "text": "Isabella Rodriguez is shaping loaves of bread for the lunch crowd"}
+      ]
+    },
+    {
+      "night": 2,
+      "sleep": "2023-02-14 22:00:00",
+      "events": [
+        {"t": "08:10", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is proofing a batch of cinnamon rolls"},
+        {"t": "08:45", "importance": 4, "theme": "baking", "text": "Isabella Rodriguez is glazing freshly baked pastries"},
+        {"t": "09:20", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is baking sourdough bread for the cafe"},
+        {"t": "12:15", "importance": 5, "theme": "letters", "text": "Isabella Rodriguez is reading a letter from her sister"},
+        {"t": "12:40", "importance": 4, "theme": "letters", "text": "Isabella Rodriguez is writing a reply to her sister"},
+        {"t": "13:05", "importance": 4, "theme": "letters", "text": "Isabella Rodriguez is placing her sister's photo on the cafe shelf"},
+        {"t": "16:30", "importance": 10, "theme": "lease", "text": "Isabella Rodriguez learned that the landlord will not renew the cafe lease"}
+      ]
+    },
+    {
+      "night": 3,
+      "sleep": "2023-02-15 22:00:00",
+      "events": [
+        {"t": "10:20", "importance": 7, "theme": "conflict", "text": "A neighbor shouted at Isabella Rodriguez about the noise from the cafe"},
+        {"t": "10:35", "importance": 7, "theme": "conflict", "text": "Isabella Rodriguez argued with her neighbor about late night noise"},
+        {"t": "10:50", "importance": 6, "theme": "conflict", "text": "Isabella Rodriguez apologized to the upset neighbor"},
+        {"t": "11:05", "importance": 6, "theme": "conflict", "text": "Isabella Rodriguez offered the neighbor a free coffee"},
+        {"t": "13:00", "importance": 6, "theme": "conflict", "text": "Isabella Rodriguez felt tense after the dispute with her neighbor"},
+        {"t": "14:10", "importance": 4, "theme": "cake_negative", "text": "Isabella Rodriguez is piping frosting onto birthday cupcakes"},
+        {"t": "14:40", "importance": 4, "theme": "cake_negative", "text": "Isabella Rodriguez is decorating a wedding cake order"},
+        {"t": "15:10", "importance": 4, "theme": "cake_negative", "text": "Isabella Rodriguez is arranging sprinkles on cookies for a party"}
+      ]
+    },
+    {
+      "night": 4,
+      "sleep": "2023-02-16 22:00:00",
+      "events": [
+        {"t": "08:00", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is rolling out pie crust before opening"},
+        {"t": "08:35", "importance": 5, "theme": "baking", "text": "Isabella Rodriguez is pulling a tray of scones from the oven"},
+        {"t": "09:10", "importance": 4, "theme": "baking", "text": "Isabella Rodriguez is slicing warm banana bread for customers"}
+      ]
+    }
+  ]
+}
