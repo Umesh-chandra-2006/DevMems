@@ -98,3 +98,16 @@ Reference population for the one re-check: every importance score returned by th
 Gemini, event and chat texts only) whose text does not contain "is idle" (those are rule-assigned 1 without a model call).
 Rule unchanged (smallest integer T in {8, 9, 10} with fewer than 5 percent of scores reaching it; 10 if none; provisional if fewer
 than 30 scores). It is applied to that population alone, reported next to the frozen T = 9, and not pooled with the earlier 95.
+
+## 8. Step D population for the T re-check (written and committed BEFORE Step D runs; nothing has been computed from Step D)
+
+Source: PM verdict on the Step C rerun (D-rules).
+
+- Population: every importance score returned by the scoring model in Step D (staged condition, Gemini, event and chat texts only),
+  excluding rule-assigned idle rows (a text containing "is idle" is scored 1 by upstream without a model call). Scores are read from the
+  mirror database of the Step D run; one score is one observation.
+- Rule: the Phase 6 rule, unchanged (smallest integer T in {8, 9, 10} with fewer than 5 percent of scores reaching it; 10 if none).
+- If fewer than 30 scores exist, T stays provisional. If the rule would give a T different from the frozen provisional T = 9, the report
+  states it but the configuration is NOT changed; the PM decides.
+- The population is not pooled with the earlier 95 (Stop 1) or the 22 (Step C rerun); all three are reported side by side.
+- Step D data is never used to tune REINFORCE_THRESHOLD (a separate protocol, section 2, executed at Stop 2 on the scripted fixture).
