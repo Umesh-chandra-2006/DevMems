@@ -122,3 +122,15 @@ Source: PM verdict on Stop 2, design detail 3. It changes no threshold.
   the rule of section 3 is unchanged (the entry itself, or an entry within the threshold of a source entry).
 - Design detail 1 (Path B window) carries a reporting condition: events lost to Path B after the last allowed trait-generation
   attempt are counted and named (`pivotal_lost` in the identity log and in the Stop 3 report).
+
+## 10. T calibration set and rule (follow-up A4; written and committed BEFORE any scoring; PM verdict on Stop 3 and Step D)
+
+- Events: `docs/phase6_t_calibration_events.json`, 24 authored events for Isabella Rodriguez with labels written first (7 mundane, 6 moderate,
+  5 significant, 6 life_changing). They are separate from the Phase 7 events and share no content word with her priors (checked offline by
+  `devmem/memory/p6_t_calibration.py::check_overlap`, empty result; test `test_no_event_shares_a_content_word_with_the_persona_priors`).
+- Scoring: each event once, with the real persona-conditioned staged scorer (no identity context), pinned `gemini-3.1-flash-lite`, normalizer
+  on, one router call per event (hard cap 40), raw replies saved. To be run only after the Gemini daily reset (12:30 IST on 2026-10-07).
+  The script refuses to run a second time.
+- Rule: T is the smallest integer in 8 to 10 such that every event labelled life_changing scores at or above T and no event labelled mundane
+  or moderate does. If no integer qualifies, the report says so. `significant` events are reported and are not part of the rule.
+- The config is not changed by the result; the PM decides. The real T stays provisional (9) until then. Single sample per event; no repeat.

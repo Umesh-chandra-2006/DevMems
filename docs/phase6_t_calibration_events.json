@@ -1,0 +1,32 @@
+{
+  "label": "authored by the Senior Developer; labels written BEFORE any scoring (follow-up A4); separate from the Phase 7 events",
+  "agent": "Isabella Rodriguez",
+  "kind": "event",
+  "labels": ["mundane", "moderate", "significant", "life_changing"],
+  "events": [
+    {"id": "M1", "label": "mundane", "text": "Isabella Rodriguez is wiping down a table"},
+    {"id": "M2", "label": "mundane", "text": "Isabella Rodriguez is restocking napkins at the counter"},
+    {"id": "M3", "label": "mundane", "text": "Isabella Rodriguez is walking to the supply closet"},
+    {"id": "M4", "label": "mundane", "text": "Isabella Rodriguez is checking the clock on the wall"},
+    {"id": "M5", "label": "mundane", "text": "Isabella Rodriguez is washing a coffee mug in the sink"},
+    {"id": "M6", "label": "mundane", "text": "Isabella Rodriguez is sweeping the floor near the entrance"},
+    {"id": "M7", "label": "mundane", "text": "Isabella Rodriguez is putting a receipt in a drawer"},
+    {"id": "O1", "label": "moderate", "text": "A delivery driver dropped off a box of supplies that was a day late"},
+    {"id": "O2", "label": "moderate", "text": "Isabella Rodriguez learned that the bakery down the street raised its prices"},
+    {"id": "O3", "label": "moderate", "text": "A customer left a note about a slow order"},
+    {"id": "O4", "label": "moderate", "text": "Isabella Rodriguez received an invitation to a local business meeting next month"},
+    {"id": "O5", "label": "moderate", "text": "The espresso machine broke and was repaired within the hour"},
+    {"id": "O6", "label": "moderate", "text": "A regular customer thanked Isabella Rodriguez for remembering their order"},
+    {"id": "S1", "label": "significant", "text": "Isabella Rodriguez was offered a place in a regional cafe competition"},
+    {"id": "S2", "label": "significant", "text": "A health inspector issued a written warning about a violation at the cafe"},
+    {"id": "S3", "label": "significant", "text": "The cafe's most experienced employee announced they will leave next week"},
+    {"id": "S4", "label": "significant", "text": "A local newspaper published an article about the cafe"},
+    {"id": "S5", "label": "significant", "text": "Isabella Rodriguez discovered that the cafe's monthly income fell by a third"},
+    {"id": "L1", "label": "life_changing", "text": "Isabella Rodriguez was told that the building housing the cafe will be demolished next month"},
+    {"id": "L2", "label": "life_changing", "text": "Isabella Rodriguez received a diagnosis of a serious illness"},
+    {"id": "L3", "label": "life_changing", "text": "A fire destroyed the kitchen of the cafe overnight"},
+    {"id": "L4", "label": "life_changing", "text": "Isabella Rodriguez learned that a close family member had died"},
+    {"id": "L5", "label": "life_changing", "text": "Isabella Rodriguez was awarded a large sum of money that lets her buy the building"},
+    {"id": "L6", "label": "life_changing", "text": "Isabella Rodriguez was arrested and charged with a crime she did not commit"}
+  ]
+}
