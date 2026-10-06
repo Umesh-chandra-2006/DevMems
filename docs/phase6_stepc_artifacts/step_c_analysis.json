@@ -1,0 +1,123 @@
+{
+ "label": "offline analysis of the live Step C raw-reply log",
+ "total_router_calls_logged": 31,
+ "instances": 23,
+ "calls_by_agent": {
+  "Isabella Rodriguez": 31
+ },
+ "by_prompt_type": {
+  "generate_hourly_schedule": {
+   "instances": 18,
+   "calls": 18,
+   "first_attempt_accepted": 18,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 18
+  },
+  "action_location_sector": {
+   "instances": 1,
+   "calls": 5,
+   "first_attempt_accepted": 0,
+   "attempts_2_to_4": 0,
+   "attempts_5": 1,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 5,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 0
+  },
+  "action_location_object": {
+   "instances": 1,
+   "calls": 5,
+   "first_attempt_accepted": 0,
+   "attempts_2_to_4": 0,
+   "attempts_5": 1,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 5,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 0
+  },
+  "wake_up_hour": {
+   "instances": 1,
+   "calls": 1,
+   "first_attempt_accepted": 1,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 1
+  },
+  "daily_planning": {
+   "instances": 1,
+   "calls": 1,
+   "first_attempt_accepted": 1,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 0,
+   "decomp_format_checked": 0,
+   "normalizer_applied_calls": 1
+  },
+  "task_decomp": {
+   "instances": 1,
+   "calls": 1,
+   "first_attempt_accepted": 1,
+   "attempts_2_to_4": 0,
+   "attempts_5": 0,
+   "delivered_empty": 0,
+   "delivered_echo": 0,
+   "delivered_duration_suffix": 0,
+   "delivered_exotic_space": 0,
+   "decomp_format_ok": 1,
+   "decomp_format_checked": 1,
+   "normalizer_applied_calls": 0
+  }
+ },
+ "schedule_prompts_by_agent": {
+  "Isabella Rodriguez": {
+   "wake_up_hour": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "daily_planning": {
+    "instances": 1,
+    "calls": 1,
+    "first_attempt_accepted": 1,
+    "attempts_5": 0,
+    "final_clean": 1
+   },
+   "generate_hourly_schedule": {
+    "instances": 18,
+    "calls": 18,
+    "first_attempt_accepted": 18,
+    "attempts_5": 0,
+    "final_clean": 18
+   }
+  }
+ },
+ "unclassified_calls": 0,
+ "models_in_log": [
+  "gemini-3.1-flash-lite"
+ ]
+}

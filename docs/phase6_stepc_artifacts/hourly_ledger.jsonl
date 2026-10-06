@@ -1,0 +1,1 @@
+{"label": "interrupted_mid_step", "sim_clock": "2023-02-13 06:00:00", "step": 0, "partial": true, "wall_seconds": 222.8, "router_calls_so_far": 31, "calls": 31, "tokens_in": 32820, "tokens_out": 9272, "by_purpose": {"planning": {"calls": 31, "tokens_in": 32820, "tokens_out": 9272}}, "by_agent": {"Isabella Rodriguez": {"calls": 31, "tokens_in": 32820, "tokens_out": 9272}}}

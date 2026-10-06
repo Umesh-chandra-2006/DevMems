@@ -160,6 +160,7 @@ class TestNormalizerWiring(unittest.TestCase):
         self.assertEqual(rows[0]["raw"], DIRTY)
         self.assertEqual(rows[0]["delivered"], CLEAN)
         self.assertEqual(rows[0]["agent_id"], "Isabella Rodriguez")
+        self.assertEqual(rows[0]["prompt"], self.prompts["hourly_schedule"])  # the full prompt, for offline retry counting
         self.assertEqual(rows[1]["raw"], rows[1]["delivered"])
 
 

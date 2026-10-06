@@ -1,0 +1,54 @@
+{
+ "label": "live",
+ "sim_code": "p5_step_c_gemini",
+ "model": "gemini-3.1-flash-lite",
+ "start_clock": "2023-02-13 06:00:00",
+ "final_clock": "2023-02-13 06:00:00",
+ "final_step": 0,
+ "outcome": "exception: KeyError: 'kitchen'",
+ "saved": false,
+ "cap": 150,
+ "router_counter": {
+  "count": 31,
+  "cap": 150,
+  "by_purpose": {
+   "planning": 31
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 31
+  }
+ },
+ "wall_seconds": 222.8,
+ "calls_by_first_key": {
+  "GEMINI_KEY_4": 11,
+  "GEMINI_KEY_5": 10,
+  "GEMINI_KEY_6": 10
+ },
+ "normalizer_stats": {
+  "wake_up_hour": {
+   "applied": 1,
+   "changed": 1
+  },
+  "daily_plan": {
+   "applied": 1,
+   "changed": 1
+  },
+  "hourly_schedule": {
+   "applied": 18,
+   "changed": 18
+  }
+ },
+ "router_failures": {
+  "count": 0,
+  "by_function": {},
+  "last_errors": []
+ },
+ "autosave_steps": [],
+ "schedule_check": {
+  "status": "not_run",
+  "step": 0,
+  "scans_run": 0,
+  "findings": []
+ },
+ "embedding_mode": "offline (deterministic vectors, zero embedding requests)"
+}

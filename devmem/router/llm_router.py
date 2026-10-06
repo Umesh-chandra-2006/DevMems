@@ -100,7 +100,7 @@ def estimate_tokens(prompt: str, max_tokens: Optional[int] = None) -> int:
     return max(1, prompt_tokens + out_tokens)
 
 
-def _log_raw_reply(purpose, agent_id, model, raw_text, delivered, norm_kind) -> None:
+def _log_raw_reply(purpose, agent_id, model, raw_text, delivered, norm_kind, prompt=None) -> None:
     """Append the FULL raw reply (and what the caller receives) to the JSONL named by DEVMEM_RAW_REPLY_LOG. Off by default."""
     path = os.environ.get("DEVMEM_RAW_REPLY_LOG")
     if not path:
@@ -108,7 +108,7 @@ def _log_raw_reply(purpose, agent_id, model, raw_text, delivered, norm_kind) -> 
     import json
     with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps({"purpose": purpose, "agent_id": agent_id, "model": model, "raw": raw_text,
-                            "delivered": delivered, "normalizer_kind": norm_kind}) + "\n")
+                            "delivered": delivered, "normalizer_kind": norm_kind, "prompt": prompt}) + "\n")
 
 
 def log_llm_call(
@@ -323,7 +323,7 @@ def call_llm(
                     if delivered != raw_text:
                         import dataclasses
                         response = dataclasses.replace(response, text=delivered)
-                    _log_raw_reply(purpose, agent_id, model, raw_text, delivered, norm_kind)
+                    _log_raw_reply(purpose, agent_id, model, raw_text, delivered, norm_kind, prompt)
                     return response if return_obj else response.text
 
                 except RateLimitError as rle:

@@ -1,0 +1,57 @@
+{
+ "label": "offline replay of saved live replies through upstream's own code; zero calls",
+ "results": [
+  {
+   "prompt": "action_sector",
+   "variant": "none",
+   "prompt_equals_live_prompt": false,
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "attempts_used": 5,
+   "result": "Isabella Rodriguez's apartment",
+   "error": null
+  },
+  {
+   "prompt": "action_sector",
+   "variant": "spaces+duration",
+   "prompt_equals_live_prompt": false,
+   "validate": [
+    true
+   ],
+   "attempts_used": 1,
+   "result": "Isabella Rodriguez's apartment",
+   "error": null
+  },
+  {
+   "prompt": "action_arena",
+   "variant": "none",
+   "prompt_equals_live_prompt": true,
+   "validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "attempts_used": 5,
+   "result": "kitchen",
+   "error": null
+  },
+  {
+   "prompt": "action_arena",
+   "variant": "spaces+duration",
+   "prompt_equals_live_prompt": true,
+   "validate": [
+    true
+   ],
+   "attempts_used": 1,
+   "result": "main room",
+   "error": null
+  }
+ ]
+}
