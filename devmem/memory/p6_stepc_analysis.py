@@ -17,7 +17,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-ART = ROOT / "docs" / "phase6_stepc_artifacts"
+ART = ROOT / "docs" / (sys.argv[1] if len(sys.argv) > 1 else "phase6_stepc_artifacts")
 TEMPLATES = ROOT / "reverie/reverie/backend_server/persona/prompt_template"
 sys.path.insert(0, str(ROOT))
 from devmem.router.output_normalizer import has_duration_suffix, has_exotic_space  # noqa: E402

@@ -1,0 +1,1104 @@
+{
+ "label": "offline; zero live calls",
+ "templates": [
+  {
+   "template": "persona/prompt_template/safety/anthromorphosization_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v1/action_location_object_vMar11.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v1/action_location_sector_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v1/action_object_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/agent_chat_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/convo_to_thoughts_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/create_conversation_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/daily_planning_v6.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "daily_plan: Unicode spaces mapped (original scope) and the annotation stripped"
+  },
+  {
+   "template": "persona/prompt_template/v2/decide_to_react_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/decide_to_talk_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_event_triple_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_focal_pt_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_hourly_schedule_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "hourly_schedule: Unicode spaces mapped (original scope) and the annotation stripped"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_next_convo_line_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_obj_event_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/generate_pronunciatio_v1.txt",
+   "upstream_can_read_it_here": false,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/get_keywords_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/insight_and_evidence_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/keyword_to_thoughts_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/memo_on_convo_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/new_decomp_schedule_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": false,
+   "veto_expected_from_name": true,
+   "veto_matches_expectation": true,
+   "why": "decomposition prompt: its parser reads the annotation (run_gpt_prompt.py lines 374 and 381); reply returned untouched"
+  },
+  {
+   "template": "persona/prompt_template/v2/planning_thought_on_convo_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/poignancy_chat_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/poignancy_event_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/poignancy_thought_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/summarize_chat_ideas_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/summarize_chat_relationship_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/summarize_conversation_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/summarize_ideas_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v2/task_decomp_v3.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": false,
+   "veto_expected_from_name": true,
+   "veto_matches_expectation": true,
+   "why": "decomposition prompt: its parser reads the annotation (run_gpt_prompt.py lines 374 and 381); reply returned untouched"
+  },
+  {
+   "template": "persona/prompt_template/v2/wake_up_hour_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "wake_up_hour: Unicode spaces mapped (original scope) and the annotation stripped"
+  },
+  {
+   "template": "persona/prompt_template/v2/whisper_inner_thought_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/action_location_sector_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/agent_chat_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_event_triple_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_focal_pt_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_hourly_schedule_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "hourly_schedule: Unicode spaces mapped (original scope) and the annotation stripped"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_next_convo_line_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_obj_event_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/generate_pronunciatio_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/iterative_convo_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/memo_on_convo_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/poignancy_chat_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/poignancy_event_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/poignancy_thought_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/summarize_chat_ideas_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/summarize_chat_relationship_v2.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/summarize_conversation_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "persona/prompt_template/v3_ChatGPT/summarize_ideas_v1.txt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "devmem staged importance scoring prompt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  },
+  {
+   "template": "devmem consolidation summary prompt",
+   "upstream_can_read_it_here": true,
+   "stripped": true,
+   "veto_expected_from_name": false,
+   "veto_matches_expectation": true,
+   "why": "call path, not decomposition: the annotation is stripped, nothing else is changed"
+  }
+ ],
+ "stepc_replays": [
+  {
+   "prompt_type": "wake_up_hour",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": 6,
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": 6,
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "daily_plan",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": [
+     "wake up and complete the morning routine at 6:00 am",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": [
+     "wake up and complete the morning routine at 6:00 am",
+     "open Hobbs Cafe at 8:00 am",
+     "serve customers and manage cafe operations from 9:00 am to 1:00 pm",
+     "take a lunch break at 1:00 pm",
+     "continue managing the cafe and gathering party supplies for tomorrow's event from 1:30 pm to 8:00 pm",
+     "close Hobbs Cafe and clean up at 8:00 pm",
+     "prepare party decorations and finish event preparations from 9:00 pm to 10:30 pm"
+    ],
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "waking up and completing her morning routine (duration in minutes: 60, minutes left: 1380)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "waking up and completing her morning routine",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "preparing for work and commuting to Hobbs Cafe (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "preparing for work and commuting to Hobbs Cafe",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "opening Hobbs Cafe (duration in minutes: 60, minutes left: 60)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "opening Hobbs Cafe",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing cafe operations",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "taking a lunch break (duration in minutes: 30, minutes left: 30)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "taking a lunch break",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "managing the cafe and gathering party supplies (duration in minutes: 60, minutes left: 360)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "managing the cafe and gathering party supplies",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "gathering party supplies and managing the cafe (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "gathering party supplies and managing the cafe",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "gathering party supplies and managing the cafe (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "gathering party supplies and managing the cafe",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and gathering party supplies (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and gathering party supplies",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing party supply inventory (duration in minutes: 60, minutes left: 120)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing party supply inventory",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing party supply inventory (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "serving customers and managing party supply inventory",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "closing Hobbs Cafe and cleaning up after the day's operations (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "closing Hobbs Cafe and cleaning up after the day's operations",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "preparing party decorations for the Valentine's Day event (duration in minutes: 60, minutes left: 30)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "preparing party decorations for the Valentine's Day event",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "finishing up the party decorations for the Valentine's Day event (duration in minutes: 30, minutes left: 30)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "finishing up the party decorations for the Valentine's Day event",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "hourly_schedule",
+   "live_replies": 1,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "winding down for the night and going to bed (duration in minutes: 60, minutes left: 0)",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "winding down for the night and going to bed",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "task_decomp",
+   "live_replies": 1,
+   "stripped_by_rule": false,
+   "reply_identical_flag_on_vs_off": true,
+   "note": "veto set: verified through the router in test_normalizer_call_path, not replayed through upstream (state-dependent)"
+  },
+  {
+   "prompt_type": "action_sector",
+   "live_replies": 5,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "attempts": 5,
+    "result": "Isabella Rodriguez's apartment",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "Isabella Rodriguez's apartment",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  },
+  {
+   "prompt_type": "action_arena",
+   "live_replies": 5,
+   "stripped_by_rule": true,
+   "prompt_equals_live_prompt": true,
+   "before": {
+    "validate": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "attempts": 5,
+    "result": "kitchen",
+    "error": null
+   },
+   "after": {
+    "validate": [
+     true
+    ],
+    "attempts": 1,
+    "result": "main room",
+    "error": null
+   },
+   "delivered_after_has_annotation": false
+  }
+ ],
+ "synthetic_validator_checks": [
+  {
+   "function": "action game object",
+   "reply_form": "plain",
+   "label": "synthetic",
+   "clean_result": "bed",
+   "annotated_flag_off": {
+    "result": "closet",
+    "attempts": 1,
+    "error": null
+   },
+   "annotated_flag_on": {
+    "result": "bed",
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": false
+  },
+  {
+   "function": "event triple",
+   "reply_form": "plain",
+   "label": "synthetic",
+   "clean_result": [
+    "Isabella Rodriguez",
+    "wake up",
+    "bed"
+   ],
+   "annotated_flag_off": {
+    "result": [
+     "Isabella Rodriguez",
+     "wake up",
+     "bed"
+    ],
+    "attempts": 1,
+    "error": null
+   },
+   "annotated_flag_on": {
+    "result": [
+     "Isabella Rodriguez",
+     "wake up",
+     "bed"
+    ],
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": true
+  },
+  {
+   "function": "act obj event triple",
+   "reply_form": "plain",
+   "label": "synthetic",
+   "clean_result": [
+    "bed",
+    "is",
+    "being used"
+   ],
+   "annotated_flag_off": {
+    "result": [
+     "bed",
+     "is",
+     "being used"
+    ],
+    "attempts": 1,
+    "error": null
+   },
+   "annotated_flag_on": {
+    "result": [
+     "bed",
+     "is",
+     "being used"
+    ],
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": true
+  },
+  {
+   "function": "pronunciatio",
+   "reply_form": "json",
+   "label": "synthetic",
+   "clean_result": "\ud83d\ude34",
+   "annotated_flag_off": {
+    "result": "\ud83d\ude34 (",
+    "attempts": 1,
+    "error": null
+   },
+   "annotated_flag_on": {
+    "result": "\ud83d\ude34",
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": false
+  },
+  {
+   "function": "act obj desc",
+   "reply_form": "json",
+   "label": "synthetic",
+   "clean_result": "being used by Isabella",
+   "annotated_flag_off": {
+    "result": "being used by Isabella (duration in minutes: 5, minutes left: 5)",
+    "attempts": 1,
+    "error": null
+   },
+   "annotated_flag_on": {
+    "result": "being used by Isabella",
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": false
+  },
+  {
+   "function": "poignancy event",
+   "reply_form": "json",
+   "label": "synthetic",
+   "clean_result": 3,
+   "annotated_flag_off": {
+    "result": null,
+    "attempts": 3,
+    "error": "TypeError: 'NoneType' object is not subscriptable"
+   },
+   "annotated_flag_on": {
+    "result": 3,
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": false
+  },
+  {
+   "function": "poignancy chat",
+   "reply_form": "json",
+   "label": "synthetic",
+   "clean_result": 3,
+   "annotated_flag_off": {
+    "result": null,
+    "attempts": 3,
+    "error": "TypeError: 'NoneType' object is not subscriptable"
+   },
+   "annotated_flag_on": {
+    "result": 3,
+    "attempts": 1,
+    "error": null
+   },
+   "flag_on_equals_clean": true,
+   "flag_off_equals_clean": false
+  }
+ ]
+}

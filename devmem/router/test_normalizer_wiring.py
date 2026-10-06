@@ -1,5 +1,5 @@
 """
-Offline tests for the router wiring of the output normalizer (DEVMEM_OUTPUT_NORMALIZER, default off).
+Offline tests for the router wiring of the output normalizer (DEVMEM_OUTPUT_NORMALIZER, default off; revised rule: strip the exact annotation on every prompt except the decomposition veto set).
 
 Prompts are rendered by upstream's own code from the real templates; the provider layer is stubbed (synthetic replies); `call_llm`
 is the real router function. Checks: default off changes nothing; on, it touches only the three allow-listed prompts and never the
@@ -121,14 +121,21 @@ class TestNormalizerWiring(unittest.TestCase):
             self.assertEqual(self.call(prompt, purpose="planning"), DIRTY, name)
         self.assertEqual(on.STATS, {})
 
-    def test_on_normalizes_only_allow_listed_prompts(self):
+    def test_on_strips_the_annotation_everywhere_except_the_decomposition_veto_set(self):
         os.environ[on.ENV_FLAG] = "on"
+        # the three space-mapped prompts: Unicode spaces mapped AND annotation stripped
         for kind in ("wake_up_hour", "daily_plan", "hourly_schedule"):
             self.assertEqual(self.call(self.prompts[kind], purpose="planning"), CLEAN, kind)
-        for name in ("task_decomp", "new_decomp_schedule", "pronunciatio", "event_triple", "event_poignancy_upstream",
-                     "focal_pt", "staged_scoring", "consolidation_summary"):
+        # every other prompt in the call path: the annotation is stripped and NOTHING else changes (U+202F stays)
+        annotation_only = "eating breakfast at 7:00 am"
+        others = ("pronunciatio", "event_triple", "event_poignancy_upstream", "focal_pt", "staged_scoring", "consolidation_summary")
+        for name in others:
+            self.assertEqual(self.call(self.prompts[name], purpose="planning"), annotation_only, name)
+        # the veto set keeps the annotation
+        for name in ("task_decomp", "new_decomp_schedule"):
             self.assertEqual(self.call(self.prompts[name], purpose="planning"), DIRTY, f"{name} must keep its annotation")
-        self.assertEqual({k: v["applied"] for k, v in on.STATS.items()}, {"wake_up_hour": 1, "daily_plan": 1, "hourly_schedule": 1})
+        self.assertEqual({k: v["applied"] for k, v in on.STATS.items()},
+                         {"wake_up_hour": 1, "daily_plan": 1, "hourly_schedule": 1, "call_path": len(others)})
 
     def test_flag_value_other_than_on_is_off(self):
         for value in ("off", "", "0", "true", "ON "):

@@ -38,37 +38,62 @@ def has_duration_suffix(text: str) -> bool:
 
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Router wiring (Phase 5, behind DEVMEM_OUTPUT_NORMALIZER; default OFF)
+# Router wiring (behind DEVMEM_OUTPUT_NORMALIZER; default OFF). REVISED RULE (PM verdict after Step C):
 #
-# The router calls `maybe_normalize(prompt, text)` on every reply. It does nothing unless DEVMEM_OUTPUT_NORMALIZER is "on"
-# and the prompt is one of the three allow-listed upstream prompts below. It is an ALLOW-LIST: every other prompt (task
-# decomposition, action generation, conversation, scoring, reflection, summaries) is left untouched, and two decomposition
-# markers veto even an allow-listed match. The flag is process-wide, so it applies identically to baseline and staged.
+#   * Strip ONLY the exact annotation  "(duration in minutes: <n>, minutes left: <n>)"  (see STRICT_ANNOTATION), together with the
+#     spaces or tabs directly before it. Nothing else is removed: text that does not contain that exact pattern comes back byte
+#     for byte.
+#   * Apply it to EVERY reply in the simulation call path EXCEPT the decomposition veto set (prompts whose parser needs the
+#     annotation: task_decomp_v1/v2/v3 in both template folders, new_decomp_schedule_v1; found by code-reading
+#     run_gpt_prompt.py: only the task-decomposition parser reads "(duration in minutes:" and "(total duration in minutes").
+#   * Unicode-space mapping stays exactly as before: only for the three originally covered prompts (wake-up hour, daily plan,
+#     hourly schedule). For every other prompt the only change ever made is removing the annotation.
+#   * The flag is process-wide, so it applies identically to baseline and staged.
+#
+# Observed variants of the annotation that this rule handles (443 occurrences in 94 saved replies, Phase 5 probes and Step C).
+# In every one the annotation is preceded by a single ASCII space and has exactly this text; what differs is what follows it:
+#   V1 followed by a newline (end of line)      290      V4 at the very end of the reply          38
+#   V2 followed by a space (mid line)             55      V5 followed by a period                  11
+#   V3 followed by a comma                        47      V6 followed by a semicolon                2
+# No non-exact lookalike (other wording, other case, missing "minutes left") occurred; any such text is left untouched.
 # ---------------------------------------------------------------------------------------------------------------------
 import os
+import re
 from typing import Dict, Optional, Tuple
 
 ENV_FLAG = "DEVMEM_OUTPUT_NORMALIZER"
-STATS: Dict[str, Dict[str, int]] = {}  # kind -> {"applied": n, "changed": n}
+STATS: Dict[str, Dict[str, int]] = {}  # label -> {"applied": n, "changed": n}
 
-# Fragments of the rendered upstream templates (wake_up_hour_v1, daily_planning_v6, generate_hourly_schedule_v2).
+STRICT_ANNOTATION = re.compile(r"[ \t]*\(duration in minutes: \d+, minutes left: \d+\)")
+
+# Fragments of the rendered decomposition prompts. Their presence vetoes normalization of the reply.
+#   "Describe subtasks in 5 min increments"  all six task_decomp templates (v2 and v3_ChatGPT folders)
+#   "(total duration in minutes"              the task-decomposition question line the parser itself reads from the prompt
+#   "The revised schedule:"                   new_decomp_schedule_v1
+VETO_MARKERS: Tuple[str, ...] = ("Describe subtasks in 5 min increments", "(total duration in minutes", "The revised schedule:")
+
+# The three prompts for which the Unicode-space mapping is also applied (scope unchanged from the first wiring).
 _KIND_MARKERS: Tuple[Tuple[str, str], ...] = (
     ("hourly_schedule", "Hourly schedule format:"),
     ("daily_plan", "plan today in broad-strokes"),
     ("wake_up_hour", "wake up hour:"),
 )
-# Fragments of the rendered decomposition templates (task_decomp_v3, new_decomp_schedule_v1). Their presence vetoes the match.
-_VETO_MARKERS: Tuple[str, ...] = ("Describe subtasks in 5 min increments", "The revised schedule:")
 
 
 def enabled() -> bool:
     return os.environ.get(ENV_FLAG, "off").strip().lower() == "on"
 
 
-def prompt_kind(prompt: str) -> Optional[str]:
-    """Which allow-listed prompt this is, or None. Decomposition prompts always return None."""
+def vetoed(prompt: str) -> bool:
+    """True for the decomposition prompts, whose parser needs the annotation."""
     text = str(prompt)
-    if any(v in text for v in _VETO_MARKERS):
+    return any(v in text for v in VETO_MARKERS)
+
+
+def prompt_kind(prompt: str) -> Optional[str]:
+    """Which of the three space-mapped prompts this is, or None. Vetoed prompts always return None."""
+    text = str(prompt)
+    if vetoed(text):
         return None
     for kind, marker in _KIND_MARKERS:
         if marker in text:
@@ -76,15 +101,22 @@ def prompt_kind(prompt: str) -> Optional[str]:
     return None
 
 
+def strip_annotation_exact(text: str) -> str:
+    return STRICT_ANNOTATION.sub("", text)
+
+
 def maybe_normalize(prompt: str, text: str) -> Tuple[str, Optional[str]]:
-    """Returns (text, kind). `kind` is None when nothing was applied (flag off, or prompt not allow-listed)."""
+    """Returns (text, label). label is None when nothing was applied (flag off, or a vetoed decomposition prompt); otherwise the
+    prompt's kind for the three space-mapped prompts, or "call_path" for every other non-vetoed prompt."""
     if not enabled():
         return text, None
-    kind = prompt_kind(prompt)
-    if kind is None:
+    if vetoed(prompt):
         return text, None
-    out = normalize_output(text, strip_duration=True)
-    s = STATS.setdefault(kind, {"applied": 0, "changed": 0})
+    kind = prompt_kind(prompt)
+    out = normalize_unicode_spaces(text) if kind is not None else text
+    out = strip_annotation_exact(out)
+    label = kind or "call_path"
+    s = STATS.setdefault(label, {"applied": 0, "changed": 0})
     s["applied"] += 1
     s["changed"] += 1 if out != text else 0
-    return out, kind
+    return out, label
