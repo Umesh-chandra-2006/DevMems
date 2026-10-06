@@ -2,25 +2,57 @@
 Providers Adapter: Concrete client implementations for external LLM providers
 (Groq, Google Gemini, NVIDIA NIM/Nemotron).
 Thin adapters handling HTTP requests, response parsing, and error mapping.
+Includes passive 429 capture for runtime rate-limit telemetry.
 """
 
 from dataclasses import dataclass
 import json
+import logging
+import os
 import requests
-
-
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
-
-class RateLimitError(Exception):
-    """Raised when a provider returns HTTP 429 or quota exhaustion."""
-    pass
+logger = logging.getLogger("devmem.router.providers")
 
 
 class ProviderError(Exception):
-    """Raised on provider-side errors (5xx, bad request, network failure)."""
+    """Base class for all provider-side errors."""
     pass
+
+
+class RateLimitError(ProviderError):
+    """Raised when a provider returns HTTP 429 or quota exhaustion."""
+    def __init__(
+        self,
+        message: str,
+        status_code: int = 429,
+        headers: Optional[Dict[str, Any]] = None,
+        body: Optional[Union[str, Dict[str, Any]]] = None,
+        provider: str = ""
+    ):
+        super().__init__(message)
+        self.status_code = status_code
+        self.headers = dict(headers) if headers else {}
+        self.body = body if body is not None else message
+        self.provider = provider
+
+
+class AuthOrBillingError(ProviderError):
+    """Raised on HTTP 401, 402, 403 auth or billing failure."""
+    def __init__(
+        self,
+        message: str,
+        status_code: int = 401,
+        headers: Optional[Dict[str, Any]] = None,
+        body: Optional[Union[str, Dict[str, Any]]] = None,
+        provider: str = ""
+    ):
+        super().__init__(message)
+        self.status_code = status_code
+        self.headers = dict(headers) if headers else {}
+        self.body = body if body is not None else message
+        self.provider = provider
 
 
 class AllProvidersExhaustedError(Exception):
@@ -28,14 +60,37 @@ class AllProvidersExhaustedError(Exception):
     pass
 
 
+class ModelPinnedError(ProviderError):
+    """Raised when a pinned model fails or rate-limits and fallback is prohibited."""
+    pass
+
+
+class ProviderTimeoutError(ProviderError):
+    """Raised when a provider request times out."""
+    def __init__(self, message: str, provider: str = "", timeout: Optional[int] = None):
+        super().__init__(message)
+        self.provider = provider
+        self.timeout = timeout
+
+
 @dataclass
 class ProviderResponse:
     text: str
     tokens_in: int
     tokens_out: int
+    reasoning_tokens: Optional[int] = None
 
     def __str__(self) -> str:
         return self.text
+
+
+def record_observed_429(provider: str, status_code: int, headers: Any, body_text: str) -> None:
+    """Passively record any observed 429 response to observed.jsonl in redacted form."""
+    try:
+        from devmem.router.capture_429 import append_observed_429
+        append_observed_429(provider, status_code, dict(headers), str(body_text))
+    except Exception:
+        pass
 
 
 def call_groq(
@@ -63,34 +118,31 @@ def call_groq(
         "temperature": temperature if temperature is not None else 0.1
     }
 
-    for attempt in range(5):
-        try:
-            response = requests.post(url, headers=headers, json=payload, timeout=timeout)
-        except Exception as e:
-            raise ProviderError(f"Groq network error: {e}") from e
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=timeout)
+    except requests.exceptions.Timeout as te:
+        raise ProviderTimeoutError(f"Groq request timed out after {timeout}s: {te}", provider="groq", timeout=timeout) from te
+    except Exception as e:
+        raise ProviderError(f"Groq network error: {e}") from e
 
-        if response.status_code == 429:
-            err_text = response.text
-            retry_sec = None
-            if "retry-after" in response.headers:
-                try:
-                    retry_sec = float(response.headers["retry-after"])
-                except Exception:
-                    pass
-            if retry_sec is None and "Please try again in " in err_text:
-                try:
-                    part = err_text.split("Please try again in ")[1].split("s")[0].strip()
-                    retry_sec = float(part)
-                except Exception:
-                    pass
+    if response.status_code in [401, 402, 403]:
+        raise AuthOrBillingError(
+            f"Groq auth/billing error (HTTP {response.status_code}): {response.text}",
+            status_code=response.status_code,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="groq"
+        )
 
-            if attempt < 4 and (retry_sec is not None or "tokens per minute" in err_text.lower() or "tpm" in err_text.lower() or "rate_limit_exceeded" in err_text.lower()):
-                sleep_duration = (retry_sec + 1.0) if (retry_sec is not None and retry_sec <= 30) else 6.0
-                time.sleep(sleep_duration)
-                continue
-
-            raise RateLimitError(f"Groq rate limit exceeded (429): {err_text}")
-        break
+    if response.status_code == 429:
+        record_observed_429("groq", response.status_code, response.headers, response.text)
+        raise RateLimitError(
+            f"Groq rate limit exceeded (429): {response.text}",
+            status_code=429,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="groq"
+        )
 
     if response.status_code != 200:
         raise ProviderError(f"Groq returned HTTP {response.status_code}: {response.text}")
@@ -101,7 +153,8 @@ def call_groq(
         usage = data.get("usage", {})
         tokens_in = usage.get("prompt_tokens", 0)
         tokens_out = usage.get("completion_tokens", 0)
-        return ProviderResponse(text=text, tokens_in=tokens_in, tokens_out=tokens_out)
+        reasoning_tokens = usage.get("completion_tokens_details", {}).get("reasoning_tokens")
+        return ProviderResponse(text=text, tokens_in=tokens_in, tokens_out=tokens_out, reasoning_tokens=reasoning_tokens)
     except Exception as e:
         raise ProviderError(f"Failed to parse Groq response: {e}") from e
 
@@ -134,18 +187,31 @@ def call_gemini(
             "parts": [{"text": system_prompt}]
         }
 
-    for attempt in range(4):
-        try:
-            response = requests.post(url, headers=headers, json=payload, timeout=timeout)
-        except Exception as e:
-            raise ProviderError(f"Gemini network error: {e}") from e
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=timeout)
+    except requests.exceptions.Timeout as te:
+        raise ProviderTimeoutError(f"Gemini request timed out after {timeout}s: {te}", provider="gemini", timeout=timeout) from te
+    except Exception as e:
+        raise ProviderError(f"Gemini network error: {e}") from e
 
-        if response.status_code == 429:
-            if attempt < 3:
-                time.sleep(5.0)
-                continue
-            raise RateLimitError(f"Gemini rate limit exceeded (429): {response.text}")
-        break
+    if response.status_code in [401, 402, 403]:
+        raise AuthOrBillingError(
+            f"Gemini auth/billing error (HTTP {response.status_code}): {response.text}",
+            status_code=response.status_code,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="gemini"
+        )
+
+    if response.status_code == 429:
+        record_observed_429("gemini", response.status_code, response.headers, response.text)
+        raise RateLimitError(
+            f"Gemini rate limit exceeded (429): {response.text}",
+            status_code=429,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="gemini"
+        )
 
     if response.status_code != 200:
         raise ProviderError(f"Gemini returned HTTP {response.status_code}: {response.text}")
@@ -192,11 +258,30 @@ def call_nemotron(
 
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=timeout)
+    except requests.exceptions.Timeout as te:
+        raise ProviderTimeoutError(f"Nemotron request timed out after {timeout}s: {te}", provider="nemotron", timeout=timeout) from te
     except Exception as e:
         raise ProviderError(f"Nemotron network error: {e}") from e
 
+    if response.status_code in [401, 402, 403]:
+        raise AuthOrBillingError(
+            f"Nemotron auth/billing error (HTTP {response.status_code}): {response.text}",
+            status_code=response.status_code,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="nemotron"
+        )
+
     if response.status_code == 429:
-        raise RateLimitError(f"Nemotron rate limit exceeded (429): {response.text}")
+        record_observed_429("nemotron", response.status_code, response.headers, response.text)
+        raise RateLimitError(
+            f"Nemotron rate limit exceeded (429): {response.text}",
+            status_code=429,
+            headers=dict(response.headers),
+            body=response.text,
+            provider="nemotron"
+        )
+
     if response.status_code != 200:
         raise ProviderError(f"Nemotron returned HTTP {response.status_code}: {response.text}")
 

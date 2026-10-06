@@ -1,0 +1,1833 @@
+{
+  "test_start_iso": "2026-10-05 14:03:45",
+  "pinned_model": "openai/gpt-oss-20b",
+  "event_results": {
+    "M01": {
+      "control_mismatch": [
+        {
+          "score": 2,
+          "tokens_in": 502,
+          "tokens_out": 230,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 502,
+          "tokens_out": 202,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 502,
+          "tokens_out": 190,
+          "raw_resp": "2"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 88,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 139,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 89,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M02": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 508,
+          "tokens_out": 229,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 508,
+          "tokens_out": 226,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 508,
+          "tokens_out": 213,
+          "raw_resp": "2"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 78,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 69,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 108,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M03": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 503,
+          "tokens_out": 116,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 503,
+          "tokens_out": 114,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 503,
+          "tokens_out": 114,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 493,
+          "tokens_out": 105,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 493,
+          "tokens_out": 115,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 493,
+          "tokens_out": 99,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M04": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 504,
+          "tokens_out": 200,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 504,
+          "tokens_out": 241,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 504,
+          "tokens_out": 105,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 96,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 65,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 159,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M05": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 510,
+          "tokens_out": 115,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 510,
+          "tokens_out": 222,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 510,
+          "tokens_out": 143,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 500,
+          "tokens_out": 93,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 500,
+          "tokens_out": 94,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 500,
+          "tokens_out": 94,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M06": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 508,
+          "tokens_out": 105,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 508,
+          "tokens_out": 92,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 508,
+          "tokens_out": 105,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 92,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 103,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 498,
+          "tokens_out": 103,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M07": {
+      "control_mismatch": [
+        {
+          "score": 2,
+          "tokens_in": 501,
+          "tokens_out": 170,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 501,
+          "tokens_out": 131,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 501,
+          "tokens_out": 178,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 491,
+          "tokens_out": 85,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 491,
+          "tokens_out": 155,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 491,
+          "tokens_out": 86,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M08": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 506,
+          "tokens_out": 238,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 506,
+          "tokens_out": 148,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 506,
+          "tokens_out": 169,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 496,
+          "tokens_out": 80,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 496,
+          "tokens_out": 78,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 496,
+          "tokens_out": 101,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M09": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 504,
+          "tokens_out": 252,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 504,
+          "tokens_out": 279,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 504,
+          "tokens_out": 94,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 98,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 115,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 73,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M10": {
+      "control_mismatch": [
+        {
+          "score": 2,
+          "tokens_in": 508,
+          "tokens_out": 133,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 508,
+          "tokens_out": 127,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 508,
+          "tokens_out": 96,
+          "raw_resp": "2"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 2,
+          "tokens_in": 498,
+          "tokens_out": 108,
+          "raw_resp": "**Poignancy rating: 2**"
+        },
+        {
+          "score": 2,
+          "tokens_in": 498,
+          "tokens_out": 100,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 498,
+          "tokens_out": 89,
+          "raw_resp": "2"
+        }
+      ]
+    },
+    "SF01": {
+      "control_mismatch": [
+        {
+          "score": 8,
+          "tokens_in": 518,
+          "tokens_out": 191,
+          "raw_resp": "8"
+        },
+        {
+          "score": 4,
+          "tokens_in": 518,
+          "tokens_out": 145,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 518,
+          "tokens_out": 176,
+          "raw_resp": "4"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 4,
+          "tokens_in": 508,
+          "tokens_out": 125,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 508,
+          "tokens_out": 101,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 508,
+          "tokens_out": 110,
+          "raw_resp": "4"
+        }
+      ]
+    },
+    "SF02": {
+      "control_mismatch": [
+        {
+          "score": 4,
+          "tokens_in": 512,
+          "tokens_out": 119,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 5,
+          "tokens_in": 512,
+          "tokens_out": 353,
+          "raw_resp": "**Poignancy rating for Isabella Rodriguez: 5**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 512,
+          "tokens_out": 380,
+          "raw_resp": "4"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 4,
+          "tokens_in": 502,
+          "tokens_out": 109,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 502,
+          "tokens_out": 145,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 502,
+          "tokens_out": 94,
+          "raw_resp": "**Poignancy rating: 4**"
+        }
+      ]
+    },
+    "SF03": {
+      "control_mismatch": [
+        {
+          "score": 4,
+          "tokens_in": 515,
+          "tokens_out": 116,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 515,
+          "tokens_out": 113,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 515,
+          "tokens_out": 121,
+          "raw_resp": "**Poignancy rating: 4**"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 4,
+          "tokens_in": 505,
+          "tokens_out": 152,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 505,
+          "tokens_out": 86,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 505,
+          "tokens_out": 124,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ]
+    },
+    "SF04": {
+      "control_mismatch": [
+        {
+          "score": 5,
+          "tokens_in": 513,
+          "tokens_out": 312,
+          "raw_resp": "5"
+        },
+        {
+          "score": 5,
+          "tokens_in": 513,
+          "tokens_out": 205,
+          "raw_resp": "**5**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 513,
+          "tokens_out": 178,
+          "raw_resp": "**7**"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 3,
+          "tokens_in": 503,
+          "tokens_out": 121,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 503,
+          "tokens_out": 117,
+          "raw_resp": "4"
+        },
+        {
+          "score": 5,
+          "tokens_in": 503,
+          "tokens_out": 241,
+          "raw_resp": "**Poignancy rating: 5**"
+        }
+      ]
+    },
+    "SF05": {
+      "control_mismatch": [
+        {
+          "score": 7,
+          "tokens_in": 514,
+          "tokens_out": 151,
+          "raw_resp": "7"
+        },
+        {
+          "score": 5,
+          "tokens_in": 514,
+          "tokens_out": 159,
+          "raw_resp": "5"
+        },
+        {
+          "score": 4,
+          "tokens_in": 514,
+          "tokens_out": 128,
+          "raw_resp": "4"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 4,
+          "tokens_in": 504,
+          "tokens_out": 121,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 504,
+          "tokens_out": 140,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 504,
+          "tokens_out": 123,
+          "raw_resp": "4"
+        }
+      ]
+    },
+    "SF06": {
+      "control_mismatch": [
+        {
+          "score": 3,
+          "tokens_in": 513,
+          "tokens_out": 121,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 513,
+          "tokens_out": 117,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 513,
+          "tokens_out": 118,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 3,
+          "tokens_in": 503,
+          "tokens_out": 100,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 503,
+          "tokens_out": 87,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 503,
+          "tokens_out": 106,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ]
+    },
+    "SF07": {
+      "control_mismatch": [
+        {
+          "score": 3,
+          "tokens_in": 512,
+          "tokens_out": 181,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 512,
+          "tokens_out": 174,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 512,
+          "tokens_out": 183,
+          "raw_resp": "**4**"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 3,
+          "tokens_in": 502,
+          "tokens_out": 146,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 502,
+          "tokens_out": 147,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 502,
+          "tokens_out": 143,
+          "raw_resp": "3"
+        }
+      ]
+    },
+    "SF08": {
+      "control_mismatch": [
+        {
+          "score": 4,
+          "tokens_in": 517,
+          "tokens_out": 112,
+          "raw_resp": "4"
+        },
+        {
+          "score": 5,
+          "tokens_in": 517,
+          "tokens_out": 192,
+          "raw_resp": "5"
+        },
+        {
+          "score": 5,
+          "tokens_in": 517,
+          "tokens_out": 137,
+          "raw_resp": "5"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 4,
+          "tokens_in": 507,
+          "tokens_out": 153,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 507,
+          "tokens_out": 123,
+          "raw_resp": "**Poignancy rating: 4**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 507,
+          "tokens_out": 104,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ]
+    },
+    "EP01": {
+      "control_mismatch": [
+        {
+          "score": 9,
+          "tokens_in": 521,
+          "tokens_out": 134,
+          "raw_resp": "9"
+        },
+        {
+          "score": 8,
+          "tokens_in": 521,
+          "tokens_out": 158,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 521,
+          "tokens_out": 166,
+          "raw_resp": "8"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 8,
+          "tokens_in": 511,
+          "tokens_out": 113,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 511,
+          "tokens_out": 118,
+          "raw_resp": "8"
+        },
+        {
+          "score": 9,
+          "tokens_in": 511,
+          "tokens_out": 105,
+          "raw_resp": "9"
+        }
+      ]
+    },
+    "EP02": {
+      "control_mismatch": [
+        {
+          "score": 8,
+          "tokens_in": 513,
+          "tokens_out": 123,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 513,
+          "tokens_out": 172,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 9,
+          "tokens_in": 513,
+          "tokens_out": 251,
+          "raw_resp": "9"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 8,
+          "tokens_in": 503,
+          "tokens_out": 106,
+          "raw_resp": "**Poignancy rating: 8**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 503,
+          "tokens_out": 102,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 503,
+          "tokens_out": 87,
+          "raw_resp": "8"
+        }
+      ]
+    },
+    "EP03": {
+      "control_mismatch": [
+        {
+          "score": 7,
+          "tokens_in": 514,
+          "tokens_out": 126,
+          "raw_resp": "7"
+        },
+        {
+          "score": 8,
+          "tokens_in": 514,
+          "tokens_out": 147,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 514,
+          "tokens_out": 126,
+          "raw_resp": "7"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 8,
+          "tokens_in": 504,
+          "tokens_out": 140,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 504,
+          "tokens_out": 149,
+          "raw_resp": "**Poignancy rating: 7**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 504,
+          "tokens_out": 162,
+          "raw_resp": "**Poignancy rating: 7**"
+        }
+      ]
+    },
+    "EP04": {
+      "control_mismatch": [
+        {
+          "score": 7,
+          "tokens_in": 517,
+          "tokens_out": 188,
+          "raw_resp": "**Poignancy rating: 7**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 517,
+          "tokens_out": 203,
+          "raw_resp": "7"
+        },
+        {
+          "score": 6,
+          "tokens_in": 517,
+          "tokens_out": 101,
+          "raw_resp": "6"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 6,
+          "tokens_in": 507,
+          "tokens_out": 114,
+          "raw_resp": "**Poignancy rating: 6**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 507,
+          "tokens_out": 112,
+          "raw_resp": "**Poignancy rating: 8**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 507,
+          "tokens_out": 89,
+          "raw_resp": "7"
+        }
+      ]
+    },
+    "CH01": {
+      "control_mismatch": [
+        {
+          "score": 1,
+          "tokens_in": 551,
+          "tokens_out": 72,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 551,
+          "tokens_out": 72,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 551,
+          "tokens_out": 71,
+          "raw_resp": "1"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 1,
+          "tokens_in": 541,
+          "tokens_out": 73,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 541,
+          "tokens_out": 55,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 541,
+          "tokens_out": 67,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "CH02": {
+      "control_mismatch": [
+        {
+          "score": 2,
+          "tokens_in": 547,
+          "tokens_out": 183,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 547,
+          "tokens_out": 211,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 547,
+          "tokens_out": 227,
+          "raw_resp": "2"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 3,
+          "tokens_in": 537,
+          "tokens_out": 98,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 537,
+          "tokens_out": 94,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 537,
+          "tokens_out": 113,
+          "raw_resp": "3"
+        }
+      ]
+    },
+    "CH03": {
+      "control_mismatch": [
+        {
+          "score": 3,
+          "tokens_in": 552,
+          "tokens_out": 182,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 552,
+          "tokens_out": 256,
+          "raw_resp": "**4**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 552,
+          "tokens_out": 192,
+          "raw_resp": "4"
+        }
+      ],
+      "control_filler": [
+        {
+          "score": 3,
+          "tokens_in": 542,
+          "tokens_out": 142,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 542,
+          "tokens_out": 142,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 542,
+          "tokens_out": 144,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ]
+    }
+  },
+  "comparison_summary": {
+    "M01": {
+      "category": "mundane",
+      "desc": "Isabella makes her bed in the morning.",
+      "baseline": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": 1.0,
+      "shift_filler": 0.0
+    },
+    "M02": {
+      "category": "mundane",
+      "desc": "Isabella wipes down the cafe counter.",
+      "baseline": {
+        "mean": 1.67,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": -0.34,
+      "shift_mismatch": -0.34,
+      "shift_filler": -0.67
+    },
+    "M03": {
+      "category": "mundane",
+      "desc": "Empty refrigerator observation.",
+      "baseline": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": 0.0,
+      "shift_filler": 0.0
+    },
+    "M04": {
+      "category": "mundane",
+      "desc": "Placing cups on drying rack.",
+      "baseline": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.67,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": -0.33,
+      "shift_mismatch": -0.67,
+      "shift_filler": -1.0
+    },
+    "M05": {
+      "category": "mundane",
+      "desc": "Checking the cafe wall clock.",
+      "baseline": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.0,
+      "shift_mismatch": 0.0,
+      "shift_filler": 0.0
+    },
+    "M06": {
+      "category": "mundane",
+      "desc": "Sweeping the cafe entryway.",
+      "baseline": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": -1.0,
+      "shift_mismatch": -1.0,
+      "shift_filler": -1.0
+    },
+    "M07": {
+      "category": "mundane",
+      "desc": "Bedroom closet door is closed.",
+      "baseline": {
+        "mean": 1.67,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.67,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": 0.0,
+      "shift_filler": -0.67
+    },
+    "M08": {
+      "category": "mundane",
+      "desc": "Restocking napkin dispensers.",
+      "baseline": {
+        "mean": 1.33,
+        "min": 1,
+        "max": 2,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": -0.33,
+      "shift_mismatch": -0.33,
+      "shift_filler": -0.33
+    },
+    "M09": {
+      "category": "mundane",
+      "desc": "Turning off the water faucet.",
+      "baseline": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.0,
+      "shift_mismatch": 0.0,
+      "shift_filler": 0.0
+    },
+    "M10": {
+      "category": "mundane",
+      "desc": "Dusty front window pane.",
+      "baseline": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.0,
+      "shift_mismatch": 0.0,
+      "shift_filler": 0.0
+    },
+    "SF01": {
+      "category": "social_friction",
+      "desc": "Customer accuses Isabella of shortchanging (Conflict/Harmony).",
+      "baseline": {
+        "mean": 6.33,
+        "min": 6,
+        "max": 7,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 7.0,
+        "min": 7,
+        "max": 7,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 5.33,
+        "min": 4,
+        "max": 8,
+        "stdev": 1.89
+      },
+      "control_filler": {
+        "mean": 4.0,
+        "min": 4,
+        "max": 4,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.67,
+      "shift_mismatch": -1.0,
+      "shift_filler": -2.33
+    },
+    "SF02": {
+      "category": "social_friction",
+      "desc": "Klaus loudly insults Maria's music (Harmony/Smoothing).",
+      "baseline": {
+        "mean": 3.33,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 5.0,
+        "min": 5,
+        "max": 5,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 4.33,
+        "min": 4,
+        "max": 5,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 4.0,
+        "min": 4,
+        "max": 4,
+        "stdev": 0.0
+      },
+      "shift_staged": 1.67,
+      "shift_mismatch": 1.0,
+      "shift_filler": 0.67
+    },
+    "SF03": {
+      "category": "social_friction",
+      "desc": "Newcomer acts cold and refuses greeting (Community Frustration).",
+      "baseline": {
+        "mean": 4.0,
+        "min": 4,
+        "max": 4,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 4.0,
+        "min": 4,
+        "max": 4,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "shift_staged": -0.33,
+      "shift_mismatch": 0.0,
+      "shift_filler": -0.33
+    },
+    "SF04": {
+      "category": "social_friction",
+      "desc": "Pressure to deliver hurtful truth (Harmony above Honesty).",
+      "baseline": {
+        "mean": 4.67,
+        "min": 4,
+        "max": 5,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 6.33,
+        "min": 6,
+        "max": 7,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 5.67,
+        "min": 5,
+        "max": 7,
+        "stdev": 0.94
+      },
+      "control_filler": {
+        "mean": 4.0,
+        "min": 3,
+        "max": 5,
+        "stdev": 0.82
+      },
+      "shift_staged": 1.66,
+      "shift_mismatch": 1.0,
+      "shift_filler": -0.67
+    },
+    "SF05": {
+      "category": "social_friction",
+      "desc": "Patron incites heated political argument (Conflict Avoidance).",
+      "baseline": {
+        "mean": 4.33,
+        "min": 4,
+        "max": 5,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 5.33,
+        "min": 4,
+        "max": 6,
+        "stdev": 0.94
+      },
+      "control_mismatch": {
+        "mean": 5.33,
+        "min": 4,
+        "max": 7,
+        "stdev": 1.25
+      },
+      "control_filler": {
+        "mean": 4.0,
+        "min": 4,
+        "max": 4,
+        "stdev": 0.0
+      },
+      "shift_staged": 1.0,
+      "shift_mismatch": 1.0,
+      "shift_filler": -0.33
+    },
+    "SF06": {
+      "category": "social_friction",
+      "desc": "Stranger asks to borrow money (Trusting Strangers).",
+      "baseline": {
+        "mean": 3.33,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 4.0,
+        "min": 3,
+        "max": 5,
+        "stdev": 0.82
+      },
+      "control_mismatch": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.67,
+      "shift_mismatch": -0.33,
+      "shift_filler": -0.33
+    },
+    "SF07": {
+      "category": "social_friction",
+      "desc": "Patrons fight over table seating (Conflict/Smoothing).",
+      "baseline": {
+        "mean": 2.67,
+        "min": 2,
+        "max": 3,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": 1.0,
+      "shift_filler": 0.33
+    },
+    "SF08": {
+      "category": "social_friction",
+      "desc": "Neighbor aggressively complains about cafe noise (Conflict/Harmony).",
+      "baseline": {
+        "mean": 3.33,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 4.67,
+        "min": 4,
+        "max": 5,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "shift_staged": 0.34,
+      "shift_mismatch": 1.34,
+      "shift_filler": 0.34
+    },
+    "EP01": {
+      "category": "emotionally_pivotal",
+      "desc": "Cafe lease termination notice (Bad News/Immediate Fixing).",
+      "baseline": {
+        "mean": 8.0,
+        "min": 8,
+        "max": 8,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 8.33,
+        "min": 8,
+        "max": 9,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 8.33,
+        "min": 8,
+        "max": 9,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 8.33,
+        "min": 8,
+        "max": 9,
+        "stdev": 0.47
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": 0.33,
+      "shift_filler": 0.33
+    },
+    "EP02": {
+      "category": "emotionally_pivotal",
+      "desc": "Close friend relocates overseas permanently (Alone Uneasiness).",
+      "baseline": {
+        "mean": 8.0,
+        "min": 8,
+        "max": 8,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 8.0,
+        "min": 8,
+        "max": 8,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 8.33,
+        "min": 8,
+        "max": 9,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 8.0,
+        "min": 8,
+        "max": 8,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.0,
+      "shift_mismatch": 0.33,
+      "shift_filler": 0.0
+    },
+    "EP03": {
+      "category": "emotionally_pivotal",
+      "desc": "Hobbs Cafe wins Community Pillar Award (Community Value).",
+      "baseline": {
+        "mean": 8.0,
+        "min": 8,
+        "max": 8,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 7.67,
+        "min": 7,
+        "max": 8,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 7.33,
+        "min": 7,
+        "max": 8,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 7.33,
+        "min": 7,
+        "max": 8,
+        "stdev": 0.47
+      },
+      "shift_staged": -0.33,
+      "shift_mismatch": -0.67,
+      "shift_filler": -0.67
+    },
+    "EP04": {
+      "category": "emotionally_pivotal",
+      "desc": "Severe pipe leak destroys coffee inventory (Bad News Reaction).",
+      "baseline": {
+        "mean": 4.0,
+        "min": 3,
+        "max": 5,
+        "stdev": 0.82
+      },
+      "staged": {
+        "mean": 6.0,
+        "min": 6,
+        "max": 6,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 6.67,
+        "min": 6,
+        "max": 7,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 7.0,
+        "min": 6,
+        "max": 8,
+        "stdev": 0.82
+      },
+      "shift_staged": 2.0,
+      "shift_mismatch": 2.67,
+      "shift_filler": 3.0
+    },
+    "CH01": {
+      "category": "chat",
+      "desc": "Morning coffee order banter with Klaus.",
+      "baseline": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_mismatch": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 1.0,
+        "min": 1,
+        "max": 1,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.0,
+      "shift_mismatch": 0.0,
+      "shift_filler": 0.0
+    },
+    "CH02": {
+      "category": "chat",
+      "desc": "Comforting Maria Lopez after criticism (Smoothing/Harmony).",
+      "baseline": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "staged": {
+        "mean": 3.33,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 2.0,
+        "min": 2,
+        "max": 2,
+        "stdev": 0.0
+      },
+      "control_filler": {
+        "mean": 3.33,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "shift_staged": 0.33,
+      "shift_mismatch": -1.0,
+      "shift_filler": 0.33
+    },
+    "CH03": {
+      "category": "chat",
+      "desc": "Urgent talk with landlord on repairs (Immediate Fixing/Bad News).",
+      "baseline": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "staged": {
+        "mean": 4.33,
+        "min": 4,
+        "max": 5,
+        "stdev": 0.47
+      },
+      "control_mismatch": {
+        "mean": 3.67,
+        "min": 3,
+        "max": 4,
+        "stdev": 0.47
+      },
+      "control_filler": {
+        "mean": 3.0,
+        "min": 3,
+        "max": 3,
+        "stdev": 0.0
+      },
+      "shift_staged": 0.66,
+      "shift_mismatch": 0.0,
+      "shift_filler": -0.67
+    }
+  }
+}

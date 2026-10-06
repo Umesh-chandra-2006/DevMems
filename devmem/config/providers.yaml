@@ -1,34 +1,72 @@
 # devmem/config/providers.yaml
 # LLM Provider Configuration for DevMem-Agents Fallback Router
+# Verified Free-Tier Limits Supplied from Provider Consoles (Task M1)
+
 providers:
   - name: groq
     priority: 1
     models:
-      fast: "openai/gpt-oss-20b"       # High daily quota (14,400 RPD), used for Stage 2 scoring & dialogue
-      strong: "openai/gpt-oss-120b"    # Lower daily quota (1,000 RPD), used for Stage 3/4
+      fast: "openai/gpt-oss-20b"
+      strong: "openai/gpt-oss-120b"
     keys:
       - env: GROQ_KEY_1
       - env: GROQ_KEY_2
       - env: GROQ_KEY_3
-    daily_limit_fast: 14400
+    rpm: 30
+    rpd: 1000
+    tpm: 8000
+    tpd: 200000
+    daily_limit_fast: 1000
     daily_limit_strong: 1000
 
   - name: nemotron
     priority: 2
     models:
       fast: "nvidia/nemotron-3.5-lightning-30b-a3b"
-      strong: "nvidia/llama-3.1-nemotron-70b-instruct"
+      strong: "nvidia/nemotron-3.5-lightning-30b-a3b"
     keys:
       - env: NIM_KEY_1
-    daily_limit_fast: 5000
-    daily_limit_strong: 40
+    rpm: 40
+    rpd: null
+    tpm: null
+    tpd: null
+    daily_limit_fast: null
+    daily_limit_strong: null
 
   - name: gemini
     priority: 3
     models:
-      fast: "gemini-3.6-flash"         # 1,500 RPD free tier quota
-      strong: "gemini-3.6-flash"        # 1,500 RPD free tier quota
+      fast: "gemini-3.1-flash-lite"      # Primary workhorse: RPM 15 | TPM 250,000 | RPD 500
+      strong: "gemini-3.6-flash"        # Strong emergency fallback: RPM 5 | TPM 250,000 | RPD 20
+      emergency: "gemini-3.8-flash"     # Additional emergency tier: RPM 5 | TPM 250,000 | RPD 20
     keys:
       - env: GEMINI_KEY_1
-    daily_limit_fast: 1500
-    daily_limit_strong: 1500
+      - env: GEMINI_KEY_2
+    model_limits:
+      gemini-3.1-flash-lite:
+        rpm: 15
+        rpd: 500
+        tpm: 250000
+        tpd: null
+      gemini-3.6-flash:
+        rpm: 5
+        rpd: 20
+        tpm: 250000
+        tpd: null
+      gemini-3.8-flash:
+        rpm: 5
+        rpd: 20
+        tpm: 250000
+        tpd: null
+      gemini-3.7-flash:
+        rpm: 5
+        rpd: 20
+        tpm: 250000
+        tpd: null
+      gemini-3-flash-preview:
+        rpm: 5
+        rpd: 20
+        tpm: 250000
+        tpd: null
+    daily_limit_fast: 500
+    daily_limit_strong: 20

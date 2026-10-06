@@ -1,6 +1,8 @@
 # DevMem-Agents: Technical Implementation Plan
 
-This document translates plan.md and the UML diagrams into concrete engineering steps: repo structure, data schemas, module specs, prompt templates, pseudocode for the non-trivial algorithms, and a build order. Treat this as the spec you hand to Antigravity one section at a time.
+**Revision 2.2** (see Section 12). Where this document conflicts with a phase or task spec issued by the Project Manager, the phase or task spec wins.
+
+This document translates the project plan into concrete engineering steps: repo structure, data schemas, module specs, prompt templates, pseudocode for the non-trivial algorithms, and a build order. It is handed to the Senior Developer one section at a time, as each phase is released.
 
 ---
 
@@ -13,8 +15,8 @@ devmem-agents/
 ├── reverie/                          # forked base repo (environment, perception, action, planning)
 │   ├── reverie/backend_server/      # actual upstream path is reverie/reverie/backend_server/ (kept as upstream lays it out)
 │   │   ├── persona/
-│   │   │   ├── memory_structures/    # ORIGINAL flat memory stream lives here — do not delete, keep for baseline runs
-│   │   │   └── cognitive_modules/    # perceive, plan, execute — reused as-is
+│   │   │   ├── memory_structures/    # ORIGINAL flat memory stream lives here, do not delete, keep for baseline runs
+│   │   │   └── cognitive_modules/    # perceive, plan, execute, reused as-is
 │   │   └── ...
 ├── devmem/                           # your new code, entirely additive
 │   ├── router/
@@ -129,7 +131,9 @@ CREATE TABLE key_usage (
 );
 ```
 
-**Pending decision (Phase 4 checkpoint):** run isolation (one memory DB file per simulation run vs. a `sim_code` column) and whether staged episodic entries mirror upstream memory nodes. Do not change this schema until that checkpoint is approved.
+**Resolved (Phase 4 checkpoint, approved):** upstream `AssociativeMemory` stays the live retrieval store (Option A); SQLite is a mirror of it. One database file per simulation run at `devmem/storage/{sim_code}/memory.db` (no `sim_code` column). `entry_id = f"{agent_id}:{node.node_id}"`, written with `INSERT OR IGNORE`. `sim_day = max(1, (sim_date - start_date).days + 1)` with start date 2023-02-13. Per-model router buckets are stored in `key_usage` with composite `key_id` values (`{key_env}#{model}` for requests, `{key_env}#{model}#tokens` for tokens), so this schema is unchanged. Do not change it without an approved checkpoint.
+
+**Known issue (to be fixed in Phase 5, task P5.0a):** upstream saves memory only on an explicit `save()`, while the mirror writes immediately. After a reload from an older save, mirror rows can be orphaned or can collide with re-executed steps. The runner needs autosave and mirror reconciliation on load.
 
 ---
 
@@ -176,7 +180,17 @@ providers:
 
 Verify actual current quotas for each provider before locking these numbers, free-tier limits change. Treat the yaml values as configuration, not hardcoded assumptions, so updating them later doesn't touch code.
 
-**Revision note (after Phase 2):** the yaml above is illustrative only. The repo's `devmem/config/providers.yaml` is the source of truth for models, priority order (currently Groq, then NVIDIA NIM, then Gemini) and quotas.
+**Revision note (Rev 2.2):** the yaml above is illustrative only and its model names and quotas are out of date. The repo's `devmem/config/providers.yaml` is the source of truth for models, priority order (Groq, then NVIDIA NIM, then Gemini) and quotas. Never invent a quota; unknown values are `null`. Real limits supplied by the Project Owner from the provider consoles (October 2026):
+
+| Provider | Model(s) | RPM | RPD | TPM | TPD | Scope |
+|---|---|---|---|---|---|---|
+| Groq | `openai/gpt-oss-20b`, `openai/gpt-oss-120b` | 30 | 1,000 | 8,000 | 200,000 | per key, per model |
+| Gemini | `gemini-3.8-flash`, `3.7-flash`, `3.6-flash`, `3-flash-preview` | 5 | 20 | 250,000 | none stated | per project, per model |
+| Gemini | `gemini-3.1-flash-lite` (workhorse) | 15 | 500 | 250,000 | none stated | per project, per model |
+| NVIDIA NIM | `nvidia/nemotron-3.5-lightning-30b-a3b` | up to 40 | unknown | unknown | unknown | per key |
+| Gemini embeddings | `gemini-embedding-001`, "Gemini Embedding 2" | 100 | 1,000 | 30,000 | none stated | per project, per model |
+
+On Groq, tokens per day (200K) bind before requests per day (1,000). Gemini quotas are per project, so keys must come from different projects to add capacity. The Gemini "Live" models and any IDE quota (Antigravity) are not routed. Free-tier quotas change; re-verify before the final experiment runs.
 
 ### 3.2 Router logic (pseudocode)
 
@@ -200,6 +214,8 @@ function call_llm(prompt, tier, purpose, agent_id, condition):
     raise AllProvidersExhaustedError
 ```
 
+**Mechanisms added in Phase 4 and tasks M1, M1.1, M1.2 (all in `devmem/router/`):** per-key per-model RPM pacer; sliding-window TPM pacer; daily token-budget pre-check; Groq requests estimated above 8,000 tokens reroute to Gemini; per-purpose configurable timeouts (a timeout sets a 30 s provider cooldown); model pinning (`DEVMEM_PINNED_MODEL` or `pinned_model`) that rotates keys of the pinned model, waits on cooldowns of 90 s or less, and otherwise raises `ModelPinnedError` instead of silently switching models; atomic persisted cooldown state (`cooldown_state.json`); ledger reconciliation warnings when a daily 429 arrives far below the configured limit; passive capture of every real 429 (redacted) to `fixtures/429/observed.jsonl`. Reasoning tokens are parsed from `usage.completion_tokens_details.reasoning_tokens` where the provider returns them.
+
 ### 3.3 Build/test order
 1. Single-provider, single-key call working (Groq only)
 2. Add key rotation within Groq
@@ -207,15 +223,22 @@ function call_llm(prompt, tier, purpose, agent_id, condition):
 4. Add local usage tracking table and pre-emptive limit checks (don't wait for 429)
 5. Load-test with a burst of dummy calls to confirm rotation actually triggers correctly
 
-### 3.4 Rate-limit classification (added after Phase 3 review)
+### 3.4 Rate-limit classification (added after Phase 3 review, revised after Phase 4 checkpoint)
 
-Two different things both arrive as HTTP 429: a transient per-minute limit (requests or tokens), and exhaustion of a daily quota. They need different handling, and the classifier must not depend on one hand-written substring.
+Two different things both arrive as HTTP 429: a transient window limit (per minute) and a longer quota window (per day). Keyword matching on error text is not a safe classifier. Evidence from real captured payloads in public bug reports:
 
-1. The local usage ledger remains the first line of defense for daily limits (pre-emptive checks).
-2. On a 429, classify using the provider's actual response: the retry-after value (header or body) and any quota identifiers in the body. Phrases indicating a per-day limit are expected signals, but the exact wording per provider must be taken from real captured payloads, not assumed.
-3. A retry-after longer than a few minutes is treated as daily-style exhaustion until reset; a short one is treated as transient and the key is retried after that delay.
-4. An unclassifiable 429 is treated as transient, with a per-key cooldown that escalates after consecutive 429s (circuit breaker), instead of disabling the key for the whole day.
-5. Tests use fixtures built from real captured payloads from each provider, not invented error strings.
+- **Groq** names the limit in the message: "...on requests per day (RPD)...", "...on tokens per minute (TPM)...", "...on tokens per day (TPD): Limit 100000, Used 97050, Requested 3619. Please try again in 9m38.016s." A TPD limit is recoverable within minutes, so it must NOT lock a key for the rest of the day. A keyword list containing only "requests per day" and "rpd" misses TPD entirely.
+- **Gemini** puts the window in a structured detail: `error.details[]` with `@type: ...QuotaFailure`, `violations[].quotaId` such as `GenerateRequestsPerDayPerProjectPerModel-FreeTier` or `GenerateRequestsPerMinutePerProjectPerModel-FreeTier`. The `RetryInfo.retryDelay` field does not distinguish them (a per-day 429 can carry a retryDelay of about 34s). A lowercase search for "per-day" does not match `PerDay`.
+- **NVIDIA NIM**: payload shape and exhaustion behavior are not yet captured; treat any claim about them as unverified until captured.
+
+Rules:
+1. The local usage ledger stays the first line of defense for request-per-day limits (pre-emptive checks).
+2. On any 429, always honor the provider's retry-after (header or body) as a per-key cooldown, with a sane cap. Never infer "exhausted for the day" from free text.
+3. Day-long lockout happens only when a provider-specific parser positively identifies a per-day requests window (Gemini: any violation's quotaId contains `PerDay`, daily wins over per-minute; Groq: the message names RPD). Lock duration: Groq, now plus the provider's reset header (`x-ratelimit-reset-requests`) or `retry-after`, NOT a fixed clock time (a captured reset header showed 48m57.6s, which rules out a midnight-UTC reset); Gemini, until midnight Pacific computed with `zoneinfo.ZoneInfo("America/Los_Angeles")` (not a fixed UTC offset, because of daylight saving).
+4. An unclassifiable 429 is transient: short cooldown that escalates on consecutive 429s (30, 60, 120, 240, 480, 900 s; reset on success). Known kinds (for example Groq TPD) honor the provider's retry-after even beyond 15 minutes; the 15-minute cap applies only to unknown 429s.
+5. Tests use fixtures with honest provenance. Every fixture carries a `provenance` field: `captured` (seen live), `documented` (with the URL of a real payload source), or `synthetic` (constructed; may never be described as observed). Captured so far: Groq RPM and Gemini per-minute.
+6. Timeouts are transient provider failures with their own per-provider cooldown. Auth and billing failures (401, 402, 403) skip the key for the day with a warning and never loop.
+7. Verify `providers.yaml` daily limits empirically: public reports exist of Gemini free-tier projects enforcing far lower per-day caps than documented figures. A ledger that believes 1,500/day while the provider enforces 20/day will keep routing into a dead key.
 
 ---
 
@@ -291,7 +314,7 @@ priors:
 # devmem/memory/episodic.py
 
 def score_importance_persona_conditioned(agent_id: str, observation: str, kind: str,
-                                         identity_context: str = "") -> int:
+                                         persona=None, identity_context: str = "") -> int:
     """kind is "event" or "chat". The staged prompt is the upstream prompt for that kind
     PLUS the priors block from priors.get_prompt_context(agent_id). Augment, never replace,
     so the priors block is the only difference between the two conditions.
@@ -307,7 +330,9 @@ def log_episodic_memory(agent_id, content, sim_timestamp, sim_day, recency, impo
 
 Rules:
 - Retrieval (recency + importance + relevance) is unchanged.
-- Thought poignancy (reflection) is untouched in this stage; reflection is replaced in Stage 3.
+- Thought poignancy (reflection) is untouched in this stage; what happens to reflection in staged mode is a Phase 5 decision checkpoint.
+- Delivered and approved (Phase 4): `get_upstream_prompt` reproduces the upstream prompts byte for byte; `build_staged_prompt` appends the priors block; the baseline branch of `perceive.py` is byte-identical to upstream.
+- Measured on the pinned model (Task 7b and Task 4.1, Isabella Rodriguez, 25 events x 3 repeats): the staged prompt adds about 126 input tokens per call and raises output tokens by about 62 percent (total about +39 percent). Friction-event scores rose by +0.75 in staged mode versus baseline; another persona's priors (Wolfgang Schulz) gave +0.50 and neutral text of the same length gave -0.33. Staged versus neutral text: +1.08 (5 events up, 0 down, 3 flat). Staged versus the other persona's priors: +0.25 (4 up, 3 down, 1 tie), which is not distinguishable from zero at this sample size. Single events can swing 1 to 3 points under any added text (for example EP04 rose by 2 to 3 points under staged, mismatch and filler alike). Treat this as evidence that persona-flavored text primes social-event scoring, not as proof of persona-specific effects. Raw data: `devmem/memory/task7b_differential_results.json` and `task4_1_control_results.json`.
 - Pivotal-event detection (a score at the top of the scale triggers immediate identity promotion) is Stage 4 work. It was in the original pseudocode here but is deliberately not part of Stage 2 implementation. `PIVOTAL_THRESHOLD` is decided in Phase 6 after watching real score distributions.
 
 ---
@@ -359,6 +384,8 @@ def cluster_by_similarity(embeddings, threshold):
     proves insufficient on real data."""
     ...
 ```
+
+**Rev 2.2 note, governed by the Phase 5 spec:** Phase 5 begins with prerequisites and decision checkpoints before any Stage 3 code: (a) headless runner autosave plus mirror reconciliation on reload; (b) an embedding-source decision with measured numbers (the Gemini embedding quota is 1,000 requests per day per project; the deterministic fallback is 768-dimensional while real embeddings are 3,072-dimensional, so the two must never be mixed, and evaluation runs must fail loudly and count any fallback); (c) discovery of how upstream represents "sleeping"; (d) whether staged mode replaces upstream reflection; (e) what the `consolidated` flag does to retrieval (exclude, down-weight with a configurable factor, or additive only), which needs its own approved touch point in the retrieval code; (f) clustering and reinforcement-matching thresholds. If a pseudocode detail below conflicts with the Phase 5 spec, the spec wins.
 
 **Trigger wiring:** in the simulation loop, after an agent's action for the hour resolves to sleep (confirm exact representation in the forked repo, likely `agent.scratch.act_description` containing "sleeping" or similar, or a bed object occupancy flag), call `consolidation.run_nightly_sweep(agent_id, current_sim_day)` once per agent per day, guarded so it only fires once even if the agent remains asleep for multiple hourly ticks.
 
@@ -428,6 +455,16 @@ At evaluation time, for each pair of statements about the same subject:
     flag contradictions, compute contradiction rate over time: baseline vs staged
 ```
 
+### 9.0 Controls and fairness (added in Rev 2.2)
+
+- Pin the model for every comparison run (`DEVMEM_PINNED_MODEL`), identical for baseline and staged. Log the model on every call.
+- Use one embedding model per run, identical across conditions.
+- Include at least one control condition for any claim that the persona priors cause an effect: another persona's priors, and a neutral text of the same token length.
+- Pre-register directional predictions before a run: for each persona pair, write down which events each persona should score higher and why, from the priors alone, and commit that file before the run. Predictions chosen after seeing results do not count as evidence.
+- Use evaluation events that were NOT written against the priors. Events authored to intersect the priors test a mechanism, not general performance.
+- Report spread across repeats, and compare differences against the spread under a control, not only against repeat noise.
+- Label every result `scripted` or `live`; quote raw artifacts; no illustrative text presented as output.
+
 ### 9.3 Efficiency
 ```
 Already logged continuously via llm_call_log table.
@@ -458,13 +495,18 @@ Plot calls/tokens per simulated day, baseline vs staged.
 
 **Resolved:**
 - Upstream path layout is `reverie/reverie/backend_server/` (Phase 0). Keep real paths.
-- Embeddings: Phase 2 replaced the OpenAI embedding call with a cached Gemini embedding model plus a deterministic fallback.
+- Embeddings: Phase 2 replaced the OpenAI embedding call with a cached Gemini embedding model plus a deterministic fallback (fallback policy reopened below).
+- Verbatim upstream event and chat poignancy prompts and call sites (Phase 4, Task 1). Upstream gives the scorer an identity summary but no behavioral priors.
+- Storage architecture and run isolation (Phase 4 checkpoint): Option A mirroring, per-run database.
+- Rate-limit classification against real payloads (Section 3.4; tasks M1, M1.1, M1.2). Groq and Gemini per-minute payloads were captured; daily and token-per-day fixtures are documented or synthetic and labeled as such.
+- Real provider limits (Section 3.1 table).
 
-**Still open:**
-- Exact internal representation of "agent is sleeping" (action string vs. object occupancy event vs. scratch memory field). Resolved at the start of Phase 5.
-- Verbatim upstream event and chat poignancy prompts, their call sites, and what persona information they already receive. Phase 4, Task 1.
-- Stage 3 clustering embeddings: reuse the provider-based embedding path (rate-limit and quota cost) or use a local model. Decision checkpoint in Phase 5.
-- Rate-limit classification against real provider payloads (Section 3.4). Raised in the Phase 4 report, fixed in a follow-up task.
+**Still open (all governed by the Phase 5 spec):**
+- Exact internal representation of "agent is sleeping" (action string vs. object occupancy event vs. scratch memory field).
+- Embedding source for Stage 3 clustering and for retrieval: provider embeddings (1,000 requests per day per project) vs. a local model; one choice for both conditions.
+- Behavior of NVIDIA NIM at exhaustion (429, 402, 403) is not yet observed. Timeouts were seen in 7 of 40 probe calls at a 10 s read timeout.
+- Runner autosave and mirror reconciliation after reload.
+- Calls and tokens per simulated hour for 3 to 6 agents, needed to size the number of keys for Phase 9.
 - Free-tier quotas change over time; `providers.yaml` is the source of truth and is re-verified before final experiment runs.
 
 ---
@@ -472,3 +514,5 @@ Plot calls/tokens per simulated day, baseline vs staged.
 ## 12. Revision Log
 
 - **Rev 2 (after Phase 3 review):** repository paths corrected (Sections 1, 4); schema pending-decision note (Section 2); provider note and rate-limit classification added (Section 3); Section 4 rewritten with the list of sanctioned touch points and the incorrect scoring snippet removed; Section 5 updated to the delivered module API and persona schema, with atomic baseline injection; Section 6 rewritten to the augment-the-upstream-prompt design with pivotal detection moved to Stage 4; Section 11 updated.
+- **Rev 2.1 (Phase 4 checkpoint):** Section 3.4 rewritten with evidence from real provider 429 payloads (Groq TPD and Gemini quotaId handling; per-day limits verified empirically).
+- **Rev 2.2 (Phase 4 closure, M1 series, Phase 5 preparation):** header and audience updated; Section 2 storage decisions recorded and the autosave and reconciliation issue noted; Section 3.1 real limits table; Section 3.2 router mechanisms; Section 3.4 corrected (Groq lock uses the reset header, Gemini reset via `America/Los_Angeles`, known retry-after honored beyond 15 minutes, timeouts, fixture provenance labels); Section 6 delivered API, measured token overhead and control results; Section 7 pointer to the Phase 5 spec and its prerequisites; Section 9.0 controls and fairness; Section 11 refreshed.

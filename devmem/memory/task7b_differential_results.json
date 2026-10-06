@@ -1,0 +1,1096 @@
+{
+  "test_start_iso": "2026-10-05 13:46:40",
+  "pinned_model": "openai/gpt-oss-20b",
+  "event_results": {
+    "M01": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 360,
+          "tokens_out": 61,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 360,
+          "tokens_out": 76,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 360,
+          "tokens_out": 61,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 2,
+          "tokens_in": 486,
+          "tokens_out": 179,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 486,
+          "tokens_out": 79,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 486,
+          "tokens_out": 154,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M02": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 366,
+          "tokens_out": 65,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 65,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 40,
+          "raw_resp": "2"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 120,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 96,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 492,
+          "tokens_out": 147,
+          "raw_resp": "2"
+        }
+      ]
+    },
+    "M03": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 361,
+          "tokens_out": 87,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 361,
+          "tokens_out": 83,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 361,
+          "tokens_out": 103,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 2,
+          "tokens_in": 487,
+          "tokens_out": 214,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 487,
+          "tokens_out": 151,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 487,
+          "tokens_out": 148,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M04": {
+      "baseline": [
+        {
+          "score": 2,
+          "tokens_in": 362,
+          "tokens_out": 61,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 362,
+          "tokens_out": 78,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 362,
+          "tokens_out": 82,
+          "raw_resp": "2"
+        }
+      ],
+      "staged": [
+        {
+          "score": 2,
+          "tokens_in": 488,
+          "tokens_out": 95,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 488,
+          "tokens_out": 96,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 488,
+          "tokens_out": 119,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M05": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 368,
+          "tokens_out": 84,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 368,
+          "tokens_out": 86,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 368,
+          "tokens_out": 84,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 142,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 84,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 494,
+          "tokens_out": 88,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M06": {
+      "baseline": [
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 96,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 76,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 57,
+          "raw_resp": "2"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 123,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 117,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 492,
+          "tokens_out": 124,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M07": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 359,
+          "tokens_out": 104,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 359,
+          "tokens_out": 122,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 359,
+          "tokens_out": 102,
+          "raw_resp": "2"
+        }
+      ],
+      "staged": [
+        {
+          "score": 2,
+          "tokens_in": 485,
+          "tokens_out": 170,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 485,
+          "tokens_out": 172,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 485,
+          "tokens_out": 209,
+          "raw_resp": "2"
+        }
+      ]
+    },
+    "M08": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 364,
+          "tokens_out": 53,
+          "raw_resp": "1"
+        },
+        {
+          "score": 2,
+          "tokens_in": 364,
+          "tokens_out": 73,
+          "raw_resp": "2"
+        },
+        {
+          "score": 1,
+          "tokens_in": 364,
+          "tokens_out": 53,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 490,
+          "tokens_out": 96,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 490,
+          "tokens_out": 96,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 490,
+          "tokens_out": 113,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M09": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 362,
+          "tokens_out": 74,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 362,
+          "tokens_out": 75,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 362,
+          "tokens_out": 76,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 488,
+          "tokens_out": 99,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 488,
+          "tokens_out": 98,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 488,
+          "tokens_out": 95,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "M10": {
+      "baseline": [
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 97,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 87,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 366,
+          "tokens_out": 82,
+          "raw_resp": "2"
+        }
+      ],
+      "staged": [
+        {
+          "score": 2,
+          "tokens_in": 492,
+          "tokens_out": 101,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 492,
+          "tokens_out": 93,
+          "raw_resp": "2"
+        },
+        {
+          "score": 2,
+          "tokens_in": 492,
+          "tokens_out": 87,
+          "raw_resp": "2"
+        }
+      ]
+    },
+    "SF01": {
+      "baseline": [
+        {
+          "score": 7,
+          "tokens_in": 376,
+          "tokens_out": 102,
+          "raw_resp": "7"
+        },
+        {
+          "score": 6,
+          "tokens_in": 376,
+          "tokens_out": 104,
+          "raw_resp": "6"
+        },
+        {
+          "score": 6,
+          "tokens_in": 376,
+          "tokens_out": 90,
+          "raw_resp": "6"
+        }
+      ],
+      "staged": [
+        {
+          "score": 7,
+          "tokens_in": 502,
+          "tokens_out": 150,
+          "raw_resp": "**7**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 502,
+          "tokens_out": 153,
+          "raw_resp": "**7**"
+        },
+        {
+          "score": 7,
+          "tokens_in": 502,
+          "tokens_out": 173,
+          "raw_resp": "**7**"
+        }
+      ]
+    },
+    "SF02": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 370,
+          "tokens_out": 103,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 370,
+          "tokens_out": 100,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 370,
+          "tokens_out": 103,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 5,
+          "tokens_in": 496,
+          "tokens_out": 170,
+          "raw_resp": "5"
+        },
+        {
+          "score": 5,
+          "tokens_in": 496,
+          "tokens_out": 130,
+          "raw_resp": "5"
+        },
+        {
+          "score": 5,
+          "tokens_in": 496,
+          "tokens_out": 166,
+          "raw_resp": "**5**"
+        }
+      ]
+    },
+    "SF03": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 373,
+          "tokens_out": 81,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 373,
+          "tokens_out": 83,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 373,
+          "tokens_out": 89,
+          "raw_resp": "4"
+        }
+      ],
+      "staged": [
+        {
+          "score": 4,
+          "tokens_in": 499,
+          "tokens_out": 84,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 499,
+          "tokens_out": 115,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 4,
+          "tokens_in": 499,
+          "tokens_out": 111,
+          "raw_resp": "**4**"
+        }
+      ]
+    },
+    "SF04": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 371,
+          "tokens_out": 119,
+          "raw_resp": "4"
+        },
+        {
+          "score": 5,
+          "tokens_in": 371,
+          "tokens_out": 132,
+          "raw_resp": "5"
+        },
+        {
+          "score": 5,
+          "tokens_in": 371,
+          "tokens_out": 112,
+          "raw_resp": "5"
+        }
+      ],
+      "staged": [
+        {
+          "score": 7,
+          "tokens_in": 497,
+          "tokens_out": 180,
+          "raw_resp": "7"
+        },
+        {
+          "score": 6,
+          "tokens_in": 497,
+          "tokens_out": 181,
+          "raw_resp": "**Poignancy rating: 6**"
+        },
+        {
+          "score": 6,
+          "tokens_in": 497,
+          "tokens_out": 256,
+          "raw_resp": "**Poignancy rating: 6**"
+        }
+      ]
+    },
+    "SF05": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 372,
+          "tokens_out": 81,
+          "raw_resp": "4"
+        },
+        {
+          "score": 5,
+          "tokens_in": 372,
+          "tokens_out": 81,
+          "raw_resp": "5"
+        },
+        {
+          "score": 4,
+          "tokens_in": 372,
+          "tokens_out": 79,
+          "raw_resp": "4"
+        }
+      ],
+      "staged": [
+        {
+          "score": 6,
+          "tokens_in": 498,
+          "tokens_out": 97,
+          "raw_resp": "6"
+        },
+        {
+          "score": 6,
+          "tokens_in": 498,
+          "tokens_out": 117,
+          "raw_resp": "6"
+        },
+        {
+          "score": 4,
+          "tokens_in": 498,
+          "tokens_out": 156,
+          "raw_resp": "**4**"
+        }
+      ]
+    },
+    "SF06": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 371,
+          "tokens_out": 89,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 371,
+          "tokens_out": 68,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 371,
+          "tokens_out": 70,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 5,
+          "tokens_in": 497,
+          "tokens_out": 132,
+          "raw_resp": "**Poignancy rating: 5**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 497,
+          "tokens_out": 184,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 497,
+          "tokens_out": 213,
+          "raw_resp": "4"
+        }
+      ]
+    },
+    "SF07": {
+      "baseline": [
+        {
+          "score": 3,
+          "tokens_in": 370,
+          "tokens_out": 93,
+          "raw_resp": "3"
+        },
+        {
+          "score": 2,
+          "tokens_in": 370,
+          "tokens_out": 85,
+          "raw_resp": "2"
+        },
+        {
+          "score": 3,
+          "tokens_in": 370,
+          "tokens_out": 100,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 3,
+          "tokens_in": 496,
+          "tokens_out": 157,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 496,
+          "tokens_out": 121,
+          "raw_resp": "**Poignancy rating: 3**"
+        },
+        {
+          "score": 3,
+          "tokens_in": 496,
+          "tokens_out": 111,
+          "raw_resp": "**Poignancy rating: 3**"
+        }
+      ]
+    },
+    "SF08": {
+      "baseline": [
+        {
+          "score": 3,
+          "tokens_in": 375,
+          "tokens_out": 93,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 375,
+          "tokens_out": 98,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 375,
+          "tokens_out": 94,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 3,
+          "tokens_in": 501,
+          "tokens_out": 163,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 501,
+          "tokens_out": 111,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 501,
+          "tokens_out": 142,
+          "raw_resp": "**4**"
+        }
+      ]
+    },
+    "EP01": {
+      "baseline": [
+        {
+          "score": 8,
+          "tokens_in": 379,
+          "tokens_out": 86,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 379,
+          "tokens_out": 110,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 379,
+          "tokens_out": 131,
+          "raw_resp": "8"
+        }
+      ],
+      "staged": [
+        {
+          "score": 9,
+          "tokens_in": 505,
+          "tokens_out": 199,
+          "raw_resp": "**Poignancy rating: 9**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 505,
+          "tokens_out": 217,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 505,
+          "tokens_out": 256,
+          "raw_resp": "8"
+        }
+      ]
+    },
+    "EP02": {
+      "baseline": [
+        {
+          "score": 8,
+          "tokens_in": 371,
+          "tokens_out": 90,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 371,
+          "tokens_out": 90,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 371,
+          "tokens_out": 72,
+          "raw_resp": "8"
+        }
+      ],
+      "staged": [
+        {
+          "score": 8,
+          "tokens_in": 497,
+          "tokens_out": 190,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 497,
+          "tokens_out": 142,
+          "raw_resp": "**8**"
+        },
+        {
+          "score": 8,
+          "tokens_in": 497,
+          "tokens_out": 158,
+          "raw_resp": "**8**"
+        }
+      ]
+    },
+    "EP03": {
+      "baseline": [
+        {
+          "score": 8,
+          "tokens_in": 372,
+          "tokens_out": 88,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 372,
+          "tokens_out": 120,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 372,
+          "tokens_out": 89,
+          "raw_resp": "8"
+        }
+      ],
+      "staged": [
+        {
+          "score": 7,
+          "tokens_in": 498,
+          "tokens_out": 161,
+          "raw_resp": "7"
+        },
+        {
+          "score": 8,
+          "tokens_in": 498,
+          "tokens_out": 125,
+          "raw_resp": "8"
+        },
+        {
+          "score": 8,
+          "tokens_in": 498,
+          "tokens_out": 125,
+          "raw_resp": "8"
+        }
+      ]
+    },
+    "EP04": {
+      "baseline": [
+        {
+          "score": 3,
+          "tokens_in": 375,
+          "tokens_out": 88,
+          "raw_resp": "3"
+        },
+        {
+          "score": 5,
+          "tokens_in": 375,
+          "tokens_out": 90,
+          "raw_resp": "5"
+        },
+        {
+          "score": 4,
+          "tokens_in": 375,
+          "tokens_out": 85,
+          "raw_resp": "4"
+        }
+      ],
+      "staged": [
+        {
+          "score": 6,
+          "tokens_in": 501,
+          "tokens_out": 197,
+          "raw_resp": "**6**"
+        },
+        {
+          "score": 6,
+          "tokens_in": 501,
+          "tokens_out": 191,
+          "raw_resp": "**Poignancy rating: 6**"
+        },
+        {
+          "score": 6,
+          "tokens_in": 501,
+          "tokens_out": 113,
+          "raw_resp": "6"
+        }
+      ]
+    },
+    "CH01": {
+      "baseline": [
+        {
+          "score": 1,
+          "tokens_in": 409,
+          "tokens_out": 58,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 409,
+          "tokens_out": 58,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 409,
+          "tokens_out": 59,
+          "raw_resp": "1"
+        }
+      ],
+      "staged": [
+        {
+          "score": 1,
+          "tokens_in": 535,
+          "tokens_out": 72,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 535,
+          "tokens_out": 74,
+          "raw_resp": "1"
+        },
+        {
+          "score": 1,
+          "tokens_in": 535,
+          "tokens_out": 70,
+          "raw_resp": "1"
+        }
+      ]
+    },
+    "CH02": {
+      "baseline": [
+        {
+          "score": 3,
+          "tokens_in": 405,
+          "tokens_out": 94,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 405,
+          "tokens_out": 98,
+          "raw_resp": "3"
+        },
+        {
+          "score": 3,
+          "tokens_in": 405,
+          "tokens_out": 96,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 3,
+          "tokens_in": 531,
+          "tokens_out": 107,
+          "raw_resp": "3"
+        },
+        {
+          "score": 4,
+          "tokens_in": 531,
+          "tokens_out": 142,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 531,
+          "tokens_out": 170,
+          "raw_resp": "3"
+        }
+      ]
+    },
+    "CH03": {
+      "baseline": [
+        {
+          "score": 4,
+          "tokens_in": 410,
+          "tokens_out": 103,
+          "raw_resp": "4"
+        },
+        {
+          "score": 4,
+          "tokens_in": 410,
+          "tokens_out": 111,
+          "raw_resp": "4"
+        },
+        {
+          "score": 3,
+          "tokens_in": 410,
+          "tokens_out": 93,
+          "raw_resp": "3"
+        }
+      ],
+      "staged": [
+        {
+          "score": 4,
+          "tokens_in": 536,
+          "tokens_out": 217,
+          "raw_resp": "4"
+        },
+        {
+          "score": 5,
+          "tokens_in": 536,
+          "tokens_out": 168,
+          "raw_resp": "5"
+        },
+        {
+          "score": 4,
+          "tokens_in": 536,
+          "tokens_out": 194,
+          "raw_resp": "**4**"
+        }
+      ]
+    }
+  },
+  "category_shifts": {
+    "mundane": [
+      0.33,
+      -0.34,
+      0.33,
+      -0.33,
+      0.0,
+      -1.0,
+      0.33,
+      -0.33,
+      0.0,
+      0.0
+    ],
+    "social_friction": [
+      0.67,
+      1.67,
+      -0.33,
+      1.66,
+      1.0,
+      0.67,
+      0.33,
+      0.34
+    ],
+    "emotionally_pivotal": [
+      0.33,
+      0.0,
+      -0.33,
+      2.0
+    ],
+    "chat": [
+      0.0,
+      0.33,
+      0.66
+    ]
+  },
+  "token_overhead": {
+    "mean_baseline_tokens_in": 373.32,
+    "mean_staged_tokens_in": 499.32,
+    "mean_priors_overhead": 126.0
+  }
+}

@@ -68,7 +68,8 @@ def init_episodic_db(db_path: Optional[Union[str, Path]] = None, sim_code: Optio
     target_path = Path(db_path) if db_path else get_db_path(sim_code=sim_code)
     target_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with sqlite3.connect(str(target_path)) as conn:
+    conn = sqlite3.connect(str(target_path))
+    try:
         cursor = conn.cursor()
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS episodic_memory (
@@ -89,6 +90,8 @@ def init_episodic_db(db_path: Optional[Union[str, Path]] = None, sim_code: Optio
             ON episodic_memory(agent_id, sim_day, consolidated);
         """)
         conn.commit()
+    finally:
+        conn.close()
 
     return target_path
 
@@ -350,7 +353,8 @@ def log_episodic_memory(
 
     ts_str = sim_timestamp.strftime("%Y-%m-%d %H:%M:%S") if isinstance(sim_timestamp, (datetime, date)) else str(sim_timestamp)
 
-    with sqlite3.connect(str(actual_db)) as conn:
+    conn = sqlite3.connect(str(actual_db))
+    try:
         cursor = conn.cursor()
         cursor.execute(
             """
@@ -372,6 +376,8 @@ def log_episodic_memory(
             ),
         )
         conn.commit()
+    finally:
+        conn.close()
 
     return entry_id
 
@@ -421,12 +427,15 @@ def get_unconsolidated(
 
     query += " ORDER BY sim_timestamp ASC"
 
-    with sqlite3.connect(str(actual_db)) as conn:
+    conn = sqlite3.connect(str(actual_db))
+    try:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         cursor.execute(query, params)
         rows = cursor.fetchall()
         return [dict(row) for row in rows]
+    finally:
+        conn.close()
 
 
 def flag_consolidated(
@@ -442,9 +451,12 @@ def flag_consolidated(
     placeholders = ",".join("?" for _ in entry_ids)
     query = f"UPDATE episodic_memory SET consolidated = 1 WHERE entry_id IN ({placeholders})"
 
-    with sqlite3.connect(str(actual_db)) as conn:
+    conn = sqlite3.connect(str(actual_db))
+    try:
         cursor = conn.cursor()
         cursor.execute(query, entry_ids)
         updated = cursor.rowcount
         conn.commit()
         return updated
+    finally:
+        conn.close()

@@ -1,0 +1,20 @@
+{
+  "provenance": "synthetic",
+  "basis_url": "https://console.groq.com/docs/rate-limits",
+  "provider": "groq",
+  "kind": "transient_minute",
+  "status_code": 429,
+  "headers": {
+    "retry-after": "4",
+    "x-ratelimit-limit-tokens": "8000",
+    "x-ratelimit-remaining-tokens": "0",
+    "x-ratelimit-reset-tokens": "4s"
+  },
+  "body": {
+    "error": {
+      "message": "Rate limit reached for model `openai/gpt-oss-20b` on tokens per minute (TPM): Limit 8000, Used 8000, Requested 100. Please try again in 4s.",
+      "type": "tokens",
+      "code": "rate_limit_exceeded"
+    }
+  }
+}

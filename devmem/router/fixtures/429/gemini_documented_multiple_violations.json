@@ -1,0 +1,32 @@
+{
+  "provenance": "synthetic",
+  "basis_url": "https://ai.google.dev/gemini-api/docs/troubleshooting#rate-limits",
+  "provider": "gemini",
+  "kind": "daily_requests",
+  "status_code": 429,
+  "headers": {
+    "content-type": "application/json; charset=UTF-8"
+  },
+  "body": {
+    "error": {
+      "code": 429,
+      "message": "Resource has been exhausted (e.g. check quota).",
+      "status": "RESOURCE_EXHAUSTED",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+          "violations": [
+            {
+              "quotaMetric": "generate-content-requests-per-minute",
+              "description": "Requests per minute quota exceeded."
+            },
+            {
+              "quotaMetric": "generate-content-requests-per-day",
+              "description": "Requests per day quota exceeded."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

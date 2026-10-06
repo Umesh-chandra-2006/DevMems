@@ -1,0 +1,16 @@
+{
+  "provenance": "synthetic",
+  "basis_description": "Generic HTTP 429 response payload",
+  "provider": "unknown",
+  "kind": "unknown",
+  "status_code": 429,
+  "headers": {
+    "retry-after": "45"
+  },
+  "body": {
+    "error": {
+      "message": "Too Many Requests",
+      "code": 429
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "provenance": "synthetic",
+  "basis_url": "https://console.groq.com/docs/rate-limits",
+  "provider": "groq",
+  "kind": "daily_requests",
+  "status_code": 429,
+  "headers": {
+    "retry-after": "45200",
+    "x-ratelimit-limit-requests": "1000",
+    "x-ratelimit-remaining-requests": "0",
+    "x-ratelimit-reset-requests": "12h33m20s"
+  },
+  "body": {
+    "error": {
+      "message": "Rate limit reached for model `openai/gpt-oss-20b` on requests per day (RPD): Limit 1000, Used 1000, Requested 1. Please try again in 12h33m20s.",
+      "type": "requests",
+      "code": "rate_limit_exceeded"
+    }
+  }
+}
