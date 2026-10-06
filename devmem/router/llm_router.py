@@ -168,6 +168,8 @@ def call_llm(
     if agent_id is None:  # ledger tagging: the headless runner sets the current agent around persona.move()
         from devmem.router.agent_context import get_current_agent
         agent_id = get_current_agent()
+    from devmem.router.call_counter import record_call  # counts every attempt, whatever the import path
+    record_call(purpose, agent_id)
     providers = load_providers_config(config_path)
     today = get_today_str()
     cm = cooldown_mgr or cooldown_manager

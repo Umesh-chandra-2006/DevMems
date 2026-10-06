@@ -1,0 +1,2185 @@
+{
+ "label": "offline replay of saved live replies through upstream's own code; zero network, zero LLM calls",
+ "variants": [
+  "none",
+  "spaces",
+  "spaces+duration"
+ ],
+ "aggregate": {
+  "openai/gpt-oss-20b | wake_up_hour": {
+   "none": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-20b | daily_plan": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-20b | hourly_schedule": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-120b | wake_up_hour": {
+   "none": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-120b | daily_plan": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "openai/gpt-oss-120b | hourly_schedule": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 1,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 1,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 1,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "gemini-3.1-flash-lite | wake_up_hour": {
+   "none": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 3,
+     "validator_passed": 3,
+     "valid": 3,
+     "valid_and_clean": 3,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "gemini-3.1-flash-lite | daily_plan": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 0,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 2,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 1,
+     "validator_passed": 1,
+     "valid": 1,
+     "valid_and_clean": 1,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  },
+  "gemini-3.1-flash-lite | hourly_schedule": {
+   "none": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 0,
+     "exhausted_recorded_replies": 0
+    }
+   },
+   "spaces+duration": {
+    "all": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 2,
+     "exhausted_recorded_replies": 0
+    },
+    "faithful_only": {
+     "invocations": 2,
+     "validator_passed": 2,
+     "valid": 2,
+     "valid_and_clean": 2,
+     "exhausted_recorded_replies": 0
+    }
+   }
+  }
+ },
+ "fidelity_variant_none": {
+  "invocations": 21,
+  "identical_to_live": 19,
+  "not_identical": [
+   {
+    "model": "gemini-3.1-flash-lite",
+    "task": "daily_plan",
+    "repeat": 1,
+    "reply_possibly_truncated": true
+   },
+   {
+    "model": "openai/gpt-oss-120b",
+    "task": "hourly_schedule",
+    "repeat": 2,
+    "reply_possibly_truncated": true
+   }
+  ]
+ },
+ "limitation": "raw replies were saved truncated to 500 characters; daily-plan replays parse truncated text",
+ "results": [
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "wake up and complete the morning routine at 6:00 am",
+    "eat breakfast at 7:00 am",
+    "read a book from 8:00 am to 12:00 pm",
+    "have lunch at 12:00 pm",
+    "take a nap from 1:00 pm to 4:00 pm",
+    "relax and watch TV from 7:00 pm to 8:00 pm",
+    "go to bed at 11:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": false,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "prepare breakfast and have coffee at 6:30 am",
+    "commute to Hobbs Cafe at 7:30 am",
+    "open Hobbs Cafe and set up the shop at 8:00 am",
+    "work at the counter serving customers from 8:30 am to 12:00 pm",
+    "have a quick lunch break at 12:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:ABCDEF) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "replay_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "replay_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "replay_output": "[(ID:idzQlb) Monday February 13 -- 00:00 AM] Activity: Isabella is sleeping",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 1,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 0)",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 5,
+   "replies_consumed": 5,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": false,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "daily_plan",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "replay_output": [
+    "wake up and complete the morning routine at 6:00 am",
+    "open Hobbs Cafe at 8:00 am",
+    "work at the counter and serve customers throughout the day from 9:00 am to 5:00 pm",
+    "gather party materials for the Valentine's Day event and invite customers from 5:00 pm to 8:00 pm",
+    "close Hobbs Cafe at 8:00 pm"
+   ],
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 4,
+   "replies_consumed": 4,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 4,
+   "replies_consumed": 4,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 4,
+   "replies_consumed": 4,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    false,
+    false,
+    true
+   ],
+   "recorded_live_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "replay_output": "[(ID:XYZ123) Monday February 13 -- 07:00 AM] Activity: Isabella wakes up and completes her morning routine",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "having breakfast and reviewing the day\u2019s schedule",
+   "replay_output": "[(ID:3eXYtJ) Monday February 13 -- 07:00 AM] Activity: Isabella is having breakfast and reviewing the day\u2019s schedule",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "having breakfast and reviewing the day\u2019s schedule",
+   "replay_output": "[(ID:3eXYtJ) Monday February 13 -- 07:00 AM] Activity: Isabella is having breakfast and reviewing the day\u2019s schedule",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "having breakfast and reviewing the day\u2019s schedule",
+   "replay_output": "[(ID:3eXYtJ) Monday February 13 -- 07:00 AM] Activity: Isabella is having breakfast and reviewing the day\u2019s schedule",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "replay_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": false,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "hourly_schedule",
+   "repeat": 2,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": "eating breakfast (duration in minutes: 60, minutes left: 60)",
+   "replay_output": "eating breakfast",
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "none",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "replies_available": 1,
+   "replies_consumed": 1,
+   "reply_possibly_truncated": false,
+   "recorded_live_validate": [
+    true
+   ],
+   "replay_validate": [
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "none",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": true
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  },
+  {
+   "model": "gemini-3.1-flash-lite",
+   "task": "wake_up_hour",
+   "repeat": 3,
+   "variant": "spaces+duration",
+   "replies_available": 2,
+   "replies_consumed": 2,
+   "reply_possibly_truncated": true,
+   "recorded_live_validate": [
+    false,
+    true
+   ],
+   "replay_validate": [
+    false,
+    true
+   ],
+   "recorded_live_output": 6,
+   "replay_output": 6,
+   "exhausted_recorded_replies": false,
+   "validator_passed": true,
+   "valid": true,
+   "clean": true,
+   "fidelity_identical_to_live": false
+  }
+ ]
+}

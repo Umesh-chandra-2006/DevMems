@@ -28,8 +28,7 @@ PINNED = "openai/gpt-oss-20b"
 ART = ROOT / "docs" / "phase5_step3_artifacts"
 
 
-class CapReached(BaseException):
-    pass
+from devmem.router.call_counter import CapReached  # router-level; BaseException so upstream retry loops cannot swallow it
 
 
 def ledger_rows_since(rowid):
@@ -138,14 +137,11 @@ def main():
     run_dir = get_db_path(args.sim_code).parent
 
     counts = {"llm_calls": 0, "embed_requests": 0}
-    real_call_llm = gs.call_llm
-
-    def counted_call_llm(*a, **k):
-        if counts["llm_calls"] >= hard_llm:
-            raise CapReached(f"hard LLM cap {hard_llm} reached")
-        counts["llm_calls"] += 1
-        return real_call_llm(*a, **k)
-    gs.call_llm = counted_call_llm
+    # LLM calls are counted by the ROUTER itself (every call_llm attempt, whatever the import path, including
+    # episodic.py's scoring calls); the hard cap raises CapReached from inside call_llm.
+    from devmem.router import call_counter
+    call_counter.reset()
+    call_counter.set_cap(hard_llm)
 
     def counted_post(*a, **k):
         if counts["embed_requests"] >= hard_embed:
@@ -177,6 +173,7 @@ def main():
 
     def advance():
         original_advance()
+        counts["llm_calls"] = call_counter.snapshot()["count"]
         clock = runner.rs.curr_time
         if args.phase == "soft":
             record("day_start_planning_step_0")
@@ -217,9 +214,10 @@ def main():
     if saved and args.phase == "continue":
         record(f"final_partial_hour_to_{runner.rs.curr_time:%H:%M:%S}", partial=True)
 
+    counts["llm_calls"] = call_counter.snapshot()["count"]
     report.update({"outcome": outcome, "saved": saved, "final_step": runner.rs.step, "final_clock": str(runner.rs.curr_time),
                    "steps_run": runner.rs.step - start_step, "wall_seconds": round(time.time() - t0, 1),
-                   "counted": counts, "router_failures": gs.ROUTER_FAILURES,
+                   "counted": counts, "router_counter": call_counter.snapshot(), "router_failures": gs.ROUTER_FAILURES,
                    "autosave_steps": runner.autosave_steps, "embedding_stats": store.stats,
                    "schedule_check": json.loads((run_dir / "schedule_check.json").read_text())})
     import sqlite3
