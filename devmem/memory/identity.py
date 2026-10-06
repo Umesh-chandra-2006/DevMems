@@ -482,7 +482,7 @@ def run_identity_step(
                 retries_used += 1
                 current = prompt + TRAIT_RETRY_SUFFIX.format(previous=text[:200], max_words=cfg["trait_max_words"], agent_name=agent)
         except Exception as exc:  # counted, never silent
-            failures.append({"candidate": c.get("semantic_id") or c.get("event_id"), "error": f"{type(exc).__name__}: {str(exc)[:120]}"})
+            failures.append({"candidate": c.get("semantic_id") or c.get("event_id"), "path": c["path"], "error": f"{type(exc).__name__}: {str(exc)[:120]}"})
             continue
         new_traits.append({**c, "trait_text": text, "prompt": prompt})
 
@@ -531,8 +531,12 @@ def run_identity_step(
     with open(out_dir / "reinforcement_decisions.jsonl", "a", encoding="utf-8") as f:
         for d in decisions:
             f.write(json.dumps({**d, "attempt": attempts}) + "\n")
+    # PM condition on design detail 1: events lost to Path B after the last allowed attempt are counted and named, never silent
+    pivotal_lost = ([f["candidate"] for f in failures if f["path"] == "pivotal"]
+                    if status == "failed" and attempts >= cfg["max_attempts_per_night"] else [])
     record = {"agent": agent, "night": night, "sim_time": _ts(sweep_time), "status": status, "attempts": attempts,
-              "decision_counts": counts, "self_reinforced_pivotal": pivotal_self,
+              "decision_counts": counts, "self_reinforced_pivotal": pivotal_self, "pivotal_lost": len(pivotal_lost),
+              "pivotal_lost_events": pivotal_lost,
               "traits_created": [{k: v for k, v in c.items() if k != "prompt"} for c in created], "evicted": evicted,
               "trait_retries": retries_used, "failures": failures, "seconds": round(time.time() - t0, 2)}
     with open(out_dir / "identity_log.jsonl", "a", encoding="utf-8") as f:

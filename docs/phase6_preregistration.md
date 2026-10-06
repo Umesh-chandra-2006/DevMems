@@ -111,3 +111,14 @@ Source: PM verdict on the Step C rerun (D-rules).
   states it but the configuration is NOT changed; the PM decides.
 - The population is not pooled with the earlier 95 (Stop 1) or the 22 (Step C rerun); all three are reported side by side.
 - Step D data is never used to tune REINFORCE_THRESHOLD (a separate protocol, section 2, executed at Stop 2 on the scripted fixture).
+
+## 9. Amendment A2 (2026-10-06, after the Stop 2 approval, before any Stop 3 live call; sections 1 to 8 are unchanged)
+
+Source: PM verdict on Stop 2, design detail 3. It changes no threshold.
+
+- Section 3 defined a "matching trait" for the guard through the trait's source semantic entry only. The built guard also matches a
+  trait that has NO source semantic entry (a pivotal trait): the entry's summary vector is compared with the embedding of the trait
+  text, and the trait matches when the cosine is at or above REINFORCE_THRESHOLD (0.88). For a trait with source semantic entries
+  the rule of section 3 is unchanged (the entry itself, or an entry within the threshold of a source entry).
+- Design detail 1 (Path B window) carries a reporting condition: events lost to Path B after the last allowed trait-generation
+  attempt are counted and named (`pivotal_lost` in the identity log and in the Stop 3 report).

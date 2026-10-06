@@ -322,6 +322,22 @@ class TestIdempotenceAndCrash(IdentityBase):
         self.assertEqual(res2["identity"]["attempts"], 2)
         self.assertEqual([t["path"] for t in self.rows("identity_traits")], ["pivotal"])
 
+    def test_pivotal_events_lost_after_the_last_attempt_are_counted_and_named(self):
+        self.icfg["max_attempts_per_night"] = 2
+        self.add_night_events(1)
+        ids = self.add_night_events(2)
+        self.run_night(1)
+        bad = self.fake_trait_llm(replies=["I love my cafe."])
+        first = self.run_night(2, trait_llm=bad)
+        self.assertEqual((first["identity"]["status"], first["identity"]["pivotal_lost"]), ("failed", 0))
+        with mock.patch.object(identity, "call_llm", bad), mock.patch.object(cons, "call_llm", self.fake_summary_llm()):
+            second = cons.maybe_sweep_on_sleep(self.persona, db_path=self.db, config=self.cfg, embed_fn=self.embed)
+        lost = second["identity"]
+        self.assertEqual(lost["pivotal_lost"], 1)
+        self.assertEqual(lost["pivotal_lost_events"], [ids[FIXTURE["nights"][1]["events"][-1]["text"]]])
+        logged = json.loads((self.db.parent / "identity_log.jsonl").read_text().splitlines()[-1])
+        self.assertEqual(logged["pivotal_lost"], 1)
+
     def test_first_person_reply_gets_one_corrective_retry_then_succeeds(self):
         self.add_night_events(1)
         self.add_night_events(2)
