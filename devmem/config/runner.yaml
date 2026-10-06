@@ -1,0 +1,5 @@
+# devmem/config/runner.yaml
+# Headless runner settings (Phase 5, P5.0a).
+# autosave_interval_sim_minutes: simulated minutes between autosaves (default one simulated hour).
+# The interval in steps is derived from the run's sec_per_step (60 min at 10 s/step = 360 steps).
+autosave_interval_sim_minutes: 60

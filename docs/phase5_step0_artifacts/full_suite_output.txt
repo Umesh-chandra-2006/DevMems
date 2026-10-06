@@ -1,0 +1,15 @@
+=== devmem.router.test_router
+Ran 33 tests in 3.492s
+OK
+=== devmem.memory.test_priors
+Ran 9 tests in 1.484s
+OK
+=== devmem.memory.test_episodic
+Ran 10 tests in 1.237s
+OK
+=== devmem.memory.test_reconcile
+Ran 5 tests in 7.836s
+OK
+=== devmem.embeddings.test_vector_store
+Ran 10 tests in 0.339s
+OK

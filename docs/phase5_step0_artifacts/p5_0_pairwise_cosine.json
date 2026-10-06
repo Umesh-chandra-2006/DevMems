@@ -1,0 +1,109 @@
+{
+ "label": "captured (saved memory of baseline_validation_run) + offline compute",
+ "agents": {
+  "Isabella Rodriguez": {
+   "n_vectors": 9,
+   "n_nodes": 9,
+   "top_pairs": [
+    {
+     "cos": 0.8704,
+     "a": "Isabella Rodriguez is idle",
+     "b": "Isabella Rodriguez is sleeping"
+    },
+    {
+     "cos": 0.8391,
+     "a": "desk is idle",
+     "b": "shelf is idle"
+    },
+    {
+     "cos": 0.8348,
+     "a": "bed is idle",
+     "b": "desk is idle"
+    },
+    {
+     "cos": 0.8294,
+     "a": "closet is idle",
+     "b": "shelf is idle"
+    },
+    {
+     "cos": 0.829,
+     "a": "refrigerator is idle",
+     "b": "shelf is idle"
+    }
+   ]
+  },
+  "Klaus Mueller": {
+   "n_vectors": 7,
+   "n_nodes": 7,
+   "top_pairs": [
+    {
+     "cos": 0.8785,
+     "a": "Klaus Mueller is idle",
+     "b": "Klaus Mueller is sleeping"
+    },
+    {
+     "cos": 0.8348,
+     "a": "bed is idle",
+     "b": "desk is idle"
+    },
+    {
+     "cos": 0.8057,
+     "a": "bed is idle",
+     "b": "closet is idle"
+    },
+    {
+     "cos": 0.8028,
+     "a": "desk is idle",
+     "b": "closet is idle"
+    },
+    {
+     "cos": 0.8,
+     "a": "game console is idle",
+     "b": "desk is idle"
+    }
+   ]
+  },
+  "Maria Lopez": {
+   "n_vectors": 9,
+   "n_nodes": 9,
+   "top_pairs": [
+    {
+     "cos": 0.8548,
+     "a": "Maria Lopez is idle",
+     "b": "Maria Lopez is sleeping"
+    },
+    {
+     "cos": 0.8348,
+     "a": "bed is idle",
+     "b": "desk is idle"
+    },
+    {
+     "cos": 0.8338,
+     "a": "desk is idle",
+     "b": "computer is idle"
+    },
+    {
+     "cos": 0.8223,
+     "a": "bed is idle",
+     "b": "bed is occupied for sleeping"
+    },
+    {
+     "cos": 0.8124,
+     "a": "desk is idle",
+     "b": "blackboard is idle"
+    }
+   ]
+  }
+ },
+ "all_pairs": {
+  "n": 93,
+  "min": 0.519,
+  "median": 0.7175,
+  "p90": 0.8277,
+  "max": 0.8785,
+  "count_ge_0.75": 34,
+  "count_ge_0.80": 22,
+  "count_ge_0.70": 52,
+  "count_ge_0.65": 63
+ }
+}

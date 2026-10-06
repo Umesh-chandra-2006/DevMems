@@ -1,0 +1,77 @@
+{
+ "label": "live",
+ "calls": [
+  {
+   "call": 1,
+   "kind": "batch",
+   "texts": 7,
+   "seconds": 0.0,
+   "dim": 3072
+  },
+  {
+   "call": 2,
+   "kind": "batch",
+   "texts": 50,
+   "seconds": 18.12,
+   "dim": 3072
+  },
+  {
+   "call": 3,
+   "kind": "single",
+   "texts": 1,
+   "seconds": 1.3,
+   "dim": 3072
+  }
+ ],
+ "single_vs_batch_cosine_for_focal": 1.0,
+ "total_http_requests": 2,
+ "retrieval_reproduction": {
+  "focal": "Isabella has a disagreement and potential confrontation with a neighbour",
+  "priors": {
+   "prior1": "Assumes new people are trustworthy until proven otherwise, and opens up to strangers quickly.",
+   "prior2": "Avoids confrontation whenever possible, prefers to smooth over disagreements rather than let them sit.",
+   "prior3": "Actively seeks out company and feels uneasy spending long stretches of time alone.",
+   "prior4": "Values harmony above honesty, will avoid saying something upsetting even if it is true.",
+   "prior5": "Believes the community should look out for one another, and gets quietly frustrated by people who keep to themselves.",
+   "prior6": "Reacts to unexpected bad news by trying to immediately fix or soften the situation for everyone involved, sometimes before fully processing it herself."
+  },
+  "gemini-embedding-001": {
+   "ranking": [
+    "prior5",
+    "prior2",
+    "prior6",
+    "prior4",
+    "prior3",
+    "prior1"
+   ],
+   "cosine": {
+    "prior1": 0.5285,
+    "prior2": 0.6197,
+    "prior3": 0.5431,
+    "prior4": 0.5576,
+    "prior5": 0.6348,
+    "prior6": 0.5973
+   }
+  },
+  "deterministic_fallback_768": {
+   "ranking": [
+    "prior4",
+    "prior5",
+    "prior3",
+    "prior1",
+    "prior6",
+    "prior2"
+   ],
+   "cosine": {
+    "prior1": -0.0388,
+    "prior2": -0.0697,
+    "prior3": 0.0062,
+    "prior4": 0.0771,
+    "prior5": 0.0169,
+    "prior6": -0.0675
+   },
+   "spearman_vs_gemini": -0.086
+  },
+  "local_model": "not measured (no local model installed; see report)"
+ }
+}

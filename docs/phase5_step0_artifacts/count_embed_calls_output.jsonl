@@ -1,0 +1,3 @@
+{"modules": ["devmem.memory.test_priors"], "tests_run": 9, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {"gemini-embedding-001": 14}}
+{"modules": ["devmem.memory.test_episodic"], "tests_run": 10, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {"gemini-embedding-001": 6}}
+{"modules": ["devmem.memory.test_reconcile"], "tests_run": 5, "failures": 0, "errors": 0, "embedding_http_calls_by_model": {}}

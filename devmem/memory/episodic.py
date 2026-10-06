@@ -460,3 +460,78 @@ def flag_consolidated(
         return updated
     finally:
         conn.close()
+
+
+def reconcile_mirror(
+    agent_id: str,
+    live_node_ids: Any,
+    live_descriptions: Optional[Dict[str, str]] = None,
+    db_path: Optional[Union[str, Path]] = None,
+    sim_code: Optional[str] = None,
+) -> Dict[str, Any]:
+    """
+    P5.0a: reconcile the SQLite mirror to the loaded upstream memory for one agent.
+
+    Removes `episodic_memory` rows for `agent_id` whose node is not present in the
+    loaded associative memory (`live_node_ids`, e.g. `persona.a_mem.id_to_node`).
+    Idempotent: a second call with the same inputs removes nothing.
+
+    If `live_descriptions` ({node_id: description}) is given, rows whose node exists
+    but whose content differs are REPORTED (not modified) under `content_mismatch`.
+
+    Extension point: semantic rows and sweep markers do not exist yet (Step 1, decision D7);
+    they will be rolled back here by the same rule once approved.
+    """
+    actual_db = init_episodic_db(db_path=db_path, sim_code=sim_code)
+    live_ids = {f"{agent_id}:{nid}" for nid in live_node_ids}
+
+    conn = sqlite3.connect(str(actual_db))
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT entry_id, content FROM episodic_memory WHERE agent_id = ?", (agent_id,))
+        rows = cursor.fetchall()
+        orphans = sorted(eid for eid, _ in rows if eid not in live_ids)
+        mismatch: List[str] = []
+        if live_descriptions is not None:
+            prefix = f"{agent_id}:"
+            for eid, content in rows:
+                if eid in live_ids and live_descriptions.get(eid[len(prefix):]) != content:
+                    mismatch.append(eid)
+        for eid in orphans:
+            cursor.execute("DELETE FROM episodic_memory WHERE entry_id = ?", (eid,))
+        conn.commit()
+    finally:
+        conn.close()
+
+    return {
+        "agent_id": agent_id,
+        "rows_before": len(rows),
+        "removed_orphans": orphans,
+        "rows_after": len(rows) - len(orphans),
+        "content_mismatch": sorted(mismatch),
+    }
+
+
+def reconcile_run(
+    personas: Dict[str, Any],
+    db_path: Optional[Union[str, Path]] = None,
+    sim_code: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """Reconcile the mirror for every persona of a loaded run and append one JSON line per
+    agent to `reconcile_log.jsonl` beside the run's memory.db."""
+    actual_db = init_episodic_db(db_path=db_path, sim_code=sim_code)
+    results = []
+    for name, persona in personas.items():
+        a_mem = persona.a_mem
+        results.append(
+            reconcile_mirror(
+                name,
+                list(a_mem.id_to_node.keys()),
+                live_descriptions={nid: n.description for nid, n in a_mem.id_to_node.items()},
+                db_path=actual_db,
+            )
+        )
+    with open(actual_db.parent / "reconcile_log.jsonl", "a", encoding="utf-8") as f:
+        for r in results:
+            f.write(json.dumps(r) + "\n")
+    return results

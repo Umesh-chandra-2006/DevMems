@@ -1,0 +1,410 @@
+{
+ "label": "derived from captured ledger rows (devmem/router/usage_log.db)",
+ "per_purpose_mean_tokens_all_models": {
+  "planning|baseline": {
+   "calls": 350,
+   "mean_in": 1932.9,
+   "mean_out": 1067.2
+  },
+  "dialogue|baseline": {
+   "calls": 41,
+   "mean_in": 5236.6,
+   "mean_out": 831.7
+  },
+  "planning|staged": {
+   "calls": 2,
+   "mean_in": 395.0,
+   "mean_out": 1058.0
+  },
+  "reflection|baseline": {
+   "calls": 10,
+   "mean_in": 1417.5,
+   "mean_out": 981.4
+  },
+  "importance_scoring|baseline": {
+   "calls": 84,
+   "mean_in": 372.9,
+   "mean_out": 90.1
+  },
+  "importance_scoring|staged": {
+   "calls": 79,
+   "mean_in": 497.8,
+   "mean_out": 139.5
+  },
+  "importance_scoring|control_mismatch": {
+   "calls": 75,
+   "mean_in": 515.3,
+   "mean_out": 166.9
+  },
+  "importance_scoring|control_filler": {
+   "calls": 75,
+   "mean_in": 505.3,
+   "mean_out": 110.7
+  }
+ },
+ "per_purpose_mean_tokens_gpt_oss_20b": {
+  "planning|baseline": {
+   "calls": 272,
+   "mean_in": 1269.2,
+   "mean_out": 1049.7
+  },
+  "planning|staged": {
+   "calls": 2,
+   "mean_in": 395.0,
+   "mean_out": 1058.0
+  },
+  "dialogue|baseline": {
+   "calls": 26,
+   "mean_in": 2189.7,
+   "mean_out": 863.2
+  },
+  "reflection|baseline": {
+   "calls": 10,
+   "mean_in": 1417.5,
+   "mean_out": 981.4
+  },
+  "importance_scoring|baseline": {
+   "calls": 84,
+   "mean_in": 372.9,
+   "mean_out": 90.1
+  },
+  "importance_scoring|staged": {
+   "calls": 79,
+   "mean_in": 497.8,
+   "mean_out": 139.5
+  },
+  "importance_scoring|control_mismatch": {
+   "calls": 75,
+   "mean_in": 515.3,
+   "mean_out": 166.9
+  },
+  "importance_scoring|control_filler": {
+   "calls": 75,
+   "mean_in": 505.3,
+   "mean_out": 110.7
+  }
+ },
+ "baseline_sim_bursts": [
+  {
+   "start": "2026-09-13 22:17:05",
+   "span_s": 1362,
+   "calls": 61,
+   "tokens_in": 225044,
+   "tokens_out": 63967,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 60
+   }
+  },
+  {
+   "start": "2026-09-13 22:53:06",
+   "span_s": 137,
+   "calls": 12,
+   "tokens_in": 17628,
+   "tokens_out": 18146,
+   "by_purpose": {
+    "planning": 12
+   }
+  },
+  {
+   "start": "2026-09-13 23:02:23",
+   "span_s": 145,
+   "calls": 5,
+   "tokens_in": 4180,
+   "tokens_out": 7929,
+   "by_purpose": {
+    "planning": 5
+   }
+  },
+  {
+   "start": "2026-09-13 23:12:18",
+   "span_s": 173,
+   "calls": 13,
+   "tokens_in": 22890,
+   "tokens_out": 16080,
+   "by_purpose": {
+    "planning": 13
+   }
+  },
+  {
+   "start": "2026-09-13 23:21:32",
+   "span_s": 580,
+   "calls": 10,
+   "tokens_in": 2968,
+   "tokens_out": 19123,
+   "by_purpose": {
+    "planning": 10
+   }
+  },
+  {
+   "start": "2026-09-14 07:01:15",
+   "span_s": 2715,
+   "calls": 115,
+   "tokens_in": 422770,
+   "tokens_out": 119699,
+   "by_purpose": {
+    "dialogue": 32,
+    "planning": 83
+   }
+  },
+  {
+   "start": "2026-09-14 07:52:01",
+   "span_s": 154,
+   "calls": 2,
+   "tokens_in": 13556,
+   "tokens_out": 2077,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 08:00:16",
+   "span_s": 348,
+   "calls": 16,
+   "tokens_in": 5074,
+   "tokens_out": 9056,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 15
+   }
+  },
+  {
+   "start": "2026-09-14 08:17:36",
+   "span_s": 857,
+   "calls": 20,
+   "tokens_in": 70203,
+   "tokens_out": 28903,
+   "by_purpose": {
+    "dialogue": 2,
+    "planning": 18
+   }
+  },
+  {
+   "start": "2026-09-14 08:37:18",
+   "span_s": 595,
+   "calls": 28,
+   "tokens_in": 20797,
+   "tokens_out": 20119,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 27
+   }
+  },
+  {
+   "start": "2026-09-14 09:02:34",
+   "span_s": 41,
+   "calls": 2,
+   "tokens_in": 5936,
+   "tokens_out": 4096,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 09:13:32",
+   "span_s": 849,
+   "calls": 13,
+   "tokens_in": 4108,
+   "tokens_out": 2581,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 12
+   }
+  },
+  {
+   "start": "2026-09-14 09:32:52",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 983,
+   "tokens_out": 1757,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 09:43:59",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 1806,
+   "tokens_out": 1250,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 09:55:14",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 2608,
+   "tokens_out": 1224,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 10:01:25",
+   "span_s": 281,
+   "calls": 2,
+   "tokens_in": 2104,
+   "tokens_out": 2768,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 10:17:19",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 1949,
+   "tokens_out": 1903,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 10:27:58",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 2572,
+   "tokens_out": 967,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 10:42:44",
+   "span_s": 29,
+   "calls": 2,
+   "tokens_in": 4037,
+   "tokens_out": 3127,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 10:58:37",
+   "span_s": 179,
+   "calls": 2,
+   "tokens_in": 3671,
+   "tokens_out": 3759,
+   "by_purpose": {
+    "reflection": 2
+   }
+  },
+  {
+   "start": "2026-09-14 11:23:00",
+   "span_s": 275,
+   "calls": 2,
+   "tokens_in": 4996,
+   "tokens_out": 3610,
+   "by_purpose": {
+    "reflection": 2
+   }
+  },
+  {
+   "start": "2026-09-14 11:37:50",
+   "span_s": 352,
+   "calls": 4,
+   "tokens_in": 3943,
+   "tokens_out": 1459,
+   "by_purpose": {
+    "reflection": 4
+   }
+  },
+  {
+   "start": "2026-09-14 11:49:15",
+   "span_s": 386,
+   "calls": 5,
+   "tokens_in": 2339,
+   "tokens_out": 2395,
+   "by_purpose": {
+    "planning": 3,
+    "reflection": 2
+   }
+  },
+  {
+   "start": "2026-09-14 12:20:20",
+   "span_s": 33,
+   "calls": 3,
+   "tokens_in": 1259,
+   "tokens_out": 3847,
+   "by_purpose": {
+    "planning": 3
+   }
+  },
+  {
+   "start": "2026-09-14 16:34:33",
+   "span_s": 1040,
+   "calls": 40,
+   "tokens_in": 34617,
+   "tokens_out": 45531,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 39
+   }
+  },
+  {
+   "start": "2026-09-14 17:00:37",
+   "span_s": 234,
+   "calls": 3,
+   "tokens_in": 3610,
+   "tokens_out": 4003,
+   "by_purpose": {
+    "planning": 3
+   }
+  },
+  {
+   "start": "2026-09-14 17:12:43",
+   "span_s": 275,
+   "calls": 2,
+   "tokens_in": 2759,
+   "tokens_out": 4096,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 17:22:43",
+   "span_s": 1807,
+   "calls": 16,
+   "tokens_in": 6447,
+   "tokens_out": 11064,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 15
+   }
+  },
+  {
+   "start": "2026-09-14 17:59:24",
+   "span_s": 255,
+   "calls": 2,
+   "tokens_in": 2386,
+   "tokens_out": 2952,
+   "by_purpose": {
+    "planning": 2
+   }
+  },
+  {
+   "start": "2026-09-14 18:11:03",
+   "span_s": 0,
+   "calls": 1,
+   "tokens_in": 1374,
+   "tokens_out": 1739,
+   "by_purpose": {
+    "planning": 1
+   }
+  },
+  {
+   "start": "2026-09-14 18:16:07",
+   "span_s": 1614,
+   "calls": 15,
+   "tokens_in": 6769,
+   "tokens_out": 8199,
+   "by_purpose": {
+    "dialogue": 1,
+    "planning": 14
+   }
+  }
+ ],
+ "note": "agent_id is NULL on most baseline sim rows, so per-agent splits are not possible from the ledger"
+}

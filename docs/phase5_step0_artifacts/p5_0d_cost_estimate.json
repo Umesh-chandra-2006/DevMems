@@ -1,0 +1,124 @@
+{
+ "label": "derived (ledger means x code-read call counts x stated assumptions); NOT measured",
+ "captured_inputs": {
+  "planning_tokens_per_call_gpt_oss_20b": 2318.9,
+  "scoring_tokens_per_call_baseline": 463.0,
+  "scoring_tokens_per_call_staged": 637.3,
+  "daystart_burst_calls_3_agents": 61,
+  "daystart_burst_tokens_in": 225044,
+  "daystart_burst_tokens_out": 63967,
+  "daystart_calls_per_agent": 20.3,
+  "daystart_tokens_per_agent": 96337
+ },
+ "assumptions_fixed": {
+  "calls_per_action": 8,
+  "decomp_calls_per_awake_hour": 1,
+  "awake_hours": 16,
+  "sleep_actions_per_day": 2
+ },
+ "scenarios": {
+  "low": {
+   "assumptions": {
+    "actions": 3,
+    "perceive": 3,
+    "chat": 0,
+    "tok": 1159.45
+   },
+   "per_agent_awake_hour": {
+    "calls": 28,
+    "tokens": 30375
+   },
+   "per_3_agents_sim_hour": {
+    "calls": 84,
+    "tokens": 91126
+   },
+   "per_3_agents_sim_day": {
+    "calls": 1453,
+    "tokens": 1802677
+   },
+   "groq_gpt_oss_20b_3keys_days_of_quota_per_sim_day_by_tokens": 3.0,
+   "groq_3keys_days_of_quota_per_sim_day_by_requests": 0.5,
+   "gemini_3.1_flash_lite_days_per_sim_day_1_project_500rpd": 2.9
+  },
+  "mid": {
+   "assumptions": {
+    "actions": 5,
+    "perceive": 6,
+    "chat": 3,
+    "tok": 2318.9
+   },
+   "per_agent_awake_hour": {
+    "calls": 50,
+    "tokens": 104810
+   },
+   "per_3_agents_sim_hour": {
+    "calls": 150,
+    "tokens": 314429
+   },
+   "per_3_agents_sim_day": {
+    "calls": 2509,
+    "tokens": 5431179
+   },
+   "groq_gpt_oss_20b_3keys_days_of_quota_per_sim_day_by_tokens": 9.1,
+   "groq_3keys_days_of_quota_per_sim_day_by_requests": 0.8,
+   "gemini_3.1_flash_lite_days_per_sim_day_1_project_500rpd": 5.0
+  },
+  "high": {
+   "assumptions": {
+    "actions": 8,
+    "perceive": 12,
+    "chat": 8,
+    "tok": 3014.57
+   },
+   "per_agent_awake_hour": {
+    "calls": 85,
+    "tokens": 225620
+   },
+   "per_3_agents_sim_hour": {
+    "calls": 255,
+    "tokens": 676859
+   },
+   "per_3_agents_sim_day": {
+    "calls": 4189,
+    "tokens": 11263452
+   },
+   "groq_gpt_oss_20b_3keys_days_of_quota_per_sim_day_by_tokens": 18.8,
+   "groq_3keys_days_of_quota_per_sim_day_by_requests": 1.4,
+   "gemini_3.1_flash_lite_days_per_sim_day_1_project_500rpd": 8.4
+  }
+ },
+ "stage3_nightly_addition": {
+  "assumed_summarization_tokens_in_out": [
+   650,
+   350
+  ],
+  "scoring_call_tokens_measured_staged": 637.3,
+  "by_cap": {
+   "cap_4_summaries": {
+    "llm_calls_per_agent_night": 8,
+    "tokens_per_agent_night": 6549,
+    "llm_calls_3_agents": 24,
+    "tokens_3_agents": 19648,
+    "embedding_requests_for_new_summaries_3_agents": 12,
+    "fraction_of_one_groq_key_day_3_agents": 0.098
+   },
+   "cap_6_summaries": {
+    "llm_calls_per_agent_night": 12,
+    "tokens_per_agent_night": 9824,
+    "llm_calls_3_agents": 36,
+    "tokens_3_agents": 29471,
+    "embedding_requests_for_new_summaries_3_agents": 18,
+    "fraction_of_one_groq_key_day_3_agents": 0.147
+   },
+   "cap_8_summaries": {
+    "llm_calls_per_agent_night": 16,
+    "tokens_per_agent_night": 13098,
+    "llm_calls_3_agents": 48,
+    "tokens_3_agents": 39295,
+    "embedding_requests_for_new_summaries_3_agents": 24,
+    "fraction_of_one_groq_key_day_3_agents": 0.196
+   }
+  },
+  "embeddings_for_clustering": "0 if clustering reuses a_mem.embeddings (every mirrored node is already embedded at perceive time); otherwise ceil(entries/batch) requests"
+ }
+}
