@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 ART = ROOT / "docs" / (sys.argv[1] if len(sys.argv) > 1 else "phase6_stepc_artifacts")
 TEMPLATES = ROOT / "reverie/reverie/backend_server/persona/prompt_template"
 sys.path.insert(0, str(ROOT))
-from devmem.router.output_normalizer import has_duration_suffix, has_exotic_space  # noqa: E402
+from devmem.router.output_normalizer import STRICT_ANNOTATION as on_strict, has_duration_suffix, has_exotic_space  # noqa: E402
 import yaml  # noqa: E402
 
 markers = yaml.safe_load(open(ROOT / "devmem/config/runner.yaml", encoding="utf-8"))["bad_schedule_markers"]
@@ -41,6 +41,8 @@ templates = {p.stem: literal_lines(p) for p in sorted(TEMPLATES.rglob("*.txt"))}
 def classify(prompt):
     if "recorded today" in prompt and "Write ONE sentence" in prompt:
         return "consolidation_summary"
+    if "core personality traits" in prompt and "poignancy" in prompt:
+        return "staged_importance_scoring"  # upstream event or chat poignancy prompt plus the Stage 1 priors block
     from devmem.router.output_normalizer import prompt_kind
     k = prompt_kind(prompt)  # the three allow-listed prompts are identified exactly as the router identifies them
     if k:
@@ -79,7 +81,7 @@ for r in rows:
 by_type = defaultdict(lambda: {"instances": 0, "calls": 0, "first_attempt_accepted": 0, "attempts_2_to_4": 0, "attempts_5": 0,
                                "delivered_empty": 0, "delivered_echo": 0, "delivered_duration_suffix": 0,
                                "delivered_exotic_space": 0, "decomp_format_ok": 0, "decomp_format_checked": 0,
-                               "normalizer_applied_calls": 0})
+                               "normalizer_applied_calls": 0, "raw_with_annotation": 0})
 by_agent_type = defaultdict(lambda: defaultdict(lambda: {"instances": 0, "calls": 0, "first_attempt_accepted": 0, "attempts_5": 0,
                                                          "final_clean": 0}))
 for inst in instances:
@@ -101,6 +103,7 @@ for inst in instances:
         s["delivered_empty"] += 1 if not d.strip() else 0
         s["delivered_echo"] += 1 if d.strip() and entry_echo(d) else 0
         s["normalizer_applied_calls"] += 1 if c["normalizer_kind"] else 0
+        s["raw_with_annotation"] += 1 if on_strict.search(c["raw"] or "") else 0
         if t in ("task_decomp", "new_decomp_schedule"):
             s["decomp_format_checked"] += 1
             s["decomp_format_ok"] += 1 if dur_re.search(d) else 0  # these prompts REQUIRE the annotation
@@ -123,12 +126,12 @@ report = {"label": "offline analysis of the live Step C raw-reply log", "total_r
           "models_in_log": sorted({r["model"] for r in rows})}
 (ART / "step_c_analysis.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
 
-lines = ["| prompt type | instances | calls | retries (calls - instances) | first-attempt accepted | 2 to 4 attempts | 5 attempts | echo replies | duration-suffix replies | exotic-space replies | empty replies | decomposition format present |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+lines = ["| prompt type | instances | calls | retries (calls - instances) | first-attempt accepted | 2 to 4 attempts | 5 attempts | echo replies | duration-suffix replies | exotic-space replies | empty replies | decomposition format present | raw replies with the annotation (before the normalizer) |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
 for k, v in report["by_prompt_type"].items():
     dec = f"{v['decomp_format_ok']} of {v['decomp_format_checked']}" if v["decomp_format_checked"] else "n/a"
     lines.append(f"| {k} | {v['instances']} | {v['calls']} | {v['calls'] - v['instances']} | {v['first_attempt_accepted']} | {v['attempts_2_to_4']} | "
-                 f"{v['attempts_5']} | {v['delivered_echo']} | {v['delivered_duration_suffix']} | {v['delivered_exotic_space']} | {v['delivered_empty']} | {dec} |")
+                 f"{v['attempts_5']} | {v['delivered_echo']} | {v['delivered_duration_suffix']} | {v['delivered_exotic_space']} | {v['delivered_empty']} | {dec} | {v['raw_with_annotation']} of {v['calls']} |")
 (ART / "step_c_analysis.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 print("\n".join(lines))
 print("\nschedule prompts by agent:")

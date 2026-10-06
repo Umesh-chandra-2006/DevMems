@@ -1,0 +1,33 @@
+{
+ "label": "offline analysis of the Step C rerun mirror database",
+ "mirror_rows": 62,
+ "rule_assigned_idle_rows_excluded": 40,
+ "llm_scored_events": 22,
+ "scoring_calls_in_router_log": 22,
+ "cross_check_scored_events_equal_scoring_calls": true,
+ "histogram": {
+  "1": 18,
+  "2": 0,
+  "3": 1,
+  "4": 2,
+  "5": 0,
+  "6": 1,
+  "7": 0,
+  "8": 0,
+  "9": 0,
+  "10": 0
+ },
+ "by_agent": {
+  "Isabella Rodriguez": 18,
+  "Maria Lopez": 2,
+  "Klaus Mueller": 2
+ },
+ "fraction_reaching": {
+  "8": 0.0,
+  "9": 0.0,
+  "10": 0.0
+ },
+ "T_from_this_population": null,
+ "status": "provisional again (fewer than 30 scored events)",
+ "frozen_provisional_T_unchanged": 9
+}

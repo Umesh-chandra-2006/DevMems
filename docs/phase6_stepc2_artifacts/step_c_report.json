@@ -1,0 +1,90 @@
+{
+ "label": "live",
+ "sim_code": "p5_step_c2_gemini",
+ "model": "gemini-3.1-flash-lite",
+ "start_clock": "2023-02-13 06:00:00",
+ "final_clock": "2023-02-13 08:00:00",
+ "final_step": 720,
+ "outcome": "reached 08:00:00 (2 simulated hours)",
+ "saved": true,
+ "cap": 400,
+ "soft_stop_at": 300,
+ "exception": null,
+ "per_agent_progress": {
+  "Isabella Rodriguez": {
+   "act_description_at_stop": "preparing for the day and commuting to Hobbs Cafe (walking from the parking lot to the cafe entrance)",
+   "scratch_clock": "2023-02-13 07:59:50",
+   "memory_nodes": 48
+  },
+  "Maria Lopez": {
+   "act_description_at_stop": "sleeping",
+   "scratch_clock": "2023-02-13 07:59:50",
+   "memory_nodes": 9
+  },
+  "Klaus Mueller": {
+   "act_description_at_stop": "sleeping",
+   "scratch_clock": "2023-02-13 07:59:50",
+   "memory_nodes": 8
+  }
+ },
+ "router_counter": {
+  "count": 163,
+  "cap": 400,
+  "by_purpose": {
+   "planning": 131,
+   "dialogue": 10,
+   "importance_scoring": 22
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 104,
+   "Maria Lopez": 28,
+   "Klaus Mueller": 31
+  }
+ },
+ "wall_seconds": 1421.5,
+ "calls_by_first_key": {
+  "GEMINI_KEY_4": 55,
+  "GEMINI_KEY_5": 54,
+  "GEMINI_KEY_6": 54
+ },
+ "normalizer_stats": {
+  "wake_up_hour": {
+   "applied": 3,
+   "changed": 3
+  },
+  "daily_plan": {
+   "applied": 3,
+   "changed": 3
+  },
+  "hourly_schedule": {
+   "applied": 50,
+   "changed": 50
+  },
+  "call_path": {
+   "applied": 102,
+   "changed": 27
+  }
+ },
+ "router_failures": {
+  "count": 0,
+  "by_function": {},
+  "last_errors": []
+ },
+ "autosave_steps": [
+  90,
+  180,
+  270,
+  360,
+  450,
+  540,
+  630,
+  720
+ ],
+ "schedule_check": {
+  "status": "clean",
+  "step": 720,
+  "scans_run": 8,
+  "findings": []
+ },
+ "embedding_mode": "offline (deterministic vectors, zero embedding requests)"
+}
