@@ -35,3 +35,56 @@ def has_exotic_space(text: str) -> bool:
 
 def has_duration_suffix(text: str) -> bool:
     return bool(_DURATION_RE.search(str(text)))
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Router wiring (Phase 5, behind DEVMEM_OUTPUT_NORMALIZER; default OFF)
+#
+# The router calls `maybe_normalize(prompt, text)` on every reply. It does nothing unless DEVMEM_OUTPUT_NORMALIZER is "on"
+# and the prompt is one of the three allow-listed upstream prompts below. It is an ALLOW-LIST: every other prompt (task
+# decomposition, action generation, conversation, scoring, reflection, summaries) is left untouched, and two decomposition
+# markers veto even an allow-listed match. The flag is process-wide, so it applies identically to baseline and staged.
+# ---------------------------------------------------------------------------------------------------------------------
+import os
+from typing import Dict, Optional, Tuple
+
+ENV_FLAG = "DEVMEM_OUTPUT_NORMALIZER"
+STATS: Dict[str, Dict[str, int]] = {}  # kind -> {"applied": n, "changed": n}
+
+# Fragments of the rendered upstream templates (wake_up_hour_v1, daily_planning_v6, generate_hourly_schedule_v2).
+_KIND_MARKERS: Tuple[Tuple[str, str], ...] = (
+    ("hourly_schedule", "Hourly schedule format:"),
+    ("daily_plan", "plan today in broad-strokes"),
+    ("wake_up_hour", "wake up hour:"),
+)
+# Fragments of the rendered decomposition templates (task_decomp_v3, new_decomp_schedule_v1). Their presence vetoes the match.
+_VETO_MARKERS: Tuple[str, ...] = ("Describe subtasks in 5 min increments", "The revised schedule:")
+
+
+def enabled() -> bool:
+    return os.environ.get(ENV_FLAG, "off").strip().lower() == "on"
+
+
+def prompt_kind(prompt: str) -> Optional[str]:
+    """Which allow-listed prompt this is, or None. Decomposition prompts always return None."""
+    text = str(prompt)
+    if any(v in text for v in _VETO_MARKERS):
+        return None
+    for kind, marker in _KIND_MARKERS:
+        if marker in text:
+            return kind
+    return None
+
+
+def maybe_normalize(prompt: str, text: str) -> Tuple[str, Optional[str]]:
+    """Returns (text, kind). `kind` is None when nothing was applied (flag off, or prompt not allow-listed)."""
+    if not enabled():
+        return text, None
+    kind = prompt_kind(prompt)
+    if kind is None:
+        return text, None
+    out = normalize_output(text, strip_duration=True)
+    s = STATS.setdefault(kind, {"applied": 0, "changed": 0})
+    s["applied"] += 1
+    s["changed"] += 1 if out != text else 0
+    return out, kind
