@@ -55,7 +55,7 @@ class TestRouterCallCounter(unittest.TestCase):
         self.assertIs(episodic.call_llm, llm_router.call_llm)  # a by-value import: wrapping gpt_structure would not see it
         score = episodic.score_importance_persona_conditioned(
             "Isabella Rodriguez", "Isabella argued with a neighbor", kind="event",
-            config_path=self.cfg, db_path=self.db)
+            config_path=self.cfg, ledger_db_path=self.db)
         self.assertEqual(score, 7)
         # (c) through upstream's GPT_request wrapper in gpt_structure
         import persona.prompt_template.gpt_structure as gs
@@ -83,7 +83,7 @@ class TestRouterCallCounter(unittest.TestCase):
         try:
             try:
                 episodic.score_importance_persona_conditioned(  # scorer catches Exception and returns a fail-safe
-                    "Isabella Rodriguez", "third call", kind="event", config_path=self.cfg, db_path=self.db)
+                    "Isabella Rodriguez", "third call", kind="event", config_path=self.cfg, ledger_db_path=self.db)
             except Exception:
                 swallowed = True
         except call_counter.CapReached:

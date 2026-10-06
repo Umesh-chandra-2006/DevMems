@@ -291,10 +291,16 @@ def score_importance_persona_conditioned(
     personas_dir: Optional[Union[str, Path]] = None,
     config_path: Optional[Union[str, Path]] = None,
     db_path: Optional[Union[str, Path]] = None,
+    ledger_db_path: Optional[Union[str, Path]] = None,
 ) -> int:
     """
     Stage 2: Score importance of an event or conversation conditioned on Stage 1 personality priors.
     Augments the upstream prompt with the agent's priors block.
+
+    `db_path` is the RUN (mirror) database, used only to read identity traits and to save prompt renders. It is never forwarded to the
+    router: the router ledger (llm_call_log, key_usage) has exactly one path, the router's default, unless a caller that needs an
+    isolated ledger (tests) passes `ledger_db_path` explicitly. (Before Phase 6 follow-up A1 `db_path` was forwarded to the router
+    as the ledger path, which split the ledger when a caller passed the run database.)
     """
     # Phase 6 (Stage 4): when the caller gave no identity_context and Stage 4 feedback is on, the scorer renders the agent's
     # active traits itself (no upstream edit). With the flag off this block does nothing and the prompt is byte-identical to Phase 5.
@@ -337,8 +343,8 @@ def score_importance_persona_conditioned(
     }
     if config_path is not None:
         kwargs["config_path"] = config_path
-    if db_path is not None:
-        kwargs["db_path"] = db_path
+    if ledger_db_path is not None:
+        kwargs["db_path"] = ledger_db_path
 
     try:
         raw_response = call_llm(**kwargs)

@@ -88,6 +88,29 @@ class TestEpisodicModule(unittest.TestCase):
             self.assertEqual(call_kwargs["condition"], "staged")
             self.assertIn("This agent's core personality traits:", call_kwargs["prompt"])
 
+    def test_run_database_is_never_forwarded_to_the_router_as_the_ledger_path(self):
+        """Follow-up A1: the router ledger has one path. db_path (the run database) must not reach call_llm; only an explicit
+        ledger_db_path does, and the prompt and the router call fields are unchanged either way."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            run_db = Path(tmp_dir) / "run.db"
+            ledger = Path(tmp_dir) / "ledger.db"
+            with patch("devmem.memory.episodic.call_llm", return_value="6") as mock_call:
+                a = score_importance_persona_conditioned(self.agent_id, self.event_obs, kind="event", db_path=run_db)
+                b = score_importance_persona_conditioned(self.agent_id, self.event_obs, kind="event")
+                c = score_importance_persona_conditioned(self.agent_id, self.event_obs, kind="event", db_path=run_db,
+                                                         ledger_db_path=ledger)
+            self.assertEqual((a, b, c), (6, 6, 6))
+            first, second, third = (call.kwargs for call in mock_call.call_args_list)
+            self.assertNotIn("db_path", first)
+            self.assertEqual(first, second)  # passing the run database changes nothing sent to the router
+            self.assertEqual(third.pop("db_path"), ledger)
+            self.assertEqual(third, second)
+            self.assertEqual({k: first[k] for k in ("tier", "purpose", "agent_id", "condition")},
+                             {"tier": "fast", "purpose": "importance_scoring", "agent_id": self.agent_id, "condition": "staged"})
+            self.assertFalse(run_db.exists() and sqlite3.connect(str(run_db)).execute(
+                "SELECT COUNT(*) FROM sqlite_master WHERE name='llm_call_log'").fetchone()[0] > 0 and
+                sqlite3.connect(str(run_db)).execute("SELECT COUNT(*) FROM llm_call_log").fetchone()[0] > 0)
+
     def test_score_importance_fail_safe_fallback(self):
         """Verify unparseable responses fall back to fail-safe 4."""
         with patch("devmem.memory.episodic.call_llm") as mock_call:
