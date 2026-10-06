@@ -1,0 +1,313 @@
+{
+ "label": "authored by the Senior Developer (Phase 7 Stop 1 design); identical in both arms; not derived from the priors",
+ "clock": "run starts 2023-02-13 00:00; each day: sleeping 00:00 to 06:00, awake 06:00 to 14:00, sleeping 14:00 to 24:00",
+ "days": 3,
+ "agents": {
+  "Isabella Rodriguez": {
+   "wake_up_hour": 6,
+   "daily_req": [
+    "wake up and get ready at 6:00 am",
+    "prepare the counter and pastries at 7:00 am",
+    "serve customers from 8:00 am to 11:00 am",
+    "handle the lunch counter from 11:00 am to 1:00 pm",
+    "close the cafe and clean from 1:00 pm to 2:00 pm",
+    "sleep from 2:00 pm"
+   ],
+   "day_1": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "preparing the counter and the morning pastries at Hobbs Cafe",
+     60
+    ],
+    [
+     "serving morning customers at Hobbs Cafe",
+     180
+    ],
+    [
+     "handling the lunch counter at Hobbs Cafe",
+     120
+    ],
+    [
+     "closing the cafe and cleaning the tables",
+     60
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_2": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "preparing the counter and the morning pastries at Hobbs Cafe",
+     60
+    ],
+    [
+     "serving morning customers at Hobbs Cafe",
+     180
+    ],
+    [
+     "handling the lunch counter at Hobbs Cafe",
+     120
+    ],
+    [
+     "closing the cafe and cleaning the tables",
+     60
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_3": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "preparing the counter and the morning pastries at Hobbs Cafe",
+     60
+    ],
+    [
+     "serving morning customers at Hobbs Cafe",
+     180
+    ],
+    [
+     "handling the lunch counter at Hobbs Cafe",
+     120
+    ],
+    [
+     "closing the cafe and cleaning the tables",
+     60
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "awake_entries_minutes_sum": 480
+  },
+  "Maria Lopez": {
+   "wake_up_hour": 6,
+   "daily_req": [
+    "wake up and get ready at 6:00 am",
+    "eat breakfast at Hobbs Cafe at 7:00 am",
+    "study physics at the library from 8:00 am to 11:00 am",
+    "eat lunch at Hobbs Cafe at 11:00 am",
+    "work on a problem set at Hobbs Cafe from 12:00 pm to 2:00 pm",
+    "sleep from 2:00 pm"
+   ],
+   "day_1": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "eating breakfast at Hobbs Cafe",
+     60
+    ],
+    [
+     "studying physics at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "working on a physics problem set at Hobbs Cafe",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_2": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "eating breakfast at Hobbs Cafe",
+     60
+    ],
+    [
+     "studying physics at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "working on a physics problem set at Hobbs Cafe",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_3": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "eating breakfast at Hobbs Cafe",
+     60
+    ],
+    [
+     "studying physics at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "working on a physics problem set at Hobbs Cafe",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "awake_entries_minutes_sum": 480
+  },
+  "Klaus Mueller": {
+   "wake_up_hour": 6,
+   "daily_req": [
+    "wake up and get ready at 6:00 am",
+    "walk to the library at 7:00 am",
+    "read research sources at the library from 8:00 am to 11:00 am",
+    "eat lunch at Hobbs Cafe at 11:00 am",
+    "write his research paper at the library from 12:00 pm to 2:00 pm",
+    "sleep from 2:00 pm"
+   ],
+   "day_1": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "walking to the Oak Hill College library",
+     60
+    ],
+    [
+     "reading research sources at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "writing his research paper at the Oak Hill College library",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_2": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "walking to the Oak Hill College library",
+     60
+    ],
+    [
+     "reading research sources at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "writing his research paper at the Oak Hill College library",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "day_3": [
+    [
+     "sleeping",
+     360
+    ],
+    [
+     "waking up and getting ready for the day",
+     60
+    ],
+    [
+     "walking to the Oak Hill College library",
+     60
+    ],
+    [
+     "reading research sources at the Oak Hill College library",
+     180
+    ],
+    [
+     "eating lunch at Hobbs Cafe",
+     60
+    ],
+    [
+     "writing his research paper at the Oak Hill College library",
+     120
+    ],
+    [
+     "sleeping",
+     600
+    ]
+   ],
+   "awake_entries_minutes_sum": 480
+  }
+ }
+}

@@ -1,0 +1,1614 @@
+{
+ "label": "authored by the Senior Developer (Phase 7 Stop 1 design); committed BEFORE any harness output exists",
+ "injection": "tile event on the persona's own tile at the sim time, removed after 6 steps; perceived and scored like any natural event",
+ "events": [
+  {
+   "id": "I1",
+   "agent": "Isabella Rodriguez",
+   "day": 1,
+   "time": "08:20",
+   "type": "mundane",
+   "theme": null,
+   "description": "A blue delivery van is parked outside the entrance of Hobbs Cafe",
+   "triple": [
+    "A blue delivery van",
+    "is",
+    "i1 event"
+   ],
+   "fact_sheet": {
+    "who": "a delivery driver",
+    "what": "parked a van",
+    "where": "outside Hobbs Cafe",
+    "when": "day 1 about 08:20",
+    "key_detail": "the van was blue"
+   },
+   "subject": "A blue delivery van",
+   "desc": "parked outside the entrance of Hobbs Cafe",
+   "rendered_memory_text": "A blue delivery van is parked outside the entrance of Hobbs Cafe"
+  },
+  {
+   "id": "I2",
+   "agent": "Isabella Rodriguez",
+   "day": 1,
+   "time": "09:40",
+   "type": "theme",
+   "theme": "leaves_without_ordering",
+   "description": "A man is asking the price of a croissant and leaving without ordering",
+   "triple": [
+    "A man",
+    "is",
+    "i2 event"
+   ],
+   "fact_sheet": {
+    "who": "a man",
+    "what": "asked a price and left without ordering",
+    "where": "Hobbs Cafe counter",
+    "when": "day 1 about 09:40",
+    "key_detail": "he asked about a croissant"
+   },
+   "subject": "A man",
+   "desc": "asking the price of a croissant and leaving without ordering",
+   "rendered_memory_text": "A man is asking the price of a croissant and leaving without ordering"
+  },
+  {
+   "id": "I3",
+   "agent": "Isabella Rodriguez",
+   "day": 1,
+   "time": "12:10",
+   "type": "friction",
+   "theme": null,
+   "description": "Peter Hale is raising his voice because he received a latte instead of tea",
+   "triple": [
+    "Peter Hale",
+    "is",
+    "i3 event"
+   ],
+   "fact_sheet": {
+    "who": "Peter Hale",
+    "what": "complained about a wrong order",
+    "where": "Hobbs Cafe counter",
+    "when": "day 1 about 12:10",
+    "key_detail": "latte received instead of tea"
+   },
+   "subject": "Peter Hale",
+   "desc": "raising his voice because he received a latte instead of tea",
+   "rendered_memory_text": "Peter Hale is raising his voice because he received a latte instead of tea"
+  },
+  {
+   "id": "I4",
+   "agent": "Isabella Rodriguez",
+   "day": 2,
+   "time": "08:30",
+   "type": "theme",
+   "theme": "leaves_without_ordering",
+   "description": "A woman is looking at the menu board and leaving without ordering",
+   "triple": [
+    "A woman",
+    "is",
+    "i4 event"
+   ],
+   "fact_sheet": {
+    "who": "a woman",
+    "what": "looked at the menu and left without ordering",
+    "where": "Hobbs Cafe counter",
+    "when": "day 2 about 08:30",
+    "key_detail": "she looked at the menu board"
+   },
+   "subject": "A woman",
+   "desc": "looking at the menu board and leaving without ordering",
+   "rendered_memory_text": "A woman is looking at the menu board and leaving without ordering"
+  },
+  {
+   "id": "I5",
+   "agent": "Isabella Rodriguez",
+   "day": 2,
+   "time": "10:15",
+   "type": "pivotal",
+   "theme": null,
+   "description": "A city inspector is taping a notice on the cafe door announcing a mandatory closure for repairs starting next Monday",
+   "triple": [
+    "A city inspector",
+    "is",
+    "i5 event"
+   ],
+   "fact_sheet": {
+    "who": "a city inspector",
+    "what": "posted a closure notice",
+    "where": "the door of Hobbs Cafe",
+    "when": "day 2 about 10:15",
+    "key_detail": "mandatory closure for repairs starting next Monday"
+   },
+   "subject": "A city inspector",
+   "desc": "taping a notice on the cafe door announcing a mandatory closure for repairs starting next Monday",
+   "rendered_memory_text": "A city inspector is taping a notice on the cafe door announcing a mandatory closure for repairs starting next Monday"
+  },
+  {
+   "id": "I6",
+   "agent": "Isabella Rodriguez",
+   "day": 2,
+   "time": "12:30",
+   "type": "mundane",
+   "theme": null,
+   "description": "The wall clock over the register is stopped at ten past twelve",
+   "triple": [
+    "The wall clock over the register",
+    "is",
+    "i6 event"
+   ],
+   "fact_sheet": {
+    "who": "nobody",
+    "what": "the clock stopped",
+    "where": "over the register",
+    "when": "day 2 about 12:30",
+    "key_detail": "it stopped at ten past twelve"
+   },
+   "subject": "The wall clock over the register",
+   "desc": "stopped at ten past twelve",
+   "rendered_memory_text": "The wall clock over the register is stopped at ten past twelve"
+  },
+  {
+   "id": "I7",
+   "agent": "Isabella Rodriguez",
+   "day": 3,
+   "time": "08:50",
+   "type": "theme",
+   "theme": "leaves_without_ordering",
+   "description": "A teenager is studying the display case and leaving without ordering",
+   "triple": [
+    "A teenager",
+    "is",
+    "i7 event"
+   ],
+   "fact_sheet": {
+    "who": "a teenager",
+    "what": "studied the display case and left without ordering",
+    "where": "Hobbs Cafe counter",
+    "when": "day 3 about 08:50",
+    "key_detail": "he looked at the display case"
+   },
+   "subject": "A teenager",
+   "desc": "studying the display case and leaving without ordering",
+   "rendered_memory_text": "A teenager is studying the display case and leaving without ordering"
+  },
+  {
+   "id": "I8",
+   "agent": "Isabella Rodriguez",
+   "day": 3,
+   "time": "11:20",
+   "type": "one_off",
+   "theme": null,
+   "description": "A brown stray dog is lying down under table four in the cafe",
+   "triple": [
+    "A brown stray dog",
+    "is",
+    "i8 event"
+   ],
+   "fact_sheet": {
+    "who": "a stray dog",
+    "what": "walked in and lay down",
+    "where": "Hobbs Cafe, table four",
+    "when": "day 3 about 11:20",
+    "key_detail": "brown dog under table four"
+   },
+   "subject": "A brown stray dog",
+   "desc": "lying down under table four in the cafe",
+   "rendered_memory_text": "A brown stray dog is lying down under table four in the cafe"
+  },
+  {
+   "id": "I9",
+   "agent": "Isabella Rodriguez",
+   "day": 3,
+   "time": "13:00",
+   "type": "friction",
+   "theme": null,
+   "description": "Two customers is arguing over the last seat near the window",
+   "triple": [
+    "Two customers",
+    "is",
+    "i9 event"
+   ],
+   "fact_sheet": {
+    "who": "two customers",
+    "what": "argued over a seat",
+    "where": "Hobbs Cafe, window seats",
+    "when": "day 3 about 13:00",
+    "key_detail": "the last seat near the window"
+   },
+   "subject": "Two customers",
+   "desc": "arguing over the last seat near the window",
+   "rendered_memory_text": "Two customers is arguing over the last seat near the window"
+  },
+  {
+   "id": "M1",
+   "agent": "Maria Lopez",
+   "day": 1,
+   "time": "08:30",
+   "type": "mundane",
+   "theme": null,
+   "description": "The printer on the second floor of the library is out of paper",
+   "triple": [
+    "The printer on the second floor of the library",
+    "is",
+    "m1 event"
+   ],
+   "fact_sheet": {
+    "who": "nobody",
+    "what": "the printer ran out of paper",
+    "where": "Oak Hill College library, second floor",
+    "when": "day 1 about 08:30",
+    "key_detail": "second floor printer"
+   },
+   "subject": "The printer on the second floor of the library",
+   "desc": "out of paper",
+   "rendered_memory_text": "The printer on the second floor of the library is out of paper"
+  },
+  {
+   "id": "M2",
+   "agent": "Maria Lopez",
+   "day": 1,
+   "time": "11:15",
+   "type": "theme",
+   "theme": "asks_to_borrow",
+   "description": "A man at the next table is asking to borrow a pen",
+   "triple": [
+    "A man at the next table",
+    "is",
+    "m2 event"
+   ],
+   "fact_sheet": {
+    "who": "a man at the next table",
+    "what": "asked to borrow something",
+    "where": "Hobbs Cafe",
+    "when": "day 1 about 11:15",
+    "key_detail": "a pen"
+   },
+   "subject": "A man at the next table",
+   "desc": "asking to borrow a pen",
+   "rendered_memory_text": "A man at the next table is asking to borrow a pen"
+  },
+  {
+   "id": "M3",
+   "agent": "Maria Lopez",
+   "day": 1,
+   "time": "12:40",
+   "type": "friction",
+   "theme": null,
+   "description": "A student is shouting at the cashier about a missing discount",
+   "triple": [
+    "A student",
+    "is",
+    "m3 event"
+   ],
+   "fact_sheet": {
+    "who": "a student",
+    "what": "shouted about a discount",
+    "where": "Hobbs Cafe counter",
+    "when": "day 1 about 12:40",
+    "key_detail": "the discount was missing"
+   },
+   "subject": "A student",
+   "desc": "shouting at the cashier about a missing discount",
+   "rendered_memory_text": "A student is shouting at the cashier about a missing discount"
+  },
+  {
+   "id": "M4",
+   "agent": "Maria Lopez",
+   "day": 2,
+   "time": "08:10",
+   "type": "one_off",
+   "theme": null,
+   "description": "A sparrow is flying into the reading room through an open window",
+   "triple": [
+    "A sparrow",
+    "is",
+    "m4 event"
+   ],
+   "fact_sheet": {
+    "who": "a sparrow",
+    "what": "flew in through a window",
+    "where": "Oak Hill College library reading room",
+    "when": "day 2 about 08:10",
+    "key_detail": "a sparrow through an open window"
+   },
+   "subject": "A sparrow",
+   "desc": "flying into the reading room through an open window",
+   "rendered_memory_text": "A sparrow is flying into the reading room through an open window"
+  },
+  {
+   "id": "M5",
+   "agent": "Maria Lopez",
+   "day": 2,
+   "time": "09:30",
+   "type": "pivotal",
+   "theme": null,
+   "description": "A physics professor is announcing in the hallway that the midterm exam moved up to this Friday",
+   "triple": [
+    "A physics professor",
+    "is",
+    "m5 event"
+   ],
+   "fact_sheet": {
+    "who": "a physics professor",
+    "what": "moved the midterm",
+    "where": "Oak Hill College hallway",
+    "when": "day 2 about 09:30",
+    "key_detail": "the midterm moved up to this Friday"
+   },
+   "subject": "A physics professor",
+   "desc": "announcing in the hallway that the midterm exam moved up to this Friday",
+   "rendered_memory_text": "A physics professor is announcing in the hallway that the midterm exam moved up to this Friday"
+  },
+  {
+   "id": "M6",
+   "agent": "Maria Lopez",
+   "day": 2,
+   "time": "11:30",
+   "type": "theme",
+   "theme": "asks_to_borrow",
+   "description": "A woman at the counter is asking to borrow an umbrella",
+   "triple": [
+    "A woman at the counter",
+    "is",
+    "m6 event"
+   ],
+   "fact_sheet": {
+    "who": "a woman at the counter",
+    "what": "asked to borrow something",
+    "where": "Hobbs Cafe counter",
+    "when": "day 2 about 11:30",
+    "key_detail": "an umbrella"
+   },
+   "subject": "A woman at the counter",
+   "desc": "asking to borrow an umbrella",
+   "rendered_memory_text": "A woman at the counter is asking to borrow an umbrella"
+  },
+  {
+   "id": "M7",
+   "agent": "Maria Lopez",
+   "day": 3,
+   "time": "08:40",
+   "type": "mundane",
+   "theme": null,
+   "description": "The vending machine near the library entrance is displaying an out of order sign",
+   "triple": [
+    "The vending machine near the library entrance",
+    "is",
+    "m7 event"
+   ],
+   "fact_sheet": {
+    "who": "nobody",
+    "what": "the vending machine was out of order",
+    "where": "Oak Hill College library entrance",
+    "when": "day 3 about 08:40",
+    "key_detail": "out of order sign"
+   },
+   "subject": "The vending machine near the library entrance",
+   "desc": "displaying an out of order sign",
+   "rendered_memory_text": "The vending machine near the library entrance is displaying an out of order sign"
+  },
+  {
+   "id": "M8",
+   "agent": "Maria Lopez",
+   "day": 3,
+   "time": "11:20",
+   "type": "theme",
+   "theme": "asks_to_borrow",
+   "description": "A boy at the next table is asking to borrow a phone charger",
+   "triple": [
+    "A boy at the next table",
+    "is",
+    "m8 event"
+   ],
+   "fact_sheet": {
+    "who": "a boy at the next table",
+    "what": "asked to borrow something",
+    "where": "Hobbs Cafe",
+    "when": "day 3 about 11:20",
+    "key_detail": "a phone charger"
+   },
+   "subject": "A boy at the next table",
+   "desc": "asking to borrow a phone charger",
+   "rendered_memory_text": "A boy at the next table is asking to borrow a phone charger"
+  },
+  {
+   "id": "M9",
+   "agent": "Maria Lopez",
+   "day": 3,
+   "time": "13:10",
+   "type": "friction",
+   "theme": null,
+   "description": "Two students is arguing loudly about who had reserved the corner table",
+   "triple": [
+    "Two students",
+    "is",
+    "m9 event"
+   ],
+   "fact_sheet": {
+    "who": "two students",
+    "what": "argued about a reservation",
+    "where": "Hobbs Cafe corner table",
+    "when": "day 3 about 13:10",
+    "key_detail": "who reserved the corner table"
+   },
+   "subject": "Two students",
+   "desc": "arguing loudly about who had reserved the corner table",
+   "rendered_memory_text": "Two students is arguing loudly about who had reserved the corner table"
+  },
+  {
+   "id": "K1",
+   "agent": "Klaus Mueller",
+   "day": 1,
+   "time": "08:15",
+   "type": "mundane",
+   "theme": null,
+   "description": "A janitor is mopping the floor between the library reading tables",
+   "triple": [
+    "A janitor",
+    "is",
+    "k1 event"
+   ],
+   "fact_sheet": {
+    "who": "a janitor",
+    "what": "mopped the floor",
+    "where": "Oak Hill College library",
+    "when": "day 1 about 08:15",
+    "key_detail": "between the reading tables"
+   },
+   "subject": "A janitor",
+   "desc": "mopping the floor between the library reading tables",
+   "rendered_memory_text": "A janitor is mopping the floor between the library reading tables"
+  },
+  {
+   "id": "K2",
+   "agent": "Klaus Mueller",
+   "day": 1,
+   "time": "10:00",
+   "type": "theme",
+   "theme": "noise_disturbance",
+   "description": "A group of students is talking loudly near the quiet section of the library",
+   "triple": [
+    "A group of students",
+    "is",
+    "k2 event"
+   ],
+   "fact_sheet": {
+    "who": "a group of students",
+    "what": "talked loudly",
+    "where": "Oak Hill College library, quiet section",
+    "when": "day 1 about 10:00",
+    "key_detail": "near the quiet section"
+   },
+   "subject": "A group of students",
+   "desc": "talking loudly near the quiet section of the library",
+   "rendered_memory_text": "A group of students is talking loudly near the quiet section of the library"
+  },
+  {
+   "id": "K3",
+   "agent": "Klaus Mueller",
+   "day": 1,
+   "time": "12:30",
+   "type": "friction",
+   "theme": null,
+   "description": "A classmate is telling Klaus Mueller in the hallway that his outline is weak",
+   "triple": [
+    "A classmate",
+    "is",
+    "k3 event"
+   ],
+   "fact_sheet": {
+    "who": "a classmate",
+    "what": "criticized his outline",
+    "where": "Oak Hill College hallway",
+    "when": "day 1 about 12:30",
+    "key_detail": "the outline was called weak"
+   },
+   "subject": "A classmate",
+   "desc": "telling Klaus Mueller in the hallway that his outline is weak",
+   "rendered_memory_text": "A classmate is telling Klaus Mueller in the hallway that his outline is weak"
+  },
+  {
+   "id": "K4",
+   "agent": "Klaus Mueller",
+   "day": 2,
+   "time": "08:40",
+   "type": "one_off",
+   "theme": null,
+   "description": "A fire alarm test is sounding for ten seconds in the library",
+   "triple": [
+    "A fire alarm test",
+    "is",
+    "k4 event"
+   ],
+   "fact_sheet": {
+    "who": "the building staff",
+    "what": "tested the fire alarm",
+    "where": "Oak Hill College library",
+    "when": "day 2 about 08:40",
+    "key_detail": "it sounded for ten seconds"
+   },
+   "subject": "A fire alarm test",
+   "desc": "sounding for ten seconds in the library",
+   "rendered_memory_text": "A fire alarm test is sounding for ten seconds in the library"
+  },
+  {
+   "id": "K5",
+   "agent": "Klaus Mueller",
+   "day": 2,
+   "time": "11:20",
+   "type": "pivotal",
+   "theme": null,
+   "description": "The department chair is telling Klaus Mueller at the cafe that his research funding will be cut at the end of the month",
+   "triple": [
+    "The department chair",
+    "is",
+    "k5 event"
+   ],
+   "fact_sheet": {
+    "who": "the department chair",
+    "what": "announced a funding cut",
+    "where": "Hobbs Cafe",
+    "when": "day 2 about 11:20",
+    "key_detail": "research funding cut at the end of the month"
+   },
+   "subject": "The department chair",
+   "desc": "telling Klaus Mueller at the cafe that his research funding will be cut at the end of the month",
+   "rendered_memory_text": "The department chair is telling Klaus Mueller at the cafe that his research funding will be cut at the end of the month"
+  },
+  {
+   "id": "K6",
+   "agent": "Klaus Mueller",
+   "day": 2,
+   "time": "09:20",
+   "type": "theme",
+   "theme": "noise_disturbance",
+   "description": "A phone is ringing loudly in the library reading room",
+   "triple": [
+    "A phone",
+    "is",
+    "k6 event"
+   ],
+   "fact_sheet": {
+    "who": "an unknown reader",
+    "what": "a phone rang loudly",
+    "where": "Oak Hill College library reading room",
+    "when": "day 2 about 09:20",
+    "key_detail": "a ringing phone"
+   },
+   "subject": "A phone",
+   "desc": "ringing loudly in the library reading room",
+   "rendered_memory_text": "A phone is ringing loudly in the library reading room"
+  },
+  {
+   "id": "K7",
+   "agent": "Klaus Mueller",
+   "day": 3,
+   "time": "08:20",
+   "type": "mundane",
+   "theme": null,
+   "description": "A librarian is restocking the shelf next to Klaus Mueller's table",
+   "triple": [
+    "A librarian",
+    "is",
+    "k7 event"
+   ],
+   "fact_sheet": {
+    "who": "a librarian",
+    "what": "restocked a shelf",
+    "where": "Oak Hill College library",
+    "when": "day 3 about 08:20",
+    "key_detail": "next to his table"
+   },
+   "subject": "A librarian",
+   "desc": "restocking the shelf next to Klaus Mueller's table",
+   "rendered_memory_text": "A librarian is restocking the shelf next to Klaus Mueller's table"
+  },
+  {
+   "id": "K8",
+   "agent": "Klaus Mueller",
+   "day": 3,
+   "time": "10:30",
+   "type": "theme",
+   "theme": "noise_disturbance",
+   "description": "Construction workers is drilling outside the library window",
+   "triple": [
+    "Construction workers",
+    "is",
+    "k8 event"
+   ],
+   "fact_sheet": {
+    "who": "construction workers",
+    "what": "drilled outside",
+    "where": "outside the Oak Hill College library",
+    "when": "day 3 about 10:30",
+    "key_detail": "drilling outside the window"
+   },
+   "subject": "Construction workers",
+   "desc": "drilling outside the library window",
+   "rendered_memory_text": "Construction workers is drilling outside the library window"
+  },
+  {
+   "id": "K9",
+   "agent": "Klaus Mueller",
+   "day": 3,
+   "time": "12:50",
+   "type": "friction",
+   "theme": null,
+   "description": "A visitor is taking the seat Klaus Mueller left to fetch a book and refusing to move",
+   "triple": [
+    "A visitor",
+    "is",
+    "k9 event"
+   ],
+   "fact_sheet": {
+    "who": "a visitor",
+    "what": "took his seat",
+    "where": "Oak Hill College library",
+    "when": "day 3 about 12:50",
+    "key_detail": "the visitor refused to move"
+   },
+   "subject": "A visitor",
+   "desc": "taking the seat Klaus Mueller left to fetch a book and refusing to move",
+   "rendered_memory_text": "A visitor is taking the seat Klaus Mueller left to fetch a book and refusing to move"
+  }
+ ],
+ "questions": [
+  {
+   "id": "Q_I1",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I1",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, what stopped outside Hobbs Cafe in the morning, and what color was it?",
+   "checklist": [
+    {
+     "item": "vehicle",
+     "any_of": [
+      "van",
+      "truck"
+     ]
+    },
+    {
+     "item": "color",
+     "any_of": [
+      "blue"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I2",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I2",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, what did a man ask about before leaving the cafe without ordering?",
+   "checklist": [
+    {
+     "item": "item",
+     "any_of": [
+      "croissant"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I3",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I3",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, who complained about a wrong order, and what did that person receive and what had they wanted?",
+   "checklist": [
+    {
+     "item": "name",
+     "any_of": [
+      "peter",
+      "hale"
+     ]
+    },
+    {
+     "item": "received",
+     "any_of": [
+      "latte"
+     ]
+    },
+    {
+     "item": "wanted",
+     "any_of": [
+      "tea"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I4",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I4",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what did a woman look at before leaving the cafe without ordering?",
+   "checklist": [
+    {
+     "item": "object",
+     "any_of": [
+      "menu"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I5",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I5",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what did the notice taped on the cafe door announce, and from when?",
+   "checklist": [
+    {
+     "item": "closure",
+     "any_of": [
+      "closure",
+      "close",
+      "closed"
+     ]
+    },
+    {
+     "item": "when",
+     "any_of": [
+      "monday"
+     ]
+    },
+    {
+     "item": "reason",
+     "any_of": [
+      "repair"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I6",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I6",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what happened to the wall clock over the register?",
+   "checklist": [
+    {
+     "item": "event",
+     "any_of": [
+      "stopped",
+      "stop"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I7",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I7",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what did a teenager look at before leaving the cafe without ordering?",
+   "checklist": [
+    {
+     "item": "object",
+     "any_of": [
+      "display",
+      "case"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I8",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I8",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what animal came into the cafe, and where did it lie down?",
+   "checklist": [
+    {
+     "item": "animal",
+     "any_of": [
+      "dog"
+     ]
+    },
+    {
+     "item": "place",
+     "any_of": [
+      "table four",
+      "table 4",
+      "four"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I9",
+   "agent": "Isabella Rodriguez",
+   "type": "injected",
+   "event_id": "I9",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what were two customers arguing about?",
+   "checklist": [
+    {
+     "item": "topic",
+     "any_of": [
+      "seat",
+      "chair"
+     ]
+    },
+    {
+     "item": "place",
+     "any_of": [
+      "window"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M1",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M1",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, what ran out of paper in the library, and on which floor?",
+   "checklist": [
+    {
+     "item": "thing",
+     "any_of": [
+      "printer"
+     ]
+    },
+    {
+     "item": "floor",
+     "any_of": [
+      "second",
+      "2nd",
+      "two"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M2",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M2",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, what did a man at the next table ask to borrow?",
+   "checklist": [
+    {
+     "item": "item",
+     "any_of": [
+      "pen"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M3",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M3",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, who shouted at whom about what at the cafe?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "student"
+     ]
+    },
+    {
+     "item": "target",
+     "any_of": [
+      "cashier"
+     ]
+    },
+    {
+     "item": "topic",
+     "any_of": [
+      "discount"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M4",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M4",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what flew into the reading room, and how did it get in?",
+   "checklist": [
+    {
+     "item": "animal",
+     "any_of": [
+      "sparrow",
+      "bird"
+     ]
+    },
+    {
+     "item": "way",
+     "any_of": [
+      "window"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M5",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M5",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what did the physics professor announce in the hallway, and for when?",
+   "checklist": [
+    {
+     "item": "what",
+     "any_of": [
+      "midterm",
+      "exam"
+     ]
+    },
+    {
+     "item": "when",
+     "any_of": [
+      "friday"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M6",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M6",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what did a woman at the counter ask to borrow?",
+   "checklist": [
+    {
+     "item": "item",
+     "any_of": [
+      "umbrella"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M7",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M7",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what sign was on the vending machine near the library entrance?",
+   "checklist": [
+    {
+     "item": "sign",
+     "any_of": [
+      "out of order",
+      "broken"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M8",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M8",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what did a boy at the next table ask to borrow?",
+   "checklist": [
+    {
+     "item": "item",
+     "any_of": [
+      "charger"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M9",
+   "agent": "Maria Lopez",
+   "type": "injected",
+   "event_id": "M9",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what were two students arguing about?",
+   "checklist": [
+    {
+     "item": "topic",
+     "any_of": [
+      "table"
+     ]
+    },
+    {
+     "item": "reason",
+     "any_of": [
+      "reserved",
+      "reserve",
+      "reservation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K1",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K1",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, who mopped the library floor?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "janitor",
+      "cleaner"
+     ]
+    },
+    {
+     "item": "action",
+     "any_of": [
+      "mop"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K2",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K2",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, what disturbed the quiet section of the library?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "students",
+      "group"
+     ]
+    },
+    {
+     "item": "what",
+     "any_of": [
+      "loud",
+      "talk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K3",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K3",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 1, who criticized your outline in the hallway, and what did they say about it?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "classmate"
+     ]
+    },
+    {
+     "item": "said",
+     "any_of": [
+      "weak"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K4",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K4",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what sounded for ten seconds in the library?",
+   "checklist": [
+    {
+     "item": "what",
+     "any_of": [
+      "fire alarm",
+      "alarm"
+     ]
+    },
+    {
+     "item": "duration",
+     "any_of": [
+      "ten",
+      "10"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K5",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K5",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, who told you about your funding at the cafe, and what did they say?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "chair",
+      "department"
+     ]
+    },
+    {
+     "item": "what",
+     "any_of": [
+      "funding"
+     ]
+    },
+    {
+     "item": "when",
+     "any_of": [
+      "end of the month",
+      "end of month"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K6",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K6",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 2, what rang loudly in the reading room?",
+   "checklist": [
+    {
+     "item": "what",
+     "any_of": [
+      "phone"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K7",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K7",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, who restocked the shelf next to your table?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "librarian"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K8",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K8",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, what made noise outside the library window?",
+   "checklist": [
+    {
+     "item": "what",
+     "any_of": [
+      "drill",
+      "construction"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K9",
+   "agent": "Klaus Mueller",
+   "type": "injected",
+   "event_id": "K9",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "On day 3, who took your seat when you went to fetch a book, and what did they do when asked to move?",
+   "checklist": [
+    {
+     "item": "who",
+     "any_of": [
+      "visitor"
+     ]
+    },
+    {
+     "item": "reaction",
+     "any_of": [
+      "refused",
+      "would not",
+      "didn't move",
+      "did not move"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_I_theme",
+   "agent": "Isabella Rodriguez",
+   "type": "theme_count",
+   "event_id": "I2,I4,I7",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Over the three days, how many people left the cafe without ordering, and who were they?",
+   "checklist": [
+    {
+     "item": "count",
+     "any_of": [
+      "three",
+      "3"
+     ]
+    },
+    {
+     "item": "man",
+     "any_of": [
+      "man"
+     ]
+    },
+    {
+     "item": "woman",
+     "any_of": [
+      "woman"
+     ]
+    },
+    {
+     "item": "teenager",
+     "any_of": [
+      "teenager",
+      "teen"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_M_theme",
+   "agent": "Maria Lopez",
+   "type": "theme_count",
+   "event_id": "M2,M6,M8",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Over the three days, how many people asked you to borrow something, and what did each ask for?",
+   "checklist": [
+    {
+     "item": "count",
+     "any_of": [
+      "three",
+      "3"
+     ]
+    },
+    {
+     "item": "pen",
+     "any_of": [
+      "pen"
+     ]
+    },
+    {
+     "item": "umbrella",
+     "any_of": [
+      "umbrella"
+     ]
+    },
+    {
+     "item": "charger",
+     "any_of": [
+      "charger"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Q_K_theme",
+   "agent": "Klaus Mueller",
+   "type": "theme_count",
+   "event_id": "K2,K6,K8",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Over the three days, how many times was your reading disturbed by noise, and by what?",
+   "checklist": [
+    {
+     "item": "count",
+     "any_of": [
+      "three",
+      "3"
+     ]
+    },
+    {
+     "item": "students",
+     "any_of": [
+      "students",
+      "group"
+     ]
+    },
+    {
+     "item": "phone",
+     "any_of": [
+      "phone"
+     ]
+    },
+    {
+     "item": "drilling",
+     "any_of": [
+      "drill",
+      "construction"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_I1",
+   "agent": "Isabella Rodriguez",
+   "type": "natural",
+   "event_id": "schedule day 2 09:00",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 09:00 on day 2?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "serv",
+      "customer"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_I2",
+   "agent": "Isabella Rodriguez",
+   "type": "natural",
+   "event_id": "schedule day 1 12:00",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Where were you at 12:00 on day 1?",
+   "checklist": [
+    {
+     "item": "place",
+     "any_of": [
+      "cafe",
+      "hobbs"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_I3",
+   "agent": "Isabella Rodriguez",
+   "type": "natural",
+   "event_id": "schedule day 3 06:30",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 06:30 on day 3?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "wak",
+      "getting ready",
+      "morning"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_M1",
+   "agent": "Maria Lopez",
+   "type": "natural",
+   "event_id": "schedule day 2 09:00",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 09:00 on day 2?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "study",
+      "physics",
+      "library"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_M2",
+   "agent": "Maria Lopez",
+   "type": "natural",
+   "event_id": "schedule day 1 11:30",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Where did you have lunch on day 1?",
+   "checklist": [
+    {
+     "item": "place",
+     "any_of": [
+      "cafe",
+      "hobbs"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_M3",
+   "agent": "Maria Lopez",
+   "type": "natural",
+   "event_id": "schedule day 3 07:30",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 07:30 on day 3?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "breakfast",
+      "eating"
+     ]
+    },
+    {
+     "item": "place",
+     "any_of": [
+      "cafe",
+      "hobbs"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_K1",
+   "agent": "Klaus Mueller",
+   "type": "natural",
+   "event_id": "schedule day 2 09:00",
+   "event_day": 2,
+   "distance_days": 1,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 09:00 on day 2?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "read",
+      "research",
+      "library"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_K2",
+   "agent": "Klaus Mueller",
+   "type": "natural",
+   "event_id": "schedule day 1 11:30",
+   "event_day": 1,
+   "distance_days": 2,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "Where did you have lunch on day 1?",
+   "checklist": [
+    {
+     "item": "place",
+     "any_of": [
+      "cafe",
+      "hobbs"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "N_K3",
+   "agent": "Klaus Mueller",
+   "type": "natural",
+   "event_id": "schedule day 3 07:30",
+   "event_day": 3,
+   "distance_days": 0,
+   "asked_at": "day 3 13:30 (checkpoint copy; never the live run)",
+   "question": "What were you doing at 07:30 on day 3?",
+   "checklist": [
+    {
+     "item": "activity",
+     "any_of": [
+      "walk",
+      "library"
+     ]
+    }
+   ]
+  }
+ ],
+ "probe_questions": [
+  {
+   "id": "P1",
+   "text": "Describe yourself in three sentences."
+  },
+  {
+   "id": "P2",
+   "text": "How do you usually react when someone is rude to you?"
+  },
+  {
+   "id": "P3",
+   "text": "How do you feel about meeting new people?"
+  },
+  {
+   "id": "P4",
+   "text": "What matters most to you in your daily life?"
+  },
+  {
+   "id": "P5",
+   "text": "How would you describe your relationship with each of the other two residents you know?"
+  },
+  {
+   "id": "P6",
+   "text": "How are you feeling about your work lately?"
+  }
+ ],
+ "probe_times": [
+  "day 1 13:30 (checkpoint copy)",
+  "day 3 13:30 (checkpoint copy)"
+ ]
+}
