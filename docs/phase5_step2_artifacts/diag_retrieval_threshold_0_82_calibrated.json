@@ -1,0 +1,693 @@
+{
+ "label": "offline reconstruction from saved run DB + cached vectors; real new_retrieve; zero network/LLM",
+ "tag": "threshold_0_82_calibrated",
+ "summary_nodes": {
+  "node_17": "I notice Isabella is constantly baking and preparing treats for others, which reminds me of the importance of caring for our community and keeping everyone satisfied.",
+  "node_18": "I realize that to keep harmony I often apologize and offer a remedy, even if it leaves me feeling uneasy."
+ },
+ "consolidated_weight": 0.5,
+ "runs": {
+  "weight_configured": {
+   "neighbor_argument": {
+    "order": [
+     "node_17",
+     "node_7",
+     "node_10",
+     "node_6",
+     "node_12",
+     "node_9",
+     "node_8",
+     "node_13",
+     "node_18",
+     "node_11",
+     "node_3",
+     "node_2",
+     "node_4",
+     "node_5",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 9
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7113,
+      "relevance_norm": 0.3865,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.1594,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.95589,
+      "recency_norm": 0.42,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7166,
+      "relevance_norm": 0.4012,
+      "weighted": {
+       "recency": 0.21,
+       "relevance": 1.2036,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7113,
+      "relevance_norm": 0.3865,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.1594,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 9,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.5716,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_17",
+     "node_10",
+     "node_7",
+     "node_9",
+     "node_12",
+     "node_11",
+     "node_13",
+     "node_6",
+     "node_8",
+     "node_18",
+     "node_3",
+     "node_2",
+     "node_5",
+     "node_4",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 10
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7475,
+      "relevance_norm": 0.8477,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 2.5431,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6953,
+      "relevance_norm": 0.5244,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 1.5733,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.9558,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.8674,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7475,
+      "relevance_norm": 0.8477,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 2.5431,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 10,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6105,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_17",
+     "node_10",
+     "node_11",
+     "node_12",
+     "node_13",
+     "node_6",
+     "node_3",
+     "node_8",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_7",
+     "node_9",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7936,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_10": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is reading a letter from her sister who lives in an",
+      "recency_raw": 0.98015,
+      "recency_norm": 0.7798,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6846,
+      "relevance_norm": 0.5944,
+      "weighted": {
+       "recency": 0.3899,
+       "relevance": 1.7832,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_11": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is fixing a loose latch on the cafe's back window",
+      "recency_raw": 0.98507,
+      "recency_norm": 0.8528,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7427,
+      "relevance_norm": 0.8105,
+      "weighted": {
+       "recency": 0.4264,
+       "relevance": 2.4315,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7936,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.5247,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  },
+  "weight_1.0": {
+   "neighbor_argument": {
+    "order": [
+     "node_7",
+     "node_6",
+     "node_9",
+     "node_8",
+     "node_17",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_12",
+     "node_4",
+     "node_5",
+     "node_1",
+     "node_13",
+     "node_18",
+     "node_11"
+    ],
+    "summary_ranks": {
+     "node_17": 5,
+     "node_18": 14
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.8401,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.5202,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8528,
+      "relevance_norm": 0.7779,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.3337,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 5,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7113,
+      "relevance_norm": 0.3865,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.1594,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 14,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.5716,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_7",
+     "node_9",
+     "node_17",
+     "node_6",
+     "node_8",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_12",
+     "node_11",
+     "node_13",
+     "node_5",
+     "node_4",
+     "node_1",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 3,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.9558,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.8674,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 3.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7475,
+      "relevance_norm": 0.8477,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 2.5431,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7475,
+      "relevance_norm": 0.8477,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 2.5431,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6105,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_17",
+     "node_6",
+     "node_3",
+     "node_8",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_7",
+     "node_9",
+     "node_10",
+     "node_11",
+     "node_12",
+     "node_13",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7936,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7087,
+      "relevance_norm": 0.6843,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 2.0529,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7585,
+      "relevance_norm": 0.8695,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 2.6084,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "I notice Isabella is constantly baking and preparing treats for others",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7936,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "I realize that to keep harmony I often apologize and offer a remedy, e",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.5247,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  }
+ },
+ "reproduces_saved_summary_ranks": {
+  "neighbor_argument": true,
+  "conflict_handling": true,
+  "baking": true
+ },
+ "nodes_total": 18
+}

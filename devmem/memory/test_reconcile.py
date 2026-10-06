@@ -309,7 +309,7 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
         calls = []
         def fake_llm(prompt, **kw):
             calls.append(kw.get("agent_id"))
-            return "A steady pattern of scripted events."
+            return f"{kw.get('agent_id')} shows a steady pattern of scripted events."
         sweep_kwargs = {"embed_fn": lambda t: [0.1, 0.2, 0.3], "config": {**cons.load_config(), "min_cluster_size": 2}}
         r = self._scripted_runner(sweep_kwargs=sweep_kwargs)
         r.final_sweep = True  # _scripted_runner disables it by default so other tests make no LLM calls
@@ -320,6 +320,22 @@ class TestHeadlessRunnerCrashReload(unittest.TestCase):
             self.assertEqual(res["status"], "done", name)
             self.assertEqual(res["summaries_written"], 1, name)
         self.assertEqual(sorted(calls), sorted(r.rs.personas))
+
+    def test_persona_move_runs_with_agent_tag_for_ledger_logging(self):
+        from persona.persona import Persona
+        from devmem.router.agent_context import get_current_agent
+        seen = []
+
+        def fake_move(self, maze, personas, tile, when):
+            seen.append((self.name, get_current_agent()))
+            return ((1, 1), "x", "y")
+
+        with mock.patch.object(Persona, "move", fake_move):
+            r = self._scripted_runner()
+            name = list(r.rs.personas)[0]
+            r.rs.personas[name].move(None, {}, (1, 1), None)
+        self.assertEqual(seen, [(name, name)])
+        self.assertIsNone(get_current_agent(), "tag is cleared after move()")
 
 
 if __name__ == "__main__":

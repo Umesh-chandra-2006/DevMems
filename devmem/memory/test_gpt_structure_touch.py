@@ -76,10 +76,12 @@ class TestGetEmbeddingRouting(unittest.TestCase):
             self.assertEqual(gs._EMBEDDING_STORE.stats["http_requests"], 0)
 
     def test_live_mode_is_fail_loud_when_no_key_works(self):
-        no_keys = {k: "" for k in ("GEMINI_KEY_1", "GEMINI_KEY_2", "GEMINI_KEY_3")}
+        from devmem.embeddings.vector_store import load_config
+        no_keys = {k: "" for k in load_config()["key_envs"]}  # blank every key the production config uses
         with mock.patch.dict(os.environ, {"DEVMEM_EMBEDDING_MODE": "live", **no_keys}):
             with self.assertRaises(EmbeddingError):
-                gs.get_embedding("p5 live routing probe sentence that is not cached anywhere 8f3a1")
+                import uuid  # unique text: a persistent-cache hit must never mask the fail-loud path
+                gs.get_embedding(f"p5 live routing probe sentence {uuid.uuid4()}")
             self.assertEqual(gs._EMBEDDING_STORE.stats["http_requests"], 0)
 
 

@@ -41,12 +41,15 @@ SUMMARY_OBJECT = "memory"
 
 SUMMARIZATION_PROMPT_TEMPLATE = """{persona_context}
 
-The following are related observations this agent experienced today:
+The following are related observations about {agent_name}, recorded today:
 {cluster_entries}
 
-Write ONE sentence capturing the underlying pattern or takeaway
-this agent would form from these related experiences."""
-SUMMARY_SYSTEM_PROMPT = "Reply with exactly one sentence and nothing else: no preamble, no list, no explanation."
+Write ONE sentence, in the third person, that names {agent_name} and states the underlying pattern or takeaway
+these related observations show about {agent_name}."""
+SUMMARY_SYSTEM_PROMPT = ("Reply with exactly one sentence and nothing else: no preamble, no list, no explanation. "
+                         "Write in the third person and use the person's name; never use I, me, my or we.")
+SUMMARY_RETRY_SUFFIX = ("\n\nYour previous reply was: \"{previous}\"\nThat is not acceptable: it must be written in the "
+                        "third person and name {agent_name}. Reply with one corrected sentence only.")
 
 SEMANTIC_DDL = """
 CREATE TABLE IF NOT EXISTS semantic_memory (
@@ -134,18 +137,40 @@ def _normalize(m: np.ndarray) -> np.ndarray:
     return m / n
 
 
-def cluster_by_similarity(embeddings: Sequence[Sequence[float]], threshold: float) -> List[List[int]]:
-    """Single-linkage clustering via union-find over pairwise cosine similarity >= threshold.
-    Deterministic: members sorted ascending, clusters ordered by their smallest member. Isolated points
-    come back as singleton clusters. Raises ValueError on mixed vector lengths."""
+def cluster_by_similarity(embeddings: Sequence[Sequence[float]], threshold: float, linkage: str = "single"
+                          ) -> List[List[int]]:
+    """Cluster by cosine similarity >= threshold. Deterministic: members sorted ascending, clusters ordered by
+    their smallest member. Isolated points come back as singleton clusters. Raises ValueError on mixed vector
+    lengths or an unknown linkage.
+
+    linkage="single" (default): union-find; any pair at or above the threshold joins two clusters (chaining possible).
+    linkage="average": agglomerative; repeatedly merge the two clusters with the highest mean pairwise similarity
+    while that mean is >= threshold (ties: lowest member indices first). Resists chaining."""
     n = len(embeddings)
     if n == 0:
         return []
     dims = {len(v) for v in embeddings}
     if len(dims) != 1:
         raise ValueError(f"embeddings have mixed dimensions {sorted(dims)}; refusing to cluster")
+    if linkage not in ("single", "average"):
+        raise ValueError(f"unknown linkage {linkage!r}")
     m = _normalize(np.asarray(embeddings, dtype=float))
     sim = m @ m.T
+    if linkage == "average":
+        clusters = [[i] for i in range(n)]
+        while len(clusters) > 1:
+            best, best_pair = None, None
+            for x in range(len(clusters)):
+                for y in range(x + 1, len(clusters)):
+                    mean = float(sim[np.ix_(clusters[x], clusters[y])].mean())
+                    if mean >= threshold and (best is None or mean > best + 1e-12):
+                        best, best_pair = mean, (x, y)
+            if best_pair is None:
+                break
+            x, y = best_pair
+            clusters[x] = sorted(clusters[x] + clusters[y])
+            del clusters[y]
+        return sorted(clusters, key=lambda c: c[0])
     parent = list(range(n))
 
     def find(x: int) -> int:
@@ -182,6 +207,18 @@ def parse_summary(text: Any) -> str:
         if line:
             return line
     return ""
+
+
+def is_third_person(summary: str, agent_name: str) -> bool:
+    """True when the summary names the agent (full name or first name) and has no first-person words."""
+    import re
+    low = summary.lower()
+    names = {agent_name.lower(), agent_name.split()[0].lower()}
+    if not any(n in low for n in names):
+        return False
+    if re.search(r"\bI\b|\bI'(?:m|ve|ll|d)\b", summary):
+        return False
+    return not re.search(r"\b(?:my|me|mine|myself|we|our|ours)\b", low)
 
 
 def _default_embed(text: str) -> List[float]:
@@ -312,7 +349,7 @@ def run_nightly_sweep(
         conn.close()
 
     record: Dict[str, Any] = {"agent": agent, "sim_time": sweep_time.strftime("%Y-%m-%d %H:%M:%S"), "night": night,
-                              "entries_considered": len(entries), "threshold": cfg["cluster_similarity"],
+                              "entries_considered": len(entries), "threshold": cfg["cluster_similarity"], "linkage": cfg.get("linkage", "single"),
                               "min_cluster_size": cfg["min_cluster_size"], "importance_floor": cfg["importance_floor"],
                               "pinned_model": pinned_model, "failures": [], "fallbacks": 0}
     a_mem = persona.a_mem
@@ -325,7 +362,8 @@ def run_nightly_sweep(
             continue
         usable.append(r)
         vectors.append(vec)
-    clusters = cluster_by_similarity(vectors, cfg["cluster_similarity"]) if vectors else []
+    clusters = (cluster_by_similarity(vectors, cfg["cluster_similarity"], cfg.get("linkage", "single"))
+                if vectors else [])
     hist: Dict[int, int] = {}
     for c in clusters:
         hist[len(c)] = hist.get(len(c), 0) + 1
@@ -341,14 +379,23 @@ def run_nightly_sweep(
         members = sorted(c, key=lambda i: (-(usable[i]["importance_score"] or 0), usable[i]["sim_timestamp"]))
         members = sorted(members[: cfg["max_entries_per_prompt"]])
         prompt = SUMMARIZATION_PROMPT_TEMPLATE.format(
-            persona_context=priors_ctx, cluster_entries="\n".join(f"- {usable[i]['content']}" for i in members))
+            persona_context=priors_ctx, agent_name=agent,
+            cluster_entries="\n".join(f"- {usable[i]['content']}" for i in members))
         try:
-            raw = call_llm(prompt, tier=cfg["summary_tier"], purpose="consolidation_summary", agent_id=agent,
-                           condition="staged", sim_day=sim_day, system_prompt=SUMMARY_SYSTEM_PROMPT,
-                           pinned_model=pinned_model)
-            summary = parse_summary(raw)
-            if not summary:
-                raise ValueError("empty summary")
+            retries = 0
+            current = prompt
+            while True:
+                raw = call_llm(current, tier=cfg["summary_tier"], purpose="consolidation_summary", agent_id=agent,
+                               condition="staged", sim_day=sim_day, system_prompt=SUMMARY_SYSTEM_PROMPT,
+                               pinned_model=pinned_model)
+                summary = parse_summary(raw)
+                if summary and is_third_person(summary, agent):
+                    break
+                if retries >= cfg.get("summary_retries", 1):
+                    raise ValueError(f"summary not third person naming the agent after {retries} retries: {summary[:80]!r}")
+                retries += 1
+                record["summary_retries"] = record.get("summary_retries", 0) + 1
+                current = prompt + SUMMARY_RETRY_SUFFIX.format(previous=summary[:200], agent_name=agent)
             importance = episodic.score_importance_persona_conditioned(agent, summary, kind="event", persona=persona)
             emb = list(embed(summary))
         except Exception as exc:  # counted, never silent

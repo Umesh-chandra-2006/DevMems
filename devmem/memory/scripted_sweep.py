@@ -150,8 +150,10 @@ def run_scripted_sweep(tag: str, threshold: Optional[float] = None, artifacts_di
 
 
 if __name__ == "__main__":
-    # Caps: <= 40 live LLM calls in total for the scripted sweeps (checked by the caller).
-    art = ROOT / "docs" / "phase5_step1_artifacts"
-    for tag, th in (("threshold_0_78_default", None), ("threshold_0_82_calibrated", 0.82)):
+    # Usage: scripted_sweep.py <artifact_subdir> <tag_suffix>   (default: Step 2 third-person re-run; cap 20 LLM calls)
+    sub = sys.argv[1] if len(sys.argv) > 1 else "phase5_step2_artifacts"
+    suffix = sys.argv[2] if len(sys.argv) > 2 else "third_person"
+    art = ROOT / "docs" / sub
+    for tag, th in ((f"threshold_0_78_default_{suffix}", None), (f"threshold_0_82_calibrated_{suffix}", 0.82)):
         r = run_scripted_sweep(tag, th, art)
         print(tag, "llm_calls", r["llm_calls_made"], "summaries", [s["description"] for s in r["summary_nodes"]])

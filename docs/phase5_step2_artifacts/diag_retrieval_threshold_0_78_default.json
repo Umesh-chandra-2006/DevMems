@@ -1,0 +1,693 @@
+{
+ "label": "offline reconstruction from saved run DB + cached vectors; real new_retrieve; zero network/LLM",
+ "tag": "threshold_0_78_default",
+ "summary_nodes": {
+  "node_17": "Isabella consistently demonstrates a caring, community-focused approach, balancing work tasks with personal connections, always ready to fix problems and maintain harmony.",
+  "node_18": "When a conflict arises, I should immediately offer a friendly gesture to smooth things over and preserve harmony, even if it means sacrificing my own comfort."
+ },
+ "consolidated_weight": 0.5,
+ "runs": {
+  "weight_configured": {
+   "neighbor_argument": {
+    "order": [
+     "node_7",
+     "node_6",
+     "node_12",
+     "node_9",
+     "node_8",
+     "node_13",
+     "node_17",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_4",
+     "node_5",
+     "node_1",
+     "node_11",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 7,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.825,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.475,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_12": {
+      "rank": 3,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.93691,
+      "recency_norm": 0.1386,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6903,
+      "relevance_norm": 0.2652,
+      "weighted": {
+       "recency": 0.0693,
+       "relevance": 0.7957,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 7,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7053,
+      "relevance_norm": 0.3106,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.9319,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.6027,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_17",
+     "node_7",
+     "node_9",
+     "node_6",
+     "node_13",
+     "node_8",
+     "node_12",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_11",
+     "node_5",
+     "node_4",
+     "node_18",
+     "node_1"
+    ],
+    "summary_ranks": {
+     "node_17": 1,
+     "node_18": 14
+    },
+    "rows_top3": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7835,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_7": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8599,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.5798,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 0.914,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.742,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 1,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7835,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 14,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.6737,
+      "relevance_norm": 0.1693,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.5079,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_12",
+     "node_13",
+     "node_17",
+     "node_6",
+     "node_3",
+     "node_8",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_7",
+     "node_10",
+     "node_9",
+     "node_11",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 3,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_12": {
+      "rank": 1,
+      "type": "event",
+      "text": "The town clock tower struck five while Isabella Rodriguez waited at th",
+      "recency_raw": 0.99003,
+      "recency_norm": 0.9262,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.6447,
+      "relevance_norm": 0.496,
+      "weighted": {
+       "recency": 0.4631,
+       "relevance": 1.4879,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_13": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is brushing her teeth",
+      "recency_raw": 0.995,
+      "recency_norm": 1.0,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.68,
+      "relevance_norm": 0.6329,
+      "weighted": {
+       "recency": 0.5,
+       "relevance": 1.8988,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.6777,
+      "relevance_norm": 0.6238,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.8714,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 3,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.6777,
+      "relevance_norm": 0.6238,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.8714,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.5168,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  },
+  "weight_1.0": {
+   "neighbor_argument": {
+    "order": [
+     "node_7",
+     "node_6",
+     "node_9",
+     "node_8",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_12",
+     "node_4",
+     "node_5",
+     "node_1",
+     "node_13",
+     "node_11",
+     "node_17",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 14,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.9331,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 3.0,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 2,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.8753,
+      "relevance_norm": 0.825,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.475,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.95111,
+      "recency_norm": 0.3491,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.8528,
+      "relevance_norm": 0.7569,
+      "weighted": {
+       "recency": 0.1746,
+       "relevance": 2.2708,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 14,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7053,
+      "relevance_norm": 0.3106,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 0.9319,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.6027,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "conflict_handling": {
+    "order": [
+     "node_7",
+     "node_9",
+     "node_6",
+     "node_8",
+     "node_17",
+     "node_10",
+     "node_3",
+     "node_2",
+     "node_13",
+     "node_11",
+     "node_12",
+     "node_5",
+     "node_4",
+     "node_1",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 5,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_7": {
+      "rank": 1,
+      "type": "event",
+      "text": "Isabella Rodriguez argued with her neighbor about the late-night noise",
+      "recency_raw": 0.96552,
+      "recency_norm": 0.5628,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.765,
+      "relevance_norm": 0.8599,
+      "weighted": {
+       "recency": 0.2814,
+       "relevance": 2.5798,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_9": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez felt tense after the dispute with her neighbor",
+      "recency_raw": 0.97525,
+      "recency_norm": 0.7071,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.7722,
+      "relevance_norm": 0.914,
+      "weighted": {
+       "recency": 0.3535,
+       "relevance": 2.742,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     },
+     "node_6": {
+      "rank": 3,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7263,
+      "relevance_norm": 0.567,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 1.7009,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 5,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.7835,
+      "relevance_norm": 1.0,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 3.0,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.6737,
+      "relevance_norm": 0.1693,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.5079,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   },
+   "baking": {
+    "order": [
+     "node_6",
+     "node_3",
+     "node_8",
+     "node_2",
+     "node_1",
+     "node_5",
+     "node_4",
+     "node_7",
+     "node_10",
+     "node_9",
+     "node_11",
+     "node_12",
+     "node_13",
+     "node_17",
+     "node_18"
+    ],
+    "summary_ranks": {
+     "node_17": 14,
+     "node_18": 15
+    },
+    "rows_top3": {
+     "node_6": {
+      "rank": 1,
+      "type": "event",
+      "text": "A neighbor shouted at Isabella Rodriguez about the noise coming from t",
+      "recency_raw": 0.96069,
+      "recency_norm": 0.4912,
+      "importance_raw": 7,
+      "importance_norm": 1.0,
+      "relevance_raw_cos": 0.7087,
+      "relevance_norm": 0.7442,
+      "weighted": {
+       "recency": 0.2456,
+       "relevance": 2.2327,
+       "importance": 2.0
+      },
+      "final_score_after_D2": null
+     },
+     "node_3": {
+      "rank": 2,
+      "type": "event",
+      "text": "Isabella Rodriguez is taking fresh bread out of the oven",
+      "recency_raw": 0.94635,
+      "recency_norm": 0.2786,
+      "importance_raw": 5,
+      "importance_norm": 0.6,
+      "relevance_raw_cos": 0.7585,
+      "relevance_norm": 0.9373,
+      "weighted": {
+       "recency": 0.1393,
+       "relevance": 2.8119,
+       "importance": 1.2
+      },
+      "final_score_after_D2": null
+     },
+     "node_8": {
+      "rank": 3,
+      "type": "event",
+      "text": "Isabella Rodriguez apologized to the upset neighbor and offered free c",
+      "recency_raw": 0.97037,
+      "recency_norm": 0.6348,
+      "importance_raw": 6,
+      "importance_norm": 0.8,
+      "relevance_raw_cos": 0.6986,
+      "relevance_norm": 0.7051,
+      "weighted": {
+       "recency": 0.3174,
+       "relevance": 2.1153,
+       "importance": 1.6
+      },
+      "final_score_after_D2": null
+     }
+    },
+    "rows_summaries": {
+     "node_17": {
+      "rank": 14,
+      "type": "thought",
+      "text": "Isabella consistently demonstrates a caring, community-focused approac",
+      "recency_raw": 0.92757,
+      "recency_norm": 0.0,
+      "importance_raw": 3,
+      "importance_norm": 0.2,
+      "relevance_raw_cos": 0.6777,
+      "relevance_norm": 0.6238,
+      "weighted": {
+       "recency": 0.0,
+       "relevance": 1.8714,
+       "importance": 0.4
+      },
+      "final_score_after_D2": null
+     },
+     "node_18": {
+      "rank": 15,
+      "type": "thought",
+      "text": "When a conflict arises, I should immediately offer a friendly gesture ",
+      "recency_raw": 0.93223,
+      "recency_norm": 0.0691,
+      "importance_raw": 2,
+      "importance_norm": 0.0,
+      "relevance_raw_cos": 0.5168,
+      "relevance_norm": 0.0,
+      "weighted": {
+       "recency": 0.0346,
+       "relevance": 0.0,
+       "importance": 0.0
+      },
+      "final_score_after_D2": null
+     }
+    }
+   }
+  }
+ },
+ "reproduces_saved_summary_ranks": {
+  "neighbor_argument": true,
+  "conflict_handling": true,
+  "baking": true
+ },
+ "nodes_total": 18
+}

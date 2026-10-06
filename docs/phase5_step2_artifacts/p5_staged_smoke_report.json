@@ -1,0 +1,113 @@
+{
+ "sim_code": "p5_staged_smoke",
+ "mode": "staged",
+ "pinned_model": "openai/gpt-oss-20b",
+ "fork": "base_the_ville_isabella_maria_klaus",
+ "start_clock": "2023-02-13 00:00:00",
+ "steps_requested": 6,
+ "caps": {
+  "llm_calls": 100,
+  "embedding_requests": 60
+ },
+ "label": "live",
+ "stopped": "cap: LLM call cap 100 reached",
+ "steps_completed": 0,
+ "final_step": 0,
+ "final_clock": "2023-02-13 00:00:00",
+ "seconds": 612.1,
+ "counted": {
+  "llm_calls": 100,
+  "embed_requests": 10
+ },
+ "router_failures": {
+  "count": 0,
+  "by_function": {},
+  "last_errors": []
+ },
+ "final_save": "failed: AttributeError: 'NoneType' object has no attribute 'strftime'",
+ "ledger": {
+  "rows": 100,
+  "by_purpose": {
+   "planning": {
+    "calls": 98,
+    "tokens_in": 87389,
+    "tokens_out": 130951
+   },
+   "dialogue": {
+    "calls": 2,
+    "tokens_in": 754,
+    "tokens_out": 127
+   }
+  },
+  "by_agent": {
+   "Isabella Rodriguez": {
+    "calls": 39,
+    "tokens_in": 31790,
+    "tokens_out": 45047
+   },
+   "Maria Lopez": {
+    "calls": 51,
+    "tokens_in": 47795,
+    "tokens_out": 71957
+   },
+   "Klaus Mueller": {
+    "calls": 10,
+    "tokens_in": 8558,
+    "tokens_out": 14074
+   }
+  },
+  "models": [
+   "openai/gpt-oss-20b"
+  ],
+  "conditions": [
+   "staged"
+  ]
+ },
+ "embedding_stats": {
+  "model": "gemini-embedding-001",
+  "fail_loud": true,
+  "http_requests": 10,
+  "texts_requested": 13,
+  "cache_hits": 3,
+  "cache_misses": 10,
+  "failures": 0,
+  "fallbacks": 0,
+  "http_status_counts": {
+   "200": 10
+  },
+  "requests_by_key_env": {
+   "GEMINI_KEY_1": 4,
+   "GEMINI_KEY_3": 3,
+   "GEMINI_KEY_4": 3
+  },
+  "keys_skipped": {},
+  "offline": false,
+  "dimensions_seen": [
+   3072
+  ]
+ },
+ "episodic_rows_by_agent": {
+  "Isabella Rodriguez": 6,
+  "Klaus Mueller": 5,
+  "Maria Lopez": 6
+ },
+ "consolidation_sweeps_rows": [
+  {
+   "agent_id": "Isabella Rodriguez",
+   "night": 0,
+   "sweep_time": "2023-02-13 00:00:00",
+   "max_node_id": 7,
+   "attempts": 1,
+   "status": "done"
+  },
+  {
+   "agent_id": "Maria Lopez",
+   "night": 0,
+   "sweep_time": "2023-02-13 00:00:00",
+   "max_node_id": 7,
+   "attempts": 1,
+   "status": "done"
+  }
+ ],
+ "schedule_check_findings": []
+}

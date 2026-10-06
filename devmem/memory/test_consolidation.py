@@ -58,6 +58,20 @@ class TestClustering(unittest.TestCase):
         self.assertEqual(cons.cluster_by_similarity(chain, 0.92), [[0, 1, 2]])
         self.assertEqual(cons.cluster_by_similarity([], 0.8), [])
 
+    def test_average_linkage_resists_chaining_and_is_deterministic(self):
+        chain = [vec(1, 0), vec(1, 0.4), vec(1, 0.8)]       # single linkage joins all three at 0.92 (chain)
+        self.assertEqual(cons.cluster_by_similarity(chain, 0.92, "single"), [[0, 1, 2]])
+        self.assertEqual(cons.cluster_by_similarity(chain, 0.92, "average"), [[0], [1, 2]])
+        e = [vec(1, 0), vec(0.99, 0.1), vec(0, 1), vec(0.05, 0.99), vec(0, 0, 1)]
+        self.assertEqual(cons.cluster_by_similarity(e, 0.9, "average"), [[0, 1], [2, 3], [4]])
+        self.assertEqual(cons.cluster_by_similarity(e, 0.9, "average"), cons.cluster_by_similarity(list(e), 0.9, "average"))
+        self.assertEqual(cons.cluster_by_similarity([], 0.9, "average"), [])
+        with self.assertRaises(ValueError):
+            cons.cluster_by_similarity(e, 0.9, "complete")
+
+    def test_default_linkage_is_single_in_config(self):
+        self.assertEqual(cons.load_config()["linkage"], "single")
+
     def test_mixed_dimensions_refused(self):
         with self.assertRaises(ValueError):
             cons.cluster_by_similarity([vec(1, 0, dim=8), vec(1, 0, dim=4)], 0.8)
@@ -112,7 +126,7 @@ class StageThreeBase(unittest.TestCase):
         episodic.log_episodic_node(AGENT, node, sim_time=when, importance_score=imp, db_path=self.db)
         return f"{AGENT}:{node.node_id}"
 
-    def llm(self, text="She keeps her cafe running with steady, careful work.", fail=False):
+    def llm(self, text="Isabella keeps her cafe running with steady, careful work.", fail=False):
         def fake(prompt, **kw):
             self.llm_calls.append(prompt)
             if fail:
@@ -122,7 +136,7 @@ class StageThreeBase(unittest.TestCase):
 
     def sweep(self, when=None, text=None, fail=False, embed=None, **kw):
         when = when or self.persona.scratch.curr_time
-        with mock.patch.object(cons, "call_llm", self.llm(text or "She keeps her cafe running with steady work.", fail)), \
+        with mock.patch.object(cons, "call_llm", self.llm(text or "Isabella keeps her cafe running with steady work.", fail)), \
              mock.patch.object(cons.episodic, "score_importance_persona_conditioned", return_value=6):
             return cons.run_nightly_sweep(self.persona, when, db_path=self.db, config=self.cfg, ledger_db=self.ledger,
                                           embed_fn=embed or (lambda t: vec(0, 0, 1)), **kw)
@@ -217,11 +231,41 @@ class TestSweepAndSemanticMemory(StageThreeBase):
         res = self.sweep()
         self.assertEqual(res["summaries_written"], 1, "per-night cap")
         self.assertEqual(len(self.llm_calls), 1)
-        entries_block = self.llm_calls[0].split("experienced today:")[1].split("Write ONE sentence")[0]
+        entries_block = self.llm_calls[0].split("recorded today:")[1].split("Write ONE sentence")[0]
         self.assertEqual(entries_block.count("\n- "), 3, "at most max_entries_per_prompt entries in the prompt")
         sem = self.rows("semantic_memory")
         self.assertEqual(len(json.loads(sem[0]["source_entry_ids"])), 3)
         self.assertEqual(sum(r["consolidated"] for r in self.rows()), 3, "only entries that were summarized are flagged")
+
+    def test_first_person_reply_gets_one_corrective_retry_then_fails_if_still_wrong(self):
+        self.add("baking", vec(1, 0))
+        self.add("kneading", vec(0.99, 0.1), 9, 30)
+        replies = iter(["I like to keep things running.", "Isabella keeps the cafe running with steady work."])
+        def fake(prompt, **kw):
+            self.llm_calls.append(prompt)
+            return next(replies)
+        with mock.patch.object(cons, "call_llm", fake),              mock.patch.object(cons.episodic, "score_importance_persona_conditioned", return_value=6):
+            res = cons.run_nightly_sweep(self.persona, self.persona.scratch.curr_time, db_path=self.db, config=self.cfg,
+                                         ledger_db=self.ledger, embed_fn=lambda t: vec(0, 0, 1))
+        self.assertEqual(res["summary_retries"], 1)
+        self.assertEqual(len(self.llm_calls), 2)
+        self.assertIn("not acceptable", self.llm_calls[1])
+        self.assertEqual(self.rows("semantic_memory")[0]["summary"], "Isabella keeps the cafe running with steady work.")
+        # still wrong after the retry -> counted failure, no semantic memory, failed marker
+        self.persona.a_mem = AssociativeMemory(str(self.empty))
+        self.db = cons.init_consolidation_db(self.tmp / "memory2.db")
+        self.add("baking", vec(1, 0))
+        self.add("kneading", vec(0.99, 0.1), 9, 30)
+        res = self.sweep(text="I keep things running.")
+        self.assertEqual(res["status"], "failed")
+        self.assertEqual(self.rows("semantic_memory"), [])
+
+    def test_is_third_person(self):
+        self.assertTrue(cons.is_third_person("Isabella Rodriguez bakes every morning.", "Isabella Rodriguez"))
+        self.assertTrue(cons.is_third_person("Isabella smooths over conflict.", "Isabella Rodriguez"))
+        self.assertFalse(cons.is_third_person("She smooths over conflict.", "Isabella Rodriguez"))
+        self.assertFalse(cons.is_third_person("I realize Isabella bakes.", "Isabella Rodriguez"))
+        self.assertFalse(cons.is_third_person("Isabella thinks of my cafe.", "Isabella Rodriguez"))
 
     def test_failed_sweep_leaves_no_done_marker_and_retries_up_to_max_attempts(self):
         a = self.add("baking", vec(1, 0))
@@ -381,6 +425,71 @@ class TestBaselineIsUnchangedAndGates(StageThreeBase):
         utils.MEMORY_MODE = "baseline"
         base = ranks(0.5)  # baseline mode ignores the weight entirely
         self.assertEqual(base, full)
+
+
+class TestSleepHookInsideRealMove(StageThreeBase):
+    """scripted, no network: the REAL Persona.move() runs; only perceive, plan and execute are stubbed (plan returns a
+    sleeping action). The hook is reached inside move(), the real sweep runs (LLM and scorer patched), and a second
+    move() the same night does nothing. In baseline mode the hook is not reached."""
+
+    SIM = "p5_move_hook_test"
+
+    def setUp(self):
+        super().setUp()
+        self.addCleanup(shutil.rmtree, ROOT / "devmem" / "storage" / self.SIM, ignore_errors=True)
+        env = mock.patch.dict(os.environ, {"SIM_CODE": self.SIM})
+        env.start()
+        self.addCleanup(env.stop)
+        self.addCleanup(lambda: setattr(utils, "MEMORY_MODE", "staged"))
+        self.real_db = cons.init_consolidation_db(episodic.get_db_path())
+        from devmem.embeddings.vector_store import deterministic_fallback_vector as dv
+        self.vec = dv("same vector")
+        for i in range(3):  # identical vectors cluster at any threshold; default config needs >= 3 entries
+            when = datetime.datetime.combine(D1, datetime.time(9, i))
+            n = self.persona.a_mem.add_event(when, None, AGENT, "is", f"task {i}", f"Isabella is doing task {i}",
+                                             {"isabella"}, 5, (f"Isabella is doing task {i}", self.vec), None)
+            episodic.log_episodic_node(AGENT, n, sim_time=when, importance_score=5, db_path=self.real_db)
+
+    def _move(self, when):
+        p = self.persona
+
+        def fake_plan(maze, personas, new_day, retrieved):
+            p.scratch.act_description = "sleeping"
+            return "the Ville:Isabella Rodriguez's apartment:main room:bed"
+
+        with mock.patch.object(type(p), "perceive", lambda self, maze: []),              mock.patch.object(type(p), "plan", lambda self, maze, personas, new_day, retrieved: fake_plan(maze, personas, new_day, retrieved)),              mock.patch.object(type(p), "execute", lambda self, maze, personas, plan: ((1, 1), "zzz", "sleeping")),              mock.patch.object(cons, "call_llm", self.llm()),              mock.patch.object(cons.episodic, "score_importance_persona_conditioned", return_value=5),              mock.patch.object(cons.episodic, "get_db_path", return_value=self.real_db):
+            return p.move(None, {}, (1, 1), when)
+
+    def test_hook_fires_inside_move_once_per_night_in_staged_mode(self):
+        utils.MEMORY_MODE = "staged"
+        t = datetime.datetime.combine(D1, datetime.time(22, 0))
+        self.persona.scratch.curr_time = t - datetime.timedelta(seconds=10)
+        out = self._move(t)
+        self.assertEqual(out, ((1, 1), "zzz", "sleeping"))
+        self.assertEqual(len(self.llm_calls), 1, "the sweep ran inside move()")
+        sem = [r for r in self._rows_in(self.real_db, "semantic_memory")]
+        self.assertEqual(len(sem), 1)
+        for k in range(1, 6):  # five more ticks the same night
+            self._move(t + datetime.timedelta(seconds=10 * k))
+        self.assertEqual(len(self.llm_calls), 1)
+        self.assertEqual(len(self._rows_in(self.real_db, "consolidation_sweeps")), 1)
+
+    def test_hook_not_reached_in_baseline_mode(self):
+        utils.MEMORY_MODE = "baseline"
+        t = datetime.datetime.combine(D1, datetime.time(22, 0))
+        self.persona.scratch.curr_time = t - datetime.timedelta(seconds=10)
+        self._move(t)
+        self.assertEqual(self.llm_calls, [])
+        self.assertEqual(self._rows_in(self.real_db, "consolidation_sweeps"), [])
+
+    @staticmethod
+    def _rows_in(db, table):
+        c = sqlite3.connect(str(db))
+        c.row_factory = sqlite3.Row
+        try:
+            return [dict(r) for r in c.execute(f"SELECT * FROM {table}")]
+        finally:
+            c.close()
 
 
 @unittest.skipUnless(os.environ.get("DEVMEM_LIVE_TESTS") == "1", "live test: set DEVMEM_LIVE_TESTS=1")

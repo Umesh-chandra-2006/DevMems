@@ -1,0 +1,400 @@
+{
+ "label": "offline, cached live vectors of scripted events",
+ "network_requests": 0,
+ "eligible_events": 12,
+ "results": {
+  "single@0.7": {
+   "histogram": {
+    "12": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10",
+     "isolated:11"
+    ]
+   ]
+  },
+  "single@0.72": {
+   "histogram": {
+    "12": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10",
+     "isolated:11"
+    ]
+   ]
+  },
+  "single@0.74": {
+   "histogram": {
+    "1": 1,
+    "11": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10"
+    ]
+   ]
+  },
+  "single@0.76": {
+   "histogram": {
+    "1": 1,
+    "11": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10"
+    ]
+   ]
+  },
+  "single@0.78": {
+   "histogram": {
+    "1": 1,
+    "4": 1,
+    "7": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "isolated:9",
+     "isolated:10"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "single@0.8": {
+   "histogram": {
+    "1": 2,
+    "4": 1,
+    "6": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "isolated:10"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "single@0.82": {
+   "histogram": {
+    "1": 3,
+    "4": 1,
+    "5": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "single@0.83": {
+   "histogram": {
+    "1": 3,
+    "4": 1,
+    "5": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "single@0.84": {
+   "histogram": {
+    "1": 4,
+    "3": 1,
+    "5": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.7": {
+   "histogram": {
+    "12": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10",
+     "isolated:11"
+    ]
+   ]
+  },
+  "average@0.72": {
+   "histogram": {
+    "1": 1,
+    "11": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8",
+     "isolated:9",
+     "isolated:10"
+    ]
+   ]
+  },
+  "average@0.74": {
+   "histogram": {
+    "1": 1,
+    "4": 1,
+    "7": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "isolated:9",
+     "isolated:10"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.76": {
+   "histogram": {
+    "1": 1,
+    "4": 1,
+    "7": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "isolated:9",
+     "isolated:10"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.78": {
+   "histogram": {
+    "1": 2,
+    "4": 1,
+    "6": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4",
+     "isolated:10"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.8": {
+   "histogram": {
+    "1": 3,
+    "4": 1,
+    "5": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.82": {
+   "histogram": {
+    "1": 3,
+    "4": 1,
+    "5": 1
+   },
+   "clusters": [
+    [
+     "baking:0",
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:7",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.83": {
+   "histogram": {
+    "1": 5,
+    "3": 1,
+    "4": 1
+   },
+   "clusters": [
+    [
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:8"
+    ]
+   ]
+  },
+  "average@0.84": {
+   "histogram": {
+    "1": 5,
+    "3": 1,
+    "4": 1
+   },
+   "clusters": [
+    [
+     "baking:1",
+     "baking:2",
+     "baking:3",
+     "baking:4"
+    ],
+    [
+     "neighbor_conflict:5",
+     "neighbor_conflict:6",
+     "neighbor_conflict:8"
+    ]
+   ]
+  }
+ }
+}

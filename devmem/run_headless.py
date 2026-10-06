@@ -103,6 +103,7 @@ class HeadlessRunner:
         else:
             self.rs = ReverieServer(fork_sim_code, sim_code)
         os.makedirs(f"{utils.fs_storage}/{sim_code}/movement", exist_ok=True)
+        self._tag_agents()
 
         minutes = (
             autosave_interval_sim_minutes
@@ -127,6 +128,23 @@ class HeadlessRunner:
             from devmem.memory.consolidation import reconcile_consolidation
             self.consolidation_reconcile = [reconcile_consolidation(p, self.db_path)
                                             for p in self.rs.personas.values()]
+
+    def _tag_agents(self) -> None:
+        """Wrap each persona's move() so router calls made during it are logged with that persona's agent_id
+        (instance attribute; no upstream file is touched)."""
+        from devmem.router.agent_context import reset_current_agent, set_current_agent
+
+        for persona in self.rs.personas.values():
+            original = persona.move
+
+            def tagged(*args, _orig=original, _name=persona.name, **kwargs):
+                token = set_current_agent(_name)
+                try:
+                    return _orig(*args, **kwargs)
+                finally:
+                    reset_current_agent(token)
+
+            persona.move = tagged
 
     def _purge_stale_step_files(self) -> List[str]:
         """After a crash, environment/{j}.json (j > saved step) and movement/{j}.json (j >= saved

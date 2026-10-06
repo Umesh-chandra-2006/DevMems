@@ -21,3 +21,7 @@ devmem/router/usage_log.db
 # OS specific
 .DS_Store
 Thumbs.db
+
+# router runtime state
+devmem/router/cooldown_state.json
+reverie/environment/frontend_server/storage/p5_*

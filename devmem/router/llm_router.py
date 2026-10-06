@@ -165,6 +165,9 @@ def call_llm(
       or reset-time lockout, and fails over to next key.
     - On All Cooling Down: If shortest cooldown <= 90s, sleeps and retries.
     """
+    if agent_id is None:  # ledger tagging: the headless runner sets the current agent around persona.move()
+        from devmem.router.agent_context import get_current_agent
+        agent_id = get_current_agent()
     providers = load_providers_config(config_path)
     today = get_today_str()
     cm = cooldown_mgr or cooldown_manager

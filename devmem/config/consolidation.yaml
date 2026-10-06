@@ -7,6 +7,8 @@
 cluster_similarity: 0.78
 # Match threshold for reinforcing an existing semantic memory instead of creating a new one.
 match_threshold: 0.80
+# linkage: single (default, union-find; chains) or average (agglomerative on mean pairwise cosine).
+linkage: single
 min_cluster_size: 3
 # Cap on source entries placed in one summarization prompt (Groq TPM is 8,000; prompt is ~650 tokens).
 max_entries_per_prompt: 12
@@ -14,6 +16,8 @@ max_entries_per_prompt: 12
 importance_floor: 3
 exclude_description_substrings: ["idle"]
 max_summaries_per_night: 6
+# A summary must be third person and name the agent; a violating reply gets this many corrective retries.
+summary_retries: 1
 # A sweep that fails writes no marker and may retry on a later tick, up to this many attempts per night.
 max_attempts_per_night: 3
 
