@@ -1,0 +1,141 @@
+{
+ "label": "offline analysis of live artifacts",
+ "calls_by_purpose_router_counter": {
+  "consolidation_summary": 5,
+  "importance_scoring": 10,
+  "identity_trait": 4
+ },
+ "raw_reply_count_by_purpose": {
+  "consolidation_summary": 5,
+  "importance_scoring": 10,
+  "identity_trait": 4
+ },
+ "tokens_by_purpose_main_ledger": {
+  "consolidation_summary": {
+   "calls": 5,
+   "tokens_in": 1328,
+   "tokens_out": 143
+  },
+  "importance_scoring": {
+   "calls": 5,
+   "tokens_in": 2514,
+   "tokens_out": 664
+  },
+  "identity_trait": {
+   "calls": 4,
+   "tokens_in": 1033,
+   "tokens_out": 139
+  }
+ },
+ "tokens_by_purpose_main_plus_run_db_ledger": {
+  "consolidation_summary": {
+   "calls": 5,
+   "tokens_in": 1328,
+   "tokens_out": 143
+  },
+  "importance_scoring": {
+   "calls": 10,
+   "tokens_in": 5086,
+   "tokens_out": 1270
+  },
+  "identity_trait": {
+   "calls": 4,
+   "tokens_in": 1033,
+   "tokens_out": 139
+  }
+ },
+ "new_event_prompts": [
+  {
+   "text": "Isabella Rodriguez is greeting regular customers at the cafe counter",
+   "score": 3,
+   "prompt_contains_header": true,
+   "traits_in_prompt": [
+    "Isabella Rodriguez:trait_1",
+    "Isabella Rodriguez:trait_3"
+   ],
+   "active_traits_not_in_prompt": [
+    "Isabella Rodriguez:trait_2"
+   ]
+  },
+  {
+   "text": "Isabella Rodriguez is carefully shaping a new batch of baguettes",
+   "score": 3,
+   "prompt_contains_header": true,
+   "traits_in_prompt": [
+    "Isabella Rodriguez:trait_1",
+    "Isabella Rodriguez:trait_3"
+   ],
+   "active_traits_not_in_prompt": [
+    "Isabella Rodriguez:trait_2"
+   ]
+  },
+  {
+   "text": "A neighbor complained again about the noise from the cafe",
+   "score": 7,
+   "prompt_contains_header": true,
+   "traits_in_prompt": [
+    "Isabella Rodriguez:trait_1",
+    "Isabella Rodriguez:trait_3"
+   ],
+   "active_traits_not_in_prompt": [
+    "Isabella Rodriguez:trait_2"
+   ]
+  },
+  {
+   "text": "Isabella Rodriguez received a notice that the cafe lease ends next month",
+   "score": 9,
+   "prompt_contains_header": true,
+   "traits_in_prompt": [
+    "Isabella Rodriguez:trait_1",
+    "Isabella Rodriguez:trait_3"
+   ],
+   "active_traits_not_in_prompt": [
+    "Isabella Rodriguez:trait_2"
+   ]
+  },
+  {
+   "text": "Isabella Rodriguez is wiping down the tables after closing",
+   "score": 2,
+   "prompt_contains_header": true,
+   "traits_in_prompt": [
+    "Isabella Rodriguez:trait_1",
+    "Isabella Rodriguez:trait_3"
+   ],
+   "active_traits_not_in_prompt": [
+    "Isabella Rodriguez:trait_2"
+   ]
+  }
+ ],
+ "trait_raw_replies_over_35_words": [
+  {
+   "words": 38,
+   "raw": "Isabella Rodriguez immediately began brainstorming ways to appease the landlord and organize a community petition to save the cafe, demonstrating her deep-seated need to maintain harmony and her tendency to prioritize collective stability over her own emotional processing."
+  }
+ ],
+ "all_trait_texts": [
+  {
+   "trait_id": "Isabella Rodriguez:trait_1",
+   "path": "same_day",
+   "active": 1,
+   "night": 2,
+   "words": 28,
+   "text": "Isabella Rodriguez demonstrates a deep-seated need to foster communal connection and emotional stability by using her baking as a tool to nurture others and maintain a peaceful environment."
+  },
+  {
+   "trait_id": "Isabella Rodriguez:trait_2",
+   "path": "pivotal",
+   "active": 1,
+   "night": 2,
+   "words": 30,
+   "text": "Isabella Rodriguez immediately sought to appease the landlord and rally the community, demonstrating her persistent need to preserve harmony and her tendency to prioritize collective stability over processing personal disappointment."
+  },
+  {
+   "trait_id": "Isabella Rodriguez:trait_3",
+   "path": "same_day",
+   "active": 1,
+   "night": 3,
+   "words": 26,
+   "text": "Isabella Rodriguez consistently demonstrates a deep-seated need to preserve social harmony by reflexively prioritizing the comfort of others over her own needs during moments of conflict."
+  }
+ ]
+}

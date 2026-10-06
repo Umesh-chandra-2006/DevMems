@@ -1,0 +1,68 @@
+Provider error on gemini (GEMINI_KEY_5): Gemini returned HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Falling through to next key/provider.
+Provider error on gemini (GEMINI_KEY_6): Gemini returned HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Falling through to next key/provider.
+Provider error on gemini (GEMINI_KEY_5): Gemini returned HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Falling through to next key/provider.
+Provider error on gemini (GEMINI_KEY_6): Gemini returned HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+. Falling through to next key/provider.
+{
+ "outcome": "completed",
+ "router_counter": {
+  "count": 19,
+  "cap": 40,
+  "by_purpose": {
+   "consolidation_summary": 5,
+   "importance_scoring": 10,
+   "identity_trait": 4
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 19
+  }
+ },
+ "embedding_requests": 10,
+ "tokens_by_purpose": {
+  "consolidation_summary": {
+   "calls": 5,
+   "tokens_in": 1328,
+   "tokens_out": 143
+  },
+  "importance_scoring": {
+   "calls": 5,
+   "tokens_in": 2514,
+   "tokens_out": 664
+  },
+  "identity_trait": {
+   "calls": 4,
+   "tokens_in": 1033,
+   "tokens_out": 139
+  }
+ },
+ "merge_band_0_80_to_0_88_count": 0,
+ "unknown_scoring_context_rows": 0,
+ "pivotal_lost": 0
+}
