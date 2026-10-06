@@ -13,7 +13,15 @@ DEFAULT_DB_PATH = os.path.join(os.path.dirname(__file__), "usage_log.db")
 
 
 def get_today_str() -> str:
-    """Return today's date formatted as YYYY-MM-DD."""
+    """Return today's date formatted as YYYY-MM-DD.
+
+    Default: the local calendar date (unchanged behavior). When DEVMEM_QUOTA_RESET_UTC_HOUR is set (for example 7, the provider's daily
+    reset at midnight Pacific during daylight saving time, about 12:30 IST), the "day" used for every daily quota counter and exhaustion
+    mark starts at that UTC hour instead, so the ledger resets when the provider's quota does. Phase 7 and 9 runs set it."""
+    reset = os.environ.get("DEVMEM_QUOTA_RESET_UTC_HOUR", "").strip()
+    if reset:
+        from datetime import datetime, timedelta
+        return (datetime.utcnow() - timedelta(hours=float(reset))).date().isoformat()
     return date.today().isoformat()
 
 

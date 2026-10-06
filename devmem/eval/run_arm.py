@@ -1,0 +1,260 @@
+"""
+ONE ARM of the Phase 7 / Phase 9 comparison (baseline or staged), as its own process. NOT launched by this stop; `--dry-run` prints the plan
+and runs every offline check without a network call or a simulation step.
+
+  python -m devmem.eval.run_arm --arm baseline --dry-run
+  python -m devmem.eval.run_arm --arm staged   --dry-run
+(the real runs are two such processes in parallel on DISJOINT chat-key sets, started only after the PM approves the launch).
+
+Settings (all from the PM's launch spec):
+  * pinned model gemini-3.1-flash-lite for both arms, normalizer ON, raw-reply log ON, real embeddings (cache first, fail loud);
+  * authored schedules through the plan-function replacement (devmem.eval.authored_plan), start 2023-02-13 00:00, 3 compressed days;
+  * the event injector (devmem.eval.injector) with a PASS or FAIL line per event;
+  * Arm S: STAGE4_ENABLED on, IDENTITY_FEEDBACK on, Stage 3 on with the frozen clustering config; Arm B: baseline memory (priors as atomic nodes);
+  * chat keys: a DISJOINT set per arm (7 and 7 of the 14 verified Gemini chat keys), per-key daily cap 450 (set as the `rpd` of the arm's
+    temporary provider config; the quota day starts at DEVMEM_QUOTA_RESET_UTC_HOUR=7, i.e. the provider reset, about 12:30 IST);
+  * per-arm hard cap 9,500 router calls (CapReached), soft stop at a step boundary after 8,500, autosave every 15 simulated minutes;
+  * quota exhaustion PAUSES the process until the reset (devmem.eval.quota_gate) and never crashes or switches model;
+  * checkpoint copies at the end of the day 1 and day 3 awake windows (14:00), the simulation folder and the movement files are kept;
+  * an upstream exception is not patched around: the run stops, snapshots the folder (no mid-step save) and can be resumed ONCE with --resume;
+  * the operator can stop a run by creating a file named ABORT in the run folder.
+"""
+import argparse
+import copy
+import json
+import os
+import shutil
+import sys
+import tempfile
+import time
+from datetime import date, datetime, timedelta
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(ROOT))
+
+MODEL = "gemini-3.1-flash-lite"
+START = datetime(2023, 2, 13, 0, 0, 0)
+START_STR = "February 13, 2023, 00:00:00"
+DAYS = 3
+UNTIL = START + timedelta(days=DAYS)               # end of day 3 (everyone asleep since 14:00)
+CHECKPOINTS = {"day1_end_awake": START + timedelta(hours=14), "day3_end_awake": START + timedelta(days=2, hours=14)}
+PER_KEY_CAP = 450
+HARD_CAP, SOFT_STOP = 9500, 8500
+RESET_UTC_HOUR = "7"
+# the 14 chat-capable Gemini keys verified for the pinned model (docs/key_verification_2026_10_07.md); disjoint arm sets of 7
+VERIFIED_CHAT_KEYS = ["GEMINI_KEY_1", "GEMINI_KEY_2", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6", "GEMINI_KEY_8", "GEMINI_KEY_10",
+                      "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16", "GEMINI_KEY_17"]
+ARM_KEYS = {"baseline": VERIFIED_CHAT_KEYS[:7], "staged": VERIFIED_CHAT_KEYS[7:]}
+FORK_SRC = "base_the_ville_isabella_maria_klaus"
+
+
+def plan(arm: str, sim: str) -> dict:
+    other = "staged" if arm == "baseline" else "baseline"
+    return {"arm": arm, "sim_code": sim, "pinned_model": MODEL, "normalizer": "on", "raw_reply_log": "on",
+            "memory_mode": arm, "stage4": arm == "staged", "identity_feedback": arm == "staged",
+            "chat_keys": ARM_KEYS[arm], "other_arm_keys": ARM_KEYS[other], "keys_disjoint": not set(ARM_KEYS[arm]) & set(ARM_KEYS[other]),
+            "per_key_daily_cap": PER_KEY_CAP, "quota_reset_utc_hour": RESET_UTC_HOUR, "hard_cap_calls": HARD_CAP, "soft_stop_calls": SOFT_STOP,
+            "autosave_sim_minutes": 15, "start": START_STR, "until": str(UNTIL), "days": DAYS,
+            "checkpoints": {k: str(v) for k, v in CHECKPOINTS.items()}, "embeddings": "real gemini-embedding-001, cache first, fail loud",
+            "groq_or_nim_used": False}
+
+
+def preflight(arm: str) -> list:
+    """Offline checks that must be clean before any run: schedules, events, key sets, env names (never values)."""
+    from devmem.eval import checks
+    bad = [f"schedule: {x}" for x in checks.check_schedules()] + [f"events: {x}" for x in checks.check_events()]
+    a, b = set(ARM_KEYS["baseline"]), set(ARM_KEYS["staged"])
+    if a & b:
+        bad.append(f"arm key sets overlap: {sorted(a & b)}")
+    if not (a | b) <= set(VERIFIED_CHAT_KEYS):
+        bad.append("an arm uses a key that is not in the verified chat list")
+    if any(not k.startswith("GEMINI_KEY_") for k in ARM_KEYS[arm]):
+        bad.append("a non-Gemini key is assigned to an arm")
+    return bad
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arm", choices=["baseline", "staged"], required=True)
+    ap.add_argument("--sim")
+    ap.add_argument("--resume", action="store_true")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--hard-cap", type=int, default=HARD_CAP)
+    ap.add_argument("--soft-stop", type=int, default=SOFT_STOP)
+    a = ap.parse_args(argv)
+    arm = a.arm
+    sim = a.sim or f"p7_{arm}"
+    problems = preflight(arm)
+    print(json.dumps(plan(arm, sim), indent=1))
+    if problems:
+        print("PREFLIGHT FAILED:", *problems, sep="\n  ")
+        raise SystemExit(2)
+    print("preflight: clean (schedules, events, disjoint verified key sets)")
+    if a.dry_run:
+        return
+
+    run_dir = ROOT / "devmem" / "storage" / sim
+    if not a.resume:
+        shutil.rmtree(run_dir, ignore_errors=True)
+    run_dir.mkdir(parents=True, exist_ok=True)
+    raw_log = run_dir / "raw_replies.jsonl"
+    state_f = run_dir / "arm_state.json"
+    prior = json.loads(state_f.read_text()) if (a.resume and state_f.exists()) else {"calls": 0, "runs": 0}
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+    stage4 = "on" if arm == "staged" else "off"
+    for k, v in (("DEVMEM_PINNED_MODEL", MODEL), ("DEVMEM_OUTPUT_NORMALIZER", "on"), ("DEVMEM_EMBEDDING_MODE", "live"),
+                 ("DEVMEM_RAW_REPLY_LOG", str(raw_log)), ("SIM_CODE", sim), ("STAGE4_ENABLED", stage4), ("IDENTITY_FEEDBACK", stage4),
+                 ("DEVMEM_QUOTA_RESET_UTC_HOUR", RESET_UTC_HOUR)):
+        os.environ[k] = v
+    missing = [k for k in ARM_KEYS[arm] if not os.environ.get(k)]
+    if missing:
+        raise SystemExit(f"keys not set in the environment: {missing}")
+
+    from devmem.run_headless import HeadlessRunner
+    import utils
+    import yaml
+    import persona.prompt_template.gpt_structure as gs
+    from devmem.embeddings.vector_store import EmbeddingStore
+    from devmem.eval import authored_plan, checks
+    from devmem.eval.injector import EventInjector
+    from devmem.eval.quota_gate import QuotaGate, RunAborted
+    from devmem.eval.run_support import LedgerWindows, make_checkpoint, write_status
+    from devmem.memory import consolidation, episodic, identity
+    from devmem.memory.episodic import get_db_path
+    from devmem.router import call_counter, key_pool, llm_router, output_normalizer
+
+    storage = Path(utils.fs_storage)
+    fork = f"{FORK_SRC}__start_{sim}"
+    if not a.resume:
+        shutil.rmtree(storage / fork, ignore_errors=True)
+        shutil.copytree(storage / FORK_SRC, storage / fork)
+        meta_f = storage / fork / "reverie" / "meta.json"
+        meta = json.loads(meta_f.read_text())
+        meta["curr_time"] = START_STR
+        meta_f.write_text(json.dumps(meta, indent=2))
+        shutil.rmtree(storage / sim, ignore_errors=True)
+
+    # temporary provider configs: only gemini, only this arm's keys (rotated), per-key daily cap 450; never written into the repo config
+    base = yaml.safe_load(open(ROOT / "devmem/config/providers.yaml", encoding="utf-8"))
+    gem = next(p for p in base["providers"] if p["name"] == "gemini")
+    tmp = Path(tempfile.mkdtemp(prefix=f"p7_{arm}_"))
+    cfgs, keys = [], ARM_KEYS[arm]
+    for i in range(len(keys)):
+        p = copy.deepcopy(gem)
+        p["keys"] = [{"env": k} for k in keys[i:] + keys[:i]]
+        p["model_limits"][MODEL]["rpd"] = PER_KEY_CAP
+        p["daily_limit_fast"] = PER_KEY_CAP
+        f = tmp / f"rot{i}.yaml"
+        f.write_text(yaml.dump({"providers": [p]}), encoding="utf-8")
+        cfgs.append(str(f))
+    rot = {"i": prior["calls"]}
+    real_call = llm_router.call_llm
+
+    def rotating(*args, **kwargs):
+        kwargs.setdefault("config_path", cfgs[rot["i"] % len(cfgs)])
+        rot["i"] += 1
+        return real_call(*args, **kwargs)
+    gate = QuotaGate(rotating, keys, MODEL, PER_KEY_CAP, run_dir)
+    for mod in (gs, episodic, consolidation, identity):
+        mod.call_llm = gate
+
+    call_counter.reset()
+    call_counter.set_cap(a.hard_cap - prior["calls"])
+    soft_left = a.soft_stop - prior["calls"]
+
+    store = EmbeddingStore(stats_path=get_db_path(sim).parent / f"embedding_stats{'_resume' if a.resume else ''}.json")
+    embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"]
+    gate.wrap_embedding_store(store, embed_keys, rpd=1000)
+    gs._EMBEDDING_STORE = store
+
+    schedules, spec = checks.load(checks.SCHEDULES), checks.load(checks.EVENTS)
+    uninstall = authored_plan.install(schedules, START.date())
+
+    runner = HeadlessRunner(fork, sim, memory_mode=arm, resume=a.resume, final_sweep=False)
+    rs = runner.rs
+    names = list(rs.personas)
+    injector = EventInjector(spec["events"], START, run_dir / "injection_log.jsonl", arm)
+    windows = LedgerWindows(key_pool, run_dir, arm, names)
+    from devmem.memory.consolidation import is_sleeping, load_config as cons_cfg
+    markers = cons_cfg()["sleep_markers"]
+    why_stop, made = {}, {}
+    orig_advance = runner._advance
+
+    def status(state):
+        write_status(run_dir / "run_status.json", {
+            "arm": arm, "sim_code": sim, "state": state, "sim_clock": str(rs.curr_time), "step": rs.step,
+            "router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses,
+            "injection": injector.summary(), "checkpoints_made": sorted(made), "autosave_steps": runner.autosave_steps[-3:],
+            "normalizer": output_normalizer.STATS, "router_failures": gs.ROUTER_FAILURES.get("count") if isinstance(gs.ROUTER_FAILURES, dict) else None})
+
+    def counters():
+        return {"router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses}
+
+    def advance():
+        injector.tick(rs)
+        orig_advance()
+        windows.observe_step({n: is_sleeping(p.scratch.act_description, markers) for n, p in rs.personas.items()})
+        c = rs.curr_time
+        if rs.step == 1 and not a.resume:
+            windows.record("step_0_day_start_planning", str(c), rs.step, counters(), {"injection": injector.summary()})
+        elif c.minute == 0 and c.second == 0:
+            windows.record(f"hour_ending_{c:%Y-%m-%d_%H:%M}", str(c), rs.step, counters(), {"injection": injector.summary()})
+            state_f.write_text(json.dumps({"calls": counters()["router_calls_total"], "runs": prior["runs"] + 1}))
+            status("running")
+        if rs.step % 360 == 0:
+            print(f"step {rs.step} clock {c} calls {counters()['router_calls_total']} pauses {gate.pauses}", flush=True)
+    runner._advance = advance
+
+    def should_stop():
+        if (run_dir / "ABORT").exists():
+            why_stop["why"] = "ABORT file present"
+            return True
+        for label, when in CHECKPOINTS.items():  # after the autosave of this step (HeadlessRunner saves before calling should_stop)
+            if label not in made and rs.curr_time >= when and runner.autosave_steps and runner.autosave_steps[-1] == rs.step:
+                make_checkpoint(storage, sim, rs.step, run_dir, label, str(rs.curr_time))
+                made[label] = rs.step
+        if call_counter.snapshot()["count"] >= soft_left:
+            why_stop["why"] = f"soft stop: {a.soft_stop} router calls reached at a step boundary"
+            return True
+        if rs.curr_time >= UNTIL:
+            why_stop["why"] = f"reached {UNTIL}"
+            return True
+        return False
+    runner.should_stop = should_stop
+
+    outcome, exc_info = "completed", None
+    status("starting")
+    try:
+        runner.run(10 ** 7)
+        outcome = why_stop.get("why", "completed")
+    except RunAborted as e:
+        outcome = f"aborted by the operator: {e}"
+    except call_counter.CapReached as e:
+        outcome = f"HARD CAP, no save attempted: {e}"
+    except Exception as e:  # reporter only: nothing upstream is wrapped, patched or retried
+        import traceback
+        last = None
+        if raw_log.exists():
+            lines = [l for l in raw_log.read_text(encoding="utf-8").splitlines() if l.strip()]
+            last = json.loads(lines[-1]) if lines else None
+        snap = storage / f"{sim}__crash_snapshot_{prior['runs'] + 1}"
+        shutil.rmtree(snap, ignore_errors=True)
+        shutil.copytree(storage / sim, snap)
+        exc_info = {"type": type(e).__name__, "message": str(e)[:300], "traceback": traceback.format_exc(), "last_router_call": last, "snapshot": snap.name}
+        outcome = f"upstream exception: {type(e).__name__}: {str(e)[:200]}"
+    finally:
+        uninstall()
+    windows.record("final_partial_window", str(rs.curr_time), rs.step, counters(), {"injection": injector.summary()})
+    status("finished: " + outcome)
+    report = {"arm": arm, "sim_code": sim, "outcome": outcome, "final_clock": str(rs.curr_time), "final_step": rs.step, "exception": exc_info,
+              "router_calls_total": counters()["router_calls_total"], "quota_pauses": gate.pauses, "injection": injector.summary(),
+              "checkpoints": made, "autosave_steps": runner.autosave_steps, "normalizer_stats": output_normalizer.STATS,
+              "schedule_check": json.loads((run_dir / "schedule_check.json").read_text())}
+    (run_dir / f"arm_report_{'resume' if a.resume else 'first'}.json").write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")
+    print(json.dumps({k: report[k] for k in ("outcome", "final_clock", "router_calls_total", "quota_pauses", "injection")}, indent=1, default=str))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,63 @@
+=== devmem.router.test_router
+Ran 33 tests in 3.752s
+OK
+=== devmem.router.test_call_counter
+Ran 4 tests in 2.009s
+OK
+=== devmem.router.test_output_normalizer
+Ran 4 tests in 0.000s
+OK
+=== devmem.router.test_normalizer_wiring
+Ran 8 tests in 2.286s
+OK
+=== devmem.router.test_normalizer_rule
+Ran 9 tests in 0.221s
+OK
+=== devmem.router.test_normalizer_call_path
+Ran 7 tests in 5.872s
+OK
+=== devmem.memory.test_priors
+Ran 9 tests in 2.031s
+OK
+=== devmem.memory.test_episodic
+Ran 11 tests in 1.768s
+OK
+=== devmem.memory.test_reconcile
+Ran 10 tests in 55.273s
+OK
+=== devmem.memory.test_gpt_structure_touch
+Ran 5 tests in 0.094s
+OK
+=== devmem.memory.test_consolidation
+Ran 27 tests in 7.869s
+OK (skipped=1)
+=== devmem.memory.test_identity
+Ran 36 tests in 77.150s
+OK
+=== devmem.memory.test_night_key
+Ran 13 tests in 2.277s
+OK
+=== devmem.memory.test_t_calibration
+Ran 7 tests in 0.054s
+OK
+=== devmem.embeddings.test_vector_store
+Ran 14 tests in 1.230s
+OK (skipped=1)
+=== devmem.demo.test_demo
+Ran 2 tests in 0.074s
+OK
+=== devmem.api.test_store
+Ran 22 tests in 2.797s
+OK
+=== devmem.api.test_api_http
+Ran 6 tests in 0.000s
+OK (skipped=6)
+=== devmem.eval.test_run_readiness
+Ran 27 tests in 59.106s
+OK
+=== devmem.eval.test_run_arm_smoke
+Ran 1 test in 9.025s
+OK
+=== devmem.api.test_api_http (system Python 3.13 with fastapi, httpx)
+Ran 6 tests in 1.342s
+OK
