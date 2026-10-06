@@ -1,0 +1,8 @@
+{
+ "mode": "recorded",
+ "origin": "scripted events and scripted importance for the fixture events; live LLM summaries, traits and the five new-event scores; live embeddings",
+ "model": "gemini-3.1-flash-lite",
+ "normalizer": "on",
+ "stages": "Stages 1 to 4 on, IDENTITY_FEEDBACK on; one persona (Isabella); four scripted nights",
+ "note": "Phase 6 Stop 3 live confirmation (docs/phase6_stop3_report.md)."
+}

@@ -1,0 +1,8 @@
+{
+ "mode": "recorded",
+ "origin": "natural (agents followed their own generated schedules; no injected or scripted events)",
+ "model": "gemini-3.1-flash-lite",
+ "normalizer": "on",
+ "stages": "staged mode, Stage 3 on (only empty carry-over sweeps happened), Stage 4 off; 3 agents; PARTIAL run: 06:00 to 13:45 on day 1, ended at a soft call cap",
+ "note": "Step D recording (docs/phase6_stepd_report.md). Maria and Klaus slept through the window."
+}

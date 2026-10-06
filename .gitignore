@@ -25,3 +25,7 @@ Thumbs.db
 # router runtime state
 devmem/router/cooldown_state.json
 reverie/environment/frontend_server/storage/p5_*
+
+# Recorded runs used by the memory inspector tests and demo (small, read-only recordings; Phase 8)
+!docs/phase6_stepd_artifacts/memory.db
+!docs/phase6_stop3_artifacts/memory.db
