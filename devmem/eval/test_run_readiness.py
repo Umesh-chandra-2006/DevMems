@@ -414,11 +414,11 @@ class TestQuotaDayAndKeyPlan(unittest.TestCase):
 
     def test_arm_key_sets_are_disjoint_gemini_verified_split_equally_with_the_odd_key_to_baseline(self):
         b, s = run_arm.ARM_KEYS["baseline"], run_arm.ARM_KEYS["staged"]
-        self.assertEqual((len(b), len(s)), (16, 15))                       # 31 verified pool keys, odd extra to baseline
+        self.assertEqual((len(b), len(s)), (17, 16))                       # 33 verified pool keys, odd extra to baseline
         self.assertFalse(set(b) & set(s))
         self.assertFalse(set(b + s) & set(run_arm._PILOT_ONLY))             # the eight pilot keys are not in the full pool
         eb, es = run_arm.EMBED_KEYS["baseline"], run_arm.EMBED_KEYS["staged"]
-        self.assertEqual((len(eb), len(es)), (15, 15))                      # embedding keys split equally and disjoint
+        self.assertEqual((len(eb), len(es)), (16, 16))                      # embedding keys split equally and disjoint
         self.assertFalse(set(eb) & set(es))
         self.assertTrue(set(eb) <= set(b) and set(es) <= set(s))
         self.assertTrue(set(b + s) <= set(run_arm.VERIFIED_CHAT_KEYS))

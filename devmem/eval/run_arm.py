@@ -47,9 +47,9 @@ HARD_CAP, SOFT_STOP = 16500, 15500   # amended before launch (PM 2026-10-07, cla
 RESET_UTC_HOUR = "7"
 # Chat-capable Gemini keys verified for the pinned model (docs/key_verification_2026_10_07.md; the 30 keys GEMINI_KEY_18 to 47 verified on 2026-10-07
 # afternoon, one chat and one embedding call each, statuses in docs/phase5_step2_artifacts/key_verification.json: chat 200 for 24, 403 for 26, 35, 40,
-# 41, 46, 47; GEMINI_KEY_21 chat 503 once and 200 on one retry). The eight PILOT keys (8, 10 to 16) are NOT in the full-arm pool.
+# 41, 46, 47; GEMINI_KEY_21 chat 503 once and 200 on one retry). GEMINI_KEY_48 and 49 verified (200 and 200) at launch; 50 and 51 returned 403. The eight PILOT keys (8, 10 to 16) are NOT in the full-arm pool.
 _PILOT_ONLY = ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16"]
-_NEW_OK = [n for n in range(18, 48) if n not in (26, 35, 40, 41, 46, 47)]
+_NEW_OK = [n for n in range(18, 52) if n not in (26, 35, 40, 41, 46, 47, 50, 51)]   # 48 and 49 verified later the same day; 50 and 51 returned 403 on chat and embedding
 FULL_POOL = [f"GEMINI_KEY_{n}" for n in [1, 2, 3, 4, 5, 6, 17] + _NEW_OK]                       # 31 chat-verified keys
 VERIFIED_CHAT_KEYS = FULL_POOL + _PILOT_ONLY
 # Embedding: GEMINI_KEY_2 has no embedding verification; the other 30 alternate between the arms (15 and 15), GEMINI_KEY_2 goes to baseline as the odd key

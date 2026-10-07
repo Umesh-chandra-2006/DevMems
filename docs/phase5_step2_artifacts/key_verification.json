@@ -548,5 +548,45 @@
   "key": "GEMINI_KEY_47",
   "call": "embed gemini-embedding-001",
   "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_48",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_48",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_49",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_49",
+  "call": "embed gemini-embedding-001",
+  "status": 200
+ },
+ {
+  "key": "GEMINI_KEY_50",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_50",
+  "call": "embed gemini-embedding-001",
+  "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_51",
+  "call": "llm maxOutputTokens=5 gemini-3.1-flash-lite",
+  "status": 403
+ },
+ {
+  "key": "GEMINI_KEY_51",
+  "call": "embed gemini-embedding-001",
+  "status": 403
  }
 ]
