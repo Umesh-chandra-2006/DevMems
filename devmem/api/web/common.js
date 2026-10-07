@@ -89,12 +89,18 @@
         }));
   }
 
+  function earlyWindow(state) {   /* the shown time is before the first 14:00 sleep block of the authored day 1 (2023-02-13) */
+    var t = String((state && state.sim_time) || "");
+    return t.slice(0, 10) <= "2023-02-13" && t.slice(11, 19) < "14:00:00";
+  }
+
   function Semantic(p) {
     var st = p.state.stage3_semantic;
     var list = st.summaries.slice().reverse();
     var sub = !st.available ? "no semantic table in this run" : (st.summaries.length + " summaries, " + st.sweeps.length + " sweep marker(s) up to this time");
     return h(Col, { title: "Stage 3: semantic", color: STAGE[3].color, sub: sub },
-      list.length === 0 ? h("div", { className: "empty" }, st.available ? "no summary recorded up to this time" : "Stage 3 not present in this run") :
+      list.length === 0 ? h("div", { className: "empty" }, !st.available ? "Stage 3 is not present in this run (the baseline arm has no Stage 3 by design)" :
+        (earlyWindow(p.state) ? "No consolidation yet in this window: the first sweep runs after the 14:00 sleep block" + (st.sweeps.length ? " (the sweep markers so far had no entries to consolidate)" : "") : "no summary recorded up to this time")) :
         list.map(function (s) {
           var cls = "item click" + (p.sel && p.sel.type === "summary" && p.sel.id === s.entry_id ? " sel" : "") + (p.hlSummary[s.entry_id] ? " hl" : "");
           var r = s.stage4_reinforcement;
@@ -117,7 +123,8 @@
       h("label", { htmlFor: "diag" + uid }, "provenance diagnostic (cached embeddings only, no network)"));
     var sub = !st.available ? "no identity tables in this run" : (traits.length + " trait(s) created up to this time");
     return h(Col, { title: "Stage 4: identity", color: STAGE[4].color, sub: sub, extra: st.available ? toggle : null },
-      traits.length === 0 ? h("div", { className: "empty" }, st.available ? "no trait recorded up to this time" : "Stage 4 not present in this run") :
+      traits.length === 0 ? h("div", { className: "empty" }, !st.available ? "Stage 4 is not present in this run (the baseline arm has no Stage 4 by design)" :
+        (earlyWindow(p.state) ? "No identity traits yet in this window: the first identity step with content runs after the 14:00 sleep block" : "no trait recorded up to this time")) :
         traits.map(function (t) {
           var open = p.sel && p.sel.type === "trait" && p.sel.id === t.trait_id;
           var pv = t.provenance;

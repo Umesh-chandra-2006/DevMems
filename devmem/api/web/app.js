@@ -39,7 +39,7 @@
     return h("div", { className: "player" },
       h("div", { className: "bar" },
         h("button", { className: p.playing ? "on" : "", onClick: p.onToggle }, p.playing ? "Pause" : "Play"),
-        h("button", { onClick: function () { p.onSeek(p.tMin); } }, "Start"),
+        h("button", { onClick: function () { if (p.onStart) { p.onStart(); } else { p.onSeek(p.tMin); } } }, "Start"),
         h("span", { className: "kv" }, "speed (simulated minutes per second) "),
         SPEEDS.map(function (s) { return h("button", { key: s, className: p.speed === s ? "on" : "", onClick: function () { p.onSpeed(s); } }, String(s)); }),
         h("span", { className: "clock" }, pretty(fromMin(p.t))),
@@ -103,9 +103,10 @@
         api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/state?t=" + encodeURIComponent(fromMin(clk.t)) + (diag ? "&diagnostics=true" : ""))
           .then(function (s) { if (my === seq.current) { setState(s); setError(null); } })
           .catch(function (e) { if (my === seq.current) { setError(String(e)); } });
-      }, 120);
+      }, clk.playing ? 400 : 120);
       return function () { clearTimeout(timer); };
-    }, [run, agent, clk.t, diag, tl]);
+      /* the dependency is the clock rounded to a bucket while playing: a request is sent every bucket, not only when the clock stops (a plain debounce never fired while playing) */
+    }, [run, agent, Math.round(clk.t / (clk.playing ? Math.max(1, clk.speed * 0.5) : 0.01)), clk.playing, diag, tl]);
 
     var sets = DM.highlightSets(state, sel);
     useEffect(function () {
@@ -118,6 +119,7 @@
       error ? h("div", { className: "err" }, error) : null,
       h("div", { className: "controls" }, h("span", { className: "kv" }, tl.t_min ? "recorded span " + tl.t_min + " to " + tl.t_max : "")),
       tl.t_min ? h(Clock, { events: tl.events, tMin: range[0], tMax: range[1], t: clk.t, agent: agent, playing: clk.playing, speed: clk.speed,
+        onStart: function () { clk.setT(range[0]); clk.setPlaying(true); },
         onToggle: function () { if (!clk.playing && clk.t >= range[1]) { clk.setT(range[0]); } clk.setPlaying(!clk.playing); },
         onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
         hint: tl.count + " recorded events on this timeline. Ticks of the selected agent are bright; other agents are faint. Sleep and ledger ticks are per-window records, not exact instants." }) : null,
@@ -147,6 +149,7 @@
     var noneAvailable = bothLoaded && !metas.left.available && !metas.right.available;
     return h("div", null,
       range ? h(Clock, { events: null, tMin: range[0], tMax: range[1], t: tShown, playing: clk.playing, speed: clk.speed,
+        onStart: function () { clk.setT(range[0]); clk.setPlaying(true); },
         onToggle: function () { if (!clk.playing && clk.t >= range[1]) { clk.setT(range[0]); } clk.setPlaying(!clk.playing); },
         onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
         hint: "One clock drives both panes. A pane whose run has no frame at this time says so and keeps the avatars where they were last recorded." }) :
