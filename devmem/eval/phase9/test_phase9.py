@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, grader, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -140,6 +140,38 @@ class TestAnswerHarness(unittest.TestCase):
 
     def test_no_memory_case_is_stated_in_the_prompt(self):
         self.assertIn("(no relevant memory)", answer_harness.build_answer_prompt("X", [], "Q?"))
+
+
+class TestInterimDay1OnPilotData(unittest.TestCase):
+    """The day-1 interim pieces, exercised on the PILOT checkpoint and ledgers (never on a full-run checkpoint)."""
+
+    def test_pilot_checkpoint_copy_markers_and_offline_numbers(self):
+        run = ROOT / "devmem" / "storage" / "p7pilot_staged"
+        ck = run / "checkpoints" / "pilot_end_0900" / "memory.db"
+        if not ck.exists():
+            self.skipTest("pilot checkpoint not present in this checkout")
+        with tempfile.TemporaryDirectory() as t:
+            r = interim_day1.copy_checkpoint("staged", label="pilot_end_0900", sim_prefix="p7pilot", dest=Path(t))
+            self.assertTrue(r["copied"])
+            self.assertTrue((Path(t) / "staged" / "memory.db").exists())
+        m = interim_day1.sweep_markers(ck)
+        self.assertEqual(sorted(m), ["Isabella Rodriguez", "Klaus Mueller", "Maria Lopez"])
+        e1 = interim_day1.e1_calls(run, "2023-02-13 09:00:00")
+        self.assertGreater(e1["total"], 0)
+        self.assertIn("replayed", e1["caveat"])
+        e3 = interim_day1.e3_consolidated_fraction(ck)
+        self.assertEqual(e3["fraction"], 0.0)                 # no sweep with content before 09:00
+        self.assertEqual(interim_day1.e3_consolidated_fraction(None)["fraction"], 0.0)
+        nat, inj = interim_day1.event_stream(ck, [], "2023-02-13 09:00:00")
+        self.assertGreater(len(nat), 50)
+        qs = interim_day1.day1_questions()
+        self.assertEqual(len(qs), 9)                          # three day-1 injected-event questions per agent
+        self.assertEqual({q["agent"] for q in qs}, {"Isabella Rodriguez", "Maria Lopez", "Klaus Mueller"})
+
+    def test_a_missing_checkpoint_is_reported_not_invented(self):
+        with tempfile.TemporaryDirectory() as t:
+            r = interim_day1.copy_checkpoint("baseline", label="no_such_label", dest=Path(t))
+        self.assertFalse(r["copied"])
 
 
 class TestDiagnostics(unittest.TestCase):
