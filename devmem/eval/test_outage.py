@@ -103,11 +103,34 @@ class TestRouterTagsNetworkFailures(RouterFixture):
     def test_timeout_is_tagged_as_an_outage(self):
         self.assertTrue(self._err(requests.exceptions.Timeout("read timed out")).network_outage)
 
-    def test_http_503_is_not_an_outage(self):
-        self.assertFalse(self._err(lambda *a, **k: _response(503, {"error": {"code": 503}})).network_outage)
+    def test_http_503_from_every_key_is_an_outage_the_gate_waits_for(self):
+        self.assertTrue(self._err(lambda *a, **k: _response(503, {"error": {"code": 503}})).network_outage)
+
+    def test_http_400_is_not_an_outage(self):
+        self.assertFalse(self._err(lambda *a, **k: _response(400, {"error": {"code": 400}})).network_outage)
 
     def test_http_429_is_not_an_outage(self):
         self.assertFalse(self._err(lambda *a, **k: _response(429, {"error": {"code": 429, "message": "Resource has been exhausted"}})).network_outage)
+
+
+class TestEmbeddingErrorTagging(unittest.TestCase):
+    def _store_error(self, make_response):
+        from devmem.embeddings.vector_store import EmbeddingError, EmbeddingStore
+        with tempfile.TemporaryDirectory() as t:
+            with mock.patch.dict(os.environ, {"GEMINI_KEY_EMB_T1": "dummy-placeholder-not-a-key"}):
+                store = EmbeddingStore(stats_path=Path(t) / "s.json", key_envs=["GEMINI_KEY_EMB_T1"], cache_path=Path(t) / "c.db", db_path=str(Path(t) / "l.db"),
+                                       cooldown_mgr=CooldownManager(state_file=Path(t) / "cd.json"), rpd_per_key=None)   # nothing shared with a live run
+                store._post = make_response
+                with self.assertRaises(EmbeddingError) as cm:
+                    store._request("embedContent", {"content": {"parts": [{"text": "x"}]}})
+        return cm.exception
+
+    def test_connection_failure_and_http_5xx_are_outages_http_403_is_not(self):
+        def boom(*a, **k):
+            raise requests.exceptions.ConnectionError("down")
+        self.assertTrue(self._store_error(boom).network_outage)
+        self.assertTrue(self._store_error(lambda *a, **k: _response(503, {"error": {}})).network_outage)
+        self.assertFalse(self._store_error(lambda *a, **k: _response(403, {"error": {}})).network_outage)
 
 
 class TestGateWaitsForTheNetwork(unittest.TestCase):

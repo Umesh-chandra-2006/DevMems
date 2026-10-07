@@ -10,6 +10,7 @@ Supports configurable timeouts per purpose, provider-level failure backoff, and 
 from datetime import date, datetime
 import logging
 import os
+import re
 from pathlib import Path
 import sqlite3
 import time
@@ -400,7 +401,7 @@ def call_llm(
                     continue
 
                 except ProviderError as pe:
-                    net_kinds.append("network" if isinstance(pe, ProviderNetworkError) else "provider")
+                    net_kinds.append("network" if (isinstance(pe, ProviderNetworkError) or re.search(r"returned HTTP 5\d\d", str(pe))) else "provider")   # an HTTP 5xx from every key is a provider outage: the gate waits (no fail-safe)
                     logger.warning("Provider error on %s (%s): %s. Falling through to next key/provider.", p_name, key_env_var, pe)
                     continue
 

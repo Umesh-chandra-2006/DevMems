@@ -16,6 +16,7 @@ awaiting checkpoint approval).
 import hashlib
 import json
 import os
+import re
 import sqlite3
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
@@ -210,7 +211,7 @@ class EmbeddingStore:
             statuses.append(f"{env}:HTTP {resp.status_code}")
         err = EmbeddingError(f"all embedding keys failed or unavailable: {statuses or 'none usable'}")
         # every attempt ended in an exception (no HTTP answer at all): a connection failure or a timeout, not a quota or an auth problem
-        err.network_outage = bool(statuses) and all("HTTP" not in x for x in statuses)
+        err.network_outage = bool(statuses) and all(("HTTP" not in x) or re.search(r"HTTP 5\d\d", x) for x in statuses)   # exceptions and HTTP 5xx only
         raise err
 
     def _embed_real(self, texts: List[str], batch: bool) -> List[List[float]]:
