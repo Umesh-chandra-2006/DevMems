@@ -45,10 +45,17 @@ CHECKPOINTS = {"day1_end_awake": START + timedelta(hours=14, minutes=15), "day3_
 PER_KEY_CAP = 450
 HARD_CAP, SOFT_STOP = 16500, 15500   # amended before launch (PM 2026-10-07, claims ledger H12); was 9500 and 8500
 RESET_UTC_HOUR = "7"
-# the 14 chat-capable Gemini keys verified for the pinned model (docs/key_verification_2026_10_07.md); disjoint arm sets of 7
-VERIFIED_CHAT_KEYS = ["GEMINI_KEY_1", "GEMINI_KEY_2", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6", "GEMINI_KEY_8", "GEMINI_KEY_10",
-                      "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16", "GEMINI_KEY_17"]
-ARM_KEYS = {"baseline": VERIFIED_CHAT_KEYS[:7], "staged": VERIFIED_CHAT_KEYS[7:]}
+# Chat-capable Gemini keys verified for the pinned model (docs/key_verification_2026_10_07.md; the 30 keys GEMINI_KEY_18 to 47 verified on 2026-10-07
+# afternoon, one chat and one embedding call each, statuses in docs/phase5_step2_artifacts/key_verification.json: chat 200 for 24, 403 for 26, 35, 40,
+# 41, 46, 47; GEMINI_KEY_21 chat 503 once and 200 on one retry). The eight PILOT keys (8, 10 to 16) are NOT in the full-arm pool.
+_PILOT_ONLY = ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16"]
+_NEW_OK = [n for n in range(18, 48) if n not in (26, 35, 40, 41, 46, 47)]
+FULL_POOL = [f"GEMINI_KEY_{n}" for n in [1, 2, 3, 4, 5, 6, 17] + _NEW_OK]                       # 31 chat-verified keys
+VERIFIED_CHAT_KEYS = FULL_POOL + _PILOT_ONLY
+# Embedding: GEMINI_KEY_2 has no embedding verification; the other 30 alternate between the arms (15 and 15), GEMINI_KEY_2 goes to baseline as the odd key
+_EMBED_POOL = [k for k in FULL_POOL if k != "GEMINI_KEY_2"]
+EMBED_KEYS = {"baseline": _EMBED_POOL[0::2], "staged": _EMBED_POOL[1::2]}
+ARM_KEYS = {"baseline": sorted(EMBED_KEYS["baseline"] + ["GEMINI_KEY_2"], key=lambda k: int(k.split("_")[-1])), "staged": EMBED_KEYS["staged"]}   # 16 and 15, disjoint
 # PILOT (mechanism and readiness check, never a result): only the NEW keys verified on 2026-10-07, disjoint per arm; stop at 09:00 simulated
 PILOT_KEYS = {"baseline": ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12"],
               "staged": ["GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16"]}
@@ -194,8 +201,8 @@ def main(argv=None):
     call_counter.set_cap(hard_cap - prior["calls"])
     soft_left = soft_stop - prior["calls"]
 
-    store = EmbeddingStore(stats_path=get_db_path(sim).parent / f"embedding_stats{'_resume' if a.resume else ''}.json")
-    embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"]
+    embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"] if pilot else EMBED_KEYS[arm]
+    store = EmbeddingStore(stats_path=get_db_path(sim).parent / f"embedding_stats{'_resume' if a.resume else ''}.json", key_envs=embed_keys)
     gate.wrap_embedding_store(store, embed_keys, rpd=1000)
     gs._EMBEDDING_STORE = store
 
@@ -226,7 +233,7 @@ def main(argv=None):
 
     def counters():
         return {"router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses,
-                "fence_strips_total": count_fence_strips(raw_log)}
+                "fence_strips_total": count_fence_strips(raw_log), "outage_minutes_total": gate.outage_minutes_total()}
 
     def advance():
         injector.tick(rs)

@@ -412,10 +412,15 @@ class TestQuotaDayAndKeyPlan(unittest.TestCase):
         with mock.patch.dict(os.environ, {"DEVMEM_QUOTA_RESET_UTC_HOUR": "0"}):
             self.assertEqual(key_pool.get_today_str(), datetime.utcnow().date().isoformat())
 
-    def test_arm_key_sets_are_disjoint_gemini_verified_and_seven_each(self):
+    def test_arm_key_sets_are_disjoint_gemini_verified_split_equally_with_the_odd_key_to_baseline(self):
         b, s = run_arm.ARM_KEYS["baseline"], run_arm.ARM_KEYS["staged"]
-        self.assertEqual((len(b), len(s)), (7, 7))
+        self.assertEqual((len(b), len(s)), (16, 15))                       # 31 verified pool keys, odd extra to baseline
         self.assertFalse(set(b) & set(s))
+        self.assertFalse(set(b + s) & set(run_arm._PILOT_ONLY))             # the eight pilot keys are not in the full pool
+        eb, es = run_arm.EMBED_KEYS["baseline"], run_arm.EMBED_KEYS["staged"]
+        self.assertEqual((len(eb), len(es)), (15, 15))                      # embedding keys split equally and disjoint
+        self.assertFalse(set(eb) & set(es))
+        self.assertTrue(set(eb) <= set(b) and set(es) <= set(s))
         self.assertTrue(set(b + s) <= set(run_arm.VERIFIED_CHAT_KEYS))
         self.assertFalse(any("GROQ" in k or "NIM" in k for k in b + s))
         self.assertNotIn("GEMINI_KEY_9", b + s)
