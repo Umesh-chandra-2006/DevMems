@@ -28,9 +28,9 @@ BASE = "https://generativelanguage.googleapis.com/v1beta/models/"
 READ_TIMEOUT = 60
 
 
-def prompts(n: int):
+def prompts(n: int, shape: str = "baseline"):
     out = []
-    raw = ROOT / "devmem" / "storage" / "p7pilot_baseline" / "raw_replies.jsonl"
+    raw = ROOT / "devmem" / "storage" / f"p7pilot_{shape}" / "raw_replies.jsonl"
     for line in raw.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
@@ -89,6 +89,7 @@ def main():
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--embeddings", type=int, default=0)
     ap.add_argument("--label", default="probe")
+    ap.add_argument("--shape", default="baseline", choices=["baseline", "staged"], help="whose real importance-scoring prompts to send (the staged ones carry the priors block and get longer replies)")
     a = ap.parse_args()
     load_dotenv(ROOT / ".env")
     keys = {"free": os.environ.get(a.free)}
@@ -97,7 +98,7 @@ def main():
     missing = [k for k, v in keys.items() if not v]
     if missing:
         raise SystemExit(f"key not set in the environment for: {missing}")
-    ps = prompts(a.n)
+    ps = prompts(a.n, a.shape)
     res = {k: {"chat": [], "embed": []} for k in keys}
     wall = {k: {"chat": 0.0, "embed": 0.0} for k in keys}
     for i in range(a.n):
@@ -113,7 +114,7 @@ def main():
             s, lat = call("embed", keys[k], body)
             res[k]["embed"].append((s, lat))
             wall[k]["embed"] += lat
-    out = {"label": a.label, "model": MODEL, "embedding_model": EMB, "read_timeout_s": READ_TIMEOUT, "requested_chat": a.n, "requested_embeddings": a.embeddings,
+    out = {"label": a.label, "model": MODEL, "embedding_model": EMB, "read_timeout_s": READ_TIMEOUT, "prompt_shape": a.shape, "requested_chat": a.n, "requested_embeddings": a.embeddings,
            "free_key_name_is_recorded_as": a.free.split("_")[-1] if a.free.startswith("GEMINI_KEY_") else "free", "started": time.strftime("%Y-%m-%d %H:%M:%S"),
            "results": {k: {"chat": summarize(res[k]["chat"], wall[k]["chat"]), "embeddings": summarize(res[k]["embed"], wall[k]["embed"]) if res[k]["embed"] else None} for k in keys}}
     d = ROOT / "devmem" / "storage" / "probes"
