@@ -1,6 +1,6 @@
-# DRAFT disclosure (not yet entered in the claims ledger or the pre-registration): the 15 s read timeout and reply length
+# Disclosure: the 15 s read timeout and reply length (ENTERED as claims ledger H20 and pre-registration 7f on 2026-10-08)
 
-Status: draft for the PM. No code was changed. No em dashes.
+Status: entered. The timeout became 30 s from sim 10:30:00 (baseline, step 3780) and sim 11:15:00 (staged, step 4050), commit f872610. The upper bounds of 28 to 31 percent of importance-scoring calls with at least one timeout retry (staged 28, baseline 31) are in the text below. No em dashes.
 
 **Facts from the logs (live, 2026-10-07 to 2026-10-08).** The importance-scoring call has a 15 s read timeout in both arms (`DEFAULT_PURPOSE_TIMEOUTS`). By the supervisor error logs the arms met 182 (baseline) and 177 (staged) read timeouts, of which 161 and 152 were at 15 s, against 517 (baseline) and 551 (staged) importance-scoring replies delivered: at most 31 percent and 28 percent of importance-scoring calls hit at least one timeout retry (an upper bound: one call can time out more than once). The baseline's importance replies are short JSON (mean 15 characters); the staged replies are longer ("Rate: N" followed by a reasoning paragraph; mean 355 characters, median 431, 95th percentile 667). In a standalone probe on one free key (40 real importance-scoring prompts, read timeout 60 s) the baseline prompt shape had a median latency of 2.3 s, 95th percentile 9.7 s, 99th percentile 21.2 s (8 of 40 requests answered 429); the staged shape had a median of 5.3 s, 95th percentile 15.3 s, 99th percentile 16.5 s (no 429).
 
