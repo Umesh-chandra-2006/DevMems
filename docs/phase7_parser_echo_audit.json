@@ -1,0 +1,113 @@
+{
+ "label": "offline-captured recomputation of saved live replies, zero calls; past artifacts not changed",
+ "old_parser": "devmem/memory/episodic.py at commit 21ada50",
+ "corrected_parser": "devmem/memory/episodic.py at commit f25a10b",
+ "results": [
+  {
+   "artifact": "phase4 task4_1 (gpt-oss-20b, control_mismatch/control_filler)",
+   "importance_replies": 150,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "phase4 task7b (gpt-oss-20b, baseline vs staged)",
+   "importance_replies": 150,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "step C (p5_step_c_gemini)",
+   "importance_replies": 0,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "step C2 (p5_step_c2_gemini)",
+   "importance_replies": 22,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "step D (docs/phase6_stepd_artifacts)",
+   "importance_replies": 445,
+   "echo_format_replies": 23,
+   "old_vs_corrected_differ": 18,
+   "examples": [
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    },
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    },
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    },
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    },
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    }
+   ]
+  },
+  {
+   "artifact": "stop 3 (docs/phase6_stop3_artifacts)",
+   "importance_replies": 10,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "pilot baseline (p7pilot_baseline)",
+   "importance_replies": 330,
+   "echo_format_replies": 0,
+   "old_vs_corrected_differ": 0,
+   "examples": []
+  },
+  {
+   "artifact": "pilot staged (p7pilot_staged)",
+   "importance_replies": 347,
+   "echo_format_replies": 5,
+   "old_vs_corrected_differ": 1,
+   "examples": [
+    {
+     "where": "Isabella Rodriguez",
+     "echo_format": true,
+     "old": 1,
+     "corrected": 2,
+     "recorded_score": null,
+     "raw_start": "Rate (return a number between 1 to 10): 2"
+    }
+   ]
+  }
+ ]
+}
