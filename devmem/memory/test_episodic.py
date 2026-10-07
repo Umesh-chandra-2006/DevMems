@@ -111,6 +111,15 @@ class TestEpisodicModule(unittest.TestCase):
                 "SELECT COUNT(*) FROM sqlite_master WHERE name='llm_call_log'").fetchone()[0] > 0 and
                 sqlite3.connect(str(run_db)).execute("SELECT COUNT(*) FROM llm_call_log").fetchone()[0] > 0)
 
+    def test_parse_importance_score_reads_the_labelled_value_and_ignores_the_range_phrase(self):
+        from devmem.memory.episodic import parse_importance_score as parse
+        cases = {"7": 7, "**7**": 7, "Rate: 3\n\n**Reasoning:** blah 5 things": 3, "Rate: 10": 10, "**Rate: 9**": 9,
+                 "Rate (return a number between 1 to 10): 10": 10, "Rate (return a number between 1 to 10): 3": 3,
+                 "On a scale of 1 to 10 I would say 6": 6, "scale of 1-10: 8": 8, "I am an AI and cannot rate this": 4, "": 4, "no digits": 4,
+                 "The poignancy is 2.": 2}
+        for text, want in cases.items():
+            self.assertEqual(parse(text), want, text)
+
     def test_score_importance_fail_safe_fallback(self):
         """Verify unparseable responses fall back to fail-safe 4."""
         with patch("devmem.memory.episodic.call_llm") as mock_call:

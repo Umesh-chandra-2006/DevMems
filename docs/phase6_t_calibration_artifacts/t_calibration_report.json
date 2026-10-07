@@ -1,0 +1,203 @@
+{
+ "label": "live (pinned gemini-3.1-flash-lite, normalizer on, persona-conditioned staged prompt, one call per event)",
+ "router_counter": {
+  "count": 24,
+  "cap": 40,
+  "by_purpose": {
+   "importance_scoring": 24
+  },
+  "by_agent": {
+   "Isabella Rodriguez": 24
+  }
+ },
+ "wall_seconds": 372.0,
+ "results": [
+  {
+   "id": "M1",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is wiping down a table",
+   "score": 1
+  },
+  {
+   "id": "M2",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is restocking napkins at the counter",
+   "score": 1
+  },
+  {
+   "id": "M3",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is walking to the supply closet",
+   "score": 1
+  },
+  {
+   "id": "M4",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is checking the clock on the wall",
+   "score": 1
+  },
+  {
+   "id": "M5",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is washing a coffee mug in the sink",
+   "score": 1
+  },
+  {
+   "id": "M6",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is sweeping the floor near the entrance",
+   "score": 1
+  },
+  {
+   "id": "M7",
+   "label": "mundane",
+   "text": "Isabella Rodriguez is putting a receipt in a drawer",
+   "score": 1
+  },
+  {
+   "id": "O1",
+   "label": "moderate",
+   "text": "A delivery driver dropped off a box of supplies that was a day late",
+   "score": 3
+  },
+  {
+   "id": "O2",
+   "label": "moderate",
+   "text": "Isabella Rodriguez learned that the bakery down the street raised its prices",
+   "score": 3
+  },
+  {
+   "id": "O3",
+   "label": "moderate",
+   "text": "A customer left a note about a slow order",
+   "score": 4
+  },
+  {
+   "id": "O4",
+   "label": "moderate",
+   "text": "Isabella Rodriguez received an invitation to a local business meeting next month",
+   "score": 1
+  },
+  {
+   "id": "O5",
+   "label": "moderate",
+   "text": "The espresso machine broke and was repaired within the hour",
+   "score": 4
+  },
+  {
+   "id": "O6",
+   "label": "moderate",
+   "text": "A regular customer thanked Isabella Rodriguez for remembering their order",
+   "score": 4
+  },
+  {
+   "id": "S1",
+   "label": "significant",
+   "text": "Isabella Rodriguez was offered a place in a regional cafe competition",
+   "score": 8
+  },
+  {
+   "id": "S2",
+   "label": "significant",
+   "text": "A health inspector issued a written warning about a violation at the cafe",
+   "score": 8
+  },
+  {
+   "id": "S3",
+   "label": "significant",
+   "text": "The cafe's most experienced employee announced they will leave next week",
+   "score": 8
+  },
+  {
+   "id": "S4",
+   "label": "significant",
+   "text": "A local newspaper published an article about the cafe",
+   "score": 8
+  },
+  {
+   "id": "S5",
+   "label": "significant",
+   "text": "Isabella Rodriguez discovered that the cafe's monthly income fell by a third",
+   "score": 8
+  },
+  {
+   "id": "L1",
+   "label": "life_changing",
+   "text": "Isabella Rodriguez was told that the building housing the cafe will be demolished next month",
+   "score": 10
+  },
+  {
+   "id": "L2",
+   "label": "life_changing",
+   "text": "Isabella Rodriguez received a diagnosis of a serious illness",
+   "score": 10
+  },
+  {
+   "id": "L3",
+   "label": "life_changing",
+   "text": "A fire destroyed the kitchen of the cafe overnight",
+   "score": 10
+  },
+  {
+   "id": "L4",
+   "label": "life_changing",
+   "text": "Isabella Rodriguez learned that a close family member had died",
+   "score": 1
+  },
+  {
+   "id": "L5",
+   "label": "life_changing",
+   "text": "Isabella Rodriguez was awarded a large sum of money that lets her buy the building",
+   "score": 9
+  },
+  {
+   "id": "L6",
+   "label": "life_changing",
+   "text": "Isabella Rodriguez was arrested and charged with a crime she did not commit",
+   "score": 10
+  }
+ ],
+ "by_label": {
+  "mundane": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "moderate": [
+   3,
+   3,
+   4,
+   1,
+   4,
+   4
+  ],
+  "significant": [
+   8,
+   8,
+   8,
+   8,
+   8
+  ],
+  "life_changing": [
+   10,
+   10,
+   10,
+   1,
+   9,
+   10
+  ]
+ },
+ "decision": {
+  "min_life_changing": 1,
+  "max_mundane_or_moderate": 4,
+  "qualifying_integers": [],
+  "T": null,
+  "status": "no integer in 8 to 10 qualifies"
+ },
+ "config_changed": false,
+ "frozen_provisional_T": 9
+}

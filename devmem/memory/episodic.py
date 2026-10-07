@@ -266,12 +266,19 @@ def build_staged_prompt(
 
 
 def parse_importance_score(response_text: str, fail_safe: int = 4) -> int:
-    """Extract an integer score between 1 and 10 from the LLM response."""
+    """Extract an integer score between 1 and 10 from the LLM response.
+
+    A labelled value wins: "Rate: 7", "**Rate: 7**" and the echoed prompt line "Rate (return a number between 1 to 10): 7" all give 7 (before
+    this rule the echoed form was read as 1, the first integer of "1 to 10"; follow-up of the T calibration, 2026-10-07). Otherwise the
+    first integer outside a "1 to 10" range phrase is used."""
     if not response_text:
         return fail_safe
 
     cleaned = response_text.strip()
-    # Match standalone digit or first integer
+    labelled = re.search(r"Rate[^:\n]*:\s*[*_`\s]*(10|[1-9])\b", cleaned)
+    if labelled:
+        return int(labelled.group(1))
+    cleaned = re.sub(r"\b1\s*(?:to|-|and)\s*10\b", " ", cleaned)
     match = re.search(r"\b(10|[1-9])\b", cleaned)
     if match:
         try:

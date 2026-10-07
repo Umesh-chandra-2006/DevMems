@@ -68,12 +68,12 @@ def main():
     import yaml
     from devmem.memory import episodic
     from devmem.router import call_counter, llm_router
-    keys = ["GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6"]
+    keys = [os.environ.get("DEVMEM_T_CAL_KEY", "GEMINI_KEY_17")]   # one fresh key with quota (24 calls); never printed
     base = yaml.safe_load(open(ROOT / "devmem/config/providers.yaml", encoding="utf-8"))
     gem = next(p for p in base["providers"] if p["name"] == "gemini")
     tmp = Path(tempfile.mkdtemp(prefix="p6_t_cal_"))
     cfgs = []
-    for i in range(3):
+    for i in range(1):
         p = copy.deepcopy(gem)
         p["keys"] = [{"env": k} for k in keys[i:] + keys[:i]]
         f = tmp / f"rot{i}.yaml"
@@ -82,7 +82,7 @@ def main():
     real, n = llm_router.call_llm, {"i": 0}
 
     def rotating(*a, **k):
-        k.setdefault("config_path", cfgs[n["i"] % 3])
+        k.setdefault("config_path", cfgs[0])
         n["i"] += 1
         return real(*a, **k)
     episodic.call_llm = rotating
