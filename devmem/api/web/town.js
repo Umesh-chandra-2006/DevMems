@@ -230,10 +230,13 @@
       var my = ++seq.current;
       var t = DM.fromMin(p.t);
       var timer = setTimeout(function () {
+        var note = [];   /* the two requests are independent: a run without a memory database (the baseline arm writes none) still shows its thoughts */
         Promise.all([
-          DM.api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/state?t=" + encodeURIComponent(t) + (diag ? "&diagnostics=true" : "")),
+          DM.api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/state?t=" + encodeURIComponent(t) + (diag ? "&diagnostics=true" : ""))
+            .catch(function (e) { note.push("memory database panel unavailable for this run (" + String(e).replace(/^Error: /, "") + "; the baseline arm writes no memory database)"); return null; }),
           DM.api("/runs/" + encodeURIComponent(run) + "/agents/" + encodeURIComponent(agent) + "/thoughts?t=" + encodeURIComponent(t))
-        ]).then(function (r) { if (my === seq.current) { setState(r[0]); setThoughts(r[1]); setError(null); } })
+            .catch(function (e) { note.push("thoughts unavailable (" + String(e) + ")"); return null; })
+        ]).then(function (r) { if (my === seq.current) { setState(r[0]); setThoughts(r[1]); setError(note.length ? note.join("; ") : null); } })
           .catch(function (e) { if (my === seq.current) { setError(String(e)); } });
       }, p.playing ? 700 : 150);
       return function () { clearTimeout(timer); };
