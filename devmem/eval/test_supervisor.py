@@ -25,11 +25,13 @@ rep = {"outcome": "upstream exception: TypeError: x" if kind == "crash" else "re
 
 
 class TestSupervisor(unittest.TestCase):
-    def _run(self, plan, **kw):
+    def _run(self, plan, pre_abort=False, **kw):
         t = tempfile.TemporaryDirectory()
         self.addCleanup(t.cleanup)
         rd = Path(t.name) / "run"
         rd.mkdir()
+        if pre_abort:
+            (rd / "ABORT").write_text("operator")
         stub = Path(t.name) / "stub.py"
         stub.write_text(STUB, encoding="utf-8")
         calls = []
@@ -57,6 +59,10 @@ class TestSupervisor(unittest.TestCase):
         self.assertEqual(out, "abort_same_step")
         self.assertTrue((rd / "ABORT").exists())
         self.assertEqual(len(calls), 2)
+
+    def test_abort_file_after_an_exception_exit_is_never_resumed(self):
+        out, calls, log, rd = self._run([("crash", "2023-02-13 07:10:00", 2600), ("ok", "2023-02-13 09:00:00", 3240)], pre_abort=True)
+        self.assertEqual((out, calls), ("final", [False]))
 
     def test_limit_of_three_resumes_per_sim_day(self):
         plan = [("crash", "2023-02-13 07:10:00", 2600 + 10 * i) for i in range(6)]

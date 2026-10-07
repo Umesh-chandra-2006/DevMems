@@ -36,6 +36,7 @@ from devmem.router.providers import (
     AuthOrBillingError,
     ModelPinnedError,
     ProviderError,
+    ProviderNetworkError,
     ProviderResponse,
     ProviderTimeoutError,
     RateLimitError,
@@ -189,6 +190,15 @@ def call_llm(
     estimated_req_tokens = estimate_tokens(prompt, max_tokens=max_tokens)
     actual_timeout = timeout or DEFAULT_PURPOSE_TIMEOUTS.get(purpose, DEFAULT_PURPOSE_TIMEOUTS.get("default", 30))
 
+    # What kind of failure each key attempt of this call had; the ModelPinnedError carries `network_outage` (True when every failure was a
+    # connection failure or a timeout) so the run-level gate can wait for the network instead of letting a fail-safe reach the simulation.
+    net_kinds: List[str] = []
+
+    def _pinned(msg: str) -> ModelPinnedError:
+        err = ModelPinnedError(msg)
+        err.network_outage = bool(net_kinds) and all(k in ("network", "timeout") for k in net_kinds)
+        return err
+
     # Maximum 2 retry rounds if all keys cooling down with wait <= 90s
     for wait_attempt in range(2):
         cooldown_durations: List[float] = []
@@ -327,6 +337,7 @@ def call_llm(
                     return response if return_obj else response.text
 
                 except RateLimitError as rle:
+                    net_kinds.append("other")
                     # Classify rate limit response with provider-specific logic
                     result = classify_429(
                         provider=p_name,
@@ -368,12 +379,14 @@ def call_llm(
                     continue
 
                 except ProviderTimeoutError as pte:
+                    net_kinds.append("timeout")
                     logger.warning("Timeout (%ds) on provider %s (%s): %s. Setting 30s provider-level cooldown.", actual_timeout, p_name, key_env_var, pte)
                     p_cooldown = cm.set_provider_cooldown(p_name, duration=30.0, reason=str(pte))
                     cooldown_durations.append(p_cooldown)
                     continue
 
                 except AuthOrBillingError as abe:
+                    net_kinds.append("other")
                     logger.warning("Auth/Billing error (HTTP %d) on %s (%s): %s. Disabling key for today.", abe.status_code, p_name, key_env_var, abe)
                     cooldown_sec = cm.set_cooldown(
                         provider=p_name,
@@ -387,10 +400,12 @@ def call_llm(
                     continue
 
                 except ProviderError as pe:
+                    net_kinds.append("network" if isinstance(pe, ProviderNetworkError) else "provider")
                     logger.warning("Provider error on %s (%s): %s. Falling through to next key/provider.", p_name, key_env_var, pe)
                     continue
 
                 except Exception as ex:
+                    net_kinds.append("provider")
                     logger.error("Unexpected error on %s (%s): %s. Falling through.", p_name, key_env_var, ex)
                     continue
 
@@ -407,7 +422,7 @@ def call_llm(
             else:
                 earliest_time = datetime.fromtimestamp(time.time() + shortest_wait).isoformat()
                 if active_pinned:
-                    raise ModelPinnedError(
+                    raise _pinned(
                         f"Pinned model '{active_pinned}' exhausted or cooling down across all keys. "
                         f"Earliest available key at {earliest_time} (in {int(shortest_wait)}s)."
                     )
@@ -417,7 +432,7 @@ def call_llm(
                 )
 
     if active_pinned:
-        raise ModelPinnedError(f"Pinned model '{active_pinned}' failed across all configured keys.")
+        raise _pinned(f"Pinned model '{active_pinned}' failed across all configured keys.")
     raise AllProvidersExhaustedError("All configured LLM providers and keys have been exhausted or failed.")
 
 

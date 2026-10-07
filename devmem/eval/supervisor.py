@@ -63,6 +63,11 @@ def supervise(run_dir: Path, build_cmd: Callable[[bool], List[str]], max_resumes
         if outcome and outcome.startswith(FINAL_PREFIXES):
             _log(run_dir, {"event": "final", "outcome": outcome})
             return "final"
+        if (run_dir / "ABORT").exists():
+            # an operator ABORT raised mid-call can surface as an upstream exception (upstream's bare `except:` swallows the gate's RunAborted three
+            # times and the caller indexes None; seen on the pilot baseline, 2026-10-07): never resume over an ABORT file
+            _log(run_dir, {"event": "final", "outcome": "ABORT file present after the exit"})
+            return "final"
         day = str(clock)[:10] or "unknown"
         per_day[day] = per_day.get(day, 0) + 1
         crashed_here = step if report else None   # a kill has no crash step to compare

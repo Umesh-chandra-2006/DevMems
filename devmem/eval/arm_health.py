@@ -31,6 +31,29 @@ def _age(path: Path) -> float:
     return time.time() - path.stat().st_mtime if path.exists() else float("inf")
 
 
+def _last(path: Path):
+    if not path.exists():
+        return None
+    lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+    return json.loads(lines[-1]) if lines else None
+
+
+def _waiting(run_dir: Path):
+    """PAUSED_QUOTA when the last quota event is a pause whose wake time is in the future (UTC), WAITING_NETWORK when an outage is open."""
+    from datetime import datetime
+    o = _last(run_dir / "outage_log.jsonl")
+    if o and o.get("event") == "outage_start":
+        return "WAITING_NETWORK"
+    q = _last(run_dir / "quota_pauses.jsonl")
+    if q and q.get("event") == "pause":
+        try:
+            if datetime.fromisoformat(q["wake"]) > datetime.utcnow():
+                return "PAUSED_QUOTA"
+        except Exception:
+            pass
+    return None
+
+
 def check(arm: str, pilot: bool, stale: float, procs: str) -> dict:
     sim = f"p7pilot_{arm}" if pilot else f"p7_{arm}"
     run_dir = ROOT / "devmem" / "storage" / sim
@@ -40,8 +63,11 @@ def check(arm: str, pilot: bool, stale: float, procs: str) -> dict:
     alive = any(f"--arm {arm}" in l and (("--pilot" in l) == pilot) for l in procs.splitlines())
     hb = time.time() - newest if newest else float("inf")
     state = str(st.get("state", ""))
+    waiting = _waiting(run_dir) if alive else None
     if (run_dir / "ABORT").exists() and not alive:
         verdict = "ABORTED"
+    elif alive and waiting:
+        verdict = waiting                      # PAUSED_QUOTA or WAITING_NETWORK: the process is alive and deliberately idle
     elif state.startswith("finished") and not alive:
         verdict = "FINISHED"
     elif alive and hb < stale:
@@ -63,7 +89,7 @@ def main(argv=None) -> int:
     procs = _processes()
     rows = [check(arm, a.pilot, a.stale_seconds, procs) for arm in ("baseline", "staged")]
     print(json.dumps(rows, indent=1))
-    return 0 if all(r["verdict"] in ("RUNNING", "FINISHED") for r in rows) else 1
+    return 0 if all(r["verdict"] in ("RUNNING", "FINISHED", "PAUSED_QUOTA", "WAITING_NETWORK") for r in rows) else 1
 
 
 if __name__ == "__main__":

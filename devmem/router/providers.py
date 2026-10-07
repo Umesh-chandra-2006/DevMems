@@ -65,6 +65,11 @@ class ModelPinnedError(ProviderError):
     pass
 
 
+class ProviderNetworkError(ProviderError):
+    """Raised when the request could not reach the provider (DNS failure, refused or reset connection, no route). Not an HTTP answer."""
+    pass
+
+
 class ProviderTimeoutError(ProviderError):
     """Raised when a provider request times out."""
     def __init__(self, message: str, provider: str = "", timeout: Optional[int] = None):
@@ -123,7 +128,7 @@ def call_groq(
     except requests.exceptions.Timeout as te:
         raise ProviderTimeoutError(f"Groq request timed out after {timeout}s: {te}", provider="groq", timeout=timeout) from te
     except Exception as e:
-        raise ProviderError(f"Groq network error: {e}") from e
+        raise ProviderNetworkError(f"Groq network error: {e}") from e
 
     if response.status_code in [401, 402, 403]:
         raise AuthOrBillingError(
@@ -192,7 +197,7 @@ def call_gemini(
     except requests.exceptions.Timeout as te:
         raise ProviderTimeoutError(f"Gemini request timed out after {timeout}s: {te}", provider="gemini", timeout=timeout) from te
     except Exception as e:
-        raise ProviderError(f"Gemini network error: {e}") from e
+        raise ProviderNetworkError(f"Gemini network error: {e}") from e
 
     if response.status_code in [401, 402, 403]:
         raise AuthOrBillingError(
@@ -261,7 +266,7 @@ def call_nemotron(
     except requests.exceptions.Timeout as te:
         raise ProviderTimeoutError(f"Nemotron request timed out after {timeout}s: {te}", provider="nemotron", timeout=timeout) from te
     except Exception as e:
-        raise ProviderError(f"Nemotron network error: {e}") from e
+        raise ProviderNetworkError(f"Nemotron network error: {e}") from e
 
     if response.status_code in [401, 402, 403]:
         raise AuthOrBillingError(

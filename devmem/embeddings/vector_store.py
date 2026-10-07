@@ -208,7 +208,10 @@ class EmbeddingStore:
                 reason=f"embedding HTTP {resp.status_code}",
             )
             statuses.append(f"{env}:HTTP {resp.status_code}")
-        raise EmbeddingError(f"all embedding keys failed or unavailable: {statuses or 'none usable'}")
+        err = EmbeddingError(f"all embedding keys failed or unavailable: {statuses or 'none usable'}")
+        # every attempt ended in an exception (no HTTP answer at all): a connection failure or a timeout, not a quota or an auth problem
+        err.network_outage = bool(statuses) and all("HTTP" not in x for x in statuses)
+        raise err
 
     def _embed_real(self, texts: List[str], batch: bool) -> List[List[float]]:
         if batch:
