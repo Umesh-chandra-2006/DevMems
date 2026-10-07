@@ -178,6 +178,20 @@ def main(argv=None):
     from devmem.memory import consolidation, episodic, identity
     from devmem.memory.episodic import get_db_path
     from devmem.router import call_counter, key_pool, llm_router, output_normalizer
+    import hashlib
+    import inspect
+    import subprocess
+    try:   # evidence of which code a (re)started process loaded: the commit, file hashes, and whether the 5xx outage rule is in the loaded router module
+        head = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=str(ROOT), text=True).strip()
+        hashes = {f: hashlib.sha256((ROOT / f).read_bytes()).hexdigest()[:12] for f in ("devmem/router/llm_router.py", "devmem/eval/quota_gate.py", "devmem/embeddings/vector_store.py")}
+        info = {"at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "resume": a.resume, "git_head": head, "file_sha256_12": hashes,
+                "router_loaded_with_5xx_outage_rule": "returned HTTP 5" in inspect.getsource(llm_router)}
+        with open(run_dir / "code_version.jsonl", "a", encoding="utf-8") as cv:
+            cv.write(json.dumps(info) + "
+")
+        print("code version:", json.dumps(info), flush=True)
+    except Exception as e:
+        print("code version unavailable:", e, flush=True)
 
     storage = Path(utils.fs_storage)
     fork = f"{FORK_SRC}__start_{sim}"
