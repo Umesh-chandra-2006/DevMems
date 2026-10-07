@@ -326,6 +326,66 @@ class TestRateLimitBackoff(RouterFixture):
             gate("p")
 
 
+class TestReadTimeoutAndPerKeyCooldown(RouterFixture):
+    """PM decisions 2026-10-08: importance scoring read timeout 30 s (was 15 s); a timeout cools only the key that timed out, for 10 s (was 30 s on every key)."""
+
+    def setUp(self):
+        super().setUp()
+        base = yaml.safe_load(open(self.cfg, encoding="utf-8"))
+        base["providers"][0]["keys"] = [{"env": f"GEMINI_KEY_OUTAGE_T{i}"} for i in range(1, 4)]
+        self.cfg.write_text(yaml.dump(base), encoding="utf-8")
+        p = mock.patch.dict(os.environ, {"GEMINI_KEY_OUTAGE_T3": "dummy-placeholder-not-a-key"})
+        p.start()
+        self.addCleanup(p.stop)
+
+    def test_importance_scoring_gets_30_s_and_the_other_purposes_are_unchanged(self):
+        seen = {}
+        for purpose in ("importance_scoring", "planning", "dialogue", "reflection"):
+            with mock.patch("devmem.router.providers.requests.post", side_effect=lambda *a, **k: _response(200, OK_BODY)) as post:
+                self.real("hello", tier="fast", purpose=purpose)
+            seen[purpose] = post.call_args.kwargs["timeout"]
+        self.assertEqual(seen, {"importance_scoring": 30, "planning": 60, "dialogue": 20, "reflection": 45})
+
+    def test_a_timeout_cools_only_that_key_for_10_s_and_the_next_key_is_tried_at_once(self):
+        calls = []
+
+        def post(*a, **k):
+            calls.append(k["headers"])
+            if len(calls) == 1:
+                raise requests.exceptions.Timeout("read timed out")
+            return _response(200, OK_BODY)
+        with mock.patch("devmem.router.providers.requests.post", side_effect=post):
+            self.assertEqual(self.real("hello", tier="fast", purpose="planning"), '{"output": "7"}')
+        self.assertEqual(len(calls), 2)                                           # no provider-wide wait, no retry round
+        self.assertFalse(self.cm.is_provider_cooling_down("gemini")[0])
+        import time as _t
+        cooled = {k: v["cooldown_until"] - _t.time() for k, v in self.cm.state["cooldowns"].items() if v.get("cooldown_until", 0) > _t.time()}
+        self.assertEqual(len(cooled), 1)
+        self.assertTrue(0 < list(cooled.values())[0] <= 10.5)
+
+    def test_all_keys_timing_out_never_leaks_a_fail_safe_through_the_gate(self):
+        import persona.prompt_template.gpt_structure as gs
+        clock = FakeClock()
+        gate = QuotaGate(self.real, ["GEMINI_KEY_OUTAGE_T1"], MODEL, 450, Path(self.tmp.name) / "run", now=clock.now, sleep=clock.sleep, usage=lambda k: 0, probe=lambda: True)
+        n = {"i": 0}
+
+        def post(*a, **k):
+            n["i"] += 1
+            if n["i"] <= 12:                                                      # every key times out, repeatedly
+                raise requests.exceptions.Timeout("read timed out")
+            return _response(200, OK_BODY)
+        fake_time = SimpleNamespace(time=lambda: clock.t.timestamp() + 1e9, sleep=lambda s: None)
+        with mock.patch("devmem.router.cooldown.time", fake_time), mock.patch("devmem.router.providers.requests.post", side_effect=post), mock.patch.object(gs, "call_llm", gate):
+            out = gs.ChatGPT_safe_generate_response("rate this", "5", "one integer", 3, "FAILSAFE", lambda r, prompt="": True, lambda r, prompt="": "got:" + r)
+        self.assertEqual(out, "got:7")
+
+    def test_the_3_key_limit_on_429_is_unchanged(self):
+        with mock.patch("devmem.router.providers.requests.post", side_effect=lambda *a, **k: _response(429, {"error": {"code": 429, "message": "Resource has been exhausted"}})) as post:
+            with self.assertRaises(ModelPinnedError):
+                self.real("hello", tier="fast", purpose="planning")
+        self.assertEqual(post.call_count, 3)
+
+
 class TestRealUpstreamPathThroughAnOutage(RouterFixture):
     def test_chatgpt_safe_generate_response_returns_the_answer_not_the_fail_safe(self):
         import persona.prompt_template.gpt_structure as gs

@@ -154,6 +154,18 @@ class CooldownManager:
             return True, remaining
         return False, 0.0
 
+    def set_key_timeout_cooldown(self, provider: str, key_env: str, model: Optional[str], duration: float = 10.0, reason: str = "") -> float:
+        """A short cooldown on ONE key after a read timeout (PM decision 2026-10-08, replacing the 30 s provider-wide cooldown that blocked every key). It does not
+        touch the key's 429 escalation counter and never shortens a longer cooldown the key already has."""
+        key_id = self._make_key_id(provider, key_env, model)
+        info = self.state["cooldowns"].setdefault(key_id, {"cooldown_until": 0.0, "consecutive_unknown": 0, "reason": ""})
+        now = time.time()
+        info["cooldown_until"] = max(info.get("cooldown_until", 0.0), now + duration)
+        info["reason"] = reason or info.get("reason", "")
+        logger.info("Set per-key timeout cooldown on %s: duration=%.1fs", key_id, duration)
+        self.save_state()
+        return duration
+
     def set_provider_cooldown(self, provider: str, duration: float = 30.0, reason: str = "") -> float:
         """Set a transient provider-level cooldown (e.g. upon timeout or network failure)."""
         p = provider.lower().strip()

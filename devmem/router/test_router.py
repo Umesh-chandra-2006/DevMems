@@ -539,7 +539,7 @@ class TestTokenBudgetAndPinning(unittest.TestCase):
                 db_path=self.db_path,
                 cooldown_mgr=cm
             )
-            self.assertEqual(mock_send.call_args.kwargs["timeout"], 15)
+            self.assertEqual(mock_send.call_args.kwargs["timeout"], 30)   # importance scoring: 15 s until 2026-10-08, 30 s since (PM decision)
 
             # 2. Verify timeout on Groq sets 30s provider cooldown and falls back to Gemini
             mock_send.side_effect = [
@@ -555,10 +555,11 @@ class TestTokenBudgetAndPinning(unittest.TestCase):
                 cooldown_mgr=cm
             )
             self.assertEqual(res, "Gemini Answer after Timeout")
-            # Groq provider should now be in provider cooldown for 30s
-            is_cooling, rem = cm.is_provider_cooling_down("groq")
-            self.assertTrue(is_cooling)
-            self.assertGreater(rem, 20.0)
+            # Since 2026-10-08 a timeout cools only the key that timed out (10 s), not every key of the provider
+            self.assertFalse(cm.is_provider_cooling_down("groq")[0])
+            cooled = [k for k, v in cm.state["cooldowns"].items() if v.get("cooldown_until", 0) > __import__("time").time()]
+            self.assertEqual(len(cooled), 1)
+            self.assertTrue(cooled[0].startswith("groq"))
 
     def test_ledger_reconciliation_warning(self):
         """Condition 7: Unexpected early daily 429 triggers ledger reconciliation."""

@@ -59,9 +59,9 @@ CONFIG_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "con
 
 # Configurable default timeouts per purpose (Condition 4)
 DEFAULT_PURPOSE_TIMEOUTS = {
-    "importance_scoring": 15,
-    "importance_score": 15,
-    "poignancy": 15,
+    "importance_scoring": 30,   # was 15 until the supervisor restart of 2026-10-08 (PM decision; probe: 95th percentile 9.7 s and 15.3 s, 99th percentile 21.2 s and 16.5 s)
+    "importance_score": 30,
+    "poignancy": 30,
     "consolidation_summary": 30,
     "identity_summary": 30,
     "reflection": 45,
@@ -144,6 +144,7 @@ def log_llm_call(
 
 
 MAX_RATE_LIMIT_KEYS_PER_CALL = 3
+TIMEOUT_KEY_COOLDOWN_SECONDS = 10   # a read timeout cools only the key that timed out, for 10 s (PM decision 2026-10-08; was a 30 s cooldown on every key of the provider)
 
 
 def call_llm(
@@ -391,8 +392,8 @@ def call_llm(
 
                 except ProviderTimeoutError as pte:
                     net_kinds.append("timeout")
-                    logger.warning("Timeout (%ds) on provider %s (%s): %s. Setting 30s provider-level cooldown.", actual_timeout, p_name, key_env_var, pte)
-                    p_cooldown = cm.set_provider_cooldown(p_name, duration=30.0, reason=str(pte))
+                    logger.warning("Timeout (%ds) on provider %s (%s): %s. Setting a %ds cooldown on this key only.", actual_timeout, p_name, key_env_var, pte, TIMEOUT_KEY_COOLDOWN_SECONDS)
+                    p_cooldown = cm.set_key_timeout_cooldown(p_name, key_env_var, model, duration=float(TIMEOUT_KEY_COOLDOWN_SECONDS), reason=str(pte))
                     cooldown_durations.append(p_cooldown)
                     continue
 
