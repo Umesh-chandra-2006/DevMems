@@ -142,15 +142,18 @@
     var seeded = useRef(false);
     useEffect(function () { if (range && !seeded.current) { seeded.current = true; clk.setT(Q.get("t") ? toMin(Q.get("t")) : range[0]); } }, [range && range[0]]);
     function onMeta(id, m) { setMetas(function (o) { var n = Object.assign({}, o); n[id] = m; return n; }); }
+    var tShown = range ? Math.min(Math.max(clk.t, range[0]), range[1]) : clk.t;   /* before the range is known the clock is clamped; never 1970 */
+    var bothLoaded = metas.left && metas.right;
+    var noneAvailable = bothLoaded && !metas.left.available && !metas.right.available;
     return h("div", null,
-      range ? h(Clock, { events: null, tMin: range[0], tMax: range[1], t: clk.t, playing: clk.playing, speed: clk.speed,
+      range ? h(Clock, { events: null, tMin: range[0], tMax: range[1], t: tShown, playing: clk.playing, speed: clk.speed,
         onToggle: function () { if (!clk.playing && clk.t >= range[1]) { clk.setT(range[0]); } clk.setPlaying(!clk.playing); },
         onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
         hint: "One clock drives both panes. A pane whose run has no frame at this time says so and keeps the avatars where they were last recorded." }) :
-        h("div", { className: "empty", style: { padding: 18 } }, "loading movement metadata..."),
+        h("div", { className: "empty", style: { padding: 18 } }, noneAvailable ? "Neither chosen run has recorded movement. Choose p7pilot_staged and p7pilot_baseline." : "loading movement metadata (the first frame is drawn when it arrives; press Start or Play to move)..."),
       h("div", { className: "panes" },
         ["left", "right"].map(function (id) {
-          return h(window.Town.TownPane, { key: id, id: id, run: id === "left" ? p.runA : p.runB, runs: p.runs, t: clk.t, playing: clk.playing,
+          return h(window.Town.TownPane, { key: id, id: id, run: id === "left" ? p.runA : p.runB, runs: p.runs, t: tShown, playing: clk.playing,
             onRun: p.onRun, onMeta: onMeta, onLabel: p.onLabel });
         })));
   }
@@ -176,6 +179,16 @@
       }) : h("span", { className: "kv" }, "no live segment is running (this panel shows the router call counter of a run that is writing run_status.json, and nothing otherwise)"));
   }
 
+  var HINTS = {
+    town: "Town replay: both runs on one clock; click an avatar to see its action, dialogue and memory at that moment.",
+    inspector: "Memory inspector: the four memory stages of one agent at a chosen simulated time, as recorded.",
+    cost: "Cost view: router calls and tokens per purpose and per window for the two runs.",
+    findings: "Findings: injected events, calls per purpose and per window, and the bugs the pilot caught, from saved artifacts.",
+    differs: "Where it differs and why: each difference with the rule that fired, its logged numbers and the evidence file; no generated text.",
+    side: "Side by side: one agent over a time range in both runs, with the first step where the recorded action text differs.",
+    edge: "Edge cases: known failures and weaknesses with the evidence for each."
+  };
+
   function App() {
     var _a = useState([]), runs = _a[0], setRuns = _a[1];
     var _b = useState(Q.get("a") || Q.get("run") || null), runA = _b[0], setRunA = _b[1];
@@ -189,8 +202,10 @@
         var declared = r.runs.filter(function (x) { return x.agents.length && x.label.label_source === "run_label.json"; });
         var any = r.runs.filter(function (x) { return x.agents.length; });
         var pick = declared.concat(any);
-        setRunA(function (cur) { return cur || (pick[0] && pick[0].run); });
-        setRunB(function (cur) { return cur || (pick[1] && pick[1].run) || (pick[0] && pick[0].run); });
+        var has = function (id) { return r.runs.some(function (x) { return x.run === id; }); };
+        /* demo defaults: left = p7pilot_staged, right = p7pilot_baseline (when they exist and the URL names nothing) */
+        setRunA(function (cur) { return cur || (has("p7pilot_staged") ? "p7pilot_staged" : (pick[0] && pick[0].run)); });
+        setRunB(function (cur) { return cur || (has("p7pilot_baseline") ? "p7pilot_baseline" : ((pick[1] && pick[1].run) || (pick[0] && pick[0].run))); });
       }).catch(function (e) { setError(String(e)); });
     }, []);
     useEffect(function () {   /* the label bar must always show the runs on screen, whichever tab is open */
@@ -209,6 +224,7 @@
       h("div", { className: "tabs" }, tabBtn("town", "Town replay"), tabBtn("inspector", "Memory inspector"), tabBtn("cost", "Cost view"),
         tabBtn("findings", "Findings"), tabBtn("differs", "Where it differs and why"), tabBtn("side", "Side by side"), tabBtn("edge", "Edge cases"),
         h("span", { className: "kv" }, "runs found: " + runs.length)),
+      h("div", { className: "tabhint" }, HINTS[tab] || ""),
       h(LivePanel, { runA: runA, runB: runB }),
       !runA ? h("div", { className: "empty", style: { padding: 18 } }, "loading runs...") :
         tab === "town" ? h(TownTab, { runs: runs, runA: runA, runB: runB, onRun: onRun, onLabel: onLabel }) :

@@ -178,6 +178,48 @@ def priors_for(agent: str) -> List[Dict[str, str]]:
     return out
 
 
+# ---------------------------------------------------------------------------------------------
+# baseline arm: it writes no memory mirror, so its memory panel is read, read-only, from upstream's own associative memory node file
+# (reverie/environment/frontend_server/storage/<run>/personas/<agent>/bootstrap_memory/associative_memory/nodes.json, as of its last autosave)
+# ---------------------------------------------------------------------------------------------
+def _node_root(run: str) -> Path:
+    from devmem.api.movement_archive import SIM_STORAGE
+    return SIM_STORAGE / run / "personas"
+
+
+def _node_agents(run: str) -> List[str]:
+    root = _node_root(run)
+    return sorted(c.name for c in root.iterdir() if (c / "bootstrap_memory" / "associative_memory" / "nodes.json").is_file()) if root.is_dir() else []
+
+
+def _nodes(run: str, agent: str) -> List[Dict[str, Any]]:
+    f = _node_root(run) / agent / "bootstrap_memory" / "associative_memory" / "nodes.json"
+    if not f.is_file():
+        return []
+    rows = []
+    for nid, n in json.loads(f.read_text(encoding="utf-8")).items():
+        rows.append({"node_id": nid, "type": n.get("type"), "created": n.get("created"), "description": n.get("description") or "",
+                     "poignancy": float(n.get("poignancy") or 0)})
+    rows.sort(key=lambda r: (r["created"], int(r["node_id"].split("_")[-1]) if r["node_id"].split("_")[-1].isdigit() else 0))
+    return rows
+
+
+def _state_from_nodes(run: str, agent: str, t: Optional[str]) -> Dict[str, Any]:
+    t = norm_t(t) or "9999-12-31 23:59:59"
+    nodes = _nodes(run, agent)
+    entries = [{"entry_id": f"{agent}:{n['node_id']}", "text": n["description"], "sim_time": n["created"], "sim_day": None, "importance": n["poignancy"],
+                "is_idle_text": "idle" in n["description"].lower(), "consolidated_into": None, "consolidated_now": False,
+                "scoring": {"status": "baseline (upstream scoring); node type " + str(n["type"])}} for n in nodes if n["created"] <= t]
+    return {"run": run, "agent": agent, "sim_time": t, "label": run_label(run),
+            "stage1_priors": {"statements": priors_for(agent), "source": f"devmem/config/personas/{slug(agent)}.yaml (the baseline injects them as atomic thought nodes of importance 10, listed below)"},
+            "stage2_episodic": {"entries": entries, "entries_total_up_to_t": len(entries), "returned": len(entries),
+                                "idle_text_entries": sum(1 for e in entries if e["is_idle_text"]),
+                                "source_note": "read-only from the baseline's own associative memory node file (flat memory stream: events, thoughts and chats), as of its last autosave; the baseline arm writes no memory database"},
+            "stage3_semantic": {"available": False, "summaries": [], "sweeps": []},
+            "stage4_identity": {"available": False, "traits": []},
+            "identity_context_at_t": {"text": "", "note": "baseline arm: no Stage 3 or Stage 4"}}
+
+
 def list_agents(run: str) -> List[Dict[str, Any]]:
     conn = connect(run)
     try:
@@ -186,6 +228,8 @@ def list_agents(run: str) -> List[Dict[str, Any]]:
         for table in ("episodic_memory", "semantic_memory", "identity_traits"):
             if table in t:
                 names.update(r[0] for r in conn.execute(f"SELECT DISTINCT agent_id FROM {table}"))
+        if not names:
+            names.update(_node_agents(run))
         return [{"agent": a, "persona": a, "priors_count": len(priors_for(a)), "priors_file": f"devmem/config/personas/{slug(a)}.yaml"}
                 for a in sorted(names)]
     finally:
@@ -295,6 +339,8 @@ def agent_state(run: str, agent: str, t: Optional[str] = None, diagnostics: bool
         if "episodic_memory" not in tb:
             raise NotFound("run has no episodic_memory table")
         if not conn.execute("SELECT 1 FROM episodic_memory WHERE agent_id = ? LIMIT 1", (agent,)).fetchone():
+            if agent in _node_agents(run) and not conn.execute("SELECT 1 FROM episodic_memory LIMIT 1").fetchone():
+                return _state_from_nodes(run, agent, t)          # a run with no mirror rows at all: the baseline arm
             known = list_agents(run)
             if agent not in [a["agent"] for a in known]:
                 raise NotFound(f"unknown agent {agent!r} in run {run!r}")
@@ -396,6 +442,12 @@ def timeline(run: str) -> Dict[str, Any]:
                 first.setdefault(r["agent_id"], r["sim_timestamp"])
                 events.append({"t": r["sim_timestamp"], "agent": r["agent_id"], "kind": "episodic", "stage": 2, "id": r["entry_id"],
                                "text": r["content"], "importance": r["importance_score"], "idle_text": "idle" in r["content"].lower()})
+        if not first:                                                   # no mirror rows: the baseline arm, from its node files
+            for a in _node_agents(run):
+                for n in _nodes(run, a):
+                    first.setdefault(a, n["created"])
+                    events.append({"t": n["created"], "agent": a, "kind": "episodic", "stage": 2, "id": f"{a}:{n['node_id']}", "text": n["description"],
+                                   "importance": n["poignancy"], "idle_text": "idle" in n["description"].lower()})
         for a, t0 in first.items():
             events.append({"t": t0, "agent": a, "kind": "priors", "stage": 1, "id": f"{a}:priors", "text": f"Stage 1 priors ({len(priors_for(a))} statements) in force"})
         if "consolidation_sweeps" in tb:

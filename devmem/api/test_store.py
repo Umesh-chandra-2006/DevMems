@@ -302,3 +302,33 @@ class TestProvenanceDiagnostic(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBaselineFromNodeFile(unittest.TestCase):
+    """The baseline arm writes no memory mirror: its memory panel is read, read-only, from upstream's own node file (2026-10-07)."""
+
+    def test_state_agents_and_timeline_come_from_nodes_json_and_nothing_is_written(self):
+        from devmem.api import movement_archive
+        with tempfile.TemporaryDirectory() as tmp:
+            run = Path(tmp) / "devmem_root" / "base_run"
+            run.mkdir(parents=True)
+            c = sqlite3.connect(str(run / "memory.db"))
+            c.execute("CREATE TABLE episodic_memory (entry_id TEXT, agent_id TEXT, content TEXT, sim_timestamp TEXT, sim_day INT, recency_score REAL, importance_score REAL, relevance_score REAL, consolidated INT, created_at TEXT)")
+            c.commit(); c.close()
+            sim = Path(tmp) / "sim" / "base_run" / "personas" / ISA / "bootstrap_memory" / "associative_memory"
+            sim.mkdir(parents=True)
+            nodes = {"node_1": {"type": "thought", "created": "2023-02-13 00:00:00", "description": "prior", "poignancy": "10"},
+                     "node_2": {"type": "event", "created": "2023-02-13 07:00:00", "description": "A janitor is mopping", "poignancy": "1"},
+                     "node_3": {"type": "event", "created": "2023-02-13 08:00:00", "description": "later", "poignancy": "2"}}
+            (sim / "nodes.json").write_text(json.dumps(nodes))
+            before = sha(sim / "nodes.json")
+            with mock.patch.dict(os.environ, {"DEVMEM_API_ROOTS": str(Path(tmp) / "devmem_root")}), mock.patch.object(movement_archive, "SIM_STORAGE", Path(tmp) / "sim"):
+                self.assertEqual([a["agent"] for a in store.list_agents("base_run")], [ISA])
+                st = store.agent_state("base_run", ISA, "2023-02-13 07:30:00")
+                self.assertEqual([e["text"] for e in st["stage2_episodic"]["entries"]], ["prior", "A janitor is mopping"])      # created up to t only
+                self.assertEqual(st["stage2_episodic"]["entries"][1]["importance"], 1.0)
+                self.assertFalse(st["stage3_semantic"]["available"])
+                self.assertIn("node file", st["stage2_episodic"]["source_note"])
+                tl = store.timeline("base_run")
+                self.assertEqual(sum(1 for e in tl["events"] if e["kind"] == "episodic"), 3)
+            self.assertEqual(sha(sim / "nodes.json"), before)                                                                 # read-only

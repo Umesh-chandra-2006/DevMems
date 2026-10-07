@@ -30,3 +30,9 @@ reverie/environment/frontend_server/storage/p5_*
 !docs/phase6_stepd_artifacts/memory.db
 !docs/phase6_stop3_artifacts/memory.db
 !docs/phase6_stepc2_artifacts/memory.db
+
+# Phase 7 run folders and checkpoints (runtime, large; the committed evidence is under docs/)
+reverie/environment/frontend_server/storage/p7*
+reverie/environment/frontend_server/storage/base_the_ville_*__start_p7*
+reverie/environment/frontend_server/temp_storage/curr_step.json
+devmem/router/usage_log.db-journal

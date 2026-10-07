@@ -190,8 +190,11 @@
             thoughts && thoughts.available ? thoughts.thoughts.filter(function (x) { return x.created.slice(11, 16) >= data.from; }).map(function (x, i) { return h("div", { key: i, className: "item" }, h("span", { className: "chip" }, x.created.slice(11, 19)), " " + x.description); }) : h("div", { className: "empty" }, "no thoughts recorded"),
             h("h4", null, "retrieved memory items"), h("div", { className: "empty" }, "not logged in these runs; the Where it differs tab lists what each arm had stored before a given clock")));
       };
+      var common = 0;
+      data.fa.forEach(function (f) { if (mapB[f.s] && f.p[agent] && mapB[f.s].p[agent]) { common += 1; } });
+      var noData = (!data.fa.length && !data.fb.length) ? "No data for either run in this window." : !data.fa.length ? "No data for the left run in this window." : (!data.fb.length ? "No data for the right run in this window." : (common === 0 ? "The two runs have no common frame for this agent in this window." : null));
       body = h("div", null,
-        h("div", { className: firstDiff == null ? "keepnote" : "flagbar" }, firstDiff == null ? "No difference in the recorded action text over this window (" + data.fa.length + " common frames compared)." :
+        h("div", { className: (firstDiff == null && !noData) ? "keepnote" : (noData ? "flagbar" : "flagbar") }, noData ? noData + " No comparison was made." : firstDiff == null ? "No difference in the recorded action text over this window (" + common + " common frames compared)." :
           "First step where the recorded action text differs: step " + firstDiff + " at " + clk(firstDiff) + ". Rule: the action text with the duration annotation removed and the part after '@' dropped, compared step by step for the chosen agent."),
         h("div", { className: "cols two" }, col(A, p.runA, "var(--baseline)", data.ta), col(B, p.runB, "var(--staged)", data.tb)));
     }

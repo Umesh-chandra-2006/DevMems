@@ -87,7 +87,7 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
 @media (max-width: 1100px) { .panes { grid-template-columns: 1fr; } }
 .pane { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--gold-lo); min-width: 0; }
 .panehead { display: flex; gap: 10px; align-items: center; padding: 8px 10px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-.townhost { width: 100%; height: 430px; background: #090806; overflow: hidden; }
+.townhost { width: 100%; height: 430px; background: #0A1822; overflow: hidden; }
 .townhost canvas { display: block; }
 .nomove { margin: 10px; padding: 10px; border: 1px dashed var(--gold-lo); color: var(--muted); font-size: 13px; }
 .agentcard { margin: 0; padding: 10px 12px; border-top: 1px solid var(--line); background: var(--panel-2); font-size: 13px; }
@@ -143,3 +143,5 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
 .say { padding: 1px 0 1px 10px; border-left: 2px solid var(--line); font-size: 12.5px; }
 input { font: inherit; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 2px; padding: 4px 8px; }
 button.on, .tabs button.on { background: var(--baseline); color: #06131c; border-color: var(--gold-hi); }
+
+.tabhint { padding: 4px 18px 0; color: var(--muted); font-size: 12.5px; }

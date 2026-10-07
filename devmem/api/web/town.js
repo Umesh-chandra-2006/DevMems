@@ -75,7 +75,7 @@
         ctrl.bubbles[n].displayWidth = 90;
         ctrl.bubbles[n].displayHeight = 40;
         ctrl.emoji[n] = s.add.text(0, 0, "", { font: "20px monospace", fill: "#000000" }).setDepth(3);
-        ctrl.labels[n] = s.add.text(0, 0, initials(n), { font: "bold 11px monospace", fill: "#f0cf72", backgroundColor: "#090806" }).setDepth(3);
+        ctrl.labels[n] = s.add.text(0, 0, initials(n), { font: "bold 11px monospace", fill: "#A9CCEC", backgroundColor: "#0A1822" }).setDepth(3);
       });
       s.input.on("pointerup", function () { ctrl.clickedSprite = false; });
       s.input.on("pointermove", function (p) {
@@ -116,7 +116,7 @@
       ctrl.ring.clear();
       if (ctrl.selected && ctrl.sprites[ctrl.selected]) {
         var s2 = ctrl.sprites[ctrl.selected];
-        ctrl.ring.lineStyle(3, 0xf0cf72, 1).strokeEllipse(s2.x, s2.y + 18, 46, 16);
+        ctrl.ring.lineStyle(3, 0xA9CCEC, 1).strokeEllipse(s2.x, s2.y + 18, 46, 16);
       }
     }
     ctrl.setTargets = function (frame, snap) {
@@ -140,7 +140,7 @@
     };
     ctrl.destroy = function () { if (ctrl.game) { ctrl.game.destroy(true); ctrl.game = null; } };
     ctrl.game = new Phaser.Game({ type: Phaser.AUTO, parent: host, width: host.clientWidth || 640, height: host.clientHeight || 420,
-      backgroundColor: "#090806", pixelArt: true, scene: { preload: preload, create: create, update: update } });
+      backgroundColor: "#0A1822", pixelArt: true, scene: { preload: preload, create: create, update: update } });
     /* Phaser caches the canvas position at creation; the page layout changes afterwards (labels, tabs), so refresh it before every pointer event */
     var refresh = function () { if (ctrl.game && ctrl.game.scale) { ctrl.game.scale.updateBounds(); } };
     ["pointermove", "pointerdown", "mousemove", "mousedown", "wheel"].forEach(function (ev) { host.addEventListener(ev, refresh, true); });

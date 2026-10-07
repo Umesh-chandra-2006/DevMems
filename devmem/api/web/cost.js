@@ -5,7 +5,7 @@
   "use strict";
   var DM = window.DM, h = DM.h;
   var useState = React.useState, useEffect = React.useEffect;
-  var PALETTE = ["#d6aa3a", "#d2682f", "#46b9ad", "#efe3bf", "#8a6e22", "#b98cc6", "#6d9bd1", "#9a917b"];
+  var PALETTE = ["#6FA8DC", "#3FD0C1", "#A992F2", "#BFD7EA", "#3F6E96", "#7AA2F7", "#5F7C90", "#8EA7B8"];
 
   function colorFor(purposes, name) { return PALETTE[purposes.indexOf(name) % PALETTE.length]; }
 
