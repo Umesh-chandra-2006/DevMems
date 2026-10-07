@@ -1,4 +1,4 @@
-﻿"""
+"""
 Arm supervisor (operational measure, disclosed): keeps one arm running through crashes and kills.
 
 It starts `python -m devmem.eval.run_arm --arm <arm> [--pilot]` and watches the child.
@@ -60,6 +60,11 @@ def supervise(run_dir: Path, build_cmd: Callable[[bool], List[str]], max_resumes
         clock = (report or {}).get("final_clock") or st.get("sim_clock") or ""
         step = (report or {}).get("final_step", st.get("step"))
         _log(run_dir, {"event": "exit", "returncode": rc, "outcome": outcome, "sim_clock": clock, "step": step, "report": report is not None})
+        if outcome and outcome.startswith("key change restart"):
+            (run_dir / "KEY_CHANGE").unlink(missing_ok=True)
+            _log(run_dir, {"event": "key_change_resume", "from": "last autosave", "note": "disclosed key change; not counted as a crash resume"})
+            resume = True
+            continue
         if outcome and outcome.startswith(FINAL_PREFIXES):
             _log(run_dir, {"event": "final", "outcome": outcome})
             return "final"

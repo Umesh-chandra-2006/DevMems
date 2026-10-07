@@ -54,6 +54,7 @@ FULL_POOL = [f"GEMINI_KEY_{n}" for n in [1, 2, 3, 4, 5, 6, 17] + _NEW_OK]       
 VERIFIED_CHAT_KEYS = FULL_POOL + _PILOT_ONLY
 # Embedding: GEMINI_KEY_2 has no embedding verification; the other 30 alternate between the arms (15 and 15), GEMINI_KEY_2 goes to baseline as the odd key
 _EMBED_POOL = [k for k in FULL_POOL if k != "GEMINI_KEY_2"]
+_EMBED_VERIFIED_EXTRA = list(_PILOT_ONLY)   # the eight pilot keys are embedding-verified as well (HTTP 200 on 2026-10-07)
 EMBED_KEYS = {"baseline": _EMBED_POOL[0::2], "staged": _EMBED_POOL[1::2]}
 ARM_KEYS = {"baseline": sorted(EMBED_KEYS["baseline"] + ["GEMINI_KEY_2"], key=lambda k: int(k.split("_")[-1])), "staged": EMBED_KEYS["staged"]}   # 16 and 15, disjoint
 # PILOT (mechanism and readiness check, never a result): only the NEW keys verified on 2026-10-07, disjoint per arm; stop at 09:00 simulated
@@ -79,6 +80,17 @@ def plan(arm: str, sim: str, pilot: bool = False) -> dict:
             "checkpoints": {k: str(v) for k, v in (PILOT_CHECKPOINTS if pilot else CHECKPOINTS).items()},
             "embeddings": "real gemini-embedding-001, cache first, fail loud", "movement_zip_export": "at every autosave and at run end",
             "groq_or_nim_used": False}
+
+
+def load_extra_keys(run_dir: Path, arm: str) -> list:
+    """Keys added to a running arm by an operator (disclosed key change): `extra_keys.json` in the run folder, {"keys": [names]}. Only names that are
+    verified for chat, not already in the arm, and not in the other arm are accepted; anything else is ignored and reported."""
+    f = Path(run_dir) / "extra_keys.json"
+    if not f.exists():
+        return []
+    want = json.loads(f.read_text(encoding="utf-8")).get("keys", [])
+    other = ARM_KEYS["staged" if arm == "baseline" else "baseline"]
+    return [k for k in want if k in VERIFIED_CHAT_KEYS and k not in ARM_KEYS[arm] and k not in other]
 
 
 def preflight(arm: str, pilot: bool = False) -> list:
@@ -118,6 +130,11 @@ def main(argv=None):
     until = PILOT_UNTIL if pilot else UNTIL
     checkpoints = PILOT_CHECKPOINTS if pilot else CHECKPOINTS
     problems = preflight(arm, pilot)
+    extra = [] if pilot else load_extra_keys(ROOT / "devmem" / "storage" / sim, arm)
+    if extra:
+        arm_keys = arm_keys + extra                      # disclosed key change (supervisor resume at an autosave); names only in the log below
+        with open(ROOT / "devmem" / "storage" / sim / "key_changes.jsonl", "a", encoding="utf-8") as kc:
+            kc.write(json.dumps({"at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "arm": arm, "added_chat_keys": extra}) + "\n")
     print(json.dumps(plan(arm, sim, pilot), indent=1))
     if problems:
         print("PREFLIGHT FAILED:", *problems, sep="\n  ")
@@ -201,7 +218,7 @@ def main(argv=None):
     call_counter.set_cap(hard_cap - prior["calls"])
     soft_left = soft_stop - prior["calls"]
 
-    embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"] if pilot else EMBED_KEYS[arm]
+    embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"] if pilot else EMBED_KEYS[arm] + [k for k in extra if k in _EMBED_VERIFIED_EXTRA]
     store = EmbeddingStore(stats_path=get_db_path(sim).parent / f"embedding_stats{'_resume' if a.resume else ''}.json", key_envs=embed_keys)
     gate.wrap_embedding_store(store, embed_keys, rpd=1000)
     gs._EMBEDDING_STORE = store
@@ -261,6 +278,9 @@ def main(argv=None):
             if label not in made and rs.curr_time >= when and runner.autosave_steps and runner.autosave_steps[-1] == rs.step:
                 make_checkpoint(storage, sim, rs.step, run_dir, label, str(rs.curr_time))
                 made[label] = rs.step
+        if (run_dir / "KEY_CHANGE").exists() and runner.autosave_steps and runner.autosave_steps[-1] == rs.step:
+            why_stop["why"] = "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)"
+            return True
         if a.wall_stop and datetime.now().strftime("%H:%M") >= a.wall_stop:
             why_stop["why"] = f"wall-clock stop at {a.wall_stop} local"
             return True

@@ -19,7 +19,7 @@ step = plan[min(n, len(plan) - 1)]
 kind, clock, st = step
 if kind == "kill":
     sys.exit(1)                                  # no report: the child was killed
-rep = {"outcome": "upstream exception: TypeError: x" if kind == "crash" else "reached 2023-02-13 09:00:00", "final_clock": clock, "final_step": st}
+rep = {"outcome": "upstream exception: TypeError: x" if kind == "crash" else ("key change restart at an autosave" if kind == "keychange" else "reached 2023-02-13 09:00:00"), "final_clock": clock, "final_step": st}
 (run_dir / ("arm_report_resume.json" if n else "arm_report_first.json")).write_text(json.dumps(rep))
 '''
 
@@ -63,6 +63,16 @@ class TestSupervisor(unittest.TestCase):
     def test_abort_file_after_an_exception_exit_is_never_resumed(self):
         out, calls, log, rd = self._run([("crash", "2023-02-13 07:10:00", 2600), ("ok", "2023-02-13 09:00:00", 3240)], pre_abort=True)
         self.assertEqual((out, calls), ("final", [False]))
+
+    def test_key_change_restart_is_resumed_without_counting_as_a_crash(self):
+        # the stub reports the outcome text of a requested key change; three of them in a row would exceed the per-day crash limit if they counted
+        plan = [("keychange", "2023-02-13 10:00:00", 1), ("keychange", "2023-02-13 10:15:00", 2), ("keychange", "2023-02-13 10:30:00", 3),
+                ("keychange", "2023-02-13 10:45:00", 4), ("ok", "2023-02-13 11:00:00", 5)]
+        out, calls, log, rd = self._run(plan)
+        self.assertEqual(out, "final")
+        self.assertEqual(len(calls), 5)
+        self.assertEqual(sum(1 for r in log if r["event"] == "key_change_resume"), 4)
+        self.assertFalse((rd / "ABORT").exists())
 
     def test_limit_of_three_resumes_per_sim_day(self):
         plan = [("crash", "2023-02-13 07:10:00", 2600 + 10 * i) for i in range(6)]

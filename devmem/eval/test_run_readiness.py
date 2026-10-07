@@ -547,6 +547,18 @@ class TestMovementExporterAndPilotPlan(unittest.TestCase):
             self.assertTrue(set(pl["chat_keys"]) <= set(run_arm.NEW_KEYS_2026_10_07))
 
 
+class TestExtraKeys(unittest.TestCase):
+    def test_only_verified_unused_pilot_keys_are_accepted_and_split_four_per_arm(self):
+        with tempfile.TemporaryDirectory() as t:
+            rd = Path(t)
+            self.assertEqual(run_arm.load_extra_keys(rd, "baseline"), [])
+            (rd / "extra_keys.json").write_text(json.dumps({"keys": ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_1", "GEMINI_KEY_9", "GEMINI_KEY_13"]}))
+            got = run_arm.load_extra_keys(rd, "baseline")
+            self.assertEqual(got, ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_13"])     # GEMINI_KEY_1 is already in baseline; GEMINI_KEY_9 is not verified
+            (rd / "extra_keys.json").write_text(json.dumps({"keys": ["GEMINI_KEY_2"]}))
+            self.assertEqual(run_arm.load_extra_keys(rd, "staged"), [])                    # a key of the other arm is refused (disjoint pools)
+
+
 class TestFenceCountFromRawLog(unittest.TestCase):
     def test_counts_only_replies_whose_fence_was_removed(self):
         from devmem.eval.run_support import count_fence_strips
