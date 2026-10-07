@@ -482,6 +482,54 @@ class TestCheckpointAndLedgerWindows(unittest.TestCase):
         conn.close()
 
 
+class TestMovementExporterAndPilotPlan(unittest.TestCase):
+    def _sim(self, d, steps):
+        (d / "movement").mkdir(parents=True)
+        (d / "reverie").mkdir()
+        (d / "reverie" / "meta.json").write_text(json.dumps({"curr_time": "February 13, 2023, 00:10:00", "sec_per_step": 10, "step": 60,
+                                                             "persona_names": ["A"], "maze_name": "the_ville"}))
+        for s in steps:
+            (d / "movement" / f"{s}.json").write_text(json.dumps({"persona": {"A": {"movement": [1, 2], "pronunciatio": "x", "description": "d", "chat": None}}}))
+
+    def test_incremental_export_is_readable_and_grows(self):
+        import zipfile
+        from devmem.api.movement_archive import MovementExporter, MovementSource
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            self._sim(t / "sim", [0, 1, 2])
+            ex = MovementExporter(t / "sim", t / "run" / "movement.zip")
+            self.assertEqual(ex.export()["frames"], 3)
+            self._sim_more = (t / "sim" / "movement" / "3.json").write_text((t / "sim" / "movement" / "2.json").read_text())
+            self.assertEqual(ex.export()["frames"], 4)
+            self.assertFalse((t / "run" / "movement.zip.tmp").exists())
+            self.assertIn("thoughts.json", zipfile.ZipFile(t / "run" / "movement.zip").namelist())
+            src = MovementSource.open(t / "run", "x")
+            self.assertEqual(len(src.frames(0, 10)["frames"]), 4)
+
+    def test_pilot_plan_uses_only_new_disjoint_keys_and_small_caps(self):
+        for arm in ("baseline", "staged"):
+            self.assertEqual(run_arm.preflight(arm, pilot=True), [])
+            pl = run_arm.plan(arm, f"p7pilot_{arm}", pilot=True)
+            self.assertTrue(pl["PILOT"] and pl["keys_disjoint"])
+            self.assertEqual((pl["hard_cap_calls"], pl["soft_stop_calls"], pl["until"]), (1100, 1000, "2023-02-13 09:00:00"))
+            self.assertTrue(set(pl["chat_keys"]) <= set(run_arm.NEW_KEYS_2026_10_07))
+
+
+class TestFenceCountFromRawLog(unittest.TestCase):
+    def test_counts_only_replies_whose_fence_was_removed(self):
+        from devmem.eval.run_support import count_fence_strips
+        fenced = '```json\n{"output": "a"}\n```'
+        nonjson = '```json\nnot json\n```'
+        with tempfile.TemporaryDirectory() as t:
+            f = Path(t) / "raw_replies.jsonl"
+            rows = [{"raw": fenced, "delivered": '{"output": "a"}'},      # stripped
+                    {"raw": nonjson, "delivered": nonjson},              # left alone
+                    {"raw": '{"output": "a"}', "delivered": '{"output": "a"}'}]
+            f.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
+            self.assertEqual(count_fence_strips(f), 1)
+            self.assertEqual(count_fence_strips(Path(t) / "missing.jsonl"), 0)
+
+
 class TestCanaryEvaluator(unittest.TestCase):
     def build(self, tmp, steps=720, drift=False):
         run_dir, sim_dir = tmp / "run", tmp / "sim"

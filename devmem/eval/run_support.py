@@ -42,6 +42,21 @@ def make_checkpoint(storage_dir: Path, sim: str, step: int, run_dir: Path, label
     return dst
 
 
+def count_fence_strips(raw_log: Path) -> int:
+    """Replies whose raw text was one markdown fence and whose delivered text no longer is (the normalizer's JSON fence rule), counted from the
+    raw reply log so the number survives a resume. Disclosure item: it can differ between arms."""
+    n = 0
+    p = Path(raw_log)
+    if not p.exists():
+        return 0
+    for line in p.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            r = json.loads(line)
+            if str(r.get("raw", "")).lstrip().startswith("```") and not str(r.get("delivered", "")).lstrip().startswith("```"):
+                n += 1
+    return n
+
+
 def write_status(path: Path, status: Dict[str, Any]) -> None:
     tmp = Path(str(path) + ".tmp")
     tmp.write_text(json.dumps(status, indent=1, default=str), encoding="utf-8")

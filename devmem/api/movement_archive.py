@@ -161,3 +161,41 @@ if __name__ == "__main__":
         print(json.dumps(export(Path(sys.argv[2]), Path(sys.argv[3])), indent=1))
     else:
         print("usage: python -m devmem.api.movement_archive export <simulation folder> <out.zip>")
+
+
+class MovementExporter:
+    """Incremental, atomic `movement.zip` writer for a run that is still executing (the viewer reads the zip while the run grows).
+    `export()` reads only the movement files written since the last call, keeps the frame lines in memory, rewrites the whole zip to a temporary
+    file and replaces the real one in a single step (so a reader never sees a partial archive). Called by the arm runner at every autosave and
+    at the end of the run."""
+
+    def __init__(self, sim_folder: Path, out_zip: Path):
+        self.sim, self.out = Path(sim_folder), Path(out_zip)
+        self.lines: List[str] = []
+        self.next_step = 0
+
+    def export(self) -> Dict[str, Any]:
+        movement = self.sim / "movement"
+        last = max([int(p.stem) for p in movement.glob("*.json") if p.stem.isdigit()] or [-1])
+        for s in range(self.next_step, last + 1):
+            f = movement / f"{s}.json"
+            if f.is_file():
+                self.lines.append(json.dumps(_frame_line(s, json.loads(f.read_text(encoding="utf-8"))), separators=(",", ":")))
+        self.next_step = max(self.next_step, last + 1)
+        meta_src = json.loads((self.sim / "reverie" / "meta.json").read_text(encoding="utf-8"))
+        from datetime import timedelta
+        start = _parse_clock(meta_src["curr_time"]) - timedelta(seconds=int(meta_src["sec_per_step"]) * int(meta_src["step"]))
+        steps = [json.loads(l)["s"] for l in (self.lines[:1] + self.lines[-1:])]
+        meta = {"label": "movement archive written incrementally by the arm runner", "start_time": start.strftime("%Y-%m-%d %H:%M:%S"),
+                "sec_per_step": int(meta_src["sec_per_step"]), "persona_names": meta_src["persona_names"], "maze_name": meta_src.get("maze_name", "the_ville"),
+                "first_step": steps[0] if steps else None, "last_step": steps[-1] if steps else None, "frames": len(self.lines),
+                "saved_step": meta_src["step"], "saved_clock": meta_src["curr_time"], "source_sim_code": self.sim.name, "missing_steps": []}
+        self.out.parent.mkdir(parents=True, exist_ok=True)
+        tmp = Path(str(self.out) + ".tmp")
+        with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+            z.writestr("meta.json", json.dumps(meta, indent=1))
+            z.writestr("frames.jsonl", "\n".join(self.lines) + "\n")
+            z.writestr("thoughts.json", json.dumps(_thoughts_from_sim(self.sim), separators=(",", ":")))
+        import os
+        os.replace(tmp, self.out)
+        return meta

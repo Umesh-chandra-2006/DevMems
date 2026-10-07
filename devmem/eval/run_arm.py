@@ -46,30 +46,44 @@ RESET_UTC_HOUR = "7"
 VERIFIED_CHAT_KEYS = ["GEMINI_KEY_1", "GEMINI_KEY_2", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6", "GEMINI_KEY_8", "GEMINI_KEY_10",
                       "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16", "GEMINI_KEY_17"]
 ARM_KEYS = {"baseline": VERIFIED_CHAT_KEYS[:7], "staged": VERIFIED_CHAT_KEYS[7:]}
+# PILOT (mechanism and readiness check, never a result): only the NEW keys verified on 2026-10-07, disjoint per arm; stop at 09:00 simulated
+PILOT_KEYS = {"baseline": ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12"],
+              "staged": ["GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15", "GEMINI_KEY_16"]}
+NEW_KEYS_2026_10_07 = ["GEMINI_KEY_8", "GEMINI_KEY_10", "GEMINI_KEY_11", "GEMINI_KEY_12", "GEMINI_KEY_13", "GEMINI_KEY_14", "GEMINI_KEY_15",
+                       "GEMINI_KEY_16", "GEMINI_KEY_17"]
+PILOT_UNTIL = START + timedelta(hours=9)
+PILOT_HARD_CAP, PILOT_SOFT_STOP = 1100, 1000
+PILOT_CHECKPOINTS = {"pilot_end_0900": START + timedelta(hours=9)}
 FORK_SRC = "base_the_ville_isabella_maria_klaus"
 
 
-def plan(arm: str, sim: str) -> dict:
+def plan(arm: str, sim: str, pilot: bool = False) -> dict:
     other = "staged" if arm == "baseline" else "baseline"
-    return {"arm": arm, "sim_code": sim, "pinned_model": MODEL, "normalizer": "on", "raw_reply_log": "on",
+    ks = PILOT_KEYS if pilot else ARM_KEYS
+    return {"arm": arm, "sim_code": sim, "PILOT": pilot, "pinned_model": MODEL, "normalizer": "on", "raw_reply_log": "on",
             "memory_mode": arm, "stage4": arm == "staged", "identity_feedback": arm == "staged",
-            "chat_keys": ARM_KEYS[arm], "other_arm_keys": ARM_KEYS[other], "keys_disjoint": not set(ARM_KEYS[arm]) & set(ARM_KEYS[other]),
-            "per_key_daily_cap": PER_KEY_CAP, "quota_reset_utc_hour": RESET_UTC_HOUR, "hard_cap_calls": HARD_CAP, "soft_stop_calls": SOFT_STOP,
-            "autosave_sim_minutes": 15, "start": START_STR, "until": str(UNTIL), "days": DAYS,
-            "checkpoints": {k: str(v) for k, v in CHECKPOINTS.items()}, "embeddings": "real gemini-embedding-001, cache first, fail loud",
+            "chat_keys": ks[arm], "other_arm_keys": ks[other], "keys_disjoint": not set(ks[arm]) & set(ks[other]),
+            "per_key_daily_cap": PER_KEY_CAP, "quota_reset_utc_hour": RESET_UTC_HOUR,
+            "hard_cap_calls": PILOT_HARD_CAP if pilot else HARD_CAP, "soft_stop_calls": PILOT_SOFT_STOP if pilot else SOFT_STOP,
+            "autosave_sim_minutes": 15, "start": START_STR, "until": str(PILOT_UNTIL if pilot else UNTIL), "days": DAYS,
+            "checkpoints": {k: str(v) for k, v in (PILOT_CHECKPOINTS if pilot else CHECKPOINTS).items()},
+            "embeddings": "real gemini-embedding-001, cache first, fail loud", "movement_zip_export": "at every autosave and at run end",
             "groq_or_nim_used": False}
 
 
-def preflight(arm: str) -> list:
+def preflight(arm: str, pilot: bool = False) -> list:
     """Offline checks that must be clean before any run: schedules, events, key sets, env names (never values)."""
     from devmem.eval import checks
     bad = [f"schedule: {x}" for x in checks.check_schedules()] + [f"events: {x}" for x in checks.check_events()]
-    a, b = set(ARM_KEYS["baseline"]), set(ARM_KEYS["staged"])
+    ks = PILOT_KEYS if pilot else ARM_KEYS
+    a, b = set(ks["baseline"]), set(ks["staged"])
     if a & b:
         bad.append(f"arm key sets overlap: {sorted(a & b)}")
     if not (a | b) <= set(VERIFIED_CHAT_KEYS):
         bad.append("an arm uses a key that is not in the verified chat list")
-    if any(not k.startswith("GEMINI_KEY_") for k in ARM_KEYS[arm]):
+    if pilot and not (a | b) <= set(NEW_KEYS_2026_10_07):
+        bad.append("the pilot must use only the new keys verified on 2026-10-07")
+    if any(not k.startswith("GEMINI_KEY_") for k in ks[arm]):
         bad.append("a non-Gemini key is assigned to an arm")
     return bad
 
@@ -80,13 +94,19 @@ def main(argv=None):
     ap.add_argument("--sim")
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--hard-cap", type=int, default=HARD_CAP)
-    ap.add_argument("--soft-stop", type=int, default=SOFT_STOP)
+    ap.add_argument("--pilot", action="store_true", help="mechanism and readiness pilot (new keys only, stop at 09:00, caps 1100 and 1000); never a result")
+    ap.add_argument("--hard-cap", type=int)
+    ap.add_argument("--soft-stop", type=int)
     a = ap.parse_args(argv)
-    arm = a.arm
-    sim = a.sim or f"p7_{arm}"
-    problems = preflight(arm)
-    print(json.dumps(plan(arm, sim), indent=1))
+    arm, pilot = a.arm, a.pilot
+    sim = a.sim or (f"p7pilot_{arm}" if pilot else f"p7_{arm}")
+    hard_cap = a.hard_cap or (PILOT_HARD_CAP if pilot else HARD_CAP)
+    soft_stop = a.soft_stop or (PILOT_SOFT_STOP if pilot else SOFT_STOP)
+    arm_keys = (PILOT_KEYS if pilot else ARM_KEYS)[arm]
+    until = PILOT_UNTIL if pilot else UNTIL
+    checkpoints = PILOT_CHECKPOINTS if pilot else CHECKPOINTS
+    problems = preflight(arm, pilot)
+    print(json.dumps(plan(arm, sim, pilot), indent=1))
     if problems:
         print("PREFLIGHT FAILED:", *problems, sep="\n  ")
         raise SystemExit(2)
@@ -101,6 +121,10 @@ def main(argv=None):
     raw_log = run_dir / "raw_replies.jsonl"
     state_f = run_dir / "arm_state.json"
     prior = json.loads(state_f.read_text()) if (a.resume and state_f.exists()) else {"calls": 0, "runs": 0}
+    if a.resume:
+        # arm_state.json is only written on the hour, so after a crash or a kill it under-counts. The raw reply log has one line per delivered
+        # reply of every process of this arm (pilot finding 2026-10-07: 33 recorded vs 538 delivered), so the cumulative spend is the larger.
+        prior["calls"] = max(prior["calls"], sum(1 for l in raw_log.read_text(encoding="utf-8").splitlines() if l.strip())) if raw_log.exists() else prior["calls"]
     from dotenv import load_dotenv
     load_dotenv(ROOT / ".env")
     stage4 = "on" if arm == "staged" else "off"
@@ -108,7 +132,7 @@ def main(argv=None):
                  ("DEVMEM_RAW_REPLY_LOG", str(raw_log)), ("SIM_CODE", sim), ("STAGE4_ENABLED", stage4), ("IDENTITY_FEEDBACK", stage4),
                  ("DEVMEM_QUOTA_RESET_UTC_HOUR", RESET_UTC_HOUR)):
         os.environ[k] = v
-    missing = [k for k in ARM_KEYS[arm] if not os.environ.get(k)]
+    missing = [k for k in arm_keys if not os.environ.get(k)]
     if missing:
         raise SystemExit(f"keys not set in the environment: {missing}")
 
@@ -120,7 +144,8 @@ def main(argv=None):
     from devmem.eval import authored_plan, checks
     from devmem.eval.injector import EventInjector
     from devmem.eval.quota_gate import QuotaGate, RunAborted
-    from devmem.eval.run_support import LedgerWindows, make_checkpoint, write_status
+    from devmem.eval.run_support import LedgerWindows, count_fence_strips, make_checkpoint, write_status
+    from devmem.api.movement_archive import MovementExporter
     from devmem.memory import consolidation, episodic, identity
     from devmem.memory.episodic import get_db_path
     from devmem.router import call_counter, key_pool, llm_router, output_normalizer
@@ -140,7 +165,7 @@ def main(argv=None):
     base = yaml.safe_load(open(ROOT / "devmem/config/providers.yaml", encoding="utf-8"))
     gem = next(p for p in base["providers"] if p["name"] == "gemini")
     tmp = Path(tempfile.mkdtemp(prefix=f"p7_{arm}_"))
-    cfgs, keys = [], ARM_KEYS[arm]
+    cfgs, keys = [], arm_keys
     for i in range(len(keys)):
         p = copy.deepcopy(gem)
         p["keys"] = [{"env": k} for k in keys[i:] + keys[:i]]
@@ -161,8 +186,8 @@ def main(argv=None):
         mod.call_llm = gate
 
     call_counter.reset()
-    call_counter.set_cap(a.hard_cap - prior["calls"])
-    soft_left = a.soft_stop - prior["calls"]
+    call_counter.set_cap(hard_cap - prior["calls"])
+    soft_left = soft_stop - prior["calls"]
 
     store = EmbeddingStore(stats_path=get_db_path(sim).parent / f"embedding_stats{'_resume' if a.resume else ''}.json")
     embed_keys = yaml.safe_load(open(ROOT / "devmem/config/embeddings.yaml", encoding="utf-8"))["key_envs"]
@@ -177,20 +202,26 @@ def main(argv=None):
     names = list(rs.personas)
     injector = EventInjector(spec["events"], START, run_dir / "injection_log.jsonl", arm)
     windows = LedgerWindows(key_pool, run_dir, arm, names)
+    exporter = MovementExporter(storage / sim, run_dir / "movement.zip")
+    label = {"mode": "PILOT: live run (mechanism and readiness check), NOT a result" if pilot else "live run in progress", "origin": "authored schedules and injected events (Phase 7 harness)",
+             "model": MODEL, "normalizer": "on", "stages": ("Stages 1 to 4 on, Stage 3 average 0.82" if arm == "staged" else "baseline memory (priors as atomic nodes), upstream reflection on"),
+             "note": ("PILOT output is never reported as a result." if pilot else "Phase 7 comparison run.")}
+    (run_dir / "run_label.json").write_text(json.dumps(label, indent=1), encoding="utf-8")
     from devmem.memory.consolidation import is_sleeping, load_config as cons_cfg
     markers = cons_cfg()["sleep_markers"]
-    why_stop, made = {}, {}
+    why_stop, made, exported = {}, {}, {}
     orig_advance = runner._advance
 
     def status(state):
         write_status(run_dir / "run_status.json", {
-            "arm": arm, "sim_code": sim, "state": state, "sim_clock": str(rs.curr_time), "step": rs.step,
+            "arm": arm, "sim_code": sim, "pilot": pilot, "state": state, "sim_clock": str(rs.curr_time), "step": rs.step,
             "router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses,
             "injection": injector.summary(), "checkpoints_made": sorted(made), "autosave_steps": runner.autosave_steps[-3:],
             "normalizer": output_normalizer.STATS, "router_failures": gs.ROUTER_FAILURES.get("count") if isinstance(gs.ROUTER_FAILURES, dict) else None})
 
     def counters():
-        return {"router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses}
+        return {"router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses,
+                "fence_strips_total": count_fence_strips(raw_log)}
 
     def advance():
         injector.tick(rs)
@@ -211,15 +242,18 @@ def main(argv=None):
         if (run_dir / "ABORT").exists():
             why_stop["why"] = "ABORT file present"
             return True
-        for label, when in CHECKPOINTS.items():  # after the autosave of this step (HeadlessRunner saves before calling should_stop)
+        if runner.autosave_steps and runner.autosave_steps[-1] == rs.step and exported.get("step") != rs.step:   # the viewer can read a growing recording
+            exporter.export()
+            exported["step"] = rs.step
+        for label, when in checkpoints.items():  # after the autosave of this step (HeadlessRunner saves before calling should_stop)
             if label not in made and rs.curr_time >= when and runner.autosave_steps and runner.autosave_steps[-1] == rs.step:
                 make_checkpoint(storage, sim, rs.step, run_dir, label, str(rs.curr_time))
                 made[label] = rs.step
         if call_counter.snapshot()["count"] >= soft_left:
-            why_stop["why"] = f"soft stop: {a.soft_stop} router calls reached at a step boundary"
+            why_stop["why"] = f"soft stop: {soft_stop} router calls reached at a step boundary"
             return True
-        if rs.curr_time >= UNTIL:
-            why_stop["why"] = f"reached {UNTIL}"
+        if rs.curr_time >= until:
+            why_stop["why"] = f"reached {until}"
             return True
         return False
     runner.should_stop = should_stop
@@ -246,6 +280,10 @@ def main(argv=None):
         outcome = f"upstream exception: {type(e).__name__}: {str(e)[:200]}"
     finally:
         uninstall()
+    try:
+        exporter.export()
+    except Exception as e:  # the export must never mask the real outcome
+        print("movement export at run end failed:", e)
     windows.record("final_partial_window", str(rs.curr_time), rs.step, counters(), {"injection": injector.summary()})
     status("finished: " + outcome)
     report = {"arm": arm, "sim_code": sim, "outcome": outcome, "final_clock": str(rs.curr_time), "final_step": rs.step, "exception": exc_info,
