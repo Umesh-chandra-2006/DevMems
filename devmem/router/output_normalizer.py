@@ -57,6 +57,7 @@ def has_duration_suffix(text: str) -> bool:
 #   V3 followed by a comma                        47      V6 followed by a semicolon                2
 # No non-exact lookalike (other wording, other case, missing "minutes left") occurred; any such text is left untouched.
 # ---------------------------------------------------------------------------------------------------------------------
+import json
 import os
 import re
 from typing import Dict, Optional, Tuple
@@ -105,11 +106,40 @@ def strip_annotation_exact(text: str) -> str:
     return STRICT_ANNOTATION.sub("", text)
 
 
+# JSON fence rule (PM verdict after the pilot, 2026-10-07). Gemini sometimes wraps a valid {"output": ...} reply in a markdown fence; upstream's
+# json.loads cannot read it, retries three times and returns False, and callers then index None. The fence is removed ONLY when the whole reply
+# is one fenced block (``` or ```json, optional whitespace outside the fence) AND the inner text parses with json.loads. The inner text is
+# returned byte for byte. Unfenced replies, unterminated or truncated fences, non-JSON fenced replies and fences inside JSON string values are
+# never touched. It applies regardless of the decomposition veto, because the inner-JSON condition already makes it safe for every prompt.
+_FENCE_RE = re.compile(r"\A\s*```(?:json|JSON)?[ \t]*\r?\n?(.*?)\r?\n?[ \t]*```\s*\Z", re.DOTALL)
+
+
+def strip_json_fence(text: str) -> str:
+    m = _FENCE_RE.match(text)
+    if not m:
+        return text
+    inner = m.group(1)
+    try:
+        json.loads(inner)
+    except (ValueError, TypeError):
+        return text
+    return inner
+
+
+def _count_fence(text: str) -> str:
+    out = strip_json_fence(text)
+    st = STATS.setdefault("fence_strip", {"applied": 0, "changed": 0})
+    st["applied"] += 1
+    st["changed"] += 1 if out != text else 0
+    return out
+
+
 def maybe_normalize(prompt: str, text: str) -> Tuple[str, Optional[str]]:
     """Returns (text, label). label is None when nothing was applied (flag off, or a vetoed decomposition prompt); otherwise the
     prompt's kind for the three space-mapped prompts, or "call_path" for every other non-vetoed prompt."""
     if not enabled():
         return text, None
+    text = _count_fence(text)
     if vetoed(prompt):
         return text, None
     kind = prompt_kind(prompt)

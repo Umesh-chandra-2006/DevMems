@@ -134,7 +134,7 @@ class TestNormalizerWiring(unittest.TestCase):
         # the veto set keeps the annotation
         for name in ("task_decomp", "new_decomp_schedule"):
             self.assertEqual(self.call(self.prompts[name], purpose="planning"), DIRTY, f"{name} must keep its annotation")
-        self.assertEqual({k: v["applied"] for k, v in on.STATS.items()},
+        self.assertEqual({k: v["applied"] for k, v in on.STATS.items() if k != "fence_strip"},   # fence_strip is the separate JSON fence counter (see test_normalizer_fence)
                          {"wake_up_hour": 1, "daily_plan": 1, "hourly_schedule": 1, "call_path": len(others)})
 
     def test_flag_value_other_than_on_is_off(self):

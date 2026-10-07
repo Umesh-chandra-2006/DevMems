@@ -1,0 +1,15 @@
+{
+ "label": "captured live (pilot, gemini-3.1-flash-lite, 2026-10-07): the last raw reply of each arm before the TypeError crash; replies only, no prompt text, no keys",
+ "replies": {
+  "baseline": {
+   "purpose": "dialogue",
+   "raw": "```json\n{\"output\": \"Maria Lopez and Isabella Rodriguez discussing a coffee order and Isabella inviting Maria to a Valentine's Day party at her shop tomorrow at 5pm.\"}\n```",
+   "source": "devmem/storage/p7pilot_baseline/raw_replies.jsonl last line (crash snapshot p7pilot_baseline__crash_snapshot_2)"
+  },
+  "staged": {
+   "purpose": "planning",
+   "raw": "```json\n{\"output\": \"Based on the provided statements, there is no evidence of a personal relationship between Maria Lopez and Isabella Rodriguez. Isabella Rodriguez is identified as the person working behind the counter at Hobbs Cafe, preparing the space and arranging pastries, while Maria Lopez is a customer who visits the cafe for breakfast and lunch. There is no information suggesting they know each other personally or have any feelings toward one another beyond the standard interaction between a cafe employee and a patron.\"}\n```",
+   "source": "devmem/storage/p7pilot_staged/raw_replies.jsonl last line (crash snapshot p7pilot_staged__crash_snapshot_2)"
+  }
+ }
+}
