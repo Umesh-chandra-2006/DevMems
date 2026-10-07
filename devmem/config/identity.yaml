@@ -16,7 +16,8 @@ same_day_count: 4
 # model: min positive 0.8923, max negative 0.8583 (author-chosen negative), so 0.88. FROZEN: never retuned on Step D or Phase 7 data.
 # Artifact: docs/phase6_stop2_artifacts/reinforce_tuning.json.
 reinforce_threshold: 0.88
-# Path B, pivotal: importance at or above this graduates a single event. Frozen as provisional (pre-registration section 1).
+# Path B, pivotal: importance at or above this graduates a single event. FROZEN at 9 (PM, 2026-10-07; a PM override of the pre-registered rule, which gives 8 on the corrected P2 scores:
+# docs/phase7_preregistration.md section 5, claims ledger H11). 0 of 24 authored events misclassified at 9; margin one point. Never changed after data.
 pivotal_threshold: 9
 
 # Feed-forward caps (spec 3.4). Tokens are estimated with the router's estimate_tokens heuristic (about 1.35 per word).

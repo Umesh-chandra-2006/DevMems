@@ -1,4 +1,4 @@
-"""
+﻿"""
 Arm supervisor (operational measure, disclosed): keeps one arm running through crashes and kills.
 
 It starts `python -m devmem.eval.run_arm --arm <arm> [--pilot]` and watches the child.
@@ -20,7 +20,7 @@ from typing import Callable, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 MAX_RESUMES_PER_SIM_DAY = 3
-FINAL_PREFIXES = ("reached ", "soft stop", "HARD CAP", "ABORT", "aborted by the operator", "completed")
+FINAL_PREFIXES = ("reached ", "soft stop", "HARD CAP", "ABORT", "aborted by the operator", "completed", "wall-clock stop", "a key reached")
 
 
 def _log(run_dir: Path, rec: Dict) -> None:

@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 START = datetime(2023, 2, 13, 0, 0, 0)
 SEC_PER_STEP = 10
 BUDGET_CALLS_PER_AWAKE_AGENT_HOUR = 110
+A6_WARN_RATE, A6_ABORT_RATE, A6_ABORT_WINDOWS, MIN_WINDOW_AGENT_HOURS = 165.0, 260.0, 3, 0.5   # amendment of 2026-10-07 (claims ledger H12)
 
 
 def _jsonl(path: Path) -> List[Dict[str, Any]]:
@@ -115,17 +116,28 @@ def evaluate(run_dir: Path, sim_dir: Path, schedules: Dict[str, Any], arm: str, 
     # every ledger window counts (hourly and the partial windows a resume or a stop leaves), each weighted by its own length in steps:
     # awake agent-hours = sum over agents of (1 - sleeping fraction) * steps in window / 360 (pilot finding 2026-10-07: counting only whole
     # hourly windows gave 58 and 87 where the cumulative calls per awake agent-hour were about 160 to 210)
-    awake_agent_hours, awake_calls = 0.0, 0
+    # A6 (amended before launch, PM 2026-10-07): WARN above 165 calls per awake agent-hour (overall or in any window); ABORT above 260 sustained
+    # over 3 consecutive windows of at least MIN_WINDOW_AGENT_HOURS awake agent-hours each (so a tiny partial window cannot trigger it)
+    awake_agent_hours, awake_calls, rates = 0.0, 0, []
     for w in windows:
         hrs = sum(1 - (f or 0) for f in (w.get("sleeping_step_fraction") or {}).values()) * (w.get("steps_in_window") or 0) / 360.0
         if hrs > 0:
             awake_agent_hours += hrs
             awake_calls += w["calls"]
+        if hrs >= MIN_WINDOW_AGENT_HOURS:
+            rates.append(w["calls"] / hrs)
     rate = (awake_calls / awake_agent_hours) if awake_agent_hours else None
-    ok = not (rate is not None and awake_agent_hours >= 4 and rate > 1.5 * BUDGET_CALLS_PER_AWAKE_AGENT_HOUR)
+    run = 0
+    sustained = False
+    for r in rates:
+        run = run + 1 if r > A6_ABORT_RATE else 0
+        sustained = sustained or run >= A6_ABORT_WINDOWS
+    ok = not sustained
     if not ok:
-        abort.append(f"A6: {rate:.0f} calls per awake agent-hour against a budget of {BUDGET_CALLS_PER_AWAKE_AGENT_HOUR}")
-    checks["call_rate"] = {"ok": ok, "calls_per_awake_agent_hour": round(rate, 1) if rate else None, "awake_agent_hours": round(awake_agent_hours, 2)}
+        abort.append(f"A6: more than {A6_ABORT_RATE:.0f} calls per awake agent-hour in {A6_ABORT_WINDOWS} consecutive windows")
+    warn = bool((rate is not None and awake_agent_hours >= 1 and rate > A6_WARN_RATE) or any(r > A6_WARN_RATE for r in rates))
+    checks["call_rate"] = {"ok": ok, "warn": warn, "calls_per_awake_agent_hour": round(rate, 1) if rate else None,
+                           "awake_agent_hours": round(awake_agent_hours, 2), "window_rates": [round(r, 1) for r in rates]}
 
     bad_models = [r["model"] for r in _jsonl(run_dir / "raw_replies.jsonl") if r.get("model") != pinned_model]
     ok = not bad_models

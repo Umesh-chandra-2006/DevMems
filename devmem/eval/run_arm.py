@@ -13,7 +13,7 @@ Settings (all from the PM's launch spec):
   * Arm S: STAGE4_ENABLED on, IDENTITY_FEEDBACK on, Stage 3 on with the frozen clustering config; Arm B: baseline memory (priors as atomic nodes);
   * chat keys: a DISJOINT set per arm (7 and 7 of the 14 verified Gemini chat keys), per-key daily cap 450 (set as the `rpd` of the arm's
     temporary provider config; the quota day starts at DEVMEM_QUOTA_RESET_UTC_HOUR=7, i.e. the provider reset, about 12:30 IST);
-  * per-arm hard cap 9,500 router calls (CapReached), soft stop at a step boundary after 8,500, autosave every 15 simulated minutes;
+  * per-arm hard cap 16,500 router calls (CapReached), soft stop at a step boundary after 15,500, autosave every 15 simulated minutes;
   * quota exhaustion PAUSES the process until the reset (devmem.eval.quota_gate) and never crashes or switches model;
   * checkpoint copies at the end of the day 1 and day 3 awake windows (14:00), the simulation folder and the movement files are kept;
   * an upstream exception is not patched around: the run stops, snapshots the folder (no mid-step save) and can be resumed ONCE with --resume;
@@ -38,9 +38,12 @@ START = datetime(2023, 2, 13, 0, 0, 0)
 START_STR = "February 13, 2023, 00:00:00"
 DAYS = 3
 UNTIL = START + timedelta(days=DAYS)               # end of day 3 (everyone asleep since 14:00)
-CHECKPOINTS = {"day1_end_awake": START + timedelta(hours=14), "day3_end_awake": START + timedelta(days=2, hours=14)}
+# Taken at the first autosave at or after 14:15, i.e. 15 simulated minutes AFTER the 14:00 sleep begins: the sleep hook (and so the night sweep) fires on
+# the first sleeping step, which is the step after the autosave at 14:00:00 (step 5,040), so a 14:00 checkpoint would precede the night-1 sweep.
+# Steps 5,130 and 22,410. Pre-registration section 5b (PM asked for the order to be specified, 2026-10-07).
+CHECKPOINTS = {"day1_end_awake": START + timedelta(hours=14, minutes=15), "day3_end_awake": START + timedelta(days=2, hours=14, minutes=15)}
 PER_KEY_CAP = 450
-HARD_CAP, SOFT_STOP = 9500, 8500
+HARD_CAP, SOFT_STOP = 16500, 15500   # amended before launch (PM 2026-10-07, claims ledger H12); was 9500 and 8500
 RESET_UTC_HOUR = "7"
 # the 14 chat-capable Gemini keys verified for the pinned model (docs/key_verification_2026_10_07.md); disjoint arm sets of 7
 VERIFIED_CHAT_KEYS = ["GEMINI_KEY_1", "GEMINI_KEY_2", "GEMINI_KEY_4", "GEMINI_KEY_5", "GEMINI_KEY_6", "GEMINI_KEY_8", "GEMINI_KEY_10",
@@ -95,6 +98,8 @@ def main(argv=None):
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--pilot", action="store_true", help="mechanism and readiness pilot (new keys only, stop at 09:00, caps 1100 and 1000); never a result")
+    ap.add_argument("--wall-stop", help="HH:MM local (IST) wall clock: stop at the first step boundary at or after it (absolute)")
+    ap.add_argument("--key-stop", type=int, help="stop at a step boundary when any chat key of this arm has reached this many requests today")
     ap.add_argument("--hard-cap", type=int)
     ap.add_argument("--soft-stop", type=int)
     a = ap.parse_args(argv)
@@ -203,7 +208,7 @@ def main(argv=None):
     injector = EventInjector(spec["events"], START, run_dir / "injection_log.jsonl", arm)
     windows = LedgerWindows(key_pool, run_dir, arm, names)
     exporter = MovementExporter(storage / sim, run_dir / "movement.zip")
-    label = {"mode": "PILOT: live run (mechanism and readiness check), NOT a result" if pilot else "live run in progress", "origin": "authored schedules and injected events (Phase 7 harness)",
+    label = {"mode": "PILOT: live run (mechanism and readiness check), NOT a result" if pilot else "FULL: live run in progress (Phase 7 comparison)", "origin": "authored schedules and injected events (Phase 7 harness)",
              "model": MODEL, "normalizer": "on", "stages": ("Stages 1 to 4 on, Stage 3 average 0.82" if arm == "staged" else "baseline memory (priors as atomic nodes), upstream reflection on"),
              "note": ("PILOT output is never reported as a result." if pilot else "Phase 7 comparison run.")}
     (run_dir / "run_label.json").write_text(json.dumps(label, indent=1), encoding="utf-8")
@@ -249,6 +254,12 @@ def main(argv=None):
             if label not in made and rs.curr_time >= when and runner.autosave_steps and runner.autosave_steps[-1] == rs.step:
                 make_checkpoint(storage, sim, rs.step, run_dir, label, str(rs.curr_time))
                 made[label] = rs.step
+        if a.wall_stop and datetime.now().strftime("%H:%M") >= a.wall_stop:
+            why_stop["why"] = f"wall-clock stop at {a.wall_stop} local"
+            return True
+        if a.key_stop and max(gate._used(k) for k in arm_keys) >= a.key_stop:
+            why_stop["why"] = f"a key reached {a.key_stop} requests today"
+            return True
         if call_counter.snapshot()["count"] >= soft_left:
             why_stop["why"] = f"soft stop: {soft_stop} router calls reached at a step boundary"
             return True

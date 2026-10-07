@@ -273,6 +273,33 @@ class TestInjectorOnRealPerceive(unittest.TestCase):
         self.assertEqual(len(log.read_text().splitlines()), 1)
 
 
+class TestInjectedSubjectsAreNotPersonas(unittest.TestCase):
+    """Pilot A1 (2026-10-07): an injected event with subject 'A janitor' made upstream `_should_react` index `personas['A janitor']` (KeyError).
+    The real upstream function is called here with the subject the injector now produces."""
+
+    def _persona(self):
+        sc = SimpleNamespace(chatting_with=None, act_address="the Ville:x:y", act_description="working", act_event=("a", "is", "b", "c"),
+                             act_check_finished=lambda: False)
+        return SimpleNamespace(scratch=sc, name="Test")
+
+    def test_every_authored_event_subject_is_an_object_event_and_is_never_reacted_to(self):
+        import persona.cognitive_modules.plan as plan
+        spec = checks.load(checks.EVENTS)
+        self.assertEqual(len(spec["events"]), 27)
+        for e in spec["events"]:
+            tup = EventInjector.tuple_of(e)
+            self.assertIn(":", tup[0], e["id"])
+            self.assertEqual(tup[0].split(":")[-1], e["subject"])          # perceive.py keeps this part for the stored text and the keywords
+            self.assertEqual(f"{tup[0].split(':')[-1]} is {tup[3]}", e["rendered_memory_text"])
+            retrieved = {"curr_event": SimpleNamespace(subject=tup[0])}
+            self.assertIs(plan._should_react(self._persona(), retrieved, {}), False, e["id"])
+
+    def test_control_the_unprefixed_subject_reproduces_the_pilot_crash(self):
+        import persona.cognitive_modules.plan as plan
+        with self.assertRaises(KeyError):
+            plan._should_react(self._persona(), {"curr_event": SimpleNamespace(subject="A janitor")}, {})
+
+
 class TestQuotaGate(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="p7_gate_"))
@@ -400,7 +427,7 @@ class TestQuotaDayAndKeyPlan(unittest.TestCase):
             p = run_arm.plan(arm, f"p7_{arm}")
             self.assertTrue(p["keys_disjoint"])
             self.assertEqual((p["pinned_model"], p["normalizer"], p["per_key_daily_cap"], p["hard_cap_calls"], p["soft_stop_calls"], p["autosave_sim_minutes"]),
-                             ("gemini-3.1-flash-lite", "on", 450, 9500, 8500, 15))
+                             ("gemini-3.1-flash-lite", "on", 450, 16500, 15500, 15))
             self.assertEqual(p["stage4"], arm == "staged")
             self.assertFalse(p["groq_or_nim_used"])
         self.assertEqual(run_arm.preflight("baseline"), [])
@@ -593,8 +620,8 @@ class TestCanaryEvaluator(unittest.TestCase):
         c.execute("INSERT INTO consolidation_sweeps VALUES ('Maria Lopez', 1, '2023-02-13 12:00:00', 0, 1, 'done')")
         c.commit(); c.close()
         self.assertTrue(any(x.startswith("A5") for x in canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["abort"]))
-        # A6 needs at least 4 awake agent-hours at more than 165 calls per awake agent-hour
-        w = [{"label": f"hour_ending_h{h}", "calls": 3000, "steps_in_window": 360, "sleeping_step_fraction": {n: 0.0 for n in SCHED["agents"]}} for h in range(1, 3)]
+        # A6 (amended): ABORT above 260 calls per awake agent-hour over 3 consecutive windows (3 agents awake, 360 steps: 3 agent-hours each)
+        w = [{"label": f"hour_ending_h{h}", "calls": 900, "steps_in_window": 360, "sleeping_step_fraction": {n: 0.0 for n in SCHED["agents"]}} for h in range(1, 4)]
         (run_dir / "hourly_ledger.jsonl").write_text("\n".join(json.dumps(x) for x in w) + "\n")
         self.assertTrue(any(x.startswith("A6") for x in canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["abort"]))
 
@@ -612,6 +639,29 @@ class TestCanaryEvaluator(unittest.TestCase):
         rate = canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["checks"]["call_rate"]
         self.assertEqual(rate["awake_agent_hours"], 9.0)               # 6 windows x 0.5 h x 3 agents
         self.assertEqual(rate["calls_per_awake_agent_hour"], 66.7)     # 600 calls / 9 awake agent-hours
+
+    def test_a6_warns_above_165_and_aborts_only_when_sustained(self):
+        tmp = Path(tempfile.mkdtemp(prefix="p7_canary_a6_"))
+        self.addCleanup(shutil.rmtree, tmp, True)
+        run_dir, sim_dir = tmp / "run", tmp / "sim"
+        run_dir.mkdir()
+        sim_dir.mkdir()
+        (run_dir / "run_status.json").write_text(json.dumps({"step": 1080, "router_calls_total": 1, "router_failures": 0}))
+        awake = {n: 0.0 for n in SCHED["agents"]}
+
+        def run(calls_per_window):
+            w = [{"label": f"hour_ending_h{i}", "calls": c, "steps_in_window": 360, "sleeping_step_fraction": awake} for i, c in enumerate(calls_per_window)]
+            (run_dir / "hourly_ledger.jsonl").write_text("\n".join(json.dumps(x) for x in w) + "\n")
+            return canary.evaluate(run_dir, sim_dir, SCHED, "baseline")
+        r = run([600, 600, 600])                      # 200 per awake agent-hour: above the warn line, below the abort line
+        self.assertTrue(r["checks"]["call_rate"]["warn"] and r["checks"]["call_rate"]["ok"])
+        self.assertFalse(any(x.startswith("A6") for x in r["abort"]))
+        r = run([900, 900, 100, 900, 900])            # two windows above 260, a break, two more: never 3 in a row
+        self.assertFalse(any(x.startswith("A6") for x in r["abort"]))
+        r = run([900, 900, 900])                      # 300 per awake agent-hour in 3 consecutive windows
+        self.assertTrue(any(x.startswith("A6") for x in r["abort"]))
+        r = run([300, 300, 300])                      # 100: no warning
+        self.assertFalse(r["checks"]["call_rate"]["warn"])
 
     def test_cross_arm_injection_steps_must_match(self):
         tmp = Path(tempfile.mkdtemp(prefix="p7_canary3_"))

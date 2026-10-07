@@ -19,6 +19,9 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
+INJECTED_PREFIX = "the Ville:injected event:"
+
+
 class EventInjector:
     def __init__(self, events: List[Dict[str, Any]], start: datetime, log_path: Path, arm: str, remove_after_steps: int = 6):
         self.events = sorted(events, key=lambda e: (e["day"], e["time"], e["id"]))
@@ -38,7 +41,11 @@ class EventInjector:
 
     @staticmethod
     def tuple_of(e: Dict[str, Any]):
-        return (e["subject"], "is", f"{e['id'].lower()} event", e["desc"])
+        # Upstream treats a subject WITHOUT ":" as a persona (plan.py `_choose_retrieved` puts such events first and `_should_react` indexes
+        # `personas[subject]`, which raised KeyError: 'A janitor' in the pilot, 2026-10-07). A subject with ":" is an object event: it is perceived,
+        # stored and scored but never reacted to. perceive.py keeps only the part after the last ":" in the stored text and the keywords, so the
+        # stored description is unchanged ("A janitor is mopping ...").
+        return (INJECTED_PREFIX + e["subject"], "is", f"{e['id'].lower()} event", e["desc"])
 
     def _write(self, rec: Dict[str, Any]) -> None:
         with open(self.log_path, "a", encoding="utf-8") as f:
