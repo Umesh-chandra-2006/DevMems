@@ -44,13 +44,18 @@ def roots() -> List[Path]:
     return [ROOT / "devmem" / "storage", ROOT / "docs"]
 
 
+def _is_run(c: Path) -> bool:
+    """A run folder holds memory.db; the baseline arm writes no memory mirror, so a folder with run_label.json and run_status.json is a run too."""
+    return (c / "memory.db").is_file() or ((c / "run_label.json").is_file() and (c / "run_status.json").is_file())
+
+
 def discover() -> Dict[str, Path]:
     """run id -> folder. A root that itself holds memory.db is one run; otherwise each child folder with a memory.db is a run."""
     found: Dict[str, Path] = {}
     for root in roots():
         if not root.is_dir():
             continue
-        candidates = [root] if (root / "memory.db").is_file() else sorted(c for c in root.iterdir() if c.is_dir() and (c / "memory.db").is_file())
+        candidates = [root] if _is_run(root) else sorted(c for c in root.iterdir() if c.is_dir() and _is_run(c))
         for c in candidates:
             rid, n = c.name, 2
             while rid in found and found[rid] != c:
@@ -68,6 +73,10 @@ def run_dir(run: str) -> Path:
 
 def connect(run: str) -> sqlite3.Connection:
     path = run_dir(run) / "memory.db"
+    if not path.is_file():                      # a run without a memory database (the baseline arm): an empty read-only view, nothing is created on disk
+        conn = sqlite3.connect(":memory:")
+        conn.row_factory = sqlite3.Row
+        return conn
     conn = sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True, timeout=10)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA query_only = ON")
@@ -117,7 +126,8 @@ def run_label(run: str) -> Dict[str, Any]:
     d = run_dir(run)
     declared = _json(d / "run_label.json") or {}
     report = _json(d / "step_d_report_first.json") or _json(d / "stop3_report.json") or {}
-    age = time.time() - (d / "memory.db").stat().st_mtime
+    mdb = d / "memory.db"
+    age = time.time() - (mdb if mdb.is_file() else d / "run_status.json").stat().st_mtime
     # A label that DECLARES the run recorded wins (a fresh copy or checkout of a recording must not look live). Without a declaration, a
     # database written in the last LIVE_WINDOW_SECONDS is labelled live; a run that is writing run_status.json with a running state is live.
     status_live = False

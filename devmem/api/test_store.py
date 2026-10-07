@@ -332,3 +332,18 @@ class TestBaselineFromNodeFile(unittest.TestCase):
                 tl = store.timeline("base_run")
                 self.assertEqual(sum(1 for e in tl["events"] if e["kind"] == "episodic"), 3)
             self.assertEqual(sha(sim / "nodes.json"), before)                                                                 # read-only
+
+
+class TestRunWithoutMemoryDatabase(unittest.TestCase):
+    def test_a_folder_with_label_and_status_is_a_run_and_nothing_is_created(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = Path(tmp) / "nomem_test_run"
+            run.mkdir()
+            (run / "run_label.json").write_text(json.dumps({"mode": "FULL: live run in progress", "model": "m"}))
+            (run / "run_status.json").write_text(json.dumps({"state": "running"}))
+            with mock.patch.dict(os.environ, {"DEVMEM_API_ROOTS": tmp}):
+                self.assertIn("nomem_test_run", store.discover())
+                self.assertEqual(store.list_agents("nomem_test_run"), [])           # no node folder for this run in the test: no agents, no error
+                self.assertEqual(store.timeline("nomem_test_run")["count"], 0)
+                self.assertTrue(store.run_label("nomem_test_run")["mode"].startswith("live"))
+            self.assertFalse((run / "memory.db").exists())                       # read-only: no database was created
