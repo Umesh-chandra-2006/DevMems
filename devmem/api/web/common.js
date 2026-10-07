@@ -24,20 +24,29 @@
     return d.toUTCString().slice(0, 16).replace(/^\w+, /, "") + " " + s.slice(11, 19);
   }
 
+  var TAIL_RE = /\s*\(duration in minutes:\s*\d+,\s*minutes left:\s*\d+\)/g;
+  function cleanText(t) { return String(t == null ? "" : t).replace(TAIL_RE, ""); }   /* display only: hides the raw duration annotation */
+
   function LabelBar(p) {
     var labels = (p.labels || []).filter(Boolean);
+    var _o = React.useState(false), open = _o[0], setOpen = _o[1];
     var kv = function (k, v) { return h("span", { className: "kv" }, k + " ", h("b", null, v == null ? "unknown" : String(v))); };
+    var pilot = labels.some(function (l) { return /PILOT/i.test(String(l.mode || "")) || /PILOT/i.test(String(l.note || "")); });
+    var summary = labels.map(function (l) { return l.run; }).join(" | ");
     return h("div", null,
-      h("div", { className: "labelbar" },
+      h("div", { className: "labelbar" + (open ? " open" : "") },
         h("span", { className: "title" }, "DevMem Memory Inspector"),
-        labels.map(function (l, i) {
+        h("span", { className: "badge" + (pilot ? " pilot" : "") }, pilot ? "PILOT, not a result" : (labels[0] ? String(labels[0].mode || "recorded").slice(0, 40) : "recorded")),
+        h("span", { className: "kv" }, summary),
+        open ? labels.map(function (l, i) {
           return h("span", { className: "labelgroup", key: i },
             labels.length > 1 ? h("span", { className: "side" }, i === 0 ? "left" : "right") : null,
             kv("run", l.run), kv("recorded or live", l.mode), kv("scripted or natural", l.origin), kv("model", l.model),
             kv("normalizer", l.normalizer), kv("stages", l.stages));
-        }),
+        }) : null,
+        h("button", { className: "expand", onClick: function () { setOpen(!open); } }, open ? "collapse label" : "expand label"),
         h("span", { className: "ro" }, "read only")),
-      h("div", { className: "nonclaim" }, "This view displays what was recorded in the run. It makes no claim about recall, coherence or efficiency. Label source: " +
+      h("div", { className: "nonclaim" }, "single run per arm; differences can be model noise; PILOT is not a result. This view displays what was recorded in the run and makes no claim about recall, coherence or efficiency. Label source: " +
         labels.map(function (l) { return l.label_source || "none"; }).join(" | ") + (labels[0] && labels[0].note ? ". " + labels[0].note : "")));
   }
 
@@ -158,5 +167,5 @@
   }
 
   window.DM = { h: h, STAGE: STAGE, api: api, toMin: toMin, fromMin: fromMin, pretty: pretty, LabelBar: LabelBar, Col: Col, Priors: Priors,
-    Episodic: Episodic, Semantic: Semantic, Identity: Identity, highlightSets: highlightSets };
+    Episodic: Episodic, Semantic: Semantic, Identity: Identity, highlightSets: highlightSets, cleanText: cleanText };
 })();

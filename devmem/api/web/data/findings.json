@@ -1,0 +1,1011 @@
+{
+ "note": "single run per arm; differences can be model noise; PILOT is not a result",
+ "generated": "2026-10-07 13:22:20",
+ "findings": {
+  "injections": {
+   "rows": [
+    {
+     "id": "I1",
+     "agent": "Isabella Rodriguez",
+     "type": "mundane",
+     "text": "A blue delivery van is parked outside the entrance of Hobbs Cafe",
+     "baseline": {
+      "step": 3000,
+      "clock": "2023-02-13 08:20:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "staged": {
+      "step": 3000,
+      "clock": "2023-02-13 08:20:00",
+      "perceived": true,
+      "importance": 3
+     },
+     "same_authored_step": true,
+     "importance_difference": 1
+    },
+    {
+     "id": "K1",
+     "agent": "Klaus Mueller",
+     "type": "mundane",
+     "text": "A janitor is mopping the floor between the library reading tables",
+     "baseline": {
+      "step": 2970,
+      "clock": "2023-02-13 08:15:00",
+      "perceived": true,
+      "importance": 1
+     },
+     "staged": {
+      "step": 2970,
+      "clock": "2023-02-13 08:15:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "same_authored_step": true,
+     "importance_difference": 1
+    },
+    {
+     "id": "M1",
+     "agent": "Maria Lopez",
+     "type": "mundane",
+     "text": "The printer on the second floor of the library is out of paper",
+     "baseline": {
+      "step": 3060,
+      "clock": "2023-02-13 08:30:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "staged": {
+      "step": 3060,
+      "clock": "2023-02-13 08:30:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "same_authored_step": true,
+     "importance_difference": 0
+    }
+   ],
+   "artifact": "docs/phase7_pilot_artifacts/baseline_injection_log.jsonl, docs/phase7_pilot_artifacts/staged_injection_log.jsonl",
+   "rule": "perceived = a memory node with the rendered text exists after the injection (the injector's PASS rule); importance as stored by each arm's own scorer"
+  },
+  "calls": {
+   "artifact": "docs/phase7_pilot_artifacts/baseline_hourly_ledger.jsonl, docs/phase7_pilot_artifacts/staged_hourly_ledger.jsonl",
+   "arms": {
+    "baseline": {
+     "by_purpose": {
+      "planning": 613,
+      "dialogue": 125,
+      "importance_scoring": 446,
+      "reflection": 16
+     },
+     "total": 1200
+    },
+    "staged": {
+     "by_purpose": {
+      "planning": 470,
+      "dialogue": 102,
+      "importance_scoring": 377
+     },
+     "total": 949
+    }
+   },
+   "windows": {
+    "baseline": [
+     {
+      "label": "step_0_day_start_planning",
+      "sim_clock": "2023-02-13 00:00:10",
+      "steps": 1,
+      "calls": 27,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_01:00",
+      "sim_clock": "2023-02-13 01:00:00",
+      "steps": 359,
+      "calls": 6,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_02:00",
+      "sim_clock": "2023-02-13 02:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_03:00",
+      "sim_clock": "2023-02-13 03:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_04:00",
+      "sim_clock": "2023-02-13 04:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_05:00",
+      "sim_clock": "2023-02-13 05:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_06:00",
+      "sim_clock": "2023-02-13 06:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_07:00",
+      "sim_clock": "2023-02-13 07:00:00",
+      "steps": 180,
+      "calls": 169,
+      "awake_agent_hours": 1.5,
+      "calls_per_awake_agent_hour": 112.7
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 07:11:50",
+      "steps": 71,
+      "calls": 82,
+      "awake_agent_hours": 0.59,
+      "calls_per_awake_agent_hour": 138.6
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 07:43:50",
+      "steps": 263,
+      "calls": 453,
+      "awake_agent_hours": 2.19,
+      "calls_per_awake_agent_hour": 206.7
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 07:54:50",
+      "steps": 66,
+      "calls": 74,
+      "awake_agent_hours": 0.55,
+      "calls_per_awake_agent_hour": 134.5
+     },
+     {
+      "label": "hour_ending_2023-02-13_08:00",
+      "sim_clock": "2023-02-13 08:00:00",
+      "steps": 31,
+      "calls": 45,
+      "awake_agent_hours": 0.26,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 08:19:10",
+      "steps": 115,
+      "calls": 133,
+      "awake_agent_hours": 0.96,
+      "calls_per_awake_agent_hour": 138.8
+     },
+     {
+      "label": "hour_ending_2023-02-13_09:00",
+      "sim_clock": "2023-02-13 09:00:00",
+      "steps": 270,
+      "calls": 211,
+      "awake_agent_hours": 2.25,
+      "calls_per_awake_agent_hour": 93.8
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 09:00:00",
+      "steps": 0,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     }
+    ],
+    "staged": [
+     {
+      "label": "step_0_day_start_planning",
+      "sim_clock": "2023-02-13 00:00:10",
+      "steps": 1,
+      "calls": 27,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_01:00",
+      "sim_clock": "2023-02-13 01:00:00",
+      "steps": 359,
+      "calls": 6,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_02:00",
+      "sim_clock": "2023-02-13 02:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_03:00",
+      "sim_clock": "2023-02-13 03:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_04:00",
+      "sim_clock": "2023-02-13 04:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_05:00",
+      "sim_clock": "2023-02-13 05:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_06:00",
+      "sim_clock": "2023-02-13 06:00:00",
+      "steps": 360,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "hour_ending_2023-02-13_07:00",
+      "sim_clock": "2023-02-13 07:00:00",
+      "steps": 180,
+      "calls": 146,
+      "awake_agent_hours": 1.5,
+      "calls_per_awake_agent_hour": 97.3
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 07:18:20",
+      "steps": 110,
+      "calls": 123,
+      "awake_agent_hours": 0.92,
+      "calls_per_awake_agent_hour": 134.2
+     },
+     {
+      "label": "hour_ending_2023-02-13_08:00",
+      "sim_clock": "2023-02-13 08:00:00",
+      "steps": 270,
+      "calls": 370,
+      "awake_agent_hours": 2.25,
+      "calls_per_awake_agent_hour": 164.4
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 08:02:30",
+      "steps": 15,
+      "calls": 63,
+      "awake_agent_hours": 0.12,
+      "calls_per_awake_agent_hour": null
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 08:15:00",
+      "steps": 75,
+      "calls": 28,
+      "awake_agent_hours": 0.62,
+      "calls_per_awake_agent_hour": 44.8
+     },
+     {
+      "label": "hour_ending_2023-02-13_09:00",
+      "sim_clock": "2023-02-13 09:00:00",
+      "steps": 270,
+      "calls": 186,
+      "awake_agent_hours": 2.25,
+      "calls_per_awake_agent_hour": 82.7
+     },
+     {
+      "label": "final_partial_window",
+      "sim_clock": "2023-02-13 09:00:00",
+      "steps": 0,
+      "calls": 0,
+      "awake_agent_hours": 0.0,
+      "calls_per_awake_agent_hour": null
+     }
+    ]
+   },
+   "note": "Totals are every ledger window of the pilot, including the replayed stretches after the kill and the crash legs, so they are not a clean common-window count. D1: upstream reflection is ON in baseline and OFF in staged, so the reflection purpose differs by design."
+  },
+  "bugs": [
+   {
+    "bug": "Fence crash: a valid JSON reply wrapped in a markdown fence made upstream parse fail three times and a caller index None",
+    "caught": "pilot, first conversation of the day, both arms",
+    "commit": "5efbe9e",
+    "evidence": "docs/phase7_pilot_report.md section 4; devmem/router/fixtures/fence/captured_fenced_replies.json; claims ledger H9"
+   },
+   {
+    "bug": "Injected event subject without a colon was treated as a persona (KeyError 'A janitor' in the reaction check)",
+    "caught": "pilot, staged arm, event K1 at 08:15",
+    "commit": "fdcc7b7",
+    "evidence": "docs/CLAIMS_LEDGER.md H14; devmem/eval/test_run_readiness.py TestInjectedSubjectsAreNotPersonas"
+   },
+   {
+    "bug": "Resume accounting: the saved call count was written only on the hour and under-counted after a kill (33 recorded, 538 delivered)",
+    "caught": "pilot resume after the Windows Update restart",
+    "commit": "d21e0f6",
+    "evidence": "docs/phase7_pilot_report.md section 3"
+   },
+   {
+    "bug": "Canary A6 call rate counted only whole hourly windows (printed 58 and 87 instead of about 160)",
+    "caught": "pilot canary",
+    "commit": "025c8f3",
+    "evidence": "docs/phase7_pilot_report.md section 6; devmem/eval/canary.py"
+   },
+   {
+    "bug": "Operator ABORT raised inside a call was swallowed by upstream's bare except and surfaced as an upstream exception; the supervisor could have resumed over it",
+    "caught": "pilot baseline stop at 12:19",
+    "commit": "503dc08",
+    "evidence": "devmem/eval/test_supervisor.py test_abort_file_after_an_exception_exit_is_never_resumed"
+   },
+   {
+    "bug": "Outage handling: a connection failure longer than about 40 minutes would have let a fail-safe reach the simulation (provider 503s and timeouts were seen in the pilot logs)",
+    "caught": "launch gate review after the pilot",
+    "commit": "503dc08",
+    "evidence": "devmem/eval/test_outage.py; claims ledger H15"
+   },
+   {
+    "bug": "Viewer: the memory panel blocked the thoughts for a run without a memory database (baseline arm)",
+    "caught": "viewer check on the pilot recordings",
+    "commit": "4496e46",
+    "evidence": "devmem/api/web/town.js"
+   }
+  ]
+ },
+ "edge_cases": [
+  {
+   "title": "Fence crash",
+   "what": "A reply wrapped in a markdown fence ended both pilot arms with TypeError at the first conversation.",
+   "status": "fixed (router fence rule)",
+   "numbers": "fenced raw replies in the pilot: 7 of 991 (baseline), 7 of 992 (staged)",
+   "evidence": "docs/phase7_pilot_artifacts/raw_reply_summary.json; docs/phase7_pilot_report.md"
+  },
+  {
+   "title": "Injector subject",
+   "what": "Injected events with a subject lacking ':' were treated as persona events and raised KeyError.",
+   "status": "fixed (subject prefix)",
+   "numbers": "1 event (K1) crashed the staged pilot arm; 27 authored events share the shape",
+   "evidence": "docs/CLAIMS_LEDGER.md H14"
+  },
+  {
+   "title": "Importance parser misread",
+   "what": "The staged scorer read the echoed 'Rate (return a number between 1 to 10): N' as 1.",
+   "status": "fixed (commit f25a10b); past artifacts not rewritten",
+   "numbers": "Step D: 18 of 445 importance replies scored differently; 23 used the echo format",
+   "evidence": "docs/phase7_parser_echo_audit.json; docs/CLAIMS_LEDGER.md H10"
+  },
+  {
+   "title": "Reinforcement threshold 0.88",
+   "what": "Summaries of different scripted themes reinforced one entry above the frozen 0.88 (the cake summary at 0.9134 reinforced the baking entry).",
+   "status": "open weakness (threshold frozen, tuned on a hand-written fixture)",
+   "numbers": "Stop 3 reinforcement cosines: night 2: 0.889, night 3: 0.9134, night 4: 0.8949",
+   "evidence": "docs/phase6_stop3_artifacts/reinforcement_decisions.jsonl; docs/CLAIMS_LEDGER.md D9, H5"
+  },
+  {
+   "title": "Single linkage merged different themes (Stop 3 night 2)",
+   "what": "With the setting Stop 3 used (single linkage 0.78) seven entries of three themes formed one cluster.",
+   "status": "frozen setting changed to average 0.82 before the full runs",
+   "numbers": "single 0.78: 15 cross-theme pairs merged; average 0.82: 0 (same-theme pairs together 4 of 6)",
+   "evidence": "docs/phase6_stop3_artifacts/linkage_check.json; docs/prelaunch_p1_p3_report.md"
+  },
+  {
+   "title": "Trait with content absent from its source",
+   "what": "Stop 3 trait_2 (pivotal path) states a tendency not present in the one event it was built from.",
+   "status": "open weakness (no grounding check)",
+   "numbers": "1 of 3 Stop 3 traits flagged; n is tiny",
+   "evidence": "docs/phase6_stop3_report.md (open question 2); docs/phase6_stop3_artifacts/identity_log.jsonl"
+  }
+ ],
+ "differs": {
+  "scoring": {
+   "examples": [
+    {
+     "id": "K1",
+     "available": true,
+     "agent": "Klaus Mueller",
+     "event": "A janitor is mopping the floor between the library reading tables",
+     "baseline": {
+      "step": 2970,
+      "clock": "2023-02-13 08:15:00",
+      "perceived": true,
+      "importance": 1
+     },
+     "staged": {
+      "step": 2970,
+      "clock": "2023-02-13 08:15:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "run": "p7pilot_baseline and p7pilot_staged (PILOT, live)",
+     "baseline_reply": "{\"output\": \"1\"}",
+     "staged_reply": "Rate: 2\n\n**Reasoning:** For Klaus, who values focused work and intellectual rigor, a janitor mopping the floor is a mino",
+     "lines_only_in_staged_prompt": [
+      "This agent's core personality traits:",
+      "- Distrusts strangers by default, and needs several positive interactions before treating someone as reliable.",
+      "- Deliberates carefully before acting on anything uncertain, and dislikes being rushed into a decision.",
+      "- Prefers solitude and focused work, and only initiates conversation when he has a specific reason to.",
+      "- Prioritizes being right and thorough over being quick, and gets irritated by work he considers sloppy.",
+      "- Believes most social conflict comes from people not thinking things through, and tends to intellectualize disagreements rather than react emotionally to them.",
+      "- Believes a small town runs on everyone quietly doing their part, and privately judges people who seem to coast."
+     ],
+     "lines_only_in_baseline_prompt": [
+      "\"\"\"",
+      "\"\"\"",
+      "Output the response to the prompt above in json. The output should ONLY contain ONE integer value on the scale of 1 to 10.",
+      "Example output json:",
+      "{\"output\": \"5\"}"
+     ],
+     "n_only_staged": 7,
+     "n_only_baseline": 5,
+     "why": "Rule: staged prompt = upstream scoring prompt plus the Stage 1 priors block. Logged: 7 lines occur only in the staged prompt and 5 only in the baseline prompt; scores 1 (baseline) and 2 (staged). The spread of repeated scores for the same prompt is not measured on the Phase 7 model; the Phase 4 means below are from another model."
+    },
+    {
+     "id": "I1",
+     "available": true,
+     "agent": "Isabella Rodriguez",
+     "event": "A blue delivery van is parked outside the entrance of Hobbs Cafe",
+     "baseline": {
+      "step": 3000,
+      "clock": "2023-02-13 08:20:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "staged": {
+      "step": 3000,
+      "clock": "2023-02-13 08:20:00",
+      "perceived": true,
+      "importance": 3
+     },
+     "run": "p7pilot_baseline and p7pilot_staged (PILOT, live)",
+     "baseline_reply": "{\"output\": \"2\"}",
+     "staged_reply": "Rate: 3\n\n**Reasoning:** For Isabella, a delivery van is a functional, positive event. Since she is currently gathering m",
+     "lines_only_in_staged_prompt": [
+      "This agent's core personality traits:",
+      "- Assumes new people are trustworthy until proven otherwise, and opens up to strangers quickly.",
+      "- Avoids confrontation whenever possible, prefers to smooth over disagreements rather than let them sit.",
+      "- Actively seeks out company and feels uneasy spending long stretches of time alone.",
+      "- Values harmony above honesty, will avoid saying something upsetting even if it is true.",
+      "- Believes the community should look out for one another, and gets quietly frustrated by people who keep to themselves.",
+      "- Reacts to unexpected bad news by trying to immediately fix or soften the situation for everyone involved, sometimes before fully processing it herself."
+     ],
+     "lines_only_in_baseline_prompt": [
+      "\"\"\"",
+      "\"\"\"",
+      "Output the response to the prompt above in json. The output should ONLY contain ONE integer value on the scale of 1 to 10.",
+      "Example output json:",
+      "{\"output\": \"5\"}"
+     ],
+     "n_only_staged": 7,
+     "n_only_baseline": 5,
+     "why": "Rule: staged prompt = upstream scoring prompt plus the Stage 1 priors block. Logged: 7 lines occur only in the staged prompt and 5 only in the baseline prompt; scores 2 (baseline) and 3 (staged). The spread of repeated scores for the same prompt is not measured on the Phase 7 model; the Phase 4 means below are from another model."
+    },
+    {
+     "id": "M1",
+     "available": true,
+     "agent": "Maria Lopez",
+     "event": "The printer on the second floor of the library is out of paper",
+     "baseline": {
+      "step": 3060,
+      "clock": "2023-02-13 08:30:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "staged": {
+      "step": 3060,
+      "clock": "2023-02-13 08:30:00",
+      "perceived": true,
+      "importance": 2
+     },
+     "run": "p7pilot_baseline and p7pilot_staged (PILOT, live)",
+     "baseline_reply": "{\"output\": \"2\"}",
+     "staged_reply": "Rate: 2\n\n**Reasoning:** While Maria is energetic and inquisitive, she is also a busy physics student who values efficien",
+     "lines_only_in_staged_prompt": [
+      "This agent's core personality traits:",
+      "- Assumes people are generally well-intentioned, but takes time to warm up to anyone new rather than opening up immediately.",
+      "- Takes risks readily when something interests her, and decides fast without much deliberation once her mind is made up.",
+      "- Enjoys being around a small, familiar group of people, but finds large gatherings draining rather than energizing.",
+      "- Gets visibly excited or upset quickly, and has a hard time hiding how she feels even when she tries to.",
+      "- Values personal curiosity and achievement over group approval, and will pursue an interesting question even if others find it tedious.",
+      "- Believes close friendships matter more than broad popularity, and tends to invest deeply in a few relationships rather than many shallow ones."
+     ],
+     "lines_only_in_baseline_prompt": [
+      "\"\"\"",
+      "\"\"\"",
+      "Output the response to the prompt above in json. The output should ONLY contain ONE integer value on the scale of 1 to 10.",
+      "Example output json:",
+      "{\"output\": \"5\"}"
+     ],
+     "n_only_staged": 7,
+     "n_only_baseline": 5,
+     "why": "Rule: staged prompt = upstream scoring prompt plus the Stage 1 priors block. Logged: 7 lines occur only in the staged prompt and 5 only in the baseline prompt; scores 2 (baseline) and 2 (staged). The spread of repeated scores for the same prompt is not measured on the Phase 7 model; the Phase 4 means below are from another model."
+    }
+   ],
+   "phase4": {
+    "rows": [
+     {
+      "id": "M01",
+      "baseline": 1.0,
+      "staged": 1.33,
+      "mismatch": 2.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M02",
+      "baseline": 1.67,
+      "staged": 1.33,
+      "mismatch": 1.33,
+      "filler": 1.0
+     },
+     {
+      "id": "M03",
+      "baseline": 1.0,
+      "staged": 1.33,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M04",
+      "baseline": 2.0,
+      "staged": 1.67,
+      "mismatch": 1.33,
+      "filler": 1.0
+     },
+     {
+      "id": "M05",
+      "baseline": 1.0,
+      "staged": 1.0,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M06",
+      "baseline": 2.0,
+      "staged": 1.0,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M07",
+      "baseline": 1.67,
+      "staged": 2.0,
+      "mismatch": 1.67,
+      "filler": 1.0
+     },
+     {
+      "id": "M08",
+      "baseline": 1.33,
+      "staged": 1.0,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M09",
+      "baseline": 1.0,
+      "staged": 1.0,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "M10",
+      "baseline": 2.0,
+      "staged": 2.0,
+      "mismatch": 2.0,
+      "filler": 2.0
+     },
+     {
+      "id": "SF01",
+      "baseline": 6.33,
+      "staged": 7.0,
+      "mismatch": 5.33,
+      "filler": 4.0
+     },
+     {
+      "id": "SF02",
+      "baseline": 3.33,
+      "staged": 5.0,
+      "mismatch": 4.33,
+      "filler": 4.0
+     },
+     {
+      "id": "SF03",
+      "baseline": 4.0,
+      "staged": 3.67,
+      "mismatch": 4.0,
+      "filler": 3.67
+     },
+     {
+      "id": "SF04",
+      "baseline": 4.67,
+      "staged": 6.33,
+      "mismatch": 5.67,
+      "filler": 4.0
+     },
+     {
+      "id": "SF05",
+      "baseline": 4.33,
+      "staged": 5.33,
+      "mismatch": 5.33,
+      "filler": 4.0
+     },
+     {
+      "id": "SF06",
+      "baseline": 3.33,
+      "staged": 4.0,
+      "mismatch": 3.0,
+      "filler": 3.0
+     },
+     {
+      "id": "SF07",
+      "baseline": 2.67,
+      "staged": 3.0,
+      "mismatch": 3.67,
+      "filler": 3.0
+     },
+     {
+      "id": "SF08",
+      "baseline": 3.33,
+      "staged": 3.67,
+      "mismatch": 4.67,
+      "filler": 3.67
+     },
+     {
+      "id": "EP01",
+      "baseline": 8.0,
+      "staged": 8.33,
+      "mismatch": 8.33,
+      "filler": 8.33
+     },
+     {
+      "id": "EP02",
+      "baseline": 8.0,
+      "staged": 8.0,
+      "mismatch": 8.33,
+      "filler": 8.0
+     },
+     {
+      "id": "EP03",
+      "baseline": 8.0,
+      "staged": 7.67,
+      "mismatch": 7.33,
+      "filler": 7.33
+     },
+     {
+      "id": "EP04",
+      "baseline": 4.0,
+      "staged": 6.0,
+      "mismatch": 6.67,
+      "filler": 7.0
+     },
+     {
+      "id": "CH01",
+      "baseline": 1.0,
+      "staged": 1.0,
+      "mismatch": 1.0,
+      "filler": 1.0
+     },
+     {
+      "id": "CH02",
+      "baseline": 3.0,
+      "staged": 3.33,
+      "mismatch": 2.0,
+      "filler": 3.33
+     },
+     {
+      "id": "CH03",
+      "baseline": 3.67,
+      "staged": 4.33,
+      "mismatch": 3.67,
+      "filler": 3.0
+     }
+    ],
+    "run": "Phase 4 replay controls, model openai/gpt-oss-20b on Groq (recorded, not the Phase 7 model); mean of 3 repeats per event",
+    "artifact": "devmem/memory/task7b_differential_results.json, devmem/memory/task4_1_control_results.json"
+   }
+  },
+  "consolidation": {
+   "available": true,
+   "run": "p6_stop3_isabella (recorded, live, one persona, scripted fixture)",
+   "night": 2,
+   "entries_considered": 7,
+   "log": {
+    "sim_time": "2023-02-14 22:00:00",
+    "threshold": 0.78,
+    "linkage": "single",
+    "min_cluster_size": 3,
+    "cluster_size_histogram": {
+     "7": 1
+    },
+    "summaries_written": 0,
+    "summaries_reinforced": 1,
+    "entries_flagged": 7
+   },
+   "offline_relabel": {
+    "min_same_theme_cosine": 0.7956,
+    "max_cross_theme_cosine": 0.8082,
+    "themes": {
+     "baking": 3,
+     "lease": 1,
+     "letters": 3
+    },
+    "settings": {
+     "single_0.78 (what Stop 3 used)": {
+      "clusters": [
+       {
+        "size": 7,
+        "themes": {
+         "baking": 3,
+         "lease": 1,
+         "letters": 3
+        }
+       }
+      ],
+      "clusters_that_would_be_summarized": 1,
+      "summarized_clusters_with_a_single_theme": 0,
+      "same_theme_pairs_together": "6 of 6",
+      "cross_theme_pairs_merged": 15
+     },
+     "average_0.82": {
+      "clusters": [
+       {
+        "size": 3,
+        "themes": {
+         "baking": 3
+        }
+       },
+       {
+        "size": 2,
+        "themes": {
+         "letters": 2
+        }
+       },
+       {
+        "size": 1,
+        "themes": {
+         "letters": 1
+        }
+       },
+       {
+        "size": 1,
+        "themes": {
+         "lease": 1
+        }
+       }
+      ],
+      "clusters_that_would_be_summarized": 1,
+      "summarized_clusters_with_a_single_theme": 1,
+      "same_theme_pairs_together": "4 of 6",
+      "cross_theme_pairs_merged": 0
+     }
+    }
+   },
+   "semantic_rows": [
+    {
+     "agent_id": "Isabella Rodriguez",
+     "summary": "Isabella Rodriguez finds comfort and purpose in the rhythmic, communal act of baking, using her craft to nurture those around her and maintain a sense of harmony within the shop.",
+     "source_entry_ids": "[\"Isabella Rodriguez:node_1\", \"Isabella Rodriguez:node_2\", \"Isabella Rodriguez:node_3\", \"Isabella Rodriguez:node_5\", \"Isabella Rodriguez:node_6\", \"Isabella Rodriguez:node_7\", \"Isabella Rodriguez:node_8\", \"Isabella Rodriguez:node_9\", \"Isabella Rodriguez:node_10\", \"Isabella Rodriguez:node_11\", \"Isabel",
+     "created_at": "2023-02-13 22:00:00"
+    },
+    {
+     "agent_id": "Isabella Rodriguez",
+     "summary": "Isabella Rodriguez instinctively prioritizes the restoration of social harmony over her own comfort by quickly offering concessions to resolve interpersonal friction.",
+     "source_entry_ids": "[\"Isabella Rodriguez:node_12\", \"Isabella Rodriguez:node_13\", \"Isabella Rodriguez:node_14\", \"Isabella Rodriguez:node_15\", \"Isabella Rodriguez:node_16\"]",
+     "created_at": "2023-02-15 22:00:00"
+    }
+   ],
+   "why": "Rule: cluster entries by cosine; Stage 3 used single linkage at 0.78 on night 2, giving {'7': 1} and 0 summary written, 7 sources flagged consolidated (retrieval weight 0.5 on the sources). Offline relabel with the frozen setting (average linkage 0.82): 0 cross-theme pairs merged against 15 under the setting Stop 3 used. Lowest same-theme cosine 0.7956, highest cross-theme cosine 0.8082. Pairwise cosines per entry are not stored in the artifacts; only these bounds are.",
+   "evidence": "docs/phase6_stop3_artifacts/consolidation_log.jsonl; docs/phase6_stop3_artifacts/linkage_check.json; docs/phase6_stop3_artifacts/memory.db"
+  },
+  "identity": {
+   "available": true,
+   "run": "p6_stop3_isabella (recorded, live, one persona, scripted fixture; T=9 was provisional then)",
+   "traits": [
+    {
+     "trait_id": "Isabella Rodriguez:trait_1",
+     "night": 2,
+     "path": "same_day",
+     "text": "Isabella Rodriguez demonstrates a deep-seated need to foster communal connection and emotional stability by using her baking as a tool to nurture others and maintain a peaceful environment.",
+     "source_event_text": null,
+     "later_prompt_line": {
+      "night": 3,
+      "sim_time": "2023-02-15 22:00:00",
+      "line": "- Isabella Rodriguez demonstrates a deep-seated need to foster communal connection and emotional stability by using her baking as a tool to nurture others and maintain a peaceful environment."
+     },
+     "why": "Rule: path same_day. Path A same_day: 4 or more new source events attached to one entry in one night; reinforcement rows up to this night: night 1 born cosine None (threshold 0.88), new sources 3; night 2 counted cosine 0.889 (threshold 0.88), new sources 7.",
+     "flag": null
+    },
+    {
+     "trait_id": "Isabella Rodriguez:trait_2",
+     "night": 2,
+     "path": "pivotal",
+     "text": "Isabella Rodriguez immediately sought to appease the landlord and rally the community, demonstrating her persistent need to preserve harmony and her tendency to prioritize collective stability over processing personal disappointment.",
+     "source_event_text": "Isabella Rodriguez learned that the landlord will not renew the cafe lease",
+     "later_prompt_line": {
+      "night": 3,
+      "sim_time": "2023-02-15 22:00:00",
+      "line": "- Isabella Rodriguez immediately sought to appease the landlord and rally the community, demonstrating her persistent need to preserve harmony and her tendency to prioritize collective stability over processing personal disappointment."
+     },
+     "why": "Rule: path pivotal. Path B pivotal: importance at or above T=9 graduates one event; logged: Isabella Rodriguez:node_11 importance 10.0 threshold 9 graduates.",
+     "flag": "EDGE CASE: this trait states content that its one source event does not contain (Stop 3 open question 2); the source event text is shown above."
+    },
+    {
+     "trait_id": "Isabella Rodriguez:trait_3",
+     "night": 3,
+     "path": "same_day",
+     "text": "Isabella Rodriguez consistently demonstrates a deep-seated need to preserve social harmony by reflexively prioritizing the comfort of others over her own needs during moments of conflict.",
+     "source_event_text": null,
+     "later_prompt_line": {
+      "night": 4,
+      "sim_time": "2023-02-16 22:00:00",
+      "line": "- Isabella Rodriguez consistently demonstrates a deep-seated need to preserve social harmony by reflexively prioritizing the comfort of others over her own needs during moments of conflict."
+     },
+     "why": "Rule: path same_day. Path A same_day: 4 or more new source events attached to one entry in one night; reinforcement rows up to this night: night 1 born cosine None (threshold 0.88), new sources 3; night 2 counted cosine 0.889 (threshold 0.88), new sources 7; night 3 born cosine None (threshold 0.88), new sources 5; night 3 counted cosine 0.9134 (threshold 0.88), new sources 3.",
+     "flag": null
+    }
+   ],
+   "evidence": "docs/phase6_stop3_artifacts/identity_log.jsonl; reinforcement_decisions.jsonl; identity_prompt_renders.jsonl; memory.db"
+  },
+  "divergence": {
+   "available": true,
+   "run": "p7pilot_baseline vs p7pilot_staged (PILOT, live)",
+   "rule": "first step (common to both recordings) at which the agent's recorded action text, with the duration annotation removed and the address part after '@' dropped, is not identical",
+   "agents": [
+    {
+     "agent": "Isabella Rodriguez",
+     "differs": true,
+     "step": 2250,
+     "clock": "2023-02-13 06:15:00",
+     "baseline_action": "waking up and getting ready for the day (showering and getting dressed for the day)",
+     "staged_action": "waking up and getting ready for the day (getting dressed for the day)",
+     "stored_before_baseline": [
+      {
+       "created": "2023-02-13 06:06:50",
+       "type": "event",
+       "text": "bathroom sink is idle"
+      },
+      {
+       "created": "2023-02-13 06:07:00",
+       "type": "event",
+       "text": "Isabella Rodriguez is brushing her teeth and washing her face"
+      },
+      {
+       "created": "2023-02-13 06:07:10",
+       "type": "event",
+       "text": "shower is not in use"
+      }
+     ],
+     "stored_before_staged": [
+      {
+       "created": "2023-02-13 06:06:50",
+       "type": "event",
+       "text": "shower is idle"
+      },
+      {
+       "created": "2023-02-13 06:06:50",
+       "type": "event",
+       "text": "bathroom sink is idle"
+      },
+      {
+       "created": "2023-02-13 06:07:10",
+       "type": "event",
+       "text": "shower is off"
+      }
+     ]
+    },
+    {
+     "agent": "Klaus Mueller",
+     "differs": true,
+     "step": 2313,
+     "clock": "2023-02-13 06:25:30",
+     "baseline_action": "conversing about Maria Lopez and Klaus Mueller discussing their morning plans, with Maria heading to Hobbs for breakfast and Klaus opting for the library to focus on his research.",
+     "staged_action": "conversing about Maria Lopez and Klaus Mueller exchanging morning greetings and discussing their respective plans to study and conduct research, with a potential meeting at Hobbs Cafe later in the day.",
+     "stored_before_baseline": [
+      {
+       "created": "2023-02-13 06:22:20",
+       "type": "event",
+       "text": "common room sofa is idle"
+      },
+      {
+       "created": "2023-02-13 06:25:10",
+       "type": "event",
+       "text": "Klaus Mueller is getting dressed"
+      },
+      {
+       "created": "2023-02-13 06:25:30",
+       "type": "event",
+       "text": "Maria Lopez is picking out an outfit for the day"
+      }
+     ],
+     "stored_before_staged": [
+      {
+       "created": "2023-02-13 06:20:10",
+       "type": "event",
+       "text": "Klaus Mueller is choosing his outfit for the day"
+      },
+      {
+       "created": "2023-02-13 06:25:10",
+       "type": "event",
+       "text": "Klaus Mueller is getting dressed"
+      },
+      {
+       "created": "2023-02-13 06:25:30",
+       "type": "event",
+       "text": "Maria Lopez is picking out an outfit for the day"
+      }
+     ]
+    },
+    {
+     "agent": "Maria Lopez",
+     "differs": true,
+     "step": 2313,
+     "clock": "2023-02-13 06:25:30",
+     "baseline_action": "conversing about Maria Lopez and Klaus Mueller discussing their morning plans, with Maria heading to Hobbs for breakfast and Klaus opting for the library to focus on his research.",
+     "staged_action": "conversing about Maria Lopez and Klaus Mueller exchanging morning greetings and discussing their respective plans to study and conduct research, with a potential meeting at Hobbs Cafe later in the day.",
+     "stored_before_baseline": [
+      {
+       "created": "2023-02-13 06:17:40",
+       "type": "event",
+       "text": "bathroom sink is being used"
+      },
+      {
+       "created": "2023-02-13 06:25:10",
+       "type": "event",
+       "text": "Maria Lopez is picking out an outfit for the day"
+      },
+      {
+       "created": "2023-02-13 06:25:30",
+       "type": "event",
+       "text": "Klaus Mueller is getting dressed"
+      }
+     ],
+     "stored_before_staged": [
+      {
+       "created": "2023-02-13 06:17:40",
+       "type": "event",
+       "text": "bathroom sink is being used"
+      },
+      {
+       "created": "2023-02-13 06:25:10",
+       "type": "event",
+       "text": "Maria Lopez is picking out an outfit for the day"
+      },
+      {
+       "created": "2023-02-13 06:25:30",
+       "type": "event",
+       "text": "Klaus Mueller is getting dressed"
+      }
+     ]
+    }
+   ],
+   "retrieval_note": "Which memory items were retrieved is not logged in these runs. The lists show the last three event or thought nodes each arm had STORED before that clock (read from each arm's node file); stored is not retrieved.",
+   "candidate_causes_mechanically_present": [
+    "Stage 1 priors block in the staged scoring prompt (see card 1); it changes importance scores, not the action text directly",
+    "upstream reflection is on in baseline and off in staged (reflection replies in the raw logs: baseline 16, staged 0)",
+    "sampling variation of the model on identical prompts (a single run per arm)"
+   ],
+   "notice": "single run per arm; this difference may be model noise; the candidate causes are not tested",
+   "evidence": "devmem/storage/p7pilot_baseline/movement.zip, devmem/storage/p7pilot_staged/movement.zip, the personas node files, raw_replies.jsonl"
+  }
+ }
+}

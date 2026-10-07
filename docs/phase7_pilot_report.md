@@ -127,3 +127,45 @@ None.
 ## 12. Approval request
 
 I request approval of this pilot report and a decision on questions 1 to 3. I am halting. I will not start the full arms before your go.
+
+## 13. Addendum (2026-10-07, about 13:30 IST): the pilot completed; per-window rates and canary on the finished arms
+
+
+Label: PILOT, live, not a result. After the fence fix, the injector subject fix and the resumes of section 3, both arms ran to 09:00 sim with no A1 exit after the fixes. Artifacts: `docs/phase7_pilot_artifacts/` (final ledgers, injection logs, run status, canary evaluations; the raw reply logs stay git-ignored). The earlier cumulative totals in this report are not rates; the rates below are per ledger window.
+
+### 13.1 Injected events (3 mundane events, both arms)
+
+| id | agent | authored step | same step in both arms | perceived (baseline, staged) | importance baseline | importance staged |
+|---|---|---|---|---|---|---|
+| I1 | Isabella Rodriguez | 3000 | yes | yes, yes | 2 | 3 |
+| K1 | Klaus Mueller | 2970 | yes | yes, yes | 1 | 2 |
+| M1 | Maria Lopez | 3060 | yes | yes, yes | 2 | 2 |
+
+A2: pass in both arms (3 of 3 each; no pivotal event was in the window, so the pivotal clause was not exercised). A9: the authored injection steps match. Source: `*_injection_log.jsonl`.
+
+### 13.2 Calls per awake agent-hour per ledger window (windows under 0.3 awake agent-hours omitted)
+
+| arm | window | sim clock | steps | calls | awake agent-hours | calls per awake agent-hour |
+|---|---|---|---|---|---|---|
+| baseline | hour_ending_2023-02-13_07:00 | 07:00 | 180 | 169 | 1.5 | 112.7 |
+| baseline | final_partial_window | 07:11 | 71 | 82 | 0.59 | 138.6 |
+| baseline | final_partial_window | 07:43 | 263 | 453 | 2.19 | 206.7 |
+| baseline | final_partial_window | 07:54 | 66 | 74 | 0.55 | 134.5 |
+| baseline | final_partial_window | 08:19 | 115 | 133 | 0.96 | 138.8 |
+| baseline | hour_ending_2023-02-13_09:00 | 09:00 | 270 | 211 | 2.25 | 93.8 |
+| staged | hour_ending_2023-02-13_07:00 | 07:00 | 180 | 146 | 1.5 | 97.3 |
+| staged | final_partial_window | 07:18 | 110 | 123 | 0.92 | 134.2 |
+| staged | hour_ending_2023-02-13_08:00 | 08:00 | 270 | 370 | 2.25 | 164.4 |
+| staged | final_partial_window | 08:15 | 75 | 28 | 0.62 | 44.8 |
+| staged | hour_ending_2023-02-13_09:00 | 09:00 | 270 | 186 | 2.25 | 82.7 |
+
+Windows come from different legs (resumes and crash legs), so some overlap in simulated time and include replayed stretches; the table is per window, not a sum. Highest window: baseline 206.7, staged 164.4 (A6 amended: WARN above 165, ABORT above 260 over 3 consecutive windows).
+
+### 13.3 Canary on the finished arms (run from the backend folder)
+
+| arm | all_ok | A6 overall rate | A6 warn | abort list |
+|---|---|---|---|---|
+| baseline | True | 140.6 over 8.3 awake agent-hours | True | none |
+| staged | True | 119.5 over 7.67 awake agent-hours | False | none |
+
+Final totals: baseline 1,454 router calls, staged 1,206 (cumulative, including replays). Reflection calls (D1): baseline 16, staged 0.

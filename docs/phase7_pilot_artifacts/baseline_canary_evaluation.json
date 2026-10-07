@@ -1,47 +1,56 @@
 {
  "arm": "baseline",
- "sim_step": 2783,
+ "sim_step": 3240,
  "checks": {
   "injection": {
    "ok": true,
-   "resolved": 0,
-   "pass": 0,
+   "resolved": 3,
+   "pass": 3,
    "fail": []
   },
   "schedule_adherence": {
    "ok": true,
    "per_agent": {
     "Isabella Rodriguez": {
-     "checked": 2783,
-     "match": 2753,
-     "rate": 0.989
+     "checked": 3240,
+     "match": 3192,
+     "rate": 0.985
     },
     "Maria Lopez": {
-     "checked": 2783,
-     "match": 2719,
-     "rate": 0.977
+     "checked": 3240,
+     "match": 3147,
+     "rate": 0.971
     },
     "Klaus Mueller": {
-     "checked": 2783,
-     "match": 2720,
-     "rate": 0.977
+     "checked": 3240,
+     "match": 3124,
+     "rate": 0.964
     }
    }
   },
   "ledger_windows": {
    "ok": true,
-   "windows": 10,
-   "hours_elapsed": 7
+   "windows": 15,
+   "hours_elapsed": 9
   },
   "router_failures": {
    "ok": true,
    "failures": 0,
-   "calls": 1000
+   "calls": 1454
   },
   "call_rate": {
    "ok": true,
-   "calls_per_awake_agent_hour": 164.4,
-   "awake_agent_hours": 4.28
+   "warn": true,
+   "calls_per_awake_agent_hour": 140.6,
+   "awake_agent_hours": 8.3,
+   "window_rates": [
+    112.7,
+    138.6,
+    206.7,
+    134.5,
+    138.8,
+    93.8
+   ]
   },
   "pinned_model_only": {
    "ok": true,

@@ -207,10 +207,16 @@
       h(DM.LabelBar, { labels: shown }),
       error ? h("div", { className: "err" }, error) : null,
       h("div", { className: "tabs" }, tabBtn("town", "Town replay"), tabBtn("inspector", "Memory inspector"), tabBtn("cost", "Cost view"),
+        tabBtn("findings", "Findings"), tabBtn("differs", "Where it differs and why"), tabBtn("side", "Side by side"), tabBtn("edge", "Edge cases"),
         h("span", { className: "kv" }, "runs found: " + runs.length)),
       h(LivePanel, { runA: runA, runB: runB }),
       !runA ? h("div", { className: "empty", style: { padding: 18 } }, "loading runs...") :
         tab === "town" ? h(TownTab, { runs: runs, runA: runA, runB: runB, onRun: onRun, onLabel: onLabel }) :
+        tab === "findings" ? h(window.Views.Findings) :
+        tab === "differs" ? h(window.Views.Differs) :
+        tab === "edge" ? h(window.Views.EdgeCases) :
+        tab === "side" ? h("div", null, h("div", { className: "controls" }, h("label", null, "left"), select2(runA, setRunA), h("label", null, "right"), select2(runB, setRunB)),
+          h(window.Views.SideBySide, { key: runA + "|" + runB, runA: runA, runB: runB })) :
         tab === "cost" ? h("div", null,
           h("div", { className: "controls" }, h("label", null, "left"), select2(runA, setRunA), h("label", null, "right"), select2(runB, setRunB)),
           h(window.Cost.CostView, { runA: runA, runB: runB })) :

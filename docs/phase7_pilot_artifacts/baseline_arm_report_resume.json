@@ -1,39 +1,41 @@
 {
  "arm": "baseline",
  "sim_code": "p7pilot_baseline",
- "outcome": "soft stop: 1000 router calls reached at a step boundary",
- "final_clock": "2023-02-13 07:43:50",
- "final_step": 2783,
+ "outcome": "reached 2023-02-13 09:00:00",
+ "final_clock": "2023-02-13 09:00:00",
+ "final_step": 3240,
  "exception": null,
- "router_calls_total": 1000,
- "quota_pauses": 9,
+ "router_calls_total": 1454,
+ "quota_pauses": 0,
  "injection": {
   "events_total": 27,
-  "resolved": 0,
-  "pass": 0,
+  "resolved": 3,
+  "pass": 3,
   "fail": [],
   "pending": [],
   "asleep_at_injection": []
  },
- "checkpoints": {},
+ "checkpoints": {
+  "pilot_end_0900": 3240
+ },
  "autosave_steps": [
-  2610,
-  2700,
-  2783
+  3060,
+  3150,
+  3240
  ],
  "normalizer_stats": {
   "fence_strip": {
-   "applied": 453,
-   "changed": 4
+   "applied": 211,
+   "changed": 1
   },
   "call_path": {
-   "applied": 442,
-   "changed": 110
+   "applied": 209,
+   "changed": 57
   }
  },
  "schedule_check": {
   "status": "clean",
-  "step": 2783,
+  "step": 3240,
   "scans_run": 3,
   "findings": []
  }

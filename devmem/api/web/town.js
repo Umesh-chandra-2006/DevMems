@@ -245,7 +245,7 @@
     var sets = DM.highlightSets(state, sel);
     function select(x) { setSel(sel && sel.type === x.type && sel.id === x.id ? null : x); }
     var pf = frameNow && agent ? frameNow[agent] : null;
-    var action = pf && pf[3] ? String(pf[3]).split("@")[0] : null, address = pf && pf[3] && String(pf[3]).indexOf("@") >= 0 ? String(pf[3]).split("@")[1] : null;
+    var action = pf && pf[3] ? DM.cleanText(String(pf[3]).split("@")[0]) : null, address = pf && pf[3] && String(pf[3]).indexOf("@") >= 0 ? String(pf[3]).split("@")[1] : null;
     var chat = pf && pf[4] ? pf[4] : null;
 
     return h("div", { className: "pane", id: "pane-" + p.id },
