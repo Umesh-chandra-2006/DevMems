@@ -1,0 +1,303 @@
+{
+ "label": "AUTHORED (dev-authored: the senior developer wrote the answers and the item labels on 2026-10-08, before any day-3 answer exists; the Owner will review a sample)",
+ "questions_file": "docs/phase7_stop1_events_questions.json",
+ "entries": [
+  {
+   "n": 1,
+   "question_id": "Q_I1",
+   "answer": "A blue van stopped outside the cafe in the morning.",
+   "labels": {
+    "vehicle": true,
+    "color": true
+   },
+   "note": "complete and correct"
+  },
+  {
+   "n": 2,
+   "question_id": "Q_I1",
+   "answer": "I remember a delivery truck, I think it was blue.",
+   "labels": {
+    "vehicle": true,
+    "color": true
+   },
+   "note": "synonym truck, hedged but stated"
+  },
+  {
+   "n": 3,
+   "question_id": "Q_I1",
+   "answer": "It was a red van.",
+   "labels": {
+    "vehicle": true,
+    "color": false
+   },
+   "note": "wrong color"
+  },
+  {
+   "n": 4,
+   "question_id": "Q_I1",
+   "answer": "It wasn't blue, it was a white van.",
+   "labels": {
+    "vehicle": true,
+    "color": false
+   },
+   "note": "negated color"
+  },
+  {
+   "n": 5,
+   "question_id": "Q_I1",
+   "answer": "Something about vanilla syrup being delivered.",
+   "labels": {
+    "vehicle": false,
+    "color": false
+   },
+   "note": "substring trap: vanilla is not van"
+  },
+  {
+   "n": 6,
+   "question_id": "Q_I1",
+   "answer": "I don't remember anything stopping outside.",
+   "labels": {
+    "vehicle": false,
+    "color": false
+   },
+   "note": "no recall"
+  },
+  {
+   "n": 7,
+   "question_id": "Q_I2",
+   "answer": "A man asked whether they had any croissants left, then left.",
+   "labels": {
+    "item": true
+   },
+   "note": "plural form"
+  },
+  {
+   "n": 8,
+   "question_id": "Q_I2",
+   "answer": "He asked about a muffin and walked out.",
+   "labels": {
+    "item": false
+   },
+   "note": "wrong item"
+  },
+  {
+   "n": 9,
+   "question_id": "Q_I2",
+   "answer": "He asked about a Croissant!",
+   "labels": {
+    "item": true
+   },
+   "note": "case and punctuation"
+  },
+  {
+   "n": 10,
+   "question_id": "Q_I3",
+   "answer": "Peter Hale complained: he got a latte but wanted tea.",
+   "labels": {
+    "name": true,
+    "received": true,
+    "wanted": true
+   },
+   "note": "complete and correct"
+  },
+  {
+   "n": 11,
+   "question_id": "Q_I3",
+   "answer": "A customer named Peter got a latte.",
+   "labels": {
+    "name": true,
+    "received": true,
+    "wanted": false
+   },
+   "note": "partial: no wanted item"
+  },
+  {
+   "n": 12,
+   "question_id": "Q_I3",
+   "answer": "Someone complained about a wrong order, I do not recall who or what.",
+   "labels": {
+    "name": false,
+    "received": false,
+    "wanted": false
+   },
+   "note": "no facts"
+  },
+  {
+   "n": 13,
+   "question_id": "Q_I3",
+   "answer": "Hale was handed a tea although he had asked for a latte.",
+   "labels": {
+    "name": true,
+    "received": false,
+    "wanted": false
+   },
+   "note": "swapped: received and wanted are reversed, both wrong"
+  },
+  {
+   "n": 14,
+   "question_id": "Q_I4",
+   "answer": "A woman studied the menu and then left.",
+   "labels": {
+    "object": true
+   },
+   "note": "correct"
+  },
+  {
+   "n": 15,
+   "question_id": "Q_I4",
+   "answer": "She looked at the pastry display.",
+   "labels": {
+    "object": false
+   },
+   "note": "wrong object"
+  },
+  {
+   "n": 16,
+   "question_id": "Q_I5",
+   "answer": "A notice said the cafe would be closed from Monday for repairs.",
+   "labels": {
+    "closure": true,
+    "when": true,
+    "reason": true
+   },
+   "note": "complete and correct"
+  },
+  {
+   "n": 17,
+   "question_id": "Q_I5",
+   "answer": "The sign on the door announced a closure but I forget when.",
+   "labels": {
+    "closure": true,
+    "when": false,
+    "reason": false
+   },
+   "note": "partial"
+  },
+  {
+   "n": 18,
+   "question_id": "Q_I5",
+   "answer": "It announced that the cafe would not close on Monday.",
+   "labels": {
+    "closure": false,
+    "when": true,
+    "reason": false
+   },
+   "note": "negated closure; Monday mentioned"
+  },
+  {
+   "n": 19,
+   "question_id": "Q_I6",
+   "answer": "The wall clock over the register stopped.",
+   "labels": {
+    "event": true
+   },
+   "note": "correct"
+  },
+  {
+   "n": 20,
+   "question_id": "Q_I6",
+   "answer": "The clock was running fast.",
+   "labels": {
+    "event": false
+   },
+   "note": "wrong event"
+  },
+  {
+   "n": 21,
+   "question_id": "Q_I7",
+   "answer": "A teenager looked at the display case before leaving.",
+   "labels": {
+    "object": true
+   },
+   "note": "correct, phrase"
+  },
+  {
+   "n": 22,
+   "question_id": "Q_I7",
+   "answer": "He looked at the case of cookies.",
+   "labels": {
+    "object": true
+   },
+   "note": "the word case alone satisfies the item list; a human accepts it"
+  },
+  {
+   "n": 23,
+   "question_id": "Q_I8",
+   "answer": "A dog came in and lay down under table four.",
+   "labels": {
+    "animal": true,
+    "place": true
+   },
+   "note": "correct"
+  },
+  {
+   "n": 24,
+   "question_id": "Q_I8",
+   "answer": "A dog wandered in.",
+   "labels": {
+    "animal": true,
+    "place": false
+   },
+   "note": "partial"
+  },
+  {
+   "n": 25,
+   "question_id": "Q_I8",
+   "answer": "A cat came in and lay near the window.",
+   "labels": {
+    "animal": false,
+    "place": false
+   },
+   "note": "wrong animal and place"
+  },
+  {
+   "n": 26,
+   "question_id": "Q_I9",
+   "answer": "Two customers argued about a seat by the window.",
+   "labels": {
+    "topic": true,
+    "place": true
+   },
+   "note": "correct"
+  },
+  {
+   "n": 27,
+   "question_id": "Q_I9",
+   "answer": "They argued about the bill.",
+   "labels": {
+    "topic": false,
+    "place": false
+   },
+   "note": "wrong"
+  },
+  {
+   "n": 28,
+   "question_id": "Q_M1",
+   "answer": "The printer on the second floor ran out of paper.",
+   "labels": {
+    "thing": true,
+    "floor": true
+   },
+   "note": "correct"
+  },
+  {
+   "n": 29,
+   "question_id": "Q_M1",
+   "answer": "The printer ran out of paper on the 2nd floor.",
+   "labels": {
+    "thing": true,
+    "floor": true
+   },
+   "note": "numeric ordinal"
+  },
+  {
+   "n": 30,
+   "question_id": "Q_M2",
+   "answer": "He asked to borrow a pen from the next table.",
+   "labels": {
+    "item": true
+   },
+   "note": "correct; note that the word open elsewhere must not count"
+  }
+ ]
+}

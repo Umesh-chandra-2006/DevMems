@@ -1,0 +1,150 @@
+{
+ "label": "AUTHORED (dev-authored on 2026-10-08, before any day-3 answer exists; the Owner will review a sample). Synthetic text, not agent output.",
+ "classes": {
+  "consistent": 7,
+  "contradictory": 7,
+  "unrelated": 6
+ },
+ "pairs": [
+  {
+   "n": 1,
+   "label": "consistent",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I try to stay calm and smooth things over rather than argue.",
+   "day3_answer": "I usually keep calm and avoid an argument; I would rather ease the tension."
+  },
+  {
+   "n": 2,
+   "label": "consistent",
+   "question": "How do you feel about meeting new people?",
+   "day1_answer": "I enjoy meeting new people and I open up quickly.",
+   "day3_answer": "Meeting new people is something I like, I am friendly right away."
+  },
+  {
+   "n": 3,
+   "label": "consistent",
+   "question": "What matters most to you in your daily life?",
+   "day1_answer": "My family and my studies matter most to me.",
+   "day3_answer": "Above all, my studies and my family."
+  },
+  {
+   "n": 4,
+   "label": "consistent",
+   "question": "How are you feeling about your work lately?",
+   "day1_answer": "I feel busy but satisfied with my work.",
+   "day3_answer": "Work is demanding lately, though I am content with it."
+  },
+  {
+   "n": 5,
+   "label": "consistent",
+   "question": "Describe yourself in three sentences.",
+   "day1_answer": "I am a cafe owner who likes to make people feel welcome. I am warm and organised.",
+   "day3_answer": "I run a cafe and enjoy welcoming people. I am warm and fairly organised."
+  },
+  {
+   "n": 6,
+   "label": "consistent",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I get frustrated and tell them directly that it is not okay.",
+   "day3_answer": "If someone is rude I say so openly; I do not let it pass."
+  },
+  {
+   "n": 7,
+   "label": "consistent",
+   "question": "How do you feel about meeting new people?",
+   "day1_answer": "I am shy at first and need time to warm up to strangers.",
+   "day3_answer": "With new people I am reserved for a while before I feel comfortable."
+  },
+  {
+   "n": 8,
+   "label": "contradictory",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I stay calm and never raise my voice.",
+   "day3_answer": "I lose my temper quickly and shout back."
+  },
+  {
+   "n": 9,
+   "label": "contradictory",
+   "question": "How do you feel about meeting new people?",
+   "day1_answer": "I love meeting new people.",
+   "day3_answer": "I avoid new people whenever I can; they make me anxious."
+  },
+  {
+   "n": 10,
+   "label": "contradictory",
+   "question": "What matters most to you in your daily life?",
+   "day1_answer": "Money and career success are what matter most to me.",
+   "day3_answer": "Money means very little to me; relationships are everything."
+  },
+  {
+   "n": 11,
+   "label": "contradictory",
+   "question": "How are you feeling about your work lately?",
+   "day1_answer": "I am thrilled with my work these days.",
+   "day3_answer": "I dread going to work and feel completely burned out."
+  },
+  {
+   "n": 12,
+   "label": "contradictory",
+   "question": "Describe yourself in three sentences.",
+   "day1_answer": "I am a solitary person who prefers my own company.",
+   "day3_answer": "I am very sociable and always surrounded by friends."
+  },
+  {
+   "n": 13,
+   "label": "contradictory",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I confront rude people right away.",
+   "day3_answer": "I never confront anyone; I just walk away silently."
+  },
+  {
+   "n": 14,
+   "label": "contradictory",
+   "question": "How do you feel about meeting new people?",
+   "day1_answer": "I am comfortable approaching strangers at parties.",
+   "day3_answer": "I would never start a conversation with a stranger."
+  },
+  {
+   "n": 15,
+   "label": "unrelated",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I like to bake in the early morning.",
+   "day3_answer": "The cafe closes on Monday for repairs."
+  },
+  {
+   "n": 16,
+   "label": "unrelated",
+   "question": "What matters most to you in your daily life?",
+   "day1_answer": "My daily routine starts at six.",
+   "day3_answer": "I saw a dog under table four."
+  },
+  {
+   "n": 17,
+   "label": "unrelated",
+   "question": "How are you feeling about your work lately?",
+   "day1_answer": "I work at the library most days.",
+   "day3_answer": "The weather was cold yesterday."
+  },
+  {
+   "n": 18,
+   "label": "unrelated",
+   "question": "Describe yourself in three sentences.",
+   "day1_answer": "I am twenty years old.",
+   "day3_answer": "A van delivered flowers this morning."
+  },
+  {
+   "n": 19,
+   "label": "unrelated",
+   "question": "How do you feel about meeting new people?",
+   "day1_answer": "Coffee is my favourite drink.",
+   "day3_answer": "The printer ran out of paper."
+  },
+  {
+   "n": 20,
+   "label": "unrelated",
+   "question": "How do you usually react when someone is rude to you?",
+   "day1_answer": "I walk to work.",
+   "day3_answer": "My neighbour plays loud music at night."
+  }
+ ]
+}
