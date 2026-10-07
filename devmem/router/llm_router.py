@@ -143,6 +143,9 @@ def log_llm_call(
         conn.close()
 
 
+MAX_RATE_LIMIT_KEYS_PER_CALL = 3
+
+
 def call_llm(
     prompt: str,
     tier: str = "fast",
@@ -194,6 +197,7 @@ def call_llm(
     # What kind of failure each key attempt of this call had; the ModelPinnedError carries `network_outage` (True when every failure was a
     # connection failure or a timeout) so the run-level gate can wait for the network instead of letting a fail-safe reach the simulation.
     net_kinds: List[str] = []
+    rl_tries = 0   # keys that answered 429 in this call; in pinned mode the call stops after MAX_RATE_LIMIT_KEYS_PER_CALL of them (PM decision 2026-10-07)
 
     def _pinned(msg: str) -> ModelPinnedError:
         err = ModelPinnedError(msg)
@@ -376,7 +380,13 @@ def call_llm(
 
                         mark_key_exhausted(p_name, key_env_var, date_str=today, model=model, db_path=db_path)
 
-                    # Pinned mode rotates to next key of pinned model, rather than immediately failing
+                    # Pinned mode rotates to the next key, but tries at most MAX_RATE_LIMIT_KEYS_PER_CALL keys per call (3 in total): a 429 from
+                    # every key of a large pool is a global throttle, and trying the whole pool only amplifies it. The run-level gate backs off.
+                    rl_tries += 1
+                    if active_pinned and rl_tries >= MAX_RATE_LIMIT_KEYS_PER_CALL:
+                        err = _pinned(f"Pinned model '{active_pinned}' rate limited (HTTP 429) on {rl_tries} keys in this call; backing off.")
+                        err.rate_limited = True
+                        raise err
                     continue
 
                 except ProviderTimeoutError as pte:

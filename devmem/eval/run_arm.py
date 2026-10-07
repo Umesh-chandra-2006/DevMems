@@ -82,6 +82,44 @@ def plan(arm: str, sim: str, pilot: bool = False) -> dict:
             "groq_or_nim_used": False}
 
 
+def pause_and_probe(run_dir: Path, keys: list, sleep=None, post=None, now=None, chunk: float = 30.0):
+    """PM decision 2026-10-07 (option a): if `PAUSE_FOR` (seconds) exists in the run folder, the arm waits that long BEFORE any call or key use, then sends
+    ONE probe (a 5-token chat request on the first key of the arm) and logs only the HTTP status and the key's index to `pause_log.jsonl`. ABORT ends the wait."""
+    import time as _time
+    f = Path(run_dir) / "PAUSE_FOR"
+    if not f.exists():
+        return None
+    sleep = sleep or _time.sleep
+    now = now or _time.time
+    seconds = float(f.read_text(encoding="utf-8").strip() or 0)
+    f.unlink()
+
+    def log(rec):
+        with open(Path(run_dir) / "pause_log.jsonl", "a", encoding="utf-8") as lf:
+            lf.write(json.dumps({"at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), **rec}) + "\n")
+    log({"event": "pause_start", "seconds": seconds, "calls_and_key_use": "none during the pause"})
+    t0, left = now(), seconds
+    while left > 0:
+        if (Path(run_dir) / "ABORT").exists():
+            log({"event": "pause_aborted"})
+            return None
+        step = min(chunk, left)
+        sleep(step)
+        left -= step
+    status = None
+    key = keys[0]
+    try:
+        import requests
+        poster = post or requests.post
+        r = poster("https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent" % MODEL, headers={"x-goog-api-key": os.environ.get(key, "")},
+                   json={"contents": [{"parts": [{"text": "hi"}]}], "generationConfig": {"maxOutputTokens": 5}}, timeout=45)
+        status = r.status_code
+    except Exception as e:
+        status = type(e).__name__
+    log({"event": "pause_end_probe", "probe_key_index": key.split("_")[-1], "probe_status": status, "paused_seconds": round(now() - t0, 1)})
+    return status
+
+
 def load_extra_keys(run_dir: Path, arm: str) -> list:
     """Keys added to a running arm by an operator (disclosed key change): `extra_keys.json` in the run folder, {"keys": [names]}. Only names that are
     verified for chat, not already in the arm, and not in the other arm are accepted; anything else is ignored and reported."""
@@ -178,6 +216,7 @@ def main(argv=None):
     from devmem.memory import consolidation, episodic, identity
     from devmem.memory.episodic import get_db_path
     from devmem.router import call_counter, key_pool, llm_router, output_normalizer
+    pause_and_probe(run_dir, arm_keys)          # option (a): a requested pause with one probe, before any call
     import hashlib
     import inspect
     import subprocess
@@ -263,7 +302,8 @@ def main(argv=None):
 
     def counters():
         return {"router_calls_total": prior["calls"] + call_counter.snapshot()["count"], "quota_pauses": gate.pauses,
-                "fence_strips_total": count_fence_strips(raw_log), "outage_minutes_total": gate.outage_minutes_total()}
+                "fence_strips_total": count_fence_strips(raw_log), "outage_minutes_total": gate.outage_minutes_total(),
+                "rate_limit_wait_minutes_total": gate.rate_limit_minutes_total()}
 
     def advance():
         injector.tick(rs)

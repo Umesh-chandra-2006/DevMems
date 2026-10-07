@@ -15,6 +15,7 @@ Each pause is logged to quota_pauses.jsonl (start, reason, wake-up time). A file
 `RunAborted`. `CapReached` (the call cap) is a BaseException and passes through untouched.
 """
 import json
+import random
 import re
 import time
 from datetime import datetime, timedelta
@@ -46,7 +47,7 @@ class QuotaGate:
                  sleep: Callable[[float], None] = time.sleep, now: Callable[[], datetime] = datetime.utcnow,
                  usage: Optional[Callable[[str], int]] = None, generic_wait: float = 120.0, max_generic_retries: int = 20,
                  margin_seconds: float = 120.0, chunk_seconds: float = 30.0, probe: Optional[Callable[[], bool]] = None,
-                 backoff: Iterable[float] = (20.0, 40.0, 80.0, 160.0, 300.0)):
+                 backoff: Iterable[float] = (20.0, 40.0, 80.0, 160.0, 300.0), rng: Optional[random.Random] = None):
         self.real, self.keys, self.model, self.cap = real_call, list(keys), model, cap
         self.run_dir, self.reset_hour = Path(run_dir), reset_hour
         self.sleep, self.now, self.usage = sleep, now, usage
@@ -55,6 +56,9 @@ class QuotaGate:
         # network outages (connection failures and timeouts): wait with backoff, never give up, never let a fail-safe reach the simulation
         self.probe = probe if probe is not None else default_probe
         self.backoff = list(backoff)
+        self.rng = rng if rng is not None else random.Random()
+        self._rl_t0 = None              # clock of the first rate-limit failure of the open rate-limit wait
+        self._rl_steps = 0
         self._outage_t0 = None          # clock of the first failure of the open outage
         self._outage_steps = 0
 
@@ -109,6 +113,46 @@ class QuotaGate:
         while not self.probe():
             self._sleep_checked(self.backoff[-1] if self.backoff else 300.0)
 
+    def rate_limit_log_path(self) -> Path:
+        return self.run_dir / "rate_limit_log.jsonl"
+
+    def _rl_log(self, **rec) -> None:
+        self.run_dir.mkdir(parents=True, exist_ok=True)
+        with open(self.rate_limit_log_path(), "a", encoding="utf-8") as f:
+            f.write(json.dumps({"at": self.now().isoformat(), **rec}) + "\n")
+
+    def rate_limit_wait(self, detail: str) -> None:
+        """Called when a call ended in 429s on its (at most 3) keys, or every key is cooling down. Waits min(300, 20 * 2^n) seconds with a jitter of plus or
+        minus 25 percent (capped at 300), then lets the caller retry. No attempt limit, so no fail-safe reaches the simulation; ABORT ends the wait."""
+        if self._rl_t0 is None:
+            self._rl_t0 = self.now()
+            self._rl_steps = 0
+            self._rl_log(event="rate_limit_start", detail=detail[:160])
+        base = min(300.0, 20.0 * (2 ** min(self._rl_steps, 12)))   # the exponent is capped: the wait has no attempt limit and 2 ** n must not overflow
+        delay = min(300.0, base * self.rng.uniform(0.75, 1.25))
+        self._rl_steps += 1
+        self._rl_log(event="rate_limit_backoff", attempt=self._rl_steps, seconds=round(delay, 1))
+        self._sleep_checked(delay)
+
+    def rate_limit_over(self) -> None:
+        if self._rl_t0 is not None:
+            secs = (self.now() - self._rl_t0).total_seconds()
+            self._rl_log(event="rate_limit_end", seconds=round(secs, 1), attempts=self._rl_steps)
+            self._rl_t0 = None
+
+    def rate_limit_minutes_total(self) -> float:
+        total = 0.0
+        p = self.rate_limit_log_path()
+        if p.exists():
+            for line in p.read_text(encoding="utf-8").splitlines():
+                if line.strip():
+                    r = json.loads(line)
+                    if r.get("event") == "rate_limit_end":
+                        total += float(r.get("seconds", 0))
+        if self._rl_t0 is not None:
+            total += (self.now() - self._rl_t0).total_seconds()
+        return round(total / 60.0, 2)
+
     def _sleep_checked(self, seconds: float) -> None:
         remaining = seconds
         while remaining > 0:
@@ -150,6 +194,7 @@ class QuotaGate:
             try:
                 result = self.real(*args, **kwargs)
                 self.outage_over()
+                self.rate_limit_over()
                 return result
             except ModelPinnedError as exc:
                 msg = str(exc)
@@ -162,6 +207,8 @@ class QuotaGate:
                     self.wait(seconds, f"all {len(self.keys)} keys at the per-key daily cap {self.cap}")
                 elif m and "exhausted or cooling down" in msg and int(m.group(1)) > 90:
                     self.wait(min(int(m.group(1)) + 5, 86400), "pinned model locked out by the provider (daily limit)")
+                elif getattr(exc, "rate_limited", False) or "exhausted or cooling down" in msg:
+                    self.rate_limit_wait(msg)             # a 429 throttle or every key cooling down: back off and retry, with no attempt limit
                 else:
                     generic += 1
                     if generic > self.max_generic:

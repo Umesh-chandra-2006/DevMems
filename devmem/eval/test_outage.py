@@ -242,6 +242,90 @@ class TestGateWaitsForTheNetwork(unittest.TestCase):
         self.assertGreater(gate.outage_minutes_total(), 0)
 
 
+class TestRateLimitBackoff(RouterFixture):
+    """PM decision 2026-10-07: on a 429 at most 3 keys per call, then exponential backoff with jitter (20 s doubling, cap 300 s), no attempt limit,
+    no fail-safe, ABORT ends the wait. Zero real calls."""
+
+    def setUp(self):
+        super().setUp()
+        base = yaml.safe_load(open(self.cfg, encoding="utf-8"))
+        base["providers"][0]["keys"] = [{"env": f"GEMINI_KEY_OUTAGE_T{i}"} for i in range(1, 6)]     # a pool of five keys
+        self.cfg.write_text(yaml.dump(base), encoding="utf-8")
+        for i in range(1, 6):
+            p = mock.patch.dict(os.environ, {f"GEMINI_KEY_OUTAGE_T{i}": "dummy-placeholder-not-a-key"})
+            p.start()
+            self.addCleanup(p.stop)
+
+    def test_at_most_three_keys_are_tried_per_call_on_429(self):
+        with mock.patch("devmem.router.providers.requests.post", side_effect=lambda *a, **k: _response(429, {"error": {"code": 429, "message": "Resource has been exhausted"}})) as post:
+            with self.assertRaises(ModelPinnedError) as cm:
+                self.real("hello", tier="fast", purpose="planning")
+        self.assertEqual(post.call_count, 3)                      # 3 keys in total, not the whole pool of five
+        self.assertTrue(cm.exception.rate_limited)
+        self.assertFalse(getattr(cm.exception, "network_outage", False))
+
+    def _gate(self, real, seed=1, run_dir=None):
+        import random
+        clock = FakeClock()
+        t = tempfile.TemporaryDirectory()
+        self.addCleanup(t.cleanup)
+        rd = Path(run_dir or t.name)
+        return QuotaGate(real, ["GEMINI_KEY_X"], MODEL, 450, rd, now=clock.now, sleep=clock.sleep, usage=lambda k: 0, rng=random.Random(seed)), clock, rd
+
+    def test_backoff_grows_with_jitter_and_is_capped_at_300_seconds(self):
+        calls = []
+
+        def real(*a, **k):
+            calls.append(1)
+            if len(calls) <= 9:
+                e = ModelPinnedError("rate limited")
+                e.rate_limited = True
+                raise e
+            return "OK"
+        gate, clock, rd = self._gate(real)
+        self.assertEqual(gate("p"), "OK")
+        waits = [json.loads(l)["seconds"] for l in (rd / "rate_limit_log.jsonl").read_text().splitlines() if '"rate_limit_backoff"' in l]
+        self.assertEqual(len(waits), 9)
+        for n, w in enumerate(waits):
+            base = min(300.0, 20.0 * 2 ** n)
+            self.assertGreaterEqual(w, min(300.0, base * 0.75) - 0.1)
+            self.assertLessEqual(w, 300.0)
+            self.assertLessEqual(w, base * 1.25 + 0.1)
+        self.assertLess(waits[0], waits[3])                         # it grows
+        self.assertEqual(max(waits), max(waits[-3:]))               # and ends at the cap region
+        self.assertGreater(gate.rate_limit_minutes_total(), 0)
+        self.assertFalse((rd / "quota_pauses.jsonl").exists())
+
+    def test_no_fail_safe_reaches_the_simulation_after_sixty_repeated_429_calls(self):
+        import persona.prompt_template.gpt_structure as gs
+        gate, clock, rd = self._gate(self.real)
+        n = {"i": 0}
+
+        def post(*a, **k):
+            n["i"] += 1
+            if n["i"] <= 180:                                        # 60 router calls of 3 keys each
+                return _response(429, {"error": {"code": 429, "message": "Resource has been exhausted"}})
+            return _response(200, OK_BODY)
+        fake_time = SimpleNamespace(time=lambda: clock.t.timestamp() + 1e9, sleep=lambda s: None)       # the router's cooldowns follow the fake clock, as real time would pass
+        with mock.patch("devmem.router.cooldown.time", fake_time), mock.patch("devmem.router.providers.requests.post", side_effect=post), mock.patch.object(gs, "call_llm", gate):
+            out = gs.ChatGPT_safe_generate_response("rate this", "5", "one integer", 3, "FAILSAFE", lambda r, prompt="": True, lambda r, prompt="": "got:" + r)
+        self.assertEqual(out, "got:7")                                # the real answer, never the fail-safe
+        self.assertGreater(n["i"], 180)
+        self.assertGreater(gate.rate_limit_minutes_total(), 60)       # many minutes of backoff, recorded as rate-limit wait
+
+    def test_abort_ends_a_rate_limit_wait(self):
+        from devmem.eval.quota_gate import RunAborted
+
+        def real(*a, **k):
+            e = ModelPinnedError("rate limited")
+            e.rate_limited = True
+            raise e
+        gate, clock, rd = self._gate(real)
+        (rd / "ABORT").write_text("operator")
+        with self.assertRaises(RunAborted):
+            gate("p")
+
+
 class TestRealUpstreamPathThroughAnOutage(RouterFixture):
     def test_chatgpt_safe_generate_response_returns_the_answer_not_the_fail_safe(self):
         import persona.prompt_template.gpt_structure as gs
@@ -270,6 +354,37 @@ class TestRealUpstreamPathThroughAnOutage(RouterFixture):
             out2 = gs.ChatGPT_safe_generate_response("rate this", "5", "one integer", 3, "FAILSAFE", lambda r, prompt="": True, lambda r, prompt="": "got:" + r)
         self.assertEqual(out2, "got:7")
         self.assertEqual(len([1 for _ in (Path(self.tmp.name) / "run" / "outage_log.jsonl").read_text().splitlines()]), 2)
+
+
+class TestPauseAndProbe(unittest.TestCase):
+    def test_pause_makes_no_call_then_one_probe_logging_only_status_and_key_index(self):
+        from devmem.eval import run_arm
+        with tempfile.TemporaryDirectory() as t:
+            rd = Path(t)
+            (rd / "PAUSE_FOR").write_text("1200")
+            clock = FakeClock()
+            posts = []
+
+            def post(url, **k):
+                posts.append(url)
+                assert clock.t >= FakeClock().t + timedelta(seconds=1200)      # the probe comes only after the whole pause
+                return _response(200, OK_BODY)
+            status = run_arm.pause_and_probe(rd, ["GEMINI_KEY_7", "GEMINI_KEY_8"], sleep=clock.sleep, post=post, now=lambda: clock.t.timestamp())
+            self.assertEqual((status, len(posts)), (200, 1))
+            self.assertFalse((rd / "PAUSE_FOR").exists())
+            log = [json.loads(l) for l in (rd / "pause_log.jsonl").read_text().splitlines()]
+            self.assertEqual([r["event"] for r in log], ["pause_start", "pause_end_probe"])
+            self.assertEqual((log[1]["probe_key_index"], log[1]["probe_status"]), ("7", 200))
+            self.assertIsNone(run_arm.pause_and_probe(rd, ["GEMINI_KEY_7"]))   # no file: nothing happens
+
+    def test_abort_ends_the_pause_without_a_probe(self):
+        from devmem.eval import run_arm
+        with tempfile.TemporaryDirectory() as t:
+            rd = Path(t)
+            (rd / "PAUSE_FOR").write_text("1200")
+            (rd / "ABORT").write_text("x")
+            clock = FakeClock()
+            self.assertIsNone(run_arm.pause_and_probe(rd, ["GEMINI_KEY_7"], sleep=clock.sleep, post=lambda *a, **k: self.fail("no probe"), now=lambda: clock.t.timestamp()))
 
 
 class TestArmHealthKnowsAWaitingArm(unittest.TestCase):
