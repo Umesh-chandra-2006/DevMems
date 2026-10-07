@@ -1,0 +1,73 @@
+{
+ "arm": "staged",
+ "sim_step": 2895,
+ "checks": {
+  "injection": {
+   "ok": true,
+   "resolved": 0,
+   "pass": 0,
+   "fail": []
+  },
+  "schedule_adherence": {
+   "ok": true,
+   "per_agent": {
+    "Isabella Rodriguez": {
+     "checked": 2895,
+     "match": 2850,
+     "rate": 0.984
+    },
+    "Maria Lopez": {
+     "checked": 2895,
+     "match": 2755,
+     "rate": 0.952
+    },
+    "Klaus Mueller": {
+     "checked": 2895,
+     "match": 2844,
+     "rate": 0.982
+    }
+   }
+  },
+  "ledger_windows": {
+   "ok": true,
+   "windows": 11,
+   "hours_elapsed": 8
+  },
+  "router_failures": {
+   "ok": true,
+   "failures": 0,
+   "calls": 1001
+  },
+  "call_rate": {
+   "ok": true,
+   "calls_per_awake_agent_hour": 146.5,
+   "awake_agent_hours": 4.79
+  },
+  "pinned_model_only": {
+   "ok": true,
+   "other_model_records": 0
+  },
+  "night_keys": {
+   "ok": true,
+   "markers": [
+    [
+     "Isabella Rodriguez",
+     0,
+     "2023-02-13 00:00:00"
+    ],
+    [
+     "Maria Lopez",
+     0,
+     "2023-02-13 00:00:00"
+    ],
+    [
+     "Klaus Mueller",
+     0,
+     "2023-02-13 00:00:00"
+    ]
+   ]
+  }
+ },
+ "abort": [],
+ "all_ok": true
+}

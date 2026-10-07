@@ -1,0 +1,8 @@
+{
+ "mode": "PILOT: live run (mechanism and readiness check), NOT a result",
+ "origin": "authored schedules and injected events (Phase 7 harness)",
+ "model": "gemini-3.1-flash-lite",
+ "normalizer": "on",
+ "stages": "Stages 1 to 4 on, Stage 3 average 0.82",
+ "note": "PILOT output is never reported as a result."
+}

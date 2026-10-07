@@ -112,11 +112,16 @@ def evaluate(run_dir: Path, sim_dir: Path, schedules: Dict[str, Any], arm: str, 
         abort.append(f"A4: {rf} router failures in {calls} calls")
     checks["router_failures"] = {"ok": ok, "failures": rf, "calls": calls}
 
-    awake_agent_hours = 0.0
+    # every ledger window counts (hourly and the partial windows a resume or a stop leaves), each weighted by its own length in steps:
+    # awake agent-hours = sum over agents of (1 - sleeping fraction) * steps in window / 360 (pilot finding 2026-10-07: counting only whole
+    # hourly windows gave 58 and 87 where the cumulative calls per awake agent-hour were about 160 to 210)
+    awake_agent_hours, awake_calls = 0.0, 0
     for w in windows:
-        if w["label"].startswith("hour_ending"):
-            awake_agent_hours += sum(1 - (f or 0) for f in (w.get("sleeping_step_fraction") or {}).values())
-    rate = (sum(w["calls"] for w in windows if w["label"].startswith("hour_ending")) / awake_agent_hours) if awake_agent_hours else None
+        hrs = sum(1 - (f or 0) for f in (w.get("sleeping_step_fraction") or {}).values()) * (w.get("steps_in_window") or 0) / 360.0
+        if hrs > 0:
+            awake_agent_hours += hrs
+            awake_calls += w["calls"]
+    rate = (awake_calls / awake_agent_hours) if awake_agent_hours else None
     ok = not (rate is not None and awake_agent_hours >= 4 and rate > 1.5 * BUDGET_CALLS_PER_AWAKE_AGENT_HOUR)
     if not ok:
         abort.append(f"A6: {rate:.0f} calls per awake agent-hour against a budget of {BUDGET_CALLS_PER_AWAKE_AGENT_HOUR}")

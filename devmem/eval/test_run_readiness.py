@@ -549,7 +549,7 @@ class TestCanaryEvaluator(unittest.TestCase):
                     desc = "wandering"
                 persona[name] = {"description": f"{desc} @ the Ville:somewhere", "movement": [1, 1]}
             (sim_dir / "movement" / f"{step}.json").write_text(json.dumps({"persona": persona}))
-        windows = [{"label": f"hour_ending_h{h}", "calls": 100, "sleeping_step_fraction": {n: 0.0 if h > 6 else 1.0 for n in SCHED["agents"]}} for h in range(1, steps // 360 + 1)]
+        windows = [{"label": f"hour_ending_h{h}", "calls": 100, "steps_in_window": 360, "sleeping_step_fraction": {n: 0.0 if h > 6 else 1.0 for n in SCHED["agents"]}} for h in range(1, steps // 360 + 1)]
         (run_dir / "hourly_ledger.jsonl").write_text("\n".join(json.dumps(w) for w in windows) + "\n")
         (run_dir / "injection_log.jsonl").write_text("\n".join(json.dumps({"id": f"E{i}", "type": "mundane", "result": "PASS", "injected_step": 100 + i}) for i in range(3)) + "\n")
         (run_dir / "run_status.json").write_text(json.dumps({"step": steps, "router_calls_total": 400, "router_failures": 0}))
@@ -594,9 +594,24 @@ class TestCanaryEvaluator(unittest.TestCase):
         c.commit(); c.close()
         self.assertTrue(any(x.startswith("A5") for x in canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["abort"]))
         # A6 needs at least 4 awake agent-hours at more than 165 calls per awake agent-hour
-        w = [{"label": f"hour_ending_h{h}", "calls": 3000, "sleeping_step_fraction": {n: 0.0 for n in SCHED["agents"]}} for h in range(1, 3)]
+        w = [{"label": f"hour_ending_h{h}", "calls": 3000, "steps_in_window": 360, "sleeping_step_fraction": {n: 0.0 for n in SCHED["agents"]}} for h in range(1, 3)]
         (run_dir / "hourly_ledger.jsonl").write_text("\n".join(json.dumps(x) for x in w) + "\n")
         self.assertTrue(any(x.startswith("A6") for x in canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["abort"]))
+
+    def test_call_rate_counts_partial_windows_by_their_own_length(self):
+        # the pilot case: no whole hourly window, only partial windows after resumes (3 agents awake, 180 steps = half an hour each)
+        tmp = Path(tempfile.mkdtemp(prefix="p7_canary_rate_"))
+        self.addCleanup(shutil.rmtree, tmp, True)
+        run_dir, sim_dir = tmp / "run", tmp / "sim"
+        run_dir.mkdir()
+        sim_dir.mkdir()
+        (run_dir / "run_status.json").write_text(json.dumps({"step": 1080, "router_calls_total": 600, "router_failures": 0}))
+        awake = {n: 0.0 for n in SCHED["agents"]}
+        w = [{"label": f"final_partial_window", "calls": 100, "steps_in_window": 180, "sleeping_step_fraction": awake} for _ in range(6)]
+        (run_dir / "hourly_ledger.jsonl").write_text("\n".join(json.dumps(x) for x in w) + "\n")
+        rate = canary.evaluate(run_dir, sim_dir, SCHED, "baseline")["checks"]["call_rate"]
+        self.assertEqual(rate["awake_agent_hours"], 9.0)               # 6 windows x 0.5 h x 3 agents
+        self.assertEqual(rate["calls_per_awake_agent_hour"], 66.7)     # 600 calls / 9 awake agent-hours
 
     def test_cross_arm_injection_steps_must_match(self):
         tmp = Path(tempfile.mkdtemp(prefix="p7_canary3_"))

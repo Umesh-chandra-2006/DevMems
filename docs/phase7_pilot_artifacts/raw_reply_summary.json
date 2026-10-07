@@ -1,0 +1,26 @@
+{
+ "baseline": {
+  "delivered_replies": 991,
+  "by_purpose": {
+   "planning": 547,
+   "dialogue": 112,
+   "importance_scoring": 326,
+   "reflection": 6
+  },
+  "raw_fenced": 7,
+  "fence_stripped_by_normalizer": 4,
+  "fenced_reply_with_fence_still_delivered_before_the_fix": 3
+ },
+ "staged": {
+  "delivered_replies": 992,
+  "by_purpose": {
+   "planning": 538,
+   "dialogue": 108,
+   "importance_scoring": 346
+  },
+  "raw_fenced": 7,
+  "fence_stripped_by_normalizer": 2,
+  "fenced_reply_with_fence_still_delivered_before_the_fix": 5
+ },
+ "label": "derived from devmem/storage/p7pilot_*/raw_replies.jsonl (live, PILOT); the raw logs themselves are git-ignored (prompt text)"
+}

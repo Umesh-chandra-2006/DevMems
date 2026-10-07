@@ -1,0 +1,35 @@
+{
+ "arm": "staged",
+ "sim_code": "p7pilot_staged",
+ "pilot": true,
+ "state": "finished: soft stop: 1000 router calls reached at a step boundary",
+ "sim_clock": "2023-02-13 08:02:30",
+ "step": 2895,
+ "router_calls_total": 1001,
+ "quota_pauses": 9,
+ "injection": {
+  "events_total": 27,
+  "resolved": 0,
+  "pass": 0,
+  "fail": [],
+  "pending": [],
+  "asleep_at_injection": []
+ },
+ "checkpoints_made": [],
+ "autosave_steps": [
+  2790,
+  2880,
+  2895
+ ],
+ "normalizer": {
+  "fence_strip": {
+   "applied": 433,
+   "changed": 2
+  },
+  "call_path": {
+   "applied": 422,
+   "changed": 114
+  }
+ },
+ "router_failures": 0
+}
