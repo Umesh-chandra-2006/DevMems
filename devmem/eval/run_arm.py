@@ -187,8 +187,7 @@ def main(argv=None):
         info = {"at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "resume": a.resume, "git_head": head, "file_sha256_12": hashes,
                 "router_loaded_with_5xx_outage_rule": "returned HTTP 5" in inspect.getsource(llm_router)}
         with open(run_dir / "code_version.jsonl", "a", encoding="utf-8") as cv:
-            cv.write(json.dumps(info) + "
-")
+            cv.write(json.dumps(info) + "\n")
         print("code version:", json.dumps(info), flush=True)
     except Exception as e:
         print("code version unavailable:", e, flush=True)
