@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, external_checkpoint, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -172,6 +172,63 @@ class TestInterimDay1OnPilotData(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             r = interim_day1.copy_checkpoint("baseline", label="no_such_label", dest=Path(t))
         self.assertFalse(r["copied"])
+
+
+class TestExternalCheckpoint(unittest.TestCase):
+    """Synthetic run layout only: the copier never writes to the run and trims the mirror to the autosave clock."""
+
+    def _layout(self, root, step, curr="February 13, 2023, 14:15:00"):
+        sim = root / "storage" / "p7_staged"
+        (sim / "personas" / "A" / "bootstrap_memory").mkdir(parents=True)
+        (sim / "personas" / "A" / "bootstrap_memory" / "x.json").write_text("{}")
+        (sim / "reverie").mkdir()
+        (sim / "reverie" / "meta.json").write_text(json.dumps({"step": step, "curr_time": curr, "persona_names": ["A"]}))
+        (sim / "environment").mkdir()
+        (sim / "environment" / f"{step}.json").write_text("{}")
+        run = root / "run" / "p7_staged"
+        run.mkdir(parents=True)
+        c = sqlite3.connect(run / "memory.db")
+        c.execute("CREATE TABLE episodic_memory (entry_id TEXT, sim_timestamp TEXT)")
+        c.execute("CREATE TABLE consolidation_sweeps (agent_id TEXT, night INT, sweep_time TEXT, status TEXT)")
+        c.executemany("INSERT INTO episodic_memory VALUES (?,?)", [("a", "2023-02-13 10:00:00"), ("b", "2023-02-13 14:15:00"), ("c", "2023-02-13 14:20:10")])
+        c.executemany("INSERT INTO consolidation_sweeps VALUES (?,?,?,?)", [("A", 0, "2023-02-13 00:00:00", "done"), ("A", 1, "2023-02-13 14:30:00", "done")])
+        c.commit(); c.close()
+        return sim, run
+
+    def test_waits_for_the_target_then_copies_and_trims_and_never_writes_to_the_run(self):
+        with tempfile.TemporaryDirectory() as t:
+            early = Path(t) / "early"
+            self._layout(early, 5040)
+            self.assertIsNone(external_checkpoint.copy_once("staged", 5130, "x", early / "dest", storage=early / "storage", run_root=early / "run"))   # no autosave at 5,130 yet
+            root = Path(t) / "ready"
+            sim, run = self._layout(root, 5130)
+            before = {p: p.read_bytes() for p in list(sim.rglob("*")) + [run / "memory.db"] if p.is_file()}
+            rec = external_checkpoint.copy_once("staged", 5130, "x", root / "dest", storage=root / "storage", run_root=root / "run")
+            self.assertTrue(rec["exact_first_autosave"])
+            self.assertEqual((rec["step"], rec["sim_clock"]), (5130, "2023-02-13 14:15:00"))
+            self.assertEqual(rec["rows_trimmed_from_the_copy_because_they_are_later_than_the_autosave_clock"]["episodic_memory"], 1)
+            self.assertEqual(rec["rows_trimmed_from_the_copy_because_they_are_later_than_the_autosave_clock"]["consolidation_sweeps"], 1)
+            c = sqlite3.connect(root / "dest" / "staged" / "memory.db")
+            self.assertEqual(c.execute("select count(*) from episodic_memory").fetchone()[0], 2)
+            self.assertEqual(c.execute("select count(*) from consolidation_sweeps").fetchone()[0], 1)
+            c.close()
+            self.assertTrue((root / "dest" / "staged" / "sim" / "personas" / "A" / "bootstrap_memory" / "x.json").exists())
+            after = {p: p.read_bytes() for p in list(sim.rglob("*")) + [run / "memory.db"] if p.is_file()}
+            self.assertEqual(before, after)                                                  # the run's files are byte for byte unchanged
+            c = sqlite3.connect(run / "memory.db")
+            self.assertEqual(c.execute("select count(*) from episodic_memory").fetchone()[0], 3)   # the live mirror still has all rows
+            c.close()
+
+    def test_a_missed_first_autosave_is_recorded_as_not_exact(self):
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            self._layout(root, 13860, "February 14, 2023, 14:30:00")
+            rec = external_checkpoint.copy_once("staged", 13770, "x", root / "dest", storage=root / "storage", run_root=root / "run")
+            self.assertEqual((rec["step"], rec["exact_first_autosave"]), (13860, False))
+
+    def test_the_target_steps_are_autosave_multiples(self):
+        for s in (13770, 17190, 25830, 5130, 22410):
+            self.assertEqual(s % 90, 0)
 
 
 class TestDiagnostics(unittest.TestCase):
