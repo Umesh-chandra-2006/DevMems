@@ -33,13 +33,15 @@ def _copy(src: Path, tmp: Path) -> Path:
     return d
 
 
-def run(arm: str, day1: Path, day3: Path, call_fn, out_dir: Path = None, stub: bool = False, load_persona=None, retrieve_fn=None) -> dict:
+def run(arm: str, day1: Path, day3: Path, call_fn, out_dir: Path = None, stub: bool = False, load_persona=None, retrieve_fn=None, day: int = 3) -> dict:
     from devmem.eval.phase9 import answer_harness, judge
     questions = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
-    recall_q = questions["questions"]
+    # day 3 = the pre-registered primary (all 39 questions at the day-3 checkpoint). day 2 = an INTERIM VARIANT on the day-2 copy: only questions about events of day 1 and day 2, without the three-day theme-count
+    # questions, so each distance is one day shorter than registered; it is labelled interim and never mixed with the primary.
+    recall_q = [q for q in questions["questions"] if q.get("event_day", 3) <= day and (day == 3 or q["type"] != "theme_count")]
     probe_q = [{"id": p["id"], "question": p["text"], "checklist": None} for p in questions["probe_questions"]]
     tmp = Path(tempfile.mkdtemp(prefix=f"p9_eval_{arm}_"))
-    res = {"arm": arm, "label": "Phase 9 evaluation of one arm; single run per arm", "stub": stub, "started": time.strftime("%Y-%m-%d %H:%M:%S"), "recall": [], "probe_day1": [], "probe_day3": [], "judge": []}
+    res = {"arm": arm, "label": ("Phase 9 evaluation of one arm; single run per arm" if day == 3 else f"INTERIM day-{day} variant (questions up to day {day} asked on the day-{day} copy; not the pre-registered primary); single run per arm"), "day": day, "stub": stub, "started": time.strftime("%Y-%m-%d %H:%M:%S"), "recall": [], "probe_day1": [], "probe_day3": [], "judge": []}
     try:
         d1, d3 = _copy(day1, tmp), _copy(day3, tmp)
         meta3 = json.loads((d3 / "reverie" / "meta.json").read_text(encoding="utf-8"))
@@ -68,6 +70,8 @@ def run(arm: str, day1: Path, day3: Path, call_fn, out_dir: Path = None, stub: b
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--arm", required=True, choices=["baseline", "staged"])
+    ap.add_argument("--day", type=int, default=3, choices=[2, 3], help="3 = primary (day-3 checkpoint); 2 = interim variant on the day-2 copy")
+    ap.add_argument("--pool-arm", choices=["baseline", "staged"], help="whose key pool to use (default: the arm itself); it must have FINISHED; e.g. evaluate baseline data on the finished staged pool")
     ap.add_argument("--stub", action="store_true", help="no chat call, no arm check: answers are a fixed string (embeddings are still real, on --stub-embedding-key)")
     ap.add_argument("--day1", help="day-1 checkpoint copy folder (default devmem/storage/interim_day1/<arm>/sim)")
     ap.add_argument("--day3", help="day-3 checkpoint folder (default the runner's p7_<arm>__ckpt_day3_end_awake)")
@@ -78,7 +82,8 @@ def main():
     load_dotenv(ROOT / ".env")
     os.environ.setdefault("DEVMEM_EMBEDDING_MODE", "live")
     day1 = Path(a.day1) if a.day1 else ROOT / "devmem" / "storage" / "interim_day1" / a.arm / "sim"
-    day3 = Path(a.day3) if a.day3 else SIM / f"p7_{a.arm}__ckpt_day3_end_awake"
+    day3 = Path(a.day3) if a.day3 else (SIM / f"p7_{a.arm}__ckpt_day3_end_awake" if a.day == 3 else ROOT / "devmem" / "storage" / "interim_day2" / a.arm / "sim")
+    pool_arm = a.pool_arm or a.arm
     import persona.prompt_template.gpt_structure as gs
     from devmem.embeddings.vector_store import EmbeddingStore
     if a.stub:
@@ -90,18 +95,18 @@ def main():
         from devmem.eval import run_arm
         from devmem.eval.phase9 import eval_keys
         from devmem.router import llm_router
-        cfg = eval_keys.provider_config(a.arm, Path(tempfile.mkdtemp(prefix="p9_eval_cfg_")) / "providers.yaml")      # raises ArmStillRunning unless the arm has finished
-        pool = eval_keys.pool(a.arm)
-        eval_keys.assert_no_running_arm_key(pool, [x for x in ("baseline", "staged") if x != a.arm and not eval_keys.finished(x)] + [])
+        cfg = eval_keys.provider_config(pool_arm, Path(tempfile.mkdtemp(prefix="p9_eval_cfg_")) / "providers.yaml")      # raises ArmStillRunning unless the POOL arm has finished
+        pool = eval_keys.pool(pool_arm)
+        eval_keys.assert_no_running_arm_key(pool, [x for x in ("baseline", "staged") if not eval_keys.finished(x)])    # no key of any arm that is still running
         os.environ["DEVMEM_PINNED_MODEL"] = run_arm.MODEL
         os.environ.setdefault("DEVMEM_OUTPUT_NORMALIZER", "on")
-        emb_keys = [k for k in run_arm.EMBED_KEYS[a.arm]]
+        emb_keys = [k for k in run_arm.EMBED_KEYS[pool_arm]]
         gs._EMBEDDING_STORE = EmbeddingStore(stats_path=Path(tempfile.mkdtemp()) / "s.json", key_envs=emb_keys)
 
         def call_fn(prompt, purpose):
-            return llm_router.call_llm(prompt, tier="fast", purpose=purpose, condition=f"eval_{a.arm}_keys", config_path=str(cfg), pinned_model=run_arm.MODEL, max_tokens=300)
-        out_dir = ROOT / "devmem" / "storage" / "phase9_eval" / a.arm
-    res = run(a.arm, day1, day3, call_fn, out_dir=out_dir, stub=a.stub)
+            return llm_router.call_llm(prompt, tier="fast", purpose=purpose, condition=f"eval_{pool_arm}_keys", config_path=str(cfg), pinned_model=run_arm.MODEL, max_tokens=300)
+        out_dir = ROOT / "devmem" / "storage" / "phase9_eval" / (a.arm if a.day == 3 else f"{a.arm}_day2")
+    res = run(a.arm, day1, day3, call_fn, out_dir=out_dir, stub=a.stub, day=a.day)
     print(json.dumps(res["counts"]))
 
 

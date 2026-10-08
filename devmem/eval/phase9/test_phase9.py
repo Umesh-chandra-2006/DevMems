@@ -319,6 +319,24 @@ class TestInterimReport(unittest.TestCase):
                 self.assertGreater(ist, interim_report.LAUNCH_IST)
 
 
+class TestArmEvaluationDay2Variant(unittest.TestCase):
+    def test_day2_variant_asks_only_day1_and_day2_questions_without_theme_counts(self):
+        with tempfile.TemporaryDirectory() as t:
+            for n, step in (("d1", 5130), ("d2", 13770)):
+                (Path(t) / n / "reverie").mkdir(parents=True)
+                (Path(t) / n / "reverie" / "meta.json").write_text(json.dumps({"step": step, "curr_time": "February 14, 2023, 14:15:00", "persona_names": ["Isabella Rodriguez", "Maria Lopez", "Klaus Mueller"]}))
+            seen = []
+
+            def call(prompt, purpose):
+                seen.append(purpose)
+                return "consistent" if purpose == "eval_judge" else "A blue van."
+            res = run_arm_evaluation.run("baseline", Path(t) / "d1", Path(t) / "d2", call, load_persona=lambda d, n: None, retrieve_fn=lambda p, q, k: ["m"], stub=True, day=2)
+            self.assertIn("INTERIM day-2 variant", res["label"])
+            self.assertEqual(res["counts"]["recall"], 24)                       # injected day 1 and 2 (18) plus natural day 1 and 2 (6)
+            self.assertNotIn("Q_I_theme", [r["question_id"] for r in res["recall"]])
+            self.assertEqual({k: seen.count(k) for k in set(seen)}, {"eval_recall": 24, "eval_probe": 36, "eval_judge": 18})      # 78 calls per arm
+
+
 class TestDiagnostics(unittest.TestCase):
     def test_cluster_quality_on_the_stop3_log(self):
         r = diagnostics.cluster_quality(ROOT / "docs" / "phase6_stop3_artifacts" / "consolidation_log.jsonl")
