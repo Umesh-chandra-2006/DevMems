@@ -1,6 +1,6 @@
 # Results export: INTERIM day 2 (dry run of the final export)
 
-Built 2026-10-08 18:53:51. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (reflection is off in the staged arm, decision D1). Arm states: {'baseline': 'running', 'staged': 'running'}.
+Built 2026-10-08 19:13:37. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (reflection is off in the staged arm, decision D1). Arm states: {'baseline': 'running', 'staged': 'running'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
@@ -20,7 +20,7 @@ Built 2026-10-08 18:53:51. Single run per arm, 3 agents: descriptive only, no si
 | S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=None |
 | M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **undecidable** | day-1 against day-3 judge results or the judge calibration are not available yet |  |
 | D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **undecidable** | fewer than 3 traits with cached embeddings (traits 13, available 0) | traits=13, available=0, flagged=0 |
-| D-2 | Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering) | **right** | entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy | Isabella Rodriguez=127, Klaus Mueller=102, Maria Lopez=79 |
+| D-2 | Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering); WEAK BY DESIGN: at threshold 0.82 nearly every merge falls in this band | **right** | entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy | Isabella Rodriguez=127, Klaus Mueller=102, Maria Lopez=79 |
 
 ## E1 to E3 (checkpoint copies)
 
@@ -31,29 +31,29 @@ Built 2026-10-08 18:53:51. Single run per arm, 3 agents: descriptive only, no si
 | E2 mean tokens in per importance call | 418.5 (3781 calls) | 572.3 (3331 calls) |
 | E3 consolidated fraction | 0.0 (0 of 0) | 0.0974 (380 of 3901) |
 
-### E1 unique calls by purpose per simulated day (both arms)
+### E1 unique calls by purpose per simulated day (both arms); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)
 
-| arm | sim day | purpose | unique calls |
-|---|---|---|---|
-| baseline | 1 | dialogue | 314 |
-| baseline | 1 | importance_scoring | 1588 |
-| baseline | 1 | planning | 1479 |
-| baseline | 1 | reflection | 51 |
-| baseline | 2 | dialogue | 279 |
-| baseline | 2 | importance_scoring | 2104 |
-| baseline | 2 | planning | 1431 |
-| baseline | 2 | reflection | 56 |
-| staged | 1 | consolidation_summary | 18 |
-| staged | 1 | dialogue | 268 |
-| staged | 1 | identity_trait | 11 |
-| staged | 1 | importance_scoring | 1245 |
-| staged | 1 | planning | 1152 |
-| staged | 2 | consolidation_summary | 18 |
-| staged | 2 | dialogue | 203 |
-| staged | 2 | identity_trait | 3 |
-| staged | 2 | importance_scoring | 2078 |
-| staged | 2 | planning | 1006 |
-| staged | 2 | reflection | 6 |
+| arm | sim day | purpose | unique calls | tag audit |
+|---|---|---|---|---|
+| baseline | 1 | dialogue | 314 | 0.7188 false-match rate (138 of 192 classified, 200 audited) |
+| baseline | 1 | importance_scoring | 1588 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
+| baseline | 1 | planning | 1479 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
+| baseline | 1 | reflection | 51 | 0.0084 false-match rate (1 of 119 classified, 119 audited) |
+| baseline | 2 | dialogue | 279 | 0.7188 false-match rate (138 of 192 classified, 200 audited) |
+| baseline | 2 | importance_scoring | 2104 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
+| baseline | 2 | planning | 1431 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
+| baseline | 2 | reflection | 56 | 0.0084 false-match rate (1 of 119 classified, 119 audited) |
+| staged | 1 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
+| staged | 1 | dialogue | 268 | 0.7806 false-match rate (153 of 196 classified, 200 audited) |
+| staged | 1 | identity_trait | 11 | not audited (set by the code, not by the keyword rule) |
+| staged | 1 | importance_scoring | 1245 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
+| staged | 1 | planning | 1152 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
+| staged | 2 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
+| staged | 2 | dialogue | 203 | 0.7806 false-match rate (153 of 196 classified, 200 audited) |
+| staged | 2 | identity_trait | 3 | not audited (set by the code, not by the keyword rule) |
+| staged | 2 | importance_scoring | 2078 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
+| staged | 2 | planning | 1006 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
+| staged | 2 | reflection | 6 | 1.0 false-match rate (6 of 6 classified, 6 audited) |
 
 ### E1 unique calls per agent (simulated day, purpose)
 
@@ -156,28 +156,168 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
 - R3 as registered says distance 2, but I5, M5 and K5 are day-2 events: at the day-3 checkpoint their distance is 1; the literal registered definition matches no question. The observed pivotal pool is shown separately.
 - R1 and R2 each rest on one question (n = 1 < 3): undecidable under pre-registration section 6; the observed values are shown.
 
-## Purpose-tag audit (reflection)
+## Purpose-tag audit (planning, dialogue, reflection, importance_scoring)
 
 {
- "baseline": {
-  "reflection_tagged_rows_in_delivered_log": 119,
-  "real_reflection_prompts": 118,
-  "keyword_false_matches": 1,
-  "false_match_examples": [
-   "Task: Turn the input into (subject, predicate, object). \n\nInput: Sam Johnson is "
-  ]
+ "seed": 20261008,
+ "sample_per_tag_per_arm": 200,
+ "templates_loaded": 91,
+ "arms": {
+  "baseline": {
+   "log_rows": 8016,
+   "tags": {
+    "planning": {
+     "rows_with_this_tag_in_log": 3281,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 192,
+     "false_match": 8,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.04,
+     "false_matches_belong_to": {
+      "reflection": 5,
+      "dialogue": 3
+     },
+     "examples": [
+      "generate_focal_pt: '\"\"\"\\nMaria Lopez shares a close, collaborative, and mutually supportive'",
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nMaria Lopez values deep, meaningful relationships wit'"
+     ]
+    },
+    "dialogue": {
+     "rows_with_this_tag_in_log": 651,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 54,
+     "false_match": 138,
+     "unclassified": 8,
+     "false_match_rate_of_classified": 0.7188,
+     "false_matches_belong_to": {
+      "planning": 104,
+      "reflection": 34
+     },
+     "examples": [
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'"
+     ]
+    },
+    "reflection": {
+     "rows_with_this_tag_in_log": 119,
+     "audited": 119,
+     "sampled": false,
+     "true_family": 118,
+     "false_match": 1,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0084,
+     "false_matches_belong_to": {
+      "planning": 1
+     },
+     "examples": [
+      "generate_event_triple: 'Task: Turn the input into (subject, predicate, object). \\n\\nInput: Sam J'"
+     ]
+    },
+    "importance_scoring": {
+     "rows_with_this_tag_in_log": 3965,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 200,
+     "false_match": 0,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0,
+     "false_matches_belong_to": {},
+     "examples": []
+    }
+   },
+   "reflection_family_prompts_whole_log": {
+    "by_tag_and_template": {
+     "dialogue": {
+      "memo_on_convo": 52,
+      "generate_focal_pt": 68
+     },
+     "reflection": {
+      "insight_and_evidence": 118
+     },
+     "planning": {
+      "generate_focal_pt": 92
+     }
+    },
+    "total": 330
+   }
+  },
+  "staged": {
+   "log_rows": 7487,
+   "tags": {
+    "planning": {
+     "rows_with_this_tag_in_log": 2824,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 196,
+     "false_match": 4,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.02,
+     "false_matches_belong_to": {
+      "dialogue": 4
+     },
+     "examples": [
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nThis is Isabella Rodriguez\\'s plan for Monday February'",
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nKlaus Mueller is conversing about Klaus Mueller and M'"
+     ]
+    },
+    "dialogue": {
+     "rows_with_this_tag_in_log": 604,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 43,
+     "false_match": 153,
+     "unclassified": 4,
+     "false_match_rate_of_classified": 0.7806,
+     "false_matches_belong_to": {
+      "planning": 132,
+      "reflection": 21
+     },
+     "examples": [
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'"
+     ]
+    },
+    "reflection": {
+     "rows_with_this_tag_in_log": 6,
+     "audited": 6,
+     "sampled": false,
+     "true_family": 0,
+     "false_match": 6,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 1.0,
+     "false_matches_belong_to": {
+      "planning": 6
+     },
+     "examples": [
+      "action_location_sector: 'Task -- choose an appropriate area  from the area options for a task a'",
+      "action_location_object: \"Jane Anderson is in kitchen in Jane Anderson's house.\\nJane Anderson is\""
+     ]
+    },
+    "importance_scoring": {
+     "rows_with_this_tag_in_log": 4003,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 200,
+     "false_match": 0,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0,
+     "false_matches_belong_to": {},
+     "examples": []
+    }
+   },
+   "reflection_family_prompts_whole_log": {
+    "by_tag_and_template": {
+     "dialogue": {
+      "memo_on_convo": 52
+     }
+    },
+    "total": 52
+   }
+  }
  },
- "staged": {
-  "reflection_tagged_rows_in_delivered_log": 6,
-  "real_reflection_prompts": 0,
-  "keyword_false_matches": 6,
-  "false_match_examples": [
-   "Task -- choose an appropriate area  from the area options for a task at hand. \n\n",
-   "Jane Anderson is in kitchen in Jane Anderson's house.\nJane Anderson is going to ",
-   "Current activity: sleep in bed\nObjects available: {bed, easel, closet, painting}"
-  ]
- },
- "note": "by-purpose ledger figures use the keyword tag; only the reflection tag is audited here; the totals per arm do not depend on the tag"
+ "note": "false-match rate = rows whose upstream template belongs to another family, over rows matched to a template; unclassified rows are listed apart; keyword tag from gpt_structure._infer_purpose"
 }
 
 
@@ -200,7 +340,7 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
 
 D-1: 13 traits, 0 with cached embeddings, 0 closer to the priors than to the best source.
 
-D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, null], [1, true, 30], [2, true, 97]], "Klaus Mueller": [[0, true, null], [1, true, 21], [2, true, 81]], "Maria Lopez": [[0, true, null], [1, true, 30], [2, true, 49]]}; verdict {'outcome': 'right', 'reason': 'entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy', 'numbers': {'Isabella Rodriguez': 127, 'Klaus Mueller': 102, 'Maria Lopez': 79}}
+D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearly every merge falls in the 0.80 to 0.88 band, so a count above 0 was close to certain. D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, null], [1, true, 30], [2, true, 97]], "Klaus Mueller": [[0, true, null], [1, true, 21], [2, true, 81]], "Maria Lopez": [[0, true, null], [1, true, 30], [2, true, 49]]}; verdict {'outcome': 'right', 'reason': 'entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy', 'numbers': {'Isabella Rodriguez': 127, 'Klaus Mueller': 102, 'Maria Lopez': 79}}
 
 ## Run conditions per arm (failures, restarts, replayed spans, outage minutes, 429 wave shares)
 
@@ -209,7 +349,7 @@ D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, 
 - state running; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 3, 'key_change_resume': 3, 'start': 6, 'external_kill_watchdog_restart': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
 - outage minutes (outage log) 82.6; counters at the last hourly row {'outage_minutes_total': 82.64, 'rate_limit_wait_minutes_total': 356.75, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 229, 'waited_seconds': 22064, 'mean_wave_seconds': 96.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.2275, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 230, 'waited_seconds': 22086, 'mean_wave_seconds': 96.0, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.225, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 18, 'pass': 18, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
@@ -217,6 +357,6 @@ D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, 
 - state running; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 3, 'key_change_resume': 3, 'start': 6}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 300.51, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 224, 'waited_seconds': 21494, 'mean_wave_seconds': 96.0, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.2217, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 229, 'waited_seconds': 21830, 'mean_wave_seconds': 95.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.2224, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 21, 'pass': 20, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 

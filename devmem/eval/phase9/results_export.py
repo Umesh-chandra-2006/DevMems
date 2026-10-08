@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from devmem.eval import wave_report
-from devmem.eval.phase9 import d2_reproduction, grader, interim_day1, interim_report
+from devmem.eval.phase9 import d2_reproduction, grader, interim_day1, interim_report, purpose_audit
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 ST = ROOT / "devmem" / "storage"
@@ -254,7 +254,7 @@ def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, An
         P.append({"id": "D-1", "prediction": "at least one third of Stage 4 traits closer to the priors text than to their sources", **verdict("undecidable", f"fewer than 3 traits with cached embeddings (traits {tr}, available {d1.get('available', 0)})", **d1)})
     if d2 and d2.get("agents"):
         sc = d2_reproduction.score(d2)
-        P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering)", **verdict(sc["outcome"], sc["reason"], **sc["numbers"])})
+        P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering); WEAK BY DESIGN: at threshold 0.82 nearly every merge falls in this band", **verdict(sc["outcome"], sc["reason"], **sc["numbers"])})
     else:
         P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0", **verdict("undecidable", "the offline reproduction of the recorded clustering is not available")})
     return P
@@ -303,25 +303,9 @@ def d1_provenance(memory_db: Path) -> Dict[str, Any]:
 
 
 def purpose_tag_audit() -> Dict[str, Any]:
-    """The router ledger's `purpose` of the upstream calls comes from a keyword heuristic on the prompt text (gpt_structure._infer_purpose): a prompt containing the word "reflection"
-    (for example an action named "checking her reflection") is tagged `reflection`. For the reflection tag, count the delivered-reply rows whose prompt is a real reflection prompt
-    (focal-point questions or insights) against the other rows, per arm. Not changed in the live arms (PM instruction); reported so the by-purpose figures are read correctly."""
-    out: Dict[str, Any] = {}
-    for arm in ARMS:
-        tot = real = 0
-        examples = []
-        for r in _jsonl(ST / f"p7_{arm}" / "raw_replies.jsonl"):
-            if r.get("purpose") != "reflection":
-                continue
-            tot += 1
-            low = str(r.get("prompt", "")).lower()
-            if "salient high-level questions" in low or "high-level insights" in low or ("insights" in low and "statements" in low):
-                real += 1
-            elif len(examples) < 3:
-                examples.append(str(r.get("prompt", ""))[:80])
-        out[arm] = {"reflection_tagged_rows_in_delivered_log": tot, "real_reflection_prompts": real, "keyword_false_matches": tot - real, "false_match_examples": examples}
-    out["note"] = "by-purpose ledger figures use the keyword tag; only the reflection tag is audited here; the totals per arm do not depend on the tag"
-    return out
+    """The router ledger's `purpose` of the upstream calls is a keyword heuristic on the prompt text. Audit of the tags planning, dialogue, reflection and importance_scoring against the
+    upstream prompt family (devmem/eval/phase9/purpose_audit.py; sample of 200 rows per tag per arm with seed 20261008 for the large tags). The tags are NOT changed in the live arms."""
+    return purpose_audit.audit()
 
 
 def sweeps_per_night(memory_db: Path) -> Dict[str, Any]:
@@ -391,12 +375,17 @@ def markdown(r: Dict[str, Any]) -> str:
     L.append("| E1 calls raw / unique | " + " | ".join(g(a, lambda v: f"{v['E1']['raw_total']} / {v['E1']['unique_total']}") for a in ARMS) + " |")
     L.append("| E2 mean tokens in per importance call | " + " | ".join(g(a, lambda v: f"{v['E2_prompt_tokens']['mean_tokens_in']} ({v['E2_prompt_tokens']['calls']} calls)") for a in ARMS) + " |")
     L.append("| E3 consolidated fraction | " + " | ".join(g(a, lambda v: f"{v['E3_consolidated_fraction']['fraction']} ({v['E3_consolidated_fraction']['consolidated']} of {v['E3_consolidated_fraction']['entries']})") for a in ARMS) + " |")
-    L += ["", "### E1 unique calls by purpose per simulated day (both arms)", "", "| arm | sim day | purpose | unique calls |", "|---|---|---|---|"]
+    L += ["", "### E1 unique calls by purpose per simulated day (both arms); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)", "", "| arm | sim day | purpose | unique calls | tag audit |", "|---|---|---|---|---|"]
+    aud = r.get("purpose_tag_audit", {}).get("arms", {})
+
+    def audit_cell(a, p):
+        x = aud.get(a, {}).get("tags", {}).get(p)
+        return "not audited (set by the code, not by the keyword rule)" if x is None else f"{x['false_match_rate_of_classified']} false-match rate ({x['false_match']} of {x['true_family'] + x['false_match']} classified, {x['audited']} audited)"
     for a in ARMS:
         if A[a]:
             for d, pu in A[a]["E1"]["per_day_agent_purpose"]["unique_by_day_purpose"].items():
                 for p, n in sorted(pu.items()):
-                    L.append(f"| {a} | {d} | {p} | {n} |")
+                    L.append(f"| {a} | {d} | {p} | {n} | {audit_cell(a, p)} |")
     L += ["", "### E1 unique calls per agent (simulated day, purpose)", "", "| arm | agent | sim day | purpose | raw | unique |", "|---|---|---|---|---|---|"]
     for a in ARMS:
         if A[a]:
@@ -410,9 +399,9 @@ def markdown(r: Dict[str, Any]) -> str:
         L.append(f"| {q['question_id']} | {q['agent']} | {q['type']} | {q['event_id']} | {q['distance_days']} | {q['baseline']['score'] if q['baseline'] else 'n/a'} | {q['staged']['score'] if q['staged'] else 'n/a'} | {q.get('excluded', '')} |")
     L += ["", f"Bootstrap of the mean staged-minus-baseline difference: {r['recall']['bootstrap_staged_minus_baseline']}", ""]
     L += [f"- {n}" for n in r["recall"]["definition_notes"]]
-    L += ["", "## Purpose-tag audit (reflection)", "", json.dumps(r["purpose_tag_audit"], indent=1), ""]
+    L += ["", "## Purpose-tag audit (planning, dialogue, reflection, importance_scoring)", "", json.dumps({k: v for k, v in r["purpose_tag_audit"].items() if k != "family_table"}, indent=1), ""]
     L += ["", "## Coherence (M2)", "", json.dumps(r["coherence_M2"], indent=1), "", "## Stage 2 replay controls", "", json.dumps({k: v for k, v in (r["stage2_replay_controls"] or {}).items() if k != "rows"}, indent=1), "",
-          "## D-1 provenance and D-2", "", f"D-1: {r['D1_provenance'].get('traits')} traits, {r['D1_provenance'].get('available')} with cached embeddings, {r['D1_provenance'].get('flagged')} closer to the priors than to the best source.", "", "D-2 reproduction (nights, reproduced, count): " + json.dumps({a: [(n['night'], n.get('reproduced'), n.get('d2_entries_in_range_min_cluster')) for n in v['nights']] for a, v in (r['D2_reproduction'].get('agents') or {}).items()}) + f"; verdict {r['D2_reproduction'].get('verdict')}", "",
+          "## D-1 provenance and D-2", "", f"D-1: {r['D1_provenance'].get('traits')} traits, {r['D1_provenance'].get('available')} with cached embeddings, {r['D1_provenance'].get('flagged')} closer to the priors than to the best source.", "", "D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearly every merge falls in the 0.80 to 0.88 band, so a count above 0 was close to certain. D-2 reproduction (nights, reproduced, count): " + json.dumps({a: [(n['night'], n.get('reproduced'), n.get('d2_entries_in_range_min_cluster')) for n in v['nights']] for a, v in (r['D2_reproduction'].get('agents') or {}).items()}) + f"; verdict {r['D2_reproduction'].get('verdict')}", "",
           "## Run conditions per arm (failures, restarts, replayed spans, outage minutes, 429 wave shares)", ""]
     for a in ARMS:
         c = r["run_conditions"][a]

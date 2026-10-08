@@ -1,0 +1,189 @@
+{
+ "seed": 20261008,
+ "sample_per_tag_per_arm": 200,
+ "templates_loaded": 91,
+ "family_table": {
+  "importance": [
+   "poignancy_chat",
+   "poignancy_event",
+   "poignancy_thought"
+  ],
+  "reflection": [
+   "generate_focal_pt",
+   "insight_and_evidence",
+   "planning_thought_on_convo",
+   "memo_on_convo",
+   "convo_to_thoughts",
+   "keyword_to_thoughts"
+  ],
+  "dialogue": [
+   "agent_chat",
+   "create_conversation",
+   "iterative_convo",
+   "generate_next_convo_line",
+   "summarize_chat_ideas",
+   "summarize_chat_relationship",
+   "summarize_ideas",
+   "summarize_conversation",
+   "decide_to_talk",
+   "decide_to_react",
+   "whisper_inner_thought"
+  ]
+ },
+ "arms": {
+  "baseline": {
+   "log_rows": 8009,
+   "tags": {
+    "planning": {
+     "rows_with_this_tag_in_log": 3278,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 192,
+     "false_match": 8,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.04,
+     "false_matches_belong_to": {
+      "reflection": 5,
+      "dialogue": 3
+     },
+     "examples": [
+      "generate_focal_pt: '\"\"\"\\nMaria Lopez shares a close, collaborative, and mutually supportive'",
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nMaria Lopez values deep, meaningful relationships wit'"
+     ]
+    },
+    "dialogue": {
+     "rows_with_this_tag_in_log": 651,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 54,
+     "false_match": 138,
+     "unclassified": 8,
+     "false_match_rate_of_classified": 0.7188,
+     "false_matches_belong_to": {
+      "planning": 104,
+      "reflection": 34
+     },
+     "examples": [
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'"
+     ]
+    },
+    "reflection": {
+     "rows_with_this_tag_in_log": 119,
+     "audited": 119,
+     "sampled": false,
+     "true_family": 118,
+     "false_match": 1,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0084,
+     "false_matches_belong_to": {
+      "planning": 1
+     },
+     "examples": [
+      "generate_event_triple: 'Task: Turn the input into (subject, predicate, object). \\n\\nInput: Sam J'"
+     ]
+    },
+    "importance_scoring": {
+     "rows_with_this_tag_in_log": 3961,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 200,
+     "false_match": 0,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0,
+     "false_matches_belong_to": {},
+     "examples": []
+    }
+   },
+   "reflection_family_prompts_whole_log": {
+    "by_tag_and_template": {
+     "dialogue": {
+      "memo_on_convo": 52,
+      "generate_focal_pt": 68
+     },
+     "reflection": {
+      "insight_and_evidence": 118
+     },
+     "planning": {
+      "generate_focal_pt": 92
+     }
+    },
+    "total": 330
+   }
+  },
+  "staged": {
+   "log_rows": 7479,
+   "tags": {
+    "planning": {
+     "rows_with_this_tag_in_log": 2824,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 196,
+     "false_match": 4,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.02,
+     "false_matches_belong_to": {
+      "dialogue": 4
+     },
+     "examples": [
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nThis is Isabella Rodriguez\\'s plan for Monday February'",
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nKlaus Mueller is conversing about Klaus Mueller and M'"
+     ]
+    },
+    "dialogue": {
+     "rows_with_this_tag_in_log": 604,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 43,
+     "false_match": 153,
+     "unclassified": 4,
+     "false_match_rate_of_classified": 0.7806,
+     "false_matches_belong_to": {
+      "planning": 132,
+      "reflection": 21
+     },
+     "examples": [
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
+      "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'"
+     ]
+    },
+    "reflection": {
+     "rows_with_this_tag_in_log": 6,
+     "audited": 6,
+     "sampled": false,
+     "true_family": 0,
+     "false_match": 6,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 1.0,
+     "false_matches_belong_to": {
+      "planning": 6
+     },
+     "examples": [
+      "action_location_sector: 'Task -- choose an appropriate area  from the area options for a task a'",
+      "action_location_object: \"Jane Anderson is in kitchen in Jane Anderson's house.\\nJane Anderson is\""
+     ]
+    },
+    "importance_scoring": {
+     "rows_with_this_tag_in_log": 3995,
+     "audited": 200,
+     "sampled": true,
+     "true_family": 200,
+     "false_match": 0,
+     "unclassified": 0,
+     "false_match_rate_of_classified": 0.0,
+     "false_matches_belong_to": {},
+     "examples": []
+    }
+   },
+   "reflection_family_prompts_whole_log": {
+    "by_tag_and_template": {
+     "dialogue": {
+      "memo_on_convo": 52
+     }
+    },
+    "total": 52
+   }
+  }
+ },
+ "note": "false-match rate = rows whose upstream template belongs to another family, over rows matched to a template; unclassified rows are listed apart; keyword tag from gpt_structure._infer_purpose"
+}
