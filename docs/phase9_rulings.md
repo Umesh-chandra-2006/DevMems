@@ -1,6 +1,6 @@
 # Phase 9 rulings of the Project Manager, recorded before any day-3 answer exists
 
-Recorded by the Senior Developer on 2026-10-08, 18:55 IST (clock of the development machine), at repository HEAD `ab4ce7e` (the commit that follows this file will carry the file itself). Source: the PM message of 2026-10-08 relayed by the Project Owner. No day-3 answer, judge result or replay result existed at the time of writing (staged at about step 20,700 of 25,920, baseline at about step 19,900).
+Recorded by the Senior Developer on 2026-10-08 at 18:52 IST (clock of the development machine); this file was first committed as `3cd8df7` on top of `ab4ce7e`. Source: the PM message of 2026-10-08 relayed by the Project Owner. No day-3 answer, judge result or replay result existed at the time of writing (at the last movement file: staged step 20556, baseline step 19752, of 25,920).
 
 1. **R3** is undecidable as written (pivotal events I5, M5, K5 are day-2 events; no pivotal question exists at distance 2). The pivotal-event recall at the actual distance is shown as a separate observation labelled "not pre-registered".
 2. **R1 and R2** are undecidable under pre-registration section 6 (n = 1 question each, below 3). Observed values are shown, not scored.
