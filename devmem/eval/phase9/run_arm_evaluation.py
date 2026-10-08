@@ -27,8 +27,9 @@ def _load_persona(sim_dir: Path, name: str):
     return Persona(name, str(sim_dir / "personas" / name))
 
 
-def _copy(src: Path, tmp: Path) -> Path:
-    d = tmp / src.name
+def _copy(src: Path, tmp: Path, label: str = "") -> Path:
+    """Copy a checkpoint folder into tmp/<label>/<name>. The label keeps two sources with the same folder name (both day-2 sources are called "sim") apart."""
+    d = tmp / label / src.name
     shutil.copytree(src, d)
     return d
 
@@ -43,7 +44,7 @@ def run(arm: str, day1: Path, day3: Path, call_fn, out_dir: Path = None, stub: b
     tmp = Path(tempfile.mkdtemp(prefix=f"p9_eval_{arm}_"))
     res = {"arm": arm, "label": ("Phase 9 evaluation of one arm; single run per arm" if day == 3 else f"INTERIM day-{day} variant (questions up to day {day} asked on the day-{day} copy; not the pre-registered primary); single run per arm"), "day": day, "tag": tag, "checkpoint_source": source_note, "stub": stub, "started": time.strftime("%Y-%m-%d %H:%M:%S"), "recall": [], "probe_day1": [], "probe_day3": [], "judge": []}
     try:
-        d1, d3 = _copy(day1, tmp), _copy(day3, tmp)
+        d1, d3 = _copy(day1, tmp, "day1"), _copy(day3, tmp, "checkpoint")
         meta3 = json.loads((d3 / "reverie" / "meta.json").read_text(encoding="utf-8"))
         res["day3_checkpoint"] = {"step": meta3["step"], "curr_time": meta3["curr_time"]}
         res["day1_checkpoint"] = {"step": json.loads((d1 / "reverie" / "meta.json").read_text(encoding="utf-8"))["step"]}

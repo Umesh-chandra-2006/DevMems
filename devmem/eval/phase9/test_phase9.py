@@ -386,6 +386,21 @@ class TestReplayRunner(unittest.TestCase):
             self.assertEqual(calls, [])                                                   # every reply came from the cache: a re-run makes no call
 
 
+class TestArmEvaluationSameNamedSources(unittest.TestCase):
+    def test_two_checkpoint_sources_with_the_same_folder_name_do_not_collide(self):
+        # the day-2 evaluation of an arm has day 1 = <interim_day1>/<arm>/sim and the checkpoint = <interim_day2>/<arm>/sim: both folders are called "sim"
+        with tempfile.TemporaryDirectory() as t:
+            roots = []
+            for n, step in (("a", 5130), ("b", 13770)):
+                sim = Path(t) / n / "sim"
+                (sim / "reverie").mkdir(parents=True)
+                (sim / "reverie" / "meta.json").write_text(json.dumps({"step": step, "curr_time": "February 14, 2023, 14:15:00", "persona_names": ["Isabella Rodriguez"]}))
+                roots.append(sim)
+            res = run_arm_evaluation.run("baseline", roots[0], roots[1], lambda p, purpose: "consistent" if purpose == "eval_judge" else "x", load_persona=lambda d, n: None,
+                                         retrieve_fn=lambda p, q, k: ["m"], stub=True, day=2)
+            self.assertEqual((res["day1_checkpoint"]["step"], res["day3_checkpoint"]["step"]), (5130, 13770))
+
+
 class TestDiagnostics(unittest.TestCase):
     def test_cluster_quality_on_the_stop3_log(self):
         r = diagnostics.cluster_quality(ROOT / "docs" / "phase6_stop3_artifacts" / "consolidation_log.jsonl")
