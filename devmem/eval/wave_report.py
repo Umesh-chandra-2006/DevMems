@@ -40,7 +40,6 @@ def main():
     for arm in ("baseline", "staged"):
         w = waves(arm, a.since)
         done = [x for x in w if "seconds" in x]
-        halves = [[x for x in done if x["start_ist"] < mid] for mid in (None,)]
         res[arm] = {"waves": len(w), "waited_seconds_total": round(sum(x["seconds"] for x in done)), "mean_wave_seconds": round(sum(x["seconds"] for x in done) / len(done), 1) if done else None,
                     "waves_per_hour": round(len(w) / hours, 2), "list": w}
     print(json.dumps({"since": a.since, "hours": round(hours, 2), **res}, indent=1))
