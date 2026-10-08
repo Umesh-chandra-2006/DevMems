@@ -1,0 +1,323 @@
+{
+ "method": "Offline count of the upstream FAIL-SAFE values (`get_fail_safe` in persona/prompt_template/run_gpt_prompt.py) that reached the simulation, per function and per arm, from the delivered-reply\nlog (`raw_replies.jsonl`: one row per model attempt, in call order). Upstream calls the model up to `repeat` times (5 for `safe_generate_response`, 3 for\n`ChatGPT_safe_generate_response`) and returns the fail-safe value when no attempt passes its validator. Consecutive rows with the same agent and the same prompt are the attempts of one call.",
+ "arms": {
+  "baseline": {
+   "by_function": {
+    "task_decomp": {
+     "function": "run_gpt_prompt_task_decomp",
+     "attempts_allowed": 5,
+     "fail_safe_value": "asleep",
+     "then": "a task is decomposed as 'asleep'",
+     "calls": 37,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "action_location_sector": {
+     "function": "run_gpt_prompt_action_sector",
+     "attempts_allowed": 5,
+     "fail_safe_value": "kitchen",
+     "then": "upstream then replaces a sector that is not accessible by the persona's living area",
+     "calls": 349,
+     "certain": 3,
+     "ambiguous": 0,
+     "first_rows": [
+      3794,
+      7550,
+      7563
+     ],
+     "certain_rate": 0.0086
+    },
+    "action_location_object": {
+     "function": "run_gpt_prompt_action_arena",
+     "attempts_allowed": 5,
+     "fail_safe_value": "kitchen",
+     "then": "no check: an arena that does not exist in the sector raises KeyError (the staged crash of 2026-10-08)",
+     "calls": 349,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "action_object": {
+     "function": "run_gpt_prompt_action_game_object",
+     "attempts_allowed": 5,
+     "fail_safe_value": "bed",
+     "then": "upstream then replaces an object that is not in the arena by a random one of its objects",
+     "calls": 342,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "generate_pronunciatio": {
+     "function": "run_gpt_prompt_pronunciatio",
+     "attempts_allowed": 3,
+     "fail_safe_value": "emoji",
+     "then": "a default emoji",
+     "calls": 698,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "generate_event_triple": {
+     "function": "run_gpt_prompt_event_triple / act_obj_event_triple",
+     "attempts_allowed": 5,
+     "fail_safe_value": "(name, is, idle)",
+     "then": "the event is stored as idle",
+     "calls": 1356,
+     "certain": 2,
+     "ambiguous": 0,
+     "first_rows": [
+      4845,
+      5700
+     ],
+     "certain_rate": 0.0015
+    },
+    "poignancy_event": {
+     "function": "run_gpt_prompt_event_poignancy",
+     "attempts_allowed": 3,
+     "fail_safe_value": "4",
+     "then": "score 4 (baseline only; the staged scorer has its own parser)",
+     "calls": 4059,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "decide_to_talk": {
+     "function": "run_gpt_prompt_decide_to_talk",
+     "attempts_allowed": 5,
+     "fail_safe_value": "yes",
+     "then": "the decision to start a conversation is 'yes'",
+     "calls": 14,
+     "certain": 14,
+     "ambiguous": 0,
+     "first_rows": [
+      175,
+      529,
+      1205
+     ],
+     "certain_rate": 1.0
+    },
+    "iterative_convo": {
+     "function": "run_gpt_prompt_generate_next_convo_line",
+     "attempts_allowed": 5,
+     "fail_safe_value": "a fixed line",
+     "then": "a fixed utterance",
+     "calls": 54,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "new_decomp_schedule": {
+     "function": "run_gpt_prompt_new_decomp_schedule",
+     "attempts_allowed": 5,
+     "fail_safe_value": "the unchanged schedule slice",
+     "then": "the schedule is not revised",
+     "calls": 44,
+     "certain": 17,
+     "ambiguous": 0,
+     "first_rows": [
+      190,
+      545,
+      550
+     ],
+     "certain_rate": 0.3864
+    },
+    "decide_to_react": {
+     "function": "run_gpt_prompt_decide_to_react",
+     "attempts_allowed": 5,
+     "fail_safe_value": "3",
+     "then": "option 3",
+     "calls": 27,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "generate_focal_pt": {
+     "function": "run_gpt_prompt_focal_pt",
+     "attempts_allowed": 3,
+     "fail_safe_value": "generic questions",
+     "then": "generic focal points",
+     "calls": 82,
+     "certain": 13,
+     "ambiguous": 28,
+     "first_rows": [
+      629,
+      686,
+      2157
+     ],
+     "certain_rate": 0.1585
+    },
+    "insight_and_evidence": {
+     "function": "run_gpt_prompt_insight_and_guidance",
+     "attempts_allowed": 5,
+     "fail_safe_value": "generic insights",
+     "then": "generic insights",
+     "calls": 121,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    }
+   },
+   "upstream_function_calls": 7532,
+   "certain_fail_safe_calls": 49,
+   "ambiguous_calls": 28,
+   "rate_of_upstream_calls_certain": 0.0065,
+   "rate_of_upstream_calls_certain_plus_ambiguous": 0.0102,
+   "all_attempt_rows_in_log": 8269,
+   "rate_of_all_rows_certain": 0.0059
+  },
+  "staged": {
+   "by_function": {
+    "task_decomp": {
+     "function": "run_gpt_prompt_task_decomp",
+     "attempts_allowed": 5,
+     "fail_safe_value": "asleep",
+     "then": "a task is decomposed as 'asleep'",
+     "calls": 44,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "action_location_sector": {
+     "function": "run_gpt_prompt_action_sector",
+     "attempts_allowed": 5,
+     "fail_safe_value": "kitchen",
+     "then": "upstream then replaces a sector that is not accessible by the persona's living area",
+     "calls": 379,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "action_location_object": {
+     "function": "run_gpt_prompt_action_arena",
+     "attempts_allowed": 5,
+     "fail_safe_value": "kitchen",
+     "then": "no check: an arena that does not exist in the sector raises KeyError (the staged crash of 2026-10-08)",
+     "calls": 379,
+     "certain": 2,
+     "ambiguous": 0,
+     "first_rows": [
+      7540,
+      7550
+     ],
+     "certain_rate": 0.0053
+    },
+    "action_object": {
+     "function": "run_gpt_prompt_action_game_object",
+     "attempts_allowed": 5,
+     "fail_safe_value": "bed",
+     "then": "upstream then replaces an object that is not in the arena by a random one of its objects",
+     "calls": 364,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "generate_pronunciatio": {
+     "function": "run_gpt_prompt_pronunciatio",
+     "attempts_allowed": 3,
+     "fail_safe_value": "emoji",
+     "then": "a default emoji",
+     "calls": 752,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "generate_event_triple": {
+     "function": "run_gpt_prompt_event_triple / act_obj_event_triple",
+     "attempts_allowed": 5,
+     "fail_safe_value": "(name, is, idle)",
+     "then": "the event is stored as idle",
+     "calls": 804,
+     "certain": 1,
+     "ambiguous": 0,
+     "first_rows": [
+      5452
+     ],
+     "certain_rate": 0.0012
+    },
+    "poignancy_event": {
+     "function": "run_gpt_prompt_event_poignancy",
+     "attempts_allowed": 3,
+     "fail_safe_value": "4",
+     "then": "score 4 (baseline only; the staged scorer has its own parser)",
+     "calls": 4017,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "decide_to_talk": {
+     "function": "run_gpt_prompt_decide_to_talk",
+     "attempts_allowed": 5,
+     "fail_safe_value": "yes",
+     "then": "the decision to start a conversation is 'yes'",
+     "calls": 14,
+     "certain": 14,
+     "ambiguous": 0,
+     "first_rows": [
+      172,
+      472,
+      1024
+     ],
+     "certain_rate": 1.0
+    },
+    "iterative_convo": {
+     "function": "run_gpt_prompt_generate_next_convo_line",
+     "attempts_allowed": 5,
+     "fail_safe_value": "a fixed line",
+     "then": "a fixed utterance",
+     "calls": 50,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    },
+    "new_decomp_schedule": {
+     "function": "run_gpt_prompt_new_decomp_schedule",
+     "attempts_allowed": 5,
+     "fail_safe_value": "the unchanged schedule slice",
+     "then": "the schedule is not revised",
+     "calls": 34,
+     "certain": 13,
+     "ambiguous": 0,
+     "first_rows": [
+      488,
+      493,
+      1501
+     ],
+     "certain_rate": 0.3824
+    },
+    "decide_to_react": {
+     "function": "run_gpt_prompt_decide_to_react",
+     "attempts_allowed": 5,
+     "fail_safe_value": "3",
+     "then": "option 3",
+     "calls": 26,
+     "certain": 0,
+     "ambiguous": 0,
+     "first_rows": [],
+     "certain_rate": 0.0
+    }
+   },
+   "upstream_function_calls": 6863,
+   "certain_fail_safe_calls": 30,
+   "ambiguous_calls": 0,
+   "rate_of_upstream_calls_certain": 0.0044,
+   "rate_of_upstream_calls_certain_plus_ambiguous": 0.0044,
+   "all_attempt_rows_in_log": 7562,
+   "rate_of_all_rows_certain": 0.004
+  }
+ }
+}
