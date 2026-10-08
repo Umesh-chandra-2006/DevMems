@@ -456,6 +456,12 @@ class TestArmHealthKnowsAWaitingArm(unittest.TestCase):
             self.assertEqual(arm_health._waiting(rd), "WAITING_NETWORK")
             (rd / "outage_log.jsonl").write_text(json.dumps({"event": "outage_start"}) + "\n" + json.dumps({"event": "outage_end", "seconds": 5}) + "\n")
             self.assertIsNone(arm_health._waiting(rd))
+            (rd / "rate_limit_log.jsonl").write_text(json.dumps({"event": "rate_limit_backoff"}) + "
+")
+            self.assertEqual(arm_health._waiting(rd), "WAITING_RATE_LIMIT")                    # a backoff in progress is a deliberate wait, not a dead arm
+            (rd / "rate_limit_log.jsonl").write_text(json.dumps({"event": "rate_limit_end", "seconds": 5}) + "
+")
+            self.assertIsNone(arm_health._waiting(rd))
             wake = (datetime.utcnow() + timedelta(hours=3)).isoformat()
             (rd / "quota_pauses.jsonl").write_text(json.dumps({"event": "pause", "wake": wake}) + "\n")
             self.assertEqual(arm_health._waiting(rd), "PAUSED_QUOTA")

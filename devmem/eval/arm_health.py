@@ -44,6 +44,9 @@ def _waiting(run_dir: Path):
     o = _last(run_dir / "outage_log.jsonl")
     if o and o.get("event") == "outage_start":
         return "WAITING_NETWORK"
+    rl = _last(run_dir / "rate_limit_log.jsonl")
+    if rl and rl.get("event") in ("rate_limit_start", "rate_limit_backoff"):
+        return "WAITING_RATE_LIMIT"
     pz = _last(run_dir / "pause_log.jsonl")
     if pz and pz.get("event") == "pause_start":
         return "PAUSED_BY_OPERATOR"
@@ -92,7 +95,7 @@ def main(argv=None) -> int:
     procs = _processes()
     rows = [check(arm, a.pilot, a.stale_seconds, procs) for arm in ("baseline", "staged")]
     print(json.dumps(rows, indent=1))
-    return 0 if all(r["verdict"] in ("RUNNING", "FINISHED", "PAUSED_QUOTA", "WAITING_NETWORK", "PAUSED_BY_OPERATOR") for r in rows) else 1
+    return 0 if all(r["verdict"] in ("RUNNING", "FINISHED", "PAUSED_QUOTA", "WAITING_NETWORK", "PAUSED_BY_OPERATOR", "WAITING_RATE_LIMIT") for r in rows) else 1
 
 
 if __name__ == "__main__":

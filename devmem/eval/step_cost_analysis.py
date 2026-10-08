@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 SIM = ROOT / "reverie" / "environment" / "frontend_server" / "storage"
 DB = ROOT / "devmem" / "router" / "usage_log.db"
 LAUNCH_UTC = "2026-10-07 10:27:00"
-WINDOWS = {"day1_morning_06_to_10": (2160, 3600), "day1_afternoon_10_to_14": (3600, 5040), "day2_06_to_08": (10800, 11520)}
+WINDOWS = {"day1_morning_06_to_10": (2160, 3600), "day1_afternoon_10_to_14": (3600, 5040), "day2_06_to_08": (10800, 11520), "day3_06_to_08": (19440, 20160)}
 
 
 def step_times(arm):
@@ -63,7 +63,7 @@ def analyse(arm, last_minutes=60, dup_minutes=120):
             steps = b - a
             top = max(st)
             if top < b:
-                steps = max(0, top - a + 1)
+                steps = max(0, top - a + 1)      # a window the arm has not finished (or reached) yet
         by = collections.defaultdict(lambda: [0, 0, 0])
         for k in sel:
             e = by[rs[k][1]]

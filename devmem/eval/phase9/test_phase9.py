@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, run_arm_evaluation, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -275,6 +275,25 @@ class TestEvalKeyGuard(unittest.TestCase):
             names = [k["env"] for k in cfg["providers"][0]["keys"]]
             self.assertEqual(set(names), set(run_arm.ARM_KEYS["staged"]))
             self.assertTrue(all(n.startswith("GEMINI_KEY_") for n in names))
+
+
+class TestArmEvaluationDriver(unittest.TestCase):
+    def test_counts_purposes_and_pairs_with_stubs_and_no_live_call(self):
+        with tempfile.TemporaryDirectory() as t:
+            for n, step in (("d1", 5130), ("d3", 22410)):
+                (Path(t) / n / "reverie").mkdir(parents=True)
+                (Path(t) / n / "reverie" / "meta.json").write_text(json.dumps({"step": step, "curr_time": "February 13, 2023, 14:15:00", "persona_names": ["Isabella Rodriguez", "Maria Lopez", "Klaus Mueller"]}))
+            seen = []
+
+            def call(prompt, purpose):
+                seen.append(purpose)
+                return "consistent" if purpose == "eval_judge" else "A blue van."
+            res = run_arm_evaluation.run("staged", Path(t) / "d1", Path(t) / "d3", call, load_persona=lambda d, n: None, retrieve_fn=lambda p, q, k: ["m1", "m2"],
+                                         out_dir=Path(t) / "out", stub=True)
+            self.assertEqual(res["counts"], {"recall": 39, "probe_day1": 18, "probe_day3": 18, "judge_pairs": 18, "judge_parse_failures": 0})
+            self.assertEqual({k: seen.count(k) for k in set(seen)}, {"eval_recall": 39, "eval_probe": 36, "eval_judge": 18})          # 93 calls per arm
+            self.assertTrue((Path(t) / "out" / "evaluation.json").exists())
+            self.assertEqual((res["day1_checkpoint"]["step"], res["day3_checkpoint"]["step"]), (5130, 22410))
 
 
 class TestDiagnostics(unittest.TestCase):
