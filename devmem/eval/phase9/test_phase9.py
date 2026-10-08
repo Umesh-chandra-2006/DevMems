@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, run_arm_evaluation, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, interim_report, run_arm_evaluation, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -294,6 +294,29 @@ class TestArmEvaluationDriver(unittest.TestCase):
             self.assertEqual({k: seen.count(k) for k in set(seen)}, {"eval_recall": 39, "eval_probe": 36, "eval_judge": 18})          # 93 calls per arm
             self.assertTrue((Path(t) / "out" / "evaluation.json").exists())
             self.assertEqual((res["day1_checkpoint"]["step"], res["day3_checkpoint"]["step"]), (5130, 22410))
+
+
+class TestInterimReport(unittest.TestCase):
+    def test_utc_conversion_and_markdown_without_interpretation(self):
+        self.assertEqual(interim_report._utc("2026-10-08 06:39:56"), "2026-10-08 01:09:56")
+        arm = {"checkpoint": {"step": 13770, "sim_clock": "2023-02-14 14:15:00", "made_at": "2026-10-08 13:30:03", "exact_first_autosave": True},
+               "E1": {"raw_by_purpose": {"planning": 10}, "unique_by_purpose": {"planning": 8}, "raw_total": 10, "unique_total": 8, "restarts_with_a_replay_pass": [{"restart_ist": "x", "replayed_second_pass_calls": 2}]},
+               "E2_prompt_tokens": {"mean_tokens_in": 100.0, "calls": 3}, "E3_consolidated_fraction": {"fraction": 0.1, "consolidated": 1, "entries": 10},
+               "sweep_markers_done_nights_per_agent": {"A": [0, 1]}, "summaries_and_traits": {"semantic_summaries": 2, "identity_traits": 1}}
+        rep = {"day": 2, "arms": {"baseline": {"primary": {"status": "copy does not exist yet"}, "secondary_2345": {"status": "copy does not exist yet"}},
+                                  "staged": {"primary": arm, "secondary_2345": {"status": "copy does not exist yet"}}}}
+        md = interim_report.markdown(rep)
+        self.assertIn("step 13770, sim 2023-02-14 14:15:00", md)
+        self.assertIn("10 / 8", md)
+        self.assertIn("not available", md)
+        self.assertIn("Neither copy exists yet.", md)
+        for word in ("therefore", "because", "suggests", "shows that", "proves"):
+            self.assertNotIn(word, md.lower())
+
+    def test_restart_table_has_no_future_replay_pass_before_launch(self):
+        for arm, rows in interim_report.RESTARTS.items():
+            for ist, step in rows:
+                self.assertGreater(ist, interim_report.LAUNCH_IST)
 
 
 class TestDiagnostics(unittest.TestCase):
