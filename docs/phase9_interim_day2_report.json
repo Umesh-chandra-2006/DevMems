@@ -1,0 +1,298 @@
+{
+ "day": 2,
+ "arms": {
+  "baseline": {
+   "primary": {
+    "label": "interim, step 13770, sim clock 2023-02-14 14:15:00",
+    "checkpoint": {
+     "label": "day2_primary_interim",
+     "step": 13770,
+     "sim_clock": "2023-02-14 14:15:00",
+     "made_at": "2026-10-08 17:34:49",
+     "exact_first_autosave": true
+    },
+    "E1": {
+     "raw_by_purpose": {
+      "dialogue": 599,
+      "importance_scoring": 3781,
+      "planning": 2978,
+      "reflection": 113
+     },
+     "raw_total": 7471,
+     "replay_pass_removed_by_purpose": {
+      "dialogue": 6,
+      "importance_scoring": 89,
+      "planning": 68,
+      "reflection": 6
+     },
+     "removed_total": 169,
+     "unique_by_purpose": {
+      "dialogue": 593,
+      "importance_scoring": 3692,
+      "planning": 2910,
+      "reflection": 107
+     },
+     "unique_total": 7302,
+     "restarts_with_a_replay_pass": [
+      {
+       "restart_ist": "2026-10-08 00:53:32",
+       "prekill_step": 3599,
+       "replayed_second_pass_calls": 0,
+       "note": "the pre-kill last step was not rewritten: no replay pass"
+      },
+      {
+       "restart_ist": "2026-10-08 16:14:25",
+       "prekill_step": 13306,
+       "rewritten_until_ist": "2026-10-08 16:40:24",
+       "replayed_second_pass_calls": 169
+      }
+     ]
+    },
+    "E2_prompt_tokens": {
+     "condition": "baseline",
+     "purpose": "importance_scoring",
+     "calls": 3781,
+     "mean_tokens_in": 418.5,
+     "window_utc": [
+      "2026-10-07 10:27:47",
+      "2026-10-08 12:04:49"
+     ]
+    },
+    "E3_consolidated_fraction": {
+     "entries": 0,
+     "consolidated": 0,
+     "fraction": 0.0,
+     "note": "no memory database: the baseline has no Stage 3, so the fraction is 0 by construction"
+    },
+    "sweep_markers_done_nights_per_agent": {}
+   },
+   "secondary_2345": {
+    "label": "interim, step 17190, sim clock 2023-02-14 23:45:00",
+    "checkpoint": {
+     "label": "day2_secondary_2345",
+     "step": 17190,
+     "sim_clock": "2023-02-14 23:45:00",
+     "made_at": "2026-10-08 17:47:42",
+     "exact_first_autosave": true
+    },
+    "E1": {
+     "raw_by_purpose": {
+      "dialogue": 602,
+      "importance_scoring": 3781,
+      "planning": 2999,
+      "reflection": 113
+     },
+     "raw_total": 7495,
+     "replay_pass_removed_by_purpose": {
+      "dialogue": 6,
+      "importance_scoring": 89,
+      "planning": 68,
+      "reflection": 6
+     },
+     "removed_total": 169,
+     "unique_by_purpose": {
+      "dialogue": 596,
+      "importance_scoring": 3692,
+      "planning": 2931,
+      "reflection": 107
+     },
+     "unique_total": 7326,
+     "restarts_with_a_replay_pass": [
+      {
+       "restart_ist": "2026-10-08 00:53:32",
+       "prekill_step": 3599,
+       "replayed_second_pass_calls": 0,
+       "note": "the pre-kill last step was not rewritten: no replay pass"
+      },
+      {
+       "restart_ist": "2026-10-08 16:14:25",
+       "prekill_step": 13306,
+       "rewritten_until_ist": "2026-10-08 16:40:24",
+       "replayed_second_pass_calls": 169
+      }
+     ]
+    },
+    "E2_prompt_tokens": {
+     "condition": "baseline",
+     "purpose": "importance_scoring",
+     "calls": 3781,
+     "mean_tokens_in": 418.5,
+     "window_utc": [
+      "2026-10-07 10:27:47",
+      "2026-10-08 12:17:42"
+     ]
+    },
+    "E3_consolidated_fraction": {
+     "entries": 0,
+     "consolidated": 0,
+     "fraction": 0.0,
+     "note": "no memory database: the baseline has no Stage 3, so the fraction is 0 by construction"
+    },
+    "sweep_markers_done_nights_per_agent": {}
+   }
+  },
+  "staged": {
+   "primary": {
+    "label": "interim, step 13770, sim clock 2023-02-14 14:15:00",
+    "checkpoint": {
+     "label": "day2_primary_interim",
+     "step": 13770,
+     "sim_clock": "2023-02-14 14:15:00",
+     "made_at": "2026-10-08 13:30:03",
+     "exact_first_autosave": true
+    },
+    "E1": {
+     "raw_by_purpose": {
+      "consolidation_summary": 36,
+      "dialogue": 474,
+      "identity_trait": 14,
+      "importance_scoring": 3331,
+      "planning": 2181,
+      "reflection": 6
+     },
+     "raw_total": 6042,
+     "replay_pass_removed_by_purpose": {
+      "dialogue": 3,
+      "importance_scoring": 8,
+      "planning": 23
+     },
+     "removed_total": 34,
+     "unique_by_purpose": {
+      "consolidation_summary": 36,
+      "dialogue": 471,
+      "identity_trait": 14,
+      "importance_scoring": 3323,
+      "planning": 2158,
+      "reflection": 6
+     },
+     "unique_total": 6008,
+     "restarts_with_a_replay_pass": [
+      {
+       "restart_ist": "2026-10-08 00:54:01",
+       "prekill_step": 4012,
+       "rewritten_until_ist": "2026-10-08 01:00:29",
+       "replayed_second_pass_calls": 34
+      }
+     ]
+    },
+    "E2_prompt_tokens": {
+     "condition": "staged",
+     "purpose": "importance_scoring",
+     "calls": 3331,
+     "mean_tokens_in": 572.3,
+     "window_utc": [
+      "2026-10-07 10:27:47",
+      "2026-10-08 08:00:03"
+     ]
+    },
+    "E3_consolidated_fraction": {
+     "entries": 3901,
+     "consolidated": 380,
+     "fraction": 0.0974
+    },
+    "sweep_markers_done_nights_per_agent": {
+     "Isabella Rodriguez": [
+      0,
+      1,
+      2
+     ],
+     "Maria Lopez": [
+      0,
+      1,
+      2
+     ],
+     "Klaus Mueller": [
+      0,
+      1,
+      2
+     ]
+    },
+    "summaries_and_traits": {
+     "semantic_summaries": 14,
+     "identity_traits": 13
+    }
+   },
+   "secondary_2345": {
+    "label": "interim, step 17190, sim clock 2023-02-14 23:45:00",
+    "checkpoint": {
+     "label": "day2_secondary_2345",
+     "step": 17190,
+     "sim_clock": "2023-02-14 23:45:00",
+     "made_at": "2026-10-08 13:46:45",
+     "exact_first_autosave": true
+    },
+    "E1": {
+     "raw_by_purpose": {
+      "consolidation_summary": 36,
+      "dialogue": 476,
+      "identity_trait": 14,
+      "importance_scoring": 3331,
+      "planning": 2195,
+      "reflection": 6
+     },
+     "raw_total": 6058,
+     "replay_pass_removed_by_purpose": {
+      "dialogue": 3,
+      "importance_scoring": 8,
+      "planning": 23
+     },
+     "removed_total": 34,
+     "unique_by_purpose": {
+      "consolidation_summary": 36,
+      "dialogue": 473,
+      "identity_trait": 14,
+      "importance_scoring": 3323,
+      "planning": 2172,
+      "reflection": 6
+     },
+     "unique_total": 6024,
+     "restarts_with_a_replay_pass": [
+      {
+       "restart_ist": "2026-10-08 00:54:01",
+       "prekill_step": 4012,
+       "rewritten_until_ist": "2026-10-08 01:00:29",
+       "replayed_second_pass_calls": 34
+      }
+     ]
+    },
+    "E2_prompt_tokens": {
+     "condition": "staged",
+     "purpose": "importance_scoring",
+     "calls": 3331,
+     "mean_tokens_in": 572.3,
+     "window_utc": [
+      "2026-10-07 10:27:47",
+      "2026-10-08 08:16:45"
+     ]
+    },
+    "E3_consolidated_fraction": {
+     "entries": 3901,
+     "consolidated": 380,
+     "fraction": 0.0974
+    },
+    "sweep_markers_done_nights_per_agent": {
+     "Isabella Rodriguez": [
+      0,
+      1,
+      2
+     ],
+     "Maria Lopez": [
+      0,
+      1,
+      2
+     ],
+     "Klaus Mueller": [
+      0,
+      1,
+      2
+     ]
+    },
+    "summaries_and_traits": {
+     "semantic_summaries": 14,
+     "identity_traits": 13
+    }
+   }
+  }
+ },
+ "built_at": "2026-10-08 18:18:00"
+}
