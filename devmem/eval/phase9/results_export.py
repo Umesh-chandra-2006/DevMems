@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from devmem.eval import wave_report
-from devmem.eval.phase9 import grader, interim_day1, interim_report
+from devmem.eval.phase9 import d2_reproduction, grader, interim_day1, interim_report
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 ST = ROOT / "devmem" / "storage"
@@ -185,7 +185,7 @@ def verdict(outcome: str, reason: str, **numbers) -> Dict[str, Any]:
     return {"outcome": outcome, "reason": reason, "numbers": numbers}
 
 
-def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, Any], grader_val: Dict[str, Any], m2: Dict[str, Any], replay: Optional[dict], d1: Dict[str, Any]) -> List[Dict[str, Any]]:
+def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, Any], grader_val: Dict[str, Any], m2: Dict[str, Any], replay: Optional[dict], d1: Dict[str, Any], d2: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
     P = []
     b, s = arms["baseline"], arms["staged"]
     # E1, E2, E3 (always decidable from the copies)
@@ -241,7 +241,8 @@ def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, An
         if all(k in bc for k in ("staged_own", "filler", "baseline")):
             dist = lambda k: abs(bc[k]["mean"] - bc["baseline"]["mean"])
             P.append({"id": "S-filler", "prediction": "neutral filler moves scores toward the baseline (closer to baseline than staged is)", **verdict("right" if dist("filler") < dist("staged_own") else "wrong", "over the whole sample, all personas pooled", filler_mean=bc["filler"]["mean"], baseline_mean=bc["baseline"]["mean"], staged_mean=bc["staged_own"]["mean"])})
-    P.append({"id": "S-mismatch", "prediction": "mismatch priors move scores toward that persona's direction", **verdict("undecidable", "the registered text gives no sign for Wolfgang Schulz's direction, so no pre-registered threshold exists; the observed means are in the replay table")})
+    mm = ((replay or {}).get("summary", {}).get("by_condition") or {}).get("mismatch")
+    P.append({"id": "S-mismatch", "prediction": "mismatch priors move scores toward that persona's direction", **verdict("undecidable", "PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only", observed_mismatch_mean=(mm or {}).get("mean"))})
     # coherence: no directional prediction
     P.append({"id": "M2", "prediction": "no directional prediction (two-sided, only if the judge calibration is at least 80 percent)", **verdict("undecidable" if not m2.get("available") else "no prediction", m2.get("note", "reported two-sided"), **({k: m2[k] for k in ("calibration_accuracy", "coherence_interpretable")} if m2.get("available") else {}))})
     # diagnostics
@@ -251,7 +252,11 @@ def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, An
         P.append({"id": "D-1", "prediction": "at least one third of Stage 4 traits closer to the priors text than to their sources", **verdict("right" if frac >= 1 / 3 else "wrong", "cached-embedding cosines; a diagnostic", traits=tr, available=d1["available"], flagged=d1["flagged"], fraction=round(frac, 3))})
     else:
         P.append({"id": "D-1", "prediction": "at least one third of Stage 4 traits closer to the priors text than to their sources", **verdict("undecidable", f"fewer than 3 traits with cached embeddings (traits {tr}, available {d1.get('available', 0)})", **d1)})
-    P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the three nights", **verdict("undecidable", "the consolidation log records cluster sizes, not the cosines at which entries merged; the metric was never logged, and a re-clustering offline from cached embeddings is not built (open question to the PM)")})
+    if d2 and d2.get("agents"):
+        sc = d2_reproduction.score(d2)
+        P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering)", **verdict(sc["outcome"], sc["reason"], **sc["numbers"])})
+    else:
+        P.append({"id": "D-2", "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0", **verdict("undecidable", "the offline reproduction of the recorded clustering is not available")})
     return P
 
 
@@ -297,6 +302,28 @@ def d1_provenance(memory_db: Path) -> Dict[str, Any]:
     return {"traits": n, "available": avail, "flagged": flagged, "rows": rows}
 
 
+def purpose_tag_audit() -> Dict[str, Any]:
+    """The router ledger's `purpose` of the upstream calls comes from a keyword heuristic on the prompt text (gpt_structure._infer_purpose): a prompt containing the word "reflection"
+    (for example an action named "checking her reflection") is tagged `reflection`. For the reflection tag, count the delivered-reply rows whose prompt is a real reflection prompt
+    (focal-point questions or insights) against the other rows, per arm. Not changed in the live arms (PM instruction); reported so the by-purpose figures are read correctly."""
+    out: Dict[str, Any] = {}
+    for arm in ARMS:
+        tot = real = 0
+        examples = []
+        for r in _jsonl(ST / f"p7_{arm}" / "raw_replies.jsonl"):
+            if r.get("purpose") != "reflection":
+                continue
+            tot += 1
+            low = str(r.get("prompt", "")).lower()
+            if "salient high-level questions" in low or "high-level insights" in low or ("insights" in low and "statements" in low):
+                real += 1
+            elif len(examples) < 3:
+                examples.append(str(r.get("prompt", ""))[:80])
+        out[arm] = {"reflection_tagged_rows_in_delivered_log": tot, "real_reflection_prompts": real, "keyword_false_matches": tot - real, "false_match_examples": examples}
+    out["note"] = "by-purpose ledger figures use the keyword tag; only the reflection tag is audited here; the totals per arm do not depend on the tag"
+    return out
+
+
 def sweeps_per_night(memory_db: Path) -> Dict[str, Any]:
     if not Path(memory_db).exists():
         return {}
@@ -326,18 +353,28 @@ def build(day: int, interim_root: Path = None) -> Dict[str, Any]:
     complete = day == 3 and finished and all(ev[a] for a in ARMS) and bool(rep) and m2.get("available")
     lab = f"INTERIM day {day} (dry run of the final export)" if day == 2 else ("FINAL day-3 export" if complete else "day-3 export, PARTIAL: " + "; ".join(x for x in (
         "an arm has not finished" if not finished else "", "evaluation answers missing" if not all(ev[a] for a in ARMS) else "", "replay controls missing" if not rep else "", "judge results or calibration missing" if not m2.get("available") else "") if x))
+    try:
+        sdb = root / "staged" / "memory.db"
+        conn = sqlite3.connect(f"file:{sdb.as_posix()}?mode=ro", uri=True)
+        present = {(r[0], r[1]) for r in conn.execute("SELECT agent_id, night FROM consolidation_sweeps WHERE status='done'")}
+        conn.close()
+        logrows = [x for x in _jsonl(ST / "p7_staged" / "consolidation_log.jsonl") if (x["agent"], x["night"]) in present]
+        d2 = d2_reproduction.reproduce(sdb, logrows, d2_reproduction.persona_vec_fn(SIM / "p7_staged" / "personas"))
+        d2["verdict"] = d2_reproduction.score(d2)
+    except Exception as exc:
+        d2 = {"available": False, "note": f"{type(exc).__name__}: {str(exc)[:120]}"}
     out = {"label": lab, "day": day, "built_at": time.strftime("%Y-%m-%d %H:%M:%S"), "arm_states": status, "single_run_per_arm": True, "agents": 3,
            "arms": arms, "run_conditions": {a: run_conditions(a, (arms[a] or {}).get("checkpoint", {}).get("step")) for a in ARMS},
            "sweep_markers_per_agent_and_night": {"staged": sweeps_per_night(root / "staged" / "memory.db"), "baseline": "none by design (no Stage 3)"},
            "recall": {"rows": recall["rows"], "excluded_question_ids": recall["excluded_question_ids"], "grader_validation": {k: gv[k] for k in ("items_checked", "item_agreement", "answers", "answer_agreement", "interpretable")},
                       "grader_disagreements": gv["disagreements"], "bootstrap_staged_minus_baseline": bootstrap(recall["rows"]),
-                      "pivotal_observed_not_registered": _pool(recall["rows"], lambda r: r["event_id"] in PIVOTAL), "definition_notes": [
+                      "pivotal_observed_not_pre_registered": _pool(recall["rows"], lambda r: r["event_id"] in PIVOTAL), "definition_notes": [
                           "R3 as registered says distance 2, but I5, M5 and K5 are day-2 events: at the day-3 checkpoint their distance is 1; the literal registered definition matches no question. The observed pivotal pool is shown separately.",
                           "R1 and R2 each rest on one question (n = 1 < 3): undecidable under pre-registration section 6; the observed values are shown."]},
            "coherence_M2": m2, "stage2_replay_controls": rep if rep else {"available": False, "note": "not run yet"}, "D1_provenance": d1,
-           "D2": {"available": False, "note": "merge cosines were never logged"},
+           "D2_reproduction": d2, "purpose_tag_audit": purpose_tag_audit(),
            "consolidation_log_per_agent_and_night": _jsonl(ST / "p7_staged" / "consolidation_log.jsonl"), "evaluation_calls": {a: (ev[a] or {}).get("counts") for a in ARMS}}
-    out["predictions"] = predictions(day, lab, arms, recall, gv, m2, rep, d1)
+    out["predictions"] = predictions(day, lab, arms, recall, gv, m2, rep, d1, d2)
     return out
 
 
@@ -373,8 +410,9 @@ def markdown(r: Dict[str, Any]) -> str:
         L.append(f"| {q['question_id']} | {q['agent']} | {q['type']} | {q['event_id']} | {q['distance_days']} | {q['baseline']['score'] if q['baseline'] else 'n/a'} | {q['staged']['score'] if q['staged'] else 'n/a'} | {q.get('excluded', '')} |")
     L += ["", f"Bootstrap of the mean staged-minus-baseline difference: {r['recall']['bootstrap_staged_minus_baseline']}", ""]
     L += [f"- {n}" for n in r["recall"]["definition_notes"]]
+    L += ["", "## Purpose-tag audit (reflection)", "", json.dumps(r["purpose_tag_audit"], indent=1), ""]
     L += ["", "## Coherence (M2)", "", json.dumps(r["coherence_M2"], indent=1), "", "## Stage 2 replay controls", "", json.dumps({k: v for k, v in (r["stage2_replay_controls"] or {}).items() if k != "rows"}, indent=1), "",
-          "## D-1 provenance and D-2", "", f"D-1: {r['D1_provenance'].get('traits')} traits, {r['D1_provenance'].get('available')} with cached embeddings, {r['D1_provenance'].get('flagged')} closer to the priors than to the best source. D-2: {r['D2']['note']}.", "",
+          "## D-1 provenance and D-2", "", f"D-1: {r['D1_provenance'].get('traits')} traits, {r['D1_provenance'].get('available')} with cached embeddings, {r['D1_provenance'].get('flagged')} closer to the priors than to the best source.", "", "D-2 reproduction (nights, reproduced, count): " + json.dumps({a: [(n['night'], n.get('reproduced'), n.get('d2_entries_in_range_min_cluster')) for n in v['nights']] for a, v in (r['D2_reproduction'].get('agents') or {}).items()}) + f"; verdict {r['D2_reproduction'].get('verdict')}", "",
           "## Run conditions per arm (failures, restarts, replayed spans, outage minutes, 429 wave shares)", ""]
     for a in ARMS:
         c = r["run_conditions"][a]

@@ -2,8 +2,10 @@
 Chain of the live evaluation steps that run on the STAGED arm's own key pool once the staged arm has FINISHED, in the order the PM fixed (2026-10-08):
   1. staged day-3 evaluation (recall, probes, judge; 93 calls)
   2. judge calibration (20 authored pairs)
-  3. baseline day-2 interim evaluation on the staged pool (--pool-arm staged --day 2; 78 calls; refuses unless the staged arm has finished)
+  3. baseline day-2 interim evaluation on the staged pool (--pool-arm staged --day 2; 78 calls; refuses unless the staged arm has finished), on the REPAIRED baseline day-2 copy
+     (interim_day2_repaired/baseline: the original copy has a truncated embeddings.json for two personas; see repair_copy.py)
   4. staged replay controls (stratified sample, 300 events x 3 conditions; seed 20261008)
+  5. embedding fetch for D-1 (traits, their sources, the priors) and for any entry vector D-2 found missing, gemini-embedding-001, staged embedding keys, cache first
 Each step is a separate process (the existing, tested scripts). A step whose output file already exists is skipped (re-run safe). The chain stops at the first failing step and
 records it; nothing is retried or skipped silently. One line per event goes to devmem/storage/phase9_eval/chain_status.jsonl (and stdout), so each result can be reported as it is
 written. It makes no call itself and uses no key; it waits (polling) until eval_keys.finished("staged").
@@ -27,9 +29,10 @@ PY = sys.executable
 STEPS: List[Dict] = [
     {"name": "staged_day3_evaluation", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "staged"], "output": OUT / "staged" / "evaluation.json", "cwd": BACKEND},
     {"name": "judge_calibration", "args": ["-m", "devmem.eval.phase9.run_judge_calibration", "--poll", "5"], "output": OUT / "judge_calibration.json", "cwd": ROOT},
-    {"name": "baseline_day2_evaluation_on_staged_pool", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "baseline", "--day", "2", "--pool-arm", "staged"],
+    {"name": "baseline_day2_evaluation_on_staged_pool", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "baseline", "--day", "2", "--pool-arm", "staged", "--day3", str(ROOT / "devmem" / "storage" / "interim_day2_repaired" / "baseline" / "sim")],
      "output": OUT / "baseline_day2" / "evaluation.json", "cwd": BACKEND},
     {"name": "staged_replay_controls", "args": ["-m", "devmem.eval.phase9.run_replay_controls"], "output": OUT / "replay_controls.json", "cwd": ROOT},
+    {"name": "d1_d2_embedding_fetch", "args": ["-m", "devmem.eval.phase9.fetch_embeddings"], "output": OUT / "fetch_embeddings.json", "cwd": ROOT},
 ]
 
 

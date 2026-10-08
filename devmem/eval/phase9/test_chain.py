@@ -48,7 +48,7 @@ class TestChain(unittest.TestCase):
 
     def test_the_real_step_list_follows_the_pm_order(self):
         names = [s["name"] for s in run_staged_chain.STEPS]
-        self.assertEqual(names, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool", "staged_replay_controls"])
+        self.assertEqual(names, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool", "staged_replay_controls", "d1_d2_embedding_fetch"])
         self.assertIn("--pool-arm", run_staged_chain.STEPS[2]["args"])
         self.assertIn("staged", run_staged_chain.STEPS[2]["args"])
 
