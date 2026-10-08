@@ -25,8 +25,8 @@ def sample() -> dict:
         d = SIM / f"p7_{arm}" / "movement"
         steps = [int(os.path.basename(f)[:-5]) for f in glob.glob(str(d / "*.json"))]
         raw = ROOT / "devmem" / "storage" / f"p7_{arm}" / "raw_replies.jsonl"
-        err = ROOT / "devmem" / "storage" / f"full_{arm}_supervisor.err"
-        txt = err.read_text(encoding="utf-8", errors="ignore") if err.exists() else ""
+        # every supervisor error log of the arm (the first supervisor, the WMI relaunch, the watchdog relaunch): the sums are monotonic, so differences stay valid
+        txt = "".join(f.read_text(encoding="utf-8", errors="ignore") for f in sorted((ROOT / "devmem" / "storage").glob(f"full_{arm}_supervisor*.err")))
         out[arm] = {"step": max(steps) if steps else None, "replies": sum(1 for _ in open(raw, encoding="utf-8")) if raw.exists() else 0,
                     "n429": len(re.findall(r"429 RateLimit", txt)), "n503": len(re.findall(r"HTTP 503", txt)), "ntimeout": len(re.findall(r"Timeout \(", txt))}
     return out
