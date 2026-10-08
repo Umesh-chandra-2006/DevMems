@@ -46,6 +46,54 @@ class TestChain(unittest.TestCase):
             last = json.loads((t / "status.jsonl").read_text().splitlines()[-1])
             self.assertEqual((last["event"], last["step"]), ("step_failed_chain_halted", "two"))
 
+    def test_held_steps_wait_for_the_release_and_the_small_steps_do_not(self):
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            steps = [{"name": "small", "args": [], "output": t / "small.json", "cwd": t},
+                     {"name": "big", "hold": "H", "args": [], "output": t / "big.json", "cwd": t}]
+            ran, polls = [], []
+            released = iter([False, False, True])
+
+            def run_fn(s):
+                ran.append(s["name"])
+                Path(s["output"]).write_text("{}")
+                return 0
+            ok = run_staged_chain.run_chain(lambda: True, run_fn, t / "st.jsonl", steps=steps, poll=0, sleep_fn=lambda x: polls.append(x), hold_fns={"H": lambda: next(released)})
+            self.assertTrue(ok)
+            ev = [(json.loads(l)["event"], json.loads(l).get("step")) for l in (t / "st.jsonl").read_text().splitlines()]
+            names = [e[0] for e in ev]
+            self.assertLess(names.index("step_done"), names.index("step_held"))                  # the small step finished before the held one was even announced
+            self.assertLess(names.index("step_held"), names.index("hold_released"))
+            self.assertLess(names.index("hold_released"), len(names) - 1 - names[::-1].index("step_start"))
+            self.assertEqual(ran, ["small", "big"])
+            self.assertGreaterEqual(len(polls), 1)                                                # it waited
+
+    def test_the_real_chain_holds_everything_after_the_three_small_steps(self):
+        held = [s["name"] for s in run_staged_chain.STEPS if s.get("hold")]
+        free = [s["name"] for s in run_staged_chain.STEPS if not s.get("hold")]
+        self.assertEqual(free, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool"])
+        self.assertEqual(held, ["staged_day2_evaluation", "staged_replay_controls", "d1_d2_embedding_fetch", "staged_day2_secondary_evaluation"])
+        self.assertEqual({s["hold"] for s in run_staged_chain.STEPS if s.get("hold")}, {run_staged_chain.HOLD})
+
+    def test_release_needs_the_baseline_day3_primary_and_the_end_of_its_chain(self):
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            (t / "p7_baseline").mkdir()
+            rs, st = t / "p7_baseline" / "run_status.json", t / "chain_status.jsonl"
+            rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake"]}))
+            self.assertFalse(run_staged_chain.baseline_released(t, st))                          # baseline has not passed step 22,410
+            rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake", "day3_end_awake"]}))
+            st.write_text(json.dumps({"chain": "baseline", "event": "step_done"}) + "\n")
+            self.assertFalse(run_staged_chain.baseline_released(t, st))                          # passed, but its chain is still running
+            st.write_text(json.dumps({"chain": "baseline", "event": "chain_done"}) + "\n")
+            self.assertTrue(run_staged_chain.baseline_released(t, st))
+            st.write_text(json.dumps({"chain": "baseline", "event": "step_failed_chain_halted"}) + "\n")
+            self.assertTrue(run_staged_chain.baseline_released(t, st))                          # a halted chain also releases
+            st.write_text("")
+            rs.write_text(json.dumps({"state": "finished: reached end", "checkpoints_made": ["day3_end_awake"]}))
+            self.assertFalse(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 10))
+            self.assertTrue(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 4000))   # fallback: finished long ago and no chain end
+
     def test_the_real_step_list_follows_the_pm_order(self):
         names = [s["name"] for s in run_staged_chain.STEPS]
         self.assertEqual(names, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool", "staged_day2_evaluation", "staged_replay_controls", "d1_d2_embedding_fetch", "staged_day2_secondary_evaluation"])
