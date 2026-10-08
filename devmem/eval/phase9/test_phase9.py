@@ -226,6 +226,29 @@ class TestExternalCheckpoint(unittest.TestCase):
             rec = external_checkpoint.copy_once("staged", 13770, "x", root / "dest", storage=root / "storage", run_root=root / "run")
             self.assertEqual((rec["step"], rec["exact_first_autosave"]), (13860, False))
 
+    def test_a_save_still_in_progress_or_a_truncated_json_is_never_copied(self):
+        import os
+        import time as _time
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            sim, run = self._layout(root, 5130)
+            meta = json.loads((sim / "reverie" / "meta.json").read_text())
+            pdir = sim / "personas" / "A" / "bootstrap_memory"
+            scratch = pdir / "scratch.json"
+            scratch.write_text("{}")
+            old = _time.time() - 100
+            os.utime(scratch, (old, old))                                        # meta.json is newer than the persona's last file: the autosave is still being written
+            self.assertIsNone(external_checkpoint.copy_once("staged", 5130, "x", root / "dest", storage=root / "storage", run_root=root / "run"))
+            self.assertFalse((root / "dest" / "staged").exists())
+            now = _time.time()
+            os.utime(scratch, (now + 5, now + 5))                                # the save has finished
+            (pdir / "embeddings.json").write_text('{"k": [1.0, 2.0')            # truncated, as the day-2 copies were
+            self.assertIsNone(external_checkpoint.copy_once("staged", 5130, "x", root / "dest", storage=root / "storage", run_root=root / "run"))
+            self.assertFalse((root / "dest" / "staged").exists())
+            (pdir / "embeddings.json").write_text('{"k": [1.0, 2.0]}')
+            self.assertIsNotNone(external_checkpoint.copy_once("staged", 5130, "x", root / "dest", storage=root / "storage", run_root=root / "run"))
+            self.assertEqual(meta["step"], 5130)
+
     def test_the_target_steps_are_autosave_multiples(self):
         for s in (13770, 17190, 25830, 5130, 22410):
             self.assertEqual(s % 90, 0)
