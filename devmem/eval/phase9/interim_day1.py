@@ -100,16 +100,35 @@ def day1_questions() -> List[Dict[str, Any]]:
     return [q for q in qs if q.get("type") == "injected" and q.get("event_day") == 1]
 
 
-def report(until_clock: str, since: str, until: str, ledger_db: Path, root: Path = ROOT, sim_prefix: str = "p7", label: str = "day1_end_awake") -> Dict[str, Any]:
-    out: Dict[str, Any] = {"label": f"INTERIM (day-1 checkpoint, clock {until_clock}); offline parts only; single run per arm; not a result", "arms": {}}
+def _utc(local_ist: str) -> str:
+    from datetime import datetime, timedelta
+    return (datetime.strptime(local_ist, "%Y-%m-%d %H:%M:%S") - timedelta(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def report(until_clock: str, since: str, ledger_db: Path, copy_root: Path = OUT, root: Path = ROOT, sim_prefix: str = "p7") -> Dict[str, Any]:
+    """Offline day-1 interim numbers from the READ-ONLY COPIES in copy_root (E3 and the sweep markers) and from the hourly ledger and the router ledger (E1, E2).
+    Every number is interim, day 1, step 5,130, sim 14:15; the router-ledger window of each arm ends when its checkpoint copy was made."""
+    out: Dict[str, Any] = {"label": f"interim, day 1, step 5,130, sim {until_clock[11:16]}; offline parts only; single run per arm; not a result", "arms": {}}
     for arm in ("baseline", "staged"):
         run_dir = root / "devmem" / "storage" / f"{sim_prefix}_{arm}"
-        ck_db = run_dir / "checkpoints" / label / "memory.db"
-        out["arms"][arm] = {"E1_calls_up_to_checkpoint": e1_calls(run_dir, until_clock), "E2_prompt_tokens": e2_prompt_tokens(ledger_db, arm, since, until),
+        cdir = Path(copy_root) / arm
+        meta = json.loads((cdir / "sim" / "checkpoint.json").read_text(encoding="utf-8"))
+        ck_db = cdir / "memory.db"
+        markers = sweep_markers(ck_db) if (arm == "staged" and ck_db.exists()) else {}
+        names = json.loads((cdir / "sim" / "reverie" / "meta.json").read_text(encoding="utf-8"))["persona_names"]
+        missing = [n for n in names if arm == "staged" and not any(m["night"] == 1 and m["status"] == "done" for m in markers.get(n, []))]
+        out["arms"][arm] = {"checkpoint": {"step": meta["step"], "sim_clock": meta["sim_clock"], "made_at_ist": meta["made_at"]},
+                            "E1_calls_up_to_checkpoint": e1_calls(run_dir, until_clock),
+                            "E2_prompt_tokens": e2_prompt_tokens(ledger_db, arm, since, _utc(meta["made_at"])),
                             "E3_consolidated_fraction": e3_consolidated_fraction(ck_db if arm == "staged" else None),
-                            "sweep_markers_in_checkpoint": sweep_markers(ck_db) if (arm == "staged" and ck_db.exists()) else {}}
+                            "sweep_markers_in_checkpoint": markers, "agents_without_a_done_night1_marker": missing}
+        if arm == "staged" and ck_db.exists():
+            c = sqlite3.connect(f"file:{ck_db.as_posix()}?mode=ro", uri=True)
+            out["arms"][arm]["summaries_and_traits_in_checkpoint"] = {"semantic_summaries": c.execute("SELECT COUNT(*) FROM semantic_memory").fetchone()[0],
+                                                                       "identity_traits": c.execute("SELECT COUNT(*) FROM identity_traits").fetchone()[0]}
+            c.close()
     out["R5_interim_questions"] = [q["id"] for q in day1_questions()]
-    out["live_parts_after_the_arms_end"] = ["R5-interim answers on the copied checkpoints (answer_harness, purpose eval_recall)", "Stage 2 replay controls on the fixed sample (replay.py, purpose eval_replay)"]
+    out["not_run_yet"] = ["R5-interim answers (live calls, after the arms end)", "Stage 2 replay controls on the fixed sample (live calls, after the arms end)"]
     return out
 
 
@@ -118,15 +137,14 @@ def main():
     ap.add_argument("--copy", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--until-clock", default="2023-02-13 14:15:00")
-    ap.add_argument("--since", default="2026-10-07 10:00:00")
-    ap.add_argument("--until", default="2099-01-01 00:00:00")
+    ap.add_argument("--since", default="2026-10-07 10:27:00", help="UTC; the launch of the full arms (15:57 IST)")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.copy:
         res = [copy_checkpoint(arm) for arm in ("baseline", "staged")]
         print(json.dumps(res, indent=1))
     if a.report:
-        r = report(a.until_clock, a.since, a.until, ROOT / "devmem" / "router" / "usage_log.db")
+        r = report(a.until_clock, a.since, ROOT / "devmem" / "router" / "usage_log.db")
         (OUT / "report.json").write_text(json.dumps(r, indent=1), encoding="utf-8")
         print(json.dumps(r, indent=1))
 
