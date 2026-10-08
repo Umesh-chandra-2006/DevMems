@@ -29,3 +29,18 @@ steps never touch a staged key; the model, prompts and top-k are identical, so t
 
 ## Scheduling of the judge calibration
 `python -m devmem.eval.phase9.run_judge_calibration` polls every 60 s, makes no call and uses no key until `eval_keys.finished("staged")` is true, then makes 20 calls on the staged pool and writes `devmem/storage/phase9_eval/judge_calibration.json`. It has a dry run that makes no call. If the staged arm never finishes cleanly, it never runs.
+
+## Addendum, 2026-10-08 16:35 IST: re-plan with the new ETA (after the 14:56 power off)
+
+Expected: staged day-3 checkpoint (step 22,410) about 00:20 Oct 9 and staged end about 00:30; baseline day-3 checkpoint about 04:15 and baseline end about 04:25 (estimates; each further stoppage moves them).
+
+Driver: `devmem/eval/phase9/run_arm_evaluation.py` runs, for ONE finished arm and on that arm's own pool, the recall answers (39), the probes at the day-1 and day-3 copies (18 + 18) and the judge on the 18 pairs: 93 calls, tested with stubs (no live call). The judge calibration (20 calls) runs on the staged pool through `run_judge_calibration.py`. The driver is sequential (one process), so the times below assume one call stream of about 6 calls per minute; a faster run needs one process per agent, which is not built.
+
+| Result | Earliest, if every step starts at once and runs in parallel (3 agent processes, about 18 calls per minute) | Realistic (one sequential driver, about 6 calls per minute, review between steps) |
+|---|---|---|
+| Staged recall, probes and judge (93 calls) plus the calibration (20) | about 00:40 Oct 9 | about 01:00 to 01:15 |
+| Staged replay controls (900 calls) | about 01:30 | about 03:00 to 03:30 |
+| Baseline recall, probes and judge (93 calls) | about 04:35 | about 04:55 to 05:10 |
+| Full comparison (both arms graded and judged, E1 to E3 on final data, the prediction table) | about 04:50 | about 05:30 to 06:30 |
+
+The parallel column needs the one-process-per-agent variant of the driver (not yet written); the realistic column uses what exists.
