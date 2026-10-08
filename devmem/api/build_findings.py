@@ -71,7 +71,7 @@ def calls_by_purpose():
         res["arms"][arm] = {"by_purpose": tot, "total": sum(tot.values())}
         res["windows"][arm] = wins
     res["note"] = ("Totals are every ledger window of the pilot, including the replayed stretches after the kill and the crash legs, so they are not a clean "
-                   "common-window count. D1: upstream reflection is ON in baseline and OFF in staged, so the reflection purpose differs by design.")
+                   "common-window count. D1: periodic reflection (focal-point and insight generation) is ON in baseline and OFF in staged; the post-conversation planning-thought and memo calls in reflect() run in both arms, so the periodic-reflection calls differ by design.")
     return res
 
 
@@ -273,7 +273,7 @@ def card_divergence():
             "agents": out, "retrieval_note": "Which memory items were retrieved is not logged in these runs. The lists show the last three event or thought nodes each arm had STORED before that clock (read from each arm's node file); stored is not retrieved.",
             "candidate_causes_mechanically_present": [
                 f"Stage 1 priors block in the staged scoring prompt (see card 1); it changes importance scores, not the action text directly",
-                f"upstream reflection is on in baseline and off in staged (reflection replies in the raw logs: baseline {refl['baseline']}, staged {refl['staged']})",
+                f"periodic reflection (focal-point and insight generation) is on in baseline and off in staged; the post-conversation planning-thought and memo calls in reflect() run in both arms (reflection-tagged replies in the raw logs, keyword tag: baseline {refl['baseline']}, staged {refl['staged']})",
                 "sampling variation of the model on identical prompts (a single run per arm)"],
             "notice": "single run per arm; this difference may be model noise; the candidate causes are not tested",
             "evidence": "devmem/storage/p7pilot_baseline/movement.zip, devmem/storage/p7pilot_staged/movement.zip, the personas node files, raw_replies.jsonl"}

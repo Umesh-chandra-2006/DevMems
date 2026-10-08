@@ -1,10 +1,10 @@
 {
  "label": "INTERIM day 2 (dry run of the final export)",
  "day": 2,
- "built_at": "2026-10-08 19:13:37",
+ "built_at": "2026-10-08 19:39:17",
  "arm_states": {
   "baseline": "running",
-  "staged": "running"
+  "staged": "starting"
  },
  "single_run_per_arm": true,
  "agents": 3,
@@ -242,6 +242,346 @@
      "raw_total": 7471,
      "unique_total": 7302,
      "method": "sim day = day of the first step file written after the call; replayed second passes removed"
+    },
+    "per_day_agent_class": {
+     "by_day_agent_class": [
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "action_object_description",
+       "raw": 497,
+       "unique": 497
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "dialogue",
+       "raw": 15,
+       "unique": 15
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "importance_scoring",
+       "raw": 679,
+       "unique": 679
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "periodic_reflection",
+       "raw": 49,
+       "unique": 49
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "planning",
+       "raw": 23,
+       "unique": 23
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "action_object_description",
+       "raw": 447,
+       "unique": 447
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "dialogue",
+       "raw": 28,
+       "unique": 28
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "importance_scoring",
+       "raw": 280,
+       "unique": 280
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "periodic_reflection",
+       "raw": 21,
+       "unique": 21
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "planning",
+       "raw": 18,
+       "unique": 18
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "action_object_description",
+       "raw": 556,
+       "unique": 556
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "dialogue",
+       "raw": 77,
+       "unique": 77
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "importance_scoring",
+       "raw": 629,
+       "unique": 629
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "periodic_reflection",
+       "raw": 49,
+       "unique": 49
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "planning",
+       "raw": 36,
+       "unique": 36
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "post_conversation_memo",
+       "raw": 12,
+       "unique": 12
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "action_object_description",
+       "raw": 655,
+       "unique": 632
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "dialogue",
+       "raw": 12,
+       "unique": 12
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "importance_scoring",
+       "raw": 1133,
+       "unique": 1100
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "periodic_reflection",
+       "raw": 77,
+       "unique": 70
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "planning",
+       "raw": 13,
+       "unique": 13
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "post_conversation_memo",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "action_object_description",
+       "raw": 460,
+       "unique": 452
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "dialogue",
+       "raw": 15,
+       "unique": 15
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "importance_scoring",
+       "raw": 432,
+       "unique": 432
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "periodic_reflection",
+       "raw": 28,
+       "unique": 28
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "planning",
+       "raw": 12,
+       "unique": 12
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "action_object_description",
+       "raw": 408,
+       "unique": 377
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "dialogue",
+       "raw": 58,
+       "unique": 56
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "importance_scoring",
+       "raw": 628,
+       "unique": 572
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "periodic_reflection",
+       "raw": 40,
+       "unique": 33
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "planning",
+       "raw": 35,
+       "unique": 33
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "post_conversation_memo",
+       "raw": 10,
+       "unique": 10
+      }
+     ],
+     "unique_by_day_class": {
+      "1": {
+       "action_object_description": 1500,
+       "dialogue": 120,
+       "importance_scoring": 1588,
+       "periodic_reflection": 119,
+       "planning": 77,
+       "post_conversation_memo": 28
+      },
+      "2": {
+       "action_object_description": 1461,
+       "dialogue": 83,
+       "importance_scoring": 2104,
+       "other": 9,
+       "periodic_reflection": 131,
+       "planning": 58,
+       "post_conversation_memo": 24
+      }
+     },
+     "raw_total": 7471,
+     "unique_total": 7302,
+     "other_share_of_unique": 0.0012,
+     "pairing": {
+      "ledger_rows": 8148,
+      "log_rows": 8148,
+      "paired": 8148,
+      "positions_disagreeing": 0
+     },
+     "keyword_tag_to_class_whole_log": {
+      "planning": {
+       "planning": 143,
+       "action_object_description": 3079,
+       "dialogue": 31,
+       "periodic_reflection": 92
+      },
+      "dialogue": {
+       "action_object_description": 340,
+       "dialogue": 174,
+       "post_conversation_memo": 52,
+       "periodic_reflection": 72,
+       "other": 18,
+       "planning": 6
+      },
+      "importance_scoring": {
+       "importance_scoring": 4019
+      },
+      "reflection": {
+       "periodic_reflection": 121,
+       "action_object_description": 1
+      }
+     },
+     "classes": [
+      "planning",
+      "action_object_description",
+      "dialogue",
+      "importance_scoring",
+      "periodic_reflection",
+      "post_conversation_memo",
+      "consolidation",
+      "identity",
+      "other"
+     ],
+     "method": "each call classified from its prompt by the rules of purpose_classes; the delivered-reply log is paired with the ledger by position (disagreement guard 0.1 percent) to give each call its time and agent"
     }
    },
    "E2_prompt_tokens": {
@@ -537,6 +877,386 @@
      "raw_total": 6042,
      "unique_total": 6008,
      "method": "sim day = day of the first step file written after the call; replayed second passes removed"
+    },
+    "per_day_agent_class": {
+     "by_day_agent_class": [
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "action_object_description",
+       "raw": 400,
+       "unique": 392
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "dialogue",
+       "raw": 13,
+       "unique": 13
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "identity",
+       "raw": 2,
+       "unique": 2
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "importance_scoring",
+       "raw": 505,
+       "unique": 501
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "planning",
+       "raw": 18,
+       "unique": 18
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "action_object_description",
+       "raw": 416,
+       "unique": 408
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "dialogue",
+       "raw": 41,
+       "unique": 41
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "identity",
+       "raw": 4,
+       "unique": 4
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "importance_scoring",
+       "raw": 282,
+       "unique": 281
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "planning",
+       "raw": 18,
+       "unique": 17
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "action_object_description",
+       "raw": 420,
+       "unique": 412
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "dialogue",
+       "raw": 64,
+       "unique": 64
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "identity",
+       "raw": 5,
+       "unique": 5
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "importance_scoring",
+       "raw": 466,
+       "unique": 463
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "planning",
+       "raw": 28,
+       "unique": 27
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "class": "post_conversation_memo",
+       "raw": 12,
+       "unique": 12
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "action_object_description",
+       "raw": 392,
+       "unique": 392
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "dialogue",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "identity",
+       "raw": 2,
+       "unique": 2
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "importance_scoring",
+       "raw": 972,
+       "unique": 972
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "planning",
+       "raw": 5,
+       "unique": 5
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "class": "post_conversation_memo",
+       "raw": 4,
+       "unique": 4
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "action_object_description",
+       "raw": 335,
+       "unique": 335
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "dialogue",
+       "raw": 16,
+       "unique": 16
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "identity",
+       "raw": 1,
+       "unique": 1
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "importance_scoring",
+       "raw": 357,
+       "unique": 357
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "planning",
+       "raw": 17,
+       "unique": 17
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "class": "post_conversation_memo",
+       "raw": 4,
+       "unique": 4
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "action_object_description",
+       "raw": 360,
+       "unique": 360
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "consolidation",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "dialogue",
+       "raw": 41,
+       "unique": 41
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "importance_scoring",
+       "raw": 749,
+       "unique": 749
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "other",
+       "raw": 3,
+       "unique": 3
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "planning",
+       "raw": 21,
+       "unique": 21
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "class": "post_conversation_memo",
+       "raw": 8,
+       "unique": 8
+      }
+     ],
+     "unique_by_day_class": {
+      "1": {
+       "action_object_description": 1212,
+       "consolidation": 18,
+       "dialogue": 118,
+       "identity": 11,
+       "importance_scoring": 1245,
+       "planning": 62,
+       "post_conversation_memo": 28
+      },
+      "2": {
+       "action_object_description": 1087,
+       "consolidation": 18,
+       "dialogue": 60,
+       "identity": 3,
+       "importance_scoring": 2078,
+       "other": 9,
+       "planning": 43,
+       "post_conversation_memo": 16
+      }
+     },
+     "raw_total": 6042,
+     "unique_total": 6008,
+     "other_share_of_unique": 0.0015,
+     "pairing": {
+      "ledger_rows": 7555,
+      "log_rows": 7555,
+      "paired": 7555,
+      "positions_disagreeing": 0
+     },
+     "keyword_tag_to_class_whole_log": {
+      "planning": {
+       "planning": 125,
+       "action_object_description": 2693,
+       "dialogue": 47
+      },
+      "dialogue": {
+       "action_object_description": 364,
+       "dialogue": 163,
+       "post_conversation_memo": 52,
+       "other": 18,
+       "planning": 11
+      },
+      "importance_scoring": {
+       "importance_scoring": 4026
+      },
+      "consolidation_summary": {
+       "consolidation": 36
+      },
+      "identity_trait": {
+       "identity": 14
+      },
+      "reflection": {
+       "action_object_description": 6
+      }
+     },
+     "classes": [
+      "planning",
+      "action_object_description",
+      "dialogue",
+      "importance_scoring",
+      "periodic_reflection",
+      "post_conversation_memo",
+      "consolidation",
+      "identity",
+      "other"
+     ],
+     "method": "each call classified from its prompt by the rules of purpose_classes; the delivered-reply log is paired with the ledger by position (disagreement guard 0.1 percent) to give each call its time and agent"
     }
    },
    "E2_prompt_tokens": {
@@ -634,11 +1354,11 @@
     "sim_clock": "2023-02-14 14:00:00"
    },
    "429_waves_whole_run_to_now": {
-    "waves": 230,
-    "waited_seconds": 22086,
-    "mean_wave_seconds": 96.0,
+    "waves": 233,
+    "waited_seconds": 22398,
+    "mean_wave_seconds": 96.1,
     "max_wave_seconds": 438.8,
-    "share_of_wall_time_since_launch": 0.225,
+    "share_of_wall_time_since_launch": 0.2247,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
@@ -655,9 +1375,10 @@
   },
   "staged": {
    "restart_log_events": {
-    "exit": 3,
+    "exit": 4,
     "key_change_resume": 3,
-    "start": 6
+    "start": 7,
+    "resume": 1
    },
    "restarts_detail": [
     {
@@ -680,6 +1401,13 @@
      "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
      "step": 4050,
      "sim_clock": "2023-02-13 11:15:00"
+    },
+    {
+     "ts": "2026-10-08 19:34:16",
+     "event": "exit",
+     "outcome": "upstream exception: KeyError: 'kitchen'",
+     "step": 20826,
+     "sim_clock": "2023-02-15 09:51:00"
     }
    ],
    "replayed_spans": [
@@ -690,6 +1418,10 @@
     [
      "2026-10-08 16:15:24",
      19809
+    ],
+    [
+     "2026-10-08 19:34:36",
+     20826
     ]
    ],
    "outage_minutes_from_outage_log": 90.1,
@@ -701,11 +1433,11 @@
     "sim_clock": "2023-02-14 14:00:00"
    },
    "429_waves_whole_run_to_now": {
-    "waves": 229,
-    "waited_seconds": 21830,
-    "mean_wave_seconds": 95.3,
+    "waves": 231,
+    "waited_seconds": 22046,
+    "mean_wave_seconds": 95.4,
     "max_wave_seconds": 509.1,
-    "share_of_wall_time_since_launch": 0.2224,
+    "share_of_wall_time_since_launch": 0.2211,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
@@ -720,7 +1452,7 @@
     "pending": [],
     "asleep_at_injection": []
    },
-   "state": "running"
+   "state": "starting"
   }
  },
  "sweep_markers_per_agent_and_night": {
@@ -1577,10 +2309,10 @@
   },
   "arms": {
    "baseline": {
-    "log_rows": 8016,
+    "log_rows": 8156,
     "tags": {
      "planning": {
-      "rows_with_this_tag_in_log": 3281,
+      "rows_with_this_tag_in_log": 3345,
       "audited": 200,
       "sampled": true,
       "true_family": 192,
@@ -1597,16 +2329,16 @@
       ]
      },
      "dialogue": {
-      "rows_with_this_tag_in_log": 651,
+      "rows_with_this_tag_in_log": 662,
       "audited": 200,
       "sampled": true,
-      "true_family": 54,
-      "false_match": 138,
-      "unclassified": 8,
-      "false_match_rate_of_classified": 0.7188,
+      "true_family": 52,
+      "false_match": 144,
+      "unclassified": 4,
+      "false_match_rate_of_classified": 0.7347,
       "false_matches_belong_to": {
-       "planning": 104,
-       "reflection": 34
+       "planning": 107,
+       "reflection": 37
       },
       "examples": [
        "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -1614,13 +2346,13 @@
       ]
      },
      "reflection": {
-      "rows_with_this_tag_in_log": 119,
-      "audited": 119,
+      "rows_with_this_tag_in_log": 122,
+      "audited": 122,
       "sampled": false,
-      "true_family": 118,
+      "true_family": 121,
       "false_match": 1,
       "unclassified": 0,
-      "false_match_rate_of_classified": 0.0084,
+      "false_match_rate_of_classified": 0.0082,
       "false_matches_belong_to": {
        "planning": 1
       },
@@ -1629,7 +2361,7 @@
       ]
      },
      "importance_scoring": {
-      "rows_with_this_tag_in_log": 3965,
+      "rows_with_this_tag_in_log": 4027,
       "audited": 200,
       "sampled": true,
       "true_family": 200,
@@ -1644,23 +2376,23 @@
      "by_tag_and_template": {
       "dialogue": {
        "memo_on_convo": 52,
-       "generate_focal_pt": 68
+       "generate_focal_pt": 72
       },
       "reflection": {
-       "insight_and_evidence": 118
+       "insight_and_evidence": 121
       },
       "planning": {
        "generate_focal_pt": 92
       }
      },
-     "total": 330
+     "total": 337
     }
    },
    "staged": {
-    "log_rows": 7487,
+    "log_rows": 7555,
     "tags": {
      "planning": {
-      "rows_with_this_tag_in_log": 2824,
+      "rows_with_this_tag_in_log": 2865,
       "audited": 200,
       "sampled": true,
       "true_family": 196,
@@ -1676,16 +2408,16 @@
       ]
      },
      "dialogue": {
-      "rows_with_this_tag_in_log": 604,
+      "rows_with_this_tag_in_log": 608,
       "audited": 200,
       "sampled": true,
-      "true_family": 43,
-      "false_match": 153,
-      "unclassified": 4,
-      "false_match_rate_of_classified": 0.7806,
+      "true_family": 47,
+      "false_match": 148,
+      "unclassified": 5,
+      "false_match_rate_of_classified": 0.759,
       "false_matches_belong_to": {
-       "planning": 132,
-       "reflection": 21
+       "planning": 128,
+       "reflection": 20
       },
       "examples": [
        "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -1709,7 +2441,7 @@
       ]
      },
      "importance_scoring": {
-      "rows_with_this_tag_in_log": 4003,
+      "rows_with_this_tag_in_log": 4026,
       "audited": 200,
       "sampled": true,
       "true_family": 200,

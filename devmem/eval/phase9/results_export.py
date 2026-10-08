@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from devmem.eval import wave_report
-from devmem.eval.phase9 import d2_reproduction, grader, interim_day1, interim_report, purpose_audit
+from devmem.eval.phase9 import d2_reproduction, grader, interim_day1, interim_report, purpose_audit, purpose_classes
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 ST = ROOT / "devmem" / "storage"
@@ -106,6 +106,44 @@ def e1_grouped(arm: str, until_ist: str, db: Path = None, restarts=None, sim: Pa
         d[r["purpose"]] = d.get(r["purpose"], 0) + r["unique"]
     return {"by_day_agent_purpose": table, "unique_by_day_purpose": by_day, "raw_total": sum(r["raw"] for r in table), "unique_total": sum(r["unique"] for r in table),
             "method": "sim day = day of the first step file written after the call; replayed second passes removed"}
+
+
+def e1_classes(arm: str, until_ist: str, restarts=None, sim: Path = None, aligned: Dict[str, Any] = None) -> Dict[str, Any]:
+    """E1 by the rule-based CLASS of each call (purpose_classes), same window and same replay removal as e1_grouped; the primary per-purpose breakdown. The ledger keyword tag is kept as the
+    ledger record beside it. `aligned` is injectable for tests."""
+    restarts = interim_report.RESTARTS if restarts is None else restarts
+    al = aligned or purpose_classes.aligned(arm)
+    a, b = interim_report._utc(LAUNCH_IST), interim_report._utc(until_ist)
+    day = _day_mapper(arm, sim)
+    sel = [r for r in al["rows"] if a <= r["created_at"] <= b]
+    raw: Dict[Any, int] = {}
+    for r in sel:
+        k = (day(r["created_at"]), r["agent"], r["class"])
+        raw[k] = raw.get(k, 0) + 1
+    rem: Dict[Any, int] = {}
+    for restart_ist, prekill in restarts.get(arm, []):
+        if restart_ist >= until_ist:
+            continue
+        f = (sim or SIM) / f"p7_{arm}" / "movement" / f"{prekill}.json"
+        mt = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S") if f.exists() else None
+        if mt is None or mt < restart_ist:
+            continue
+        lo, hi = interim_report._utc(restart_ist), min(interim_report._utc(mt), b)
+        for r in sel:
+            if lo <= r["created_at"] <= hi:
+                k = (day(r["created_at"]), r["agent"], r["class"])
+                rem[k] = rem.get(k, 0) + 1
+    table = [{"sim_day": k[0], "agent": k[1], "class": k[2], "raw": v, "unique": v - rem.get(k, 0)} for k, v in sorted(raw.items(), key=lambda kv: (str(kv[0][0]), kv[0][1], kv[0][2]))]
+    by_day: Dict[str, Dict[str, int]] = {}
+    for r in table:
+        d = by_day.setdefault(str(r["sim_day"]), {})
+        d[r["class"]] = d.get(r["class"], 0) + r["unique"]
+    tot_raw, tot_unique = sum(r["raw"] for r in table), sum(r["unique"] for r in table)
+    other = sum(r["unique"] for r in table if r["class"] == "other")
+    return {"by_day_agent_class": table, "unique_by_day_class": by_day, "raw_total": tot_raw, "unique_total": tot_unique, "other_share_of_unique": round(other / tot_unique, 4) if tot_unique else None,
+            "pairing": {k: al[k] for k in ("ledger_rows", "log_rows", "paired", "positions_disagreeing")},
+            "keyword_tag_to_class_whole_log": purpose_classes.keyword_vs_class(al["rows"]), "classes": purpose_classes.CLASSES,
+            "method": "each call classified from its prompt by the rules of purpose_classes; the delivered-reply log is paired with the ledger by position (disagreement guard 0.1 percent) to give each call its time and agent"}
 
 
 # ---------------------------------------------------------------- run conditions
@@ -324,6 +362,12 @@ def build(day: int, interim_root: Path = None) -> Dict[str, Any]:
         arms[a] = interim_report.analyse_copy(a, cdir)
         if arms[a]:
             arms[a]["E1"]["per_day_agent_purpose"] = e1_grouped(a, arms[a]["checkpoint"]["made_at"])
+            try:
+                arms[a]["E1"]["per_day_agent_class"] = e1_classes(a, arms[a]["checkpoint"]["made_at"])
+                if arms[a]["E1"]["per_day_agent_class"]["unique_total"] != arms[a]["E1"]["per_day_agent_purpose"]["unique_total"]:
+                    arms[a]["E1"]["per_day_agent_class"]["total_check"] = f"class unique total {arms[a]['E1']['per_day_agent_class']['unique_total']} differs from the ledger unique total {arms[a]['E1']['per_day_agent_purpose']['unique_total']} (the log and the ledger are read at slightly different moments)"
+            except Exception as exc:
+                arms[a]["E1"]["per_day_agent_class"] = {"available": False, "note": f"{type(exc).__name__}: {str(exc)[:160]}"}
     status = {a: (_read(ST / f"p7_{a}" / "run_status.json") or {}).get("state") for a in ARMS}
     failed = set()
     for a in ARMS:
@@ -363,7 +407,7 @@ def build(day: int, interim_root: Path = None) -> Dict[str, Any]:
 
 
 def markdown(r: Dict[str, Any]) -> str:
-    L = [f"# Results export: {r['label']}", "", f"Built {r['built_at']}. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (reflection is off in the staged arm, decision D1). Arm states: {r['arm_states']}.", ""]
+    L = [f"# Results export: {r['label']}", "", f"Built {r['built_at']}. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {r['arm_states']}.", ""]
     L += ["## Predictions (pre-registration section 5, scored by the rules in the module header)", "", "| id | prediction | outcome | reason | numbers |", "|---|---|---|---|---|"]
     for p in r["predictions"]:
         nums = ", ".join(f"{k}={v}" for k, v in p["numbers"].items() if not isinstance(v, (dict, list))) if p.get("numbers") else ""
@@ -375,7 +419,22 @@ def markdown(r: Dict[str, Any]) -> str:
     L.append("| E1 calls raw / unique | " + " | ".join(g(a, lambda v: f"{v['E1']['raw_total']} / {v['E1']['unique_total']}") for a in ARMS) + " |")
     L.append("| E2 mean tokens in per importance call | " + " | ".join(g(a, lambda v: f"{v['E2_prompt_tokens']['mean_tokens_in']} ({v['E2_prompt_tokens']['calls']} calls)") for a in ARMS) + " |")
     L.append("| E3 consolidated fraction | " + " | ".join(g(a, lambda v: f"{v['E3_consolidated_fraction']['fraction']} ({v['E3_consolidated_fraction']['consolidated']} of {v['E3_consolidated_fraction']['entries']})") for a in ARMS) + " |")
-    L += ["", "### E1 unique calls by purpose per simulated day (both arms); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)", "", "| arm | sim day | purpose | unique calls | tag audit |", "|---|---|---|---|---|"]
+    L += ["", "### E1 unique calls by CLASS per simulated day (primary breakdown; rule-based classes from the prompts, devmem/eval/phase9/purpose_classes.py)", "", "| arm | sim day | class | unique calls |", "|---|---|---|---|"]
+    for a in ARMS:
+        pc = (A[a] or {}).get("E1", {}).get("per_day_agent_class") if A[a] else None
+        if pc and pc.get("unique_by_day_class"):
+            for d, cl in pc["unique_by_day_class"].items():
+                for c_, n in sorted(cl.items()):
+                    L.append(f"| {a} | {d} | {c_} | {n} |")
+            L.append(f"| {a} | all | other (share of unique) | {pc['other_share_of_unique']} |")
+            if pc.get("total_check"):
+                L.append(f"| {a} | note | {pc['total_check']} | |")
+    L += ["", "Where each ledger keyword tag's calls go in the classes (whole log, both arms):", ""]
+    for a in ARMS:
+        pc = (A[a] or {}).get("E1", {}).get("per_day_agent_class") if A[a] else None
+        if pc and pc.get("keyword_tag_to_class_whole_log"):
+            L.append(f"- {a}: {json.dumps(pc['keyword_tag_to_class_whole_log'])}")
+    L += ["", "### E1 unique calls by the ledger KEYWORD tag per simulated day (the ledger record, not a classification); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)", "", "| arm | sim day | purpose | unique calls | tag audit |", "|---|---|---|---|---|"]
     aud = r.get("purpose_tag_audit", {}).get("arms", {})
 
     def audit_cell(a, p):

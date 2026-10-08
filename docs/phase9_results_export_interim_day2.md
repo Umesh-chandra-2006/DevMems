@@ -1,6 +1,6 @@
 # Results export: INTERIM day 2 (dry run of the final export)
 
-Built 2026-10-08 19:13:37. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (reflection is off in the staged arm, decision D1). Arm states: {'baseline': 'running', 'staged': 'running'}.
+Built 2026-10-08 19:39:17. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'running', 'staged': 'starting'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
@@ -31,25 +31,65 @@ Built 2026-10-08 19:13:37. Single run per arm, 3 agents: descriptive only, no si
 | E2 mean tokens in per importance call | 418.5 (3781 calls) | 572.3 (3331 calls) |
 | E3 consolidated fraction | 0.0 (0 of 0) | 0.0974 (380 of 3901) |
 
-### E1 unique calls by purpose per simulated day (both arms); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)
+### E1 unique calls by CLASS per simulated day (primary breakdown; rule-based classes from the prompts, devmem/eval/phase9/purpose_classes.py)
+
+| arm | sim day | class | unique calls |
+|---|---|---|---|
+| baseline | 1 | action_object_description | 1500 |
+| baseline | 1 | dialogue | 120 |
+| baseline | 1 | importance_scoring | 1588 |
+| baseline | 1 | periodic_reflection | 119 |
+| baseline | 1 | planning | 77 |
+| baseline | 1 | post_conversation_memo | 28 |
+| baseline | 2 | action_object_description | 1461 |
+| baseline | 2 | dialogue | 83 |
+| baseline | 2 | importance_scoring | 2104 |
+| baseline | 2 | other | 9 |
+| baseline | 2 | periodic_reflection | 131 |
+| baseline | 2 | planning | 58 |
+| baseline | 2 | post_conversation_memo | 24 |
+| baseline | all | other (share of unique) | 0.0012 |
+| staged | 1 | action_object_description | 1212 |
+| staged | 1 | consolidation | 18 |
+| staged | 1 | dialogue | 118 |
+| staged | 1 | identity | 11 |
+| staged | 1 | importance_scoring | 1245 |
+| staged | 1 | planning | 62 |
+| staged | 1 | post_conversation_memo | 28 |
+| staged | 2 | action_object_description | 1087 |
+| staged | 2 | consolidation | 18 |
+| staged | 2 | dialogue | 60 |
+| staged | 2 | identity | 3 |
+| staged | 2 | importance_scoring | 2078 |
+| staged | 2 | other | 9 |
+| staged | 2 | planning | 43 |
+| staged | 2 | post_conversation_memo | 16 |
+| staged | all | other (share of unique) | 0.0015 |
+
+Where each ledger keyword tag's calls go in the classes (whole log, both arms):
+
+- baseline: {"planning": {"planning": 143, "action_object_description": 3079, "dialogue": 31, "periodic_reflection": 92}, "dialogue": {"action_object_description": 340, "dialogue": 174, "post_conversation_memo": 52, "periodic_reflection": 72, "other": 18, "planning": 6}, "importance_scoring": {"importance_scoring": 4019}, "reflection": {"periodic_reflection": 121, "action_object_description": 1}}
+- staged: {"planning": {"planning": 125, "action_object_description": 2693, "dialogue": 47}, "dialogue": {"action_object_description": 364, "dialogue": 163, "post_conversation_memo": 52, "other": 18, "planning": 11}, "importance_scoring": {"importance_scoring": 4026}, "consolidation_summary": {"consolidation": 36}, "identity_trait": {"identity": 14}, "reflection": {"action_object_description": 6}}
+
+### E1 unique calls by the ledger KEYWORD tag per simulated day (the ledger record, not a classification); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)
 
 | arm | sim day | purpose | unique calls | tag audit |
 |---|---|---|---|---|
-| baseline | 1 | dialogue | 314 | 0.7188 false-match rate (138 of 192 classified, 200 audited) |
+| baseline | 1 | dialogue | 314 | 0.7347 false-match rate (144 of 196 classified, 200 audited) |
 | baseline | 1 | importance_scoring | 1588 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | baseline | 1 | planning | 1479 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
-| baseline | 1 | reflection | 51 | 0.0084 false-match rate (1 of 119 classified, 119 audited) |
-| baseline | 2 | dialogue | 279 | 0.7188 false-match rate (138 of 192 classified, 200 audited) |
+| baseline | 1 | reflection | 51 | 0.0082 false-match rate (1 of 122 classified, 122 audited) |
+| baseline | 2 | dialogue | 279 | 0.7347 false-match rate (144 of 196 classified, 200 audited) |
 | baseline | 2 | importance_scoring | 2104 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | baseline | 2 | planning | 1431 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
-| baseline | 2 | reflection | 56 | 0.0084 false-match rate (1 of 119 classified, 119 audited) |
+| baseline | 2 | reflection | 56 | 0.0082 false-match rate (1 of 122 classified, 122 audited) |
 | staged | 1 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
-| staged | 1 | dialogue | 268 | 0.7806 false-match rate (153 of 196 classified, 200 audited) |
+| staged | 1 | dialogue | 268 | 0.759 false-match rate (148 of 195 classified, 200 audited) |
 | staged | 1 | identity_trait | 11 | not audited (set by the code, not by the keyword rule) |
 | staged | 1 | importance_scoring | 1245 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | staged | 1 | planning | 1152 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
 | staged | 2 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
-| staged | 2 | dialogue | 203 | 0.7806 false-match rate (153 of 196 classified, 200 audited) |
+| staged | 2 | dialogue | 203 | 0.759 false-match rate (148 of 195 classified, 200 audited) |
 | staged | 2 | identity_trait | 3 | not audited (set by the code, not by the keyword rule) |
 | staged | 2 | importance_scoring | 2078 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | staged | 2 | planning | 1006 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
@@ -164,10 +204,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
  "templates_loaded": 91,
  "arms": {
   "baseline": {
-   "log_rows": 8016,
+   "log_rows": 8156,
    "tags": {
     "planning": {
-     "rows_with_this_tag_in_log": 3281,
+     "rows_with_this_tag_in_log": 3345,
      "audited": 200,
      "sampled": true,
      "true_family": 192,
@@ -184,16 +224,16 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "dialogue": {
-     "rows_with_this_tag_in_log": 651,
+     "rows_with_this_tag_in_log": 662,
      "audited": 200,
      "sampled": true,
-     "true_family": 54,
-     "false_match": 138,
-     "unclassified": 8,
-     "false_match_rate_of_classified": 0.7188,
+     "true_family": 52,
+     "false_match": 144,
+     "unclassified": 4,
+     "false_match_rate_of_classified": 0.7347,
      "false_matches_belong_to": {
-      "planning": 104,
-      "reflection": 34
+      "planning": 107,
+      "reflection": 37
      },
      "examples": [
       "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -201,13 +241,13 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "reflection": {
-     "rows_with_this_tag_in_log": 119,
-     "audited": 119,
+     "rows_with_this_tag_in_log": 122,
+     "audited": 122,
      "sampled": false,
-     "true_family": 118,
+     "true_family": 121,
      "false_match": 1,
      "unclassified": 0,
-     "false_match_rate_of_classified": 0.0084,
+     "false_match_rate_of_classified": 0.0082,
      "false_matches_belong_to": {
       "planning": 1
      },
@@ -216,7 +256,7 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "importance_scoring": {
-     "rows_with_this_tag_in_log": 3965,
+     "rows_with_this_tag_in_log": 4027,
      "audited": 200,
      "sampled": true,
      "true_family": 200,
@@ -231,23 +271,23 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
     "by_tag_and_template": {
      "dialogue": {
       "memo_on_convo": 52,
-      "generate_focal_pt": 68
+      "generate_focal_pt": 72
      },
      "reflection": {
-      "insight_and_evidence": 118
+      "insight_and_evidence": 121
      },
      "planning": {
       "generate_focal_pt": 92
      }
     },
-    "total": 330
+    "total": 337
    }
   },
   "staged": {
-   "log_rows": 7487,
+   "log_rows": 7555,
    "tags": {
     "planning": {
-     "rows_with_this_tag_in_log": 2824,
+     "rows_with_this_tag_in_log": 2865,
      "audited": 200,
      "sampled": true,
      "true_family": 196,
@@ -263,16 +303,16 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "dialogue": {
-     "rows_with_this_tag_in_log": 604,
+     "rows_with_this_tag_in_log": 608,
      "audited": 200,
      "sampled": true,
-     "true_family": 43,
-     "false_match": 153,
-     "unclassified": 4,
-     "false_match_rate_of_classified": 0.7806,
+     "true_family": 47,
+     "false_match": 148,
+     "unclassified": 5,
+     "false_match_rate_of_classified": 0.759,
      "false_matches_belong_to": {
-      "planning": 132,
-      "reflection": 21
+      "planning": 128,
+      "reflection": 20
      },
      "examples": [
       "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -296,7 +336,7 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "importance_scoring": {
-     "rows_with_this_tag_in_log": 4003,
+     "rows_with_this_tag_in_log": 4026,
      "audited": 200,
      "sampled": true,
      "true_family": 200,
@@ -349,14 +389,14 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 - state running; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 3, 'key_change_resume': 3, 'start': 6, 'external_kill_watchdog_restart': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
 - outage minutes (outage log) 82.6; counters at the last hourly row {'outage_minutes_total': 82.64, 'rate_limit_wait_minutes_total': 356.75, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 230, 'waited_seconds': 22086, 'mean_wave_seconds': 96.0, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.225, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 233, 'waited_seconds': 22398, 'mean_wave_seconds': 96.1, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.2247, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 18, 'pass': 18, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
 
-- state running; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
-- restart log events {'exit': 3, 'key_change_resume': 3, 'start': 6}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809)]
+- state starting; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
+- restart log events {'exit': 4, 'key_change_resume': 3, 'start': 7, 'resume': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 300.51, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 229, 'waited_seconds': 21830, 'mean_wave_seconds': 95.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.2224, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 231, 'waited_seconds': 22046, 'mean_wave_seconds': 95.4, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.2211, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 21, 'pass': 20, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 

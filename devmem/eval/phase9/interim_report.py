@@ -29,7 +29,7 @@ LAUNCH_IST = "2026-10-07 15:57:47"
 DB = ROOT / "devmem" / "router" / "usage_log.db"
 # restarts after which a replay pass happened: (wall time of the restart, last simulated step the killed process had reached; from the rate sampler's last sample before the kill)
 RESTARTS = {"baseline": [("2026-10-08 00:53:32", 3599), ("2026-10-08 16:14:25", 13306)],
-            "staged": [("2026-10-08 00:54:01", 4012), ("2026-10-08 16:15:24", 19809)]}
+            "staged": [("2026-10-08 00:54:01", 4012), ("2026-10-08 16:15:24", 19809), ("2026-10-08 19:34:36", 20826)]}
 # graceful key-change and timeout restarts at an autosave have no replay pass and are not listed
 
 
