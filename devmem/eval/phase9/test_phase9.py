@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, interim_report, run_arm_evaluation, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, interim_report, run_arm_evaluation, run_replay_controls, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -335,6 +335,32 @@ class TestArmEvaluationDay2Variant(unittest.TestCase):
             self.assertEqual(res["counts"]["recall"], 24)                       # injected day 1 and 2 (18) plus natural day 1 and 2 (6)
             self.assertNotIn("Q_I_theme", [r["question_id"] for r in res["recall"]])
             self.assertEqual({k: seen.count(k) for k in set(seen)}, {"eval_recall": 24, "eval_probe": 36, "eval_judge": 18})      # 78 calls per arm
+
+
+class TestReplayRunner(unittest.TestCase):
+    def test_runner_uses_the_sample_caches_calls_and_reuses_own_scores(self):
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            c = sqlite3.connect(t / "m.db")
+            c.execute("CREATE TABLE episodic_memory (entry_id TEXT, agent_id TEXT, content TEXT, sim_timestamp TEXT, importance_score REAL)")
+            rows = [("Isabella Rodriguez", f"2023-02-13 0{6 + i % 3}:00:{i:02d}", f"natural event {i}", 3.0) for i in range(12)]
+            rows += [("Isabella Rodriguez", "2023-02-13 08:15:00", "a friction event happened", 6.0), ("Isabella Rodriguez", "2023-02-13 09:15:00", "a quiet event happened", 2.0)]
+            c.executemany("INSERT INTO episodic_memory (agent_id, sim_timestamp, content, importance_score) VALUES (?,?,?,?)", rows)
+            c.commit()
+            c.close()
+            (t / "inj.jsonl").write_text("\n".join(json.dumps(r) for r in [
+                {"id": "I3", "perceived_and_stored": True, "stored_text": "a friction event happened"}, {"id": "I1", "perceived_and_stored": True, "stored_text": "a quiet event happened"},
+                {"id": "I2", "perceived_and_stored": False, "stored_text": ""}]) + "\n")
+            calls = []
+            fn = lambda p: (calls.append(p), "4")[1]
+            res = run_replay_controls.run(t / "m.db", t / "inj.jsonl", fn, t / "out.json", "synthetic", cache_path=t / "cache.jsonl")
+            self.assertEqual((res["n_injected"], res["n_natural"]), (2, 12))
+            self.assertEqual(len(calls), 14 * 3)
+            self.assertEqual(res["summary"]["by_condition"]["staged_own"]["n"], 14)
+            self.assertEqual(res["friction_events_staged_minus_baseline_inputs"]["Isabella Rodriguez"]["staged_own"], {"n": 1, "mean": 6.0})
+            calls.clear()
+            run_replay_controls.run(t / "m.db", t / "inj.jsonl", fn, t / "out2.json", "synthetic again", cache_path=t / "cache.jsonl")
+            self.assertEqual(calls, [])                                                   # every reply came from the cache: a re-run makes no call
 
 
 class TestDiagnostics(unittest.TestCase):
