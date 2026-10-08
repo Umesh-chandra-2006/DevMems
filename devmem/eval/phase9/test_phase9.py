@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from devmem.eval.phase9 import answer_harness, diagnostics, external_checkpoint, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
+from devmem.eval.phase9 import answer_harness, diagnostics, eval_keys, external_checkpoint, grader, interim_day1, judge, ledger_splitter, replay, sample_plan
 
 ROOT = Path(__file__).resolve().parent.parent.parent.parent
 QS = json.loads((ROOT / "docs" / "phase7_stop1_events_questions.json").read_text(encoding="utf-8"))
@@ -229,6 +229,52 @@ class TestExternalCheckpoint(unittest.TestCase):
     def test_the_target_steps_are_autosave_multiples(self):
         for s in (13770, 17190, 25830, 5130, 22410):
             self.assertEqual(s % 90, 0)
+
+
+class TestEvalKeyGuard(unittest.TestCase):
+    def _root(self, t, arm, state):
+        rd = Path(t) / "devmem" / "storage" / f"p7_{arm}"
+        rd.mkdir(parents=True)
+        (rd / "run_status.json").write_text(json.dumps({"state": state}))
+        return Path(t)
+
+    def test_a_running_arm_is_never_usable_and_a_finished_one_gives_only_its_own_pool(self):
+        from devmem.eval import run_arm
+        with tempfile.TemporaryDirectory() as t:
+            root = self._root(t, "staged", "running")
+            self.assertFalse(eval_keys.finished("staged", root, procs=[]))
+            with self.assertRaises(eval_keys.ArmStillRunning):
+                eval_keys.pool("staged", root, procs=[])
+        with tempfile.TemporaryDirectory() as t:
+            root = self._root(t, "staged", "finished: reached 2023-02-16 00:00:00")
+            self.assertFalse(eval_keys.finished("staged", root, procs=["python -m devmem.eval.run_arm --arm staged"]))      # a live process: not finished
+            self.assertTrue(eval_keys.finished("staged", root, procs=[]))
+            keys = eval_keys.pool("staged", root, procs=[])
+            self.assertEqual(set(keys), set(run_arm.ARM_KEYS["staged"]))
+            self.assertFalse(set(keys) & set(run_arm.ARM_KEYS["baseline"]))                                                 # never a key of the other arm
+        with tempfile.TemporaryDirectory() as t:
+            root = self._root(t, "staged", "finished: upstream exception: TypeError: x")
+            self.assertFalse(eval_keys.finished("staged", root, procs=[]))                                                  # a crash exit is not a finish
+
+    def test_the_cross_check_refuses_a_key_of_a_running_arm(self):
+        from devmem.eval import run_arm
+        with self.assertRaises(eval_keys.ArmStillRunning):
+            eval_keys.assert_no_running_arm_key([run_arm.ARM_KEYS["baseline"][0]], ["baseline"])
+        eval_keys.assert_no_running_arm_key(run_arm.ARM_KEYS["staged"], ["baseline"])                                       # the other arm's keys are fine
+
+    def test_the_provider_config_holds_only_the_finished_arms_keys_and_no_key_text(self):
+        from devmem.eval import run_arm
+        with tempfile.TemporaryDirectory() as t:
+            root = self._root(t, "staged", "finished: reached 2023-02-16 00:00:00")
+            (root / "devmem" / "config").mkdir(parents=True)
+            import shutil
+            shutil.copy(ROOT / "devmem" / "config" / "providers.yaml", root / "devmem" / "config" / "providers.yaml")
+            out = eval_keys.provider_config("staged", Path(t) / "cfg.yaml", root, procs=[])
+            import yaml
+            cfg = yaml.safe_load(open(out, encoding="utf-8"))
+            names = [k["env"] for k in cfg["providers"][0]["keys"]]
+            self.assertEqual(set(names), set(run_arm.ARM_KEYS["staged"]))
+            self.assertTrue(all(n.startswith("GEMINI_KEY_") for n in names))
 
 
 class TestDiagnostics(unittest.TestCase):

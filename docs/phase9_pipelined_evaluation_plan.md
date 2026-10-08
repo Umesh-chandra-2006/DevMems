@@ -1,0 +1,31 @@
+# Phase 9 pipelined evaluation plan (PREPARED, not started)
+
+Written 2026-10-08. It refines `docs/phase9_evaluation_plan.md`. No em dashes, no key values.
+
+## The key rule, enforced in code
+An evaluation call may use ONLY keys of an arm whose run has FINISHED, never a key of an arm that is still running, and never a paid key. `devmem/eval/phase9/eval_keys.py`:
+`finished(arm)` is true only when the arm's `run_status.json` state is "finished: <final outcome>" and no run_arm or supervisor process of that arm exists; `pool(arm)` raises
+`ArmStillRunning` otherwise and returns the arm's own pool (chat keys plus the keys added through `extra_keys.json`); `assert_no_running_arm_key` is a second check inside every call
+function; `provider_config(arm)` writes a temporary provider configuration holding only that pool, the pinned model and the free-tier cap of 450 per key per quota day. Tests
+(`test_phase9.TestEvalKeyGuard`) cover a running arm, a crash exit (not a finish), a live process, the cross check, and the configuration content.
+
+## What can start for one arm as soon as THAT arm finishes (on that arm's own pool)
+| Step | Calls | Needs | Can start when |
+|---|---|---|---|
+| Recall answers on the day-3 checkpoint copy (39 questions, purpose `eval_recall`) | 39 | the arm's day-3 checkpoint (made by the runner at step 22,410) | the arm has finished |
+| Probe interviews (6 questions x 3 agents) on the day-1 copy and on the day-3 copy (`eval_probe`) | 36 | both copies | the arm has finished |
+| Judge on the arm's 18 day-1 against day-3 answer pairs (`eval_judge`) | 18 | the arm's own probe answers | after that arm's probes |
+| Judge calibration on the 20 authored pairs (once) | 20 | nothing from any run | after the STAGED arm finishes, on the staged pool (script `run_judge_calibration.py` waits for it) |
+| Replay controls (3 conditions on the fixed 300-event sample, `eval_replay`) | 900 | the STAGED arm's final event stream (the sample is drawn from it) | after the staged arm finishes, on the staged pool |
+| Offline pieces: grader on the answers, ledger splitter, diagnostics, E1 to E3 on the final data | 0 | final artifacts | when the arm (and for comparisons both arms) have finished |
+
+The baseline-side recall, probes and judge use the BASELINE pool and wait for the baseline arm. Nothing is shared across arms: the staged-side steps never touch a baseline key and the baseline-side
+steps never touch a staged key; the model, prompts and top-k are identical, so the key identity changes nothing.
+
+## Estimated times (from the measured rate of about 6 to 7 successful calls per minute on one pool, single sequential process; an estimate, not a promise)
+- **Staged side after the staged arm ends** (expected about 20:00 to 23:10 on Oct 8): recall 39 + probes 36 + judge 18 + calibration 20 = 113 calls, about 20 minutes; the grader and tables take minutes offline. **Staged-side results (without replay controls): about 30 to 45 minutes after the staged end.** The replay controls add 900 calls, about 2 to 2.5 hours, so staged-side results including them are about 3 hours after the staged end.
+- **Baseline side after the baseline arm ends** (expected about 04:50 to 13:40 on Oct 9): recall 39 + probes 36 + judge 18 = 93 calls, about 15 to 20 minutes. **The full comparison (both arms' answers graded and judged, E1 to E3 on final data, the directional-prediction table): about 45 to 60 minutes after the baseline end**, provided the staged-side work is already done by then, which the order above allows.
+- The replay controls can run while the baseline arm is still running because they use only the staged pool.
+
+## Scheduling of the judge calibration
+`python -m devmem.eval.phase9.run_judge_calibration` polls every 60 s, makes no call and uses no key until `eval_keys.finished("staged")` is true, then makes 20 calls on the staged pool and writes `devmem/storage/phase9_eval/judge_calibration.json`. It has a dry run that makes no call. If the staged arm never finishes cleanly, it never runs.
