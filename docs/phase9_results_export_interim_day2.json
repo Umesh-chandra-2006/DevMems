@@ -1,7 +1,7 @@
 {
  "label": "INTERIM day 2 (dry run of the final export)",
  "day": 2,
- "built_at": "2026-10-08 18:31:36",
+ "built_at": "2026-10-08 18:53:51",
  "arm_states": {
   "baseline": "running",
   "staged": "running"
@@ -634,11 +634,11 @@
     "sim_clock": "2023-02-14 14:00:00"
    },
    "429_waves_whole_run_to_now": {
-    "waves": 228,
-    "waited_seconds": 22028,
-    "mean_wave_seconds": 96.6,
+    "waves": 229,
+    "waited_seconds": 22064,
+    "mean_wave_seconds": 96.3,
     "max_wave_seconds": 438.8,
-    "share_of_wall_time_since_launch": 0.2303,
+    "share_of_wall_time_since_launch": 0.2275,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
@@ -701,19 +701,19 @@
     "sim_clock": "2023-02-14 14:00:00"
    },
    "429_waves_whole_run_to_now": {
-    "waves": 221,
-    "waited_seconds": 21151,
-    "mean_wave_seconds": 95.7,
+    "waves": 224,
+    "waited_seconds": 21494,
+    "mean_wave_seconds": 96.0,
     "max_wave_seconds": 509.1,
-    "share_of_wall_time_since_launch": 0.2212,
+    "share_of_wall_time_since_launch": 0.2217,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
    "fail_safe_scores": "not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised",
    "injection_check": {
     "events_total": 27,
-    "resolved": 18,
-    "pass": 17,
+    "resolved": 21,
+    "pass": 20,
     "fail": [
      "I6"
     ],
@@ -1056,7 +1056,7 @@
   "bootstrap_staged_minus_baseline": {
    "available": false
   },
-  "pivotal_observed_not_registered": {
+  "pivotal_observed_not_pre_registered": {
    "n": 0,
    "question_ids": [],
    "baseline_mean": null,
@@ -1189,9 +1189,380 @@
    }
   ]
  },
- "D2": {
-  "available": false,
-  "note": "merge cosines were never logged"
+ "D2_reproduction": {
+  "agents": {
+   "Isabella Rodriguez": {
+    "nights": [
+     {
+      "night": 0,
+      "sim_time": "2023-02-13 00:00:00",
+      "recorded_entries_considered": 0,
+      "recorded_histogram": {},
+      "recorded_entries_flagged": 0,
+      "reconstructed_entries": 0,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "note": "no entries"
+     },
+     {
+      "night": 1,
+      "sim_time": "2023-02-13 13:52:00",
+      "recorded_entries_considered": 93,
+      "recorded_histogram": {
+       "1": 9,
+       "2": 3,
+       "3": 2,
+       "4": 1,
+       "6": 1,
+       "8": 2,
+       "11": 2,
+       "24": 1
+      },
+      "recorded_entries_flagged": 56,
+      "reconstructed_entries": 93,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 9,
+       "2": 3,
+       "3": 2,
+       "4": 1,
+       "6": 1,
+       "8": 2,
+       "11": 2,
+       "24": 1
+      },
+      "reproduced_entries_flagged": 56,
+      "d2_entries_in_range_min_cluster": 30,
+      "d2_entries_in_range_clusters_of_2_or_more": 32,
+      "merge_heights_in_range": [
+       0.8201,
+       0.8274,
+       0.8412
+      ],
+      "merge_height_summary": {
+       "merges": 72,
+       "min": 0.8201,
+       "max": 1.0
+      }
+     },
+     {
+      "night": 2,
+      "sim_time": "2023-02-14 13:06:00",
+      "recorded_entries_considered": 204,
+      "recorded_histogram": {
+       "1": 19,
+       "2": 2,
+       "3": 4,
+       "4": 3,
+       "6": 1,
+       "8": 2,
+       "9": 1,
+       "24": 1,
+       "45": 1,
+       "57": 1
+      },
+      "recorded_entries_flagged": 61,
+      "reconstructed_entries": 204,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 19,
+       "2": 2,
+       "3": 4,
+       "4": 3,
+       "6": 1,
+       "8": 2,
+       "9": 1,
+       "24": 1,
+       "45": 1,
+       "57": 1
+      },
+      "reproduced_entries_flagged": 61,
+      "d2_entries_in_range_min_cluster": 97,
+      "d2_entries_in_range_clusters_of_2_or_more": 97,
+      "merge_heights_in_range": [
+       0.823,
+       0.8244,
+       0.8283,
+       0.8576,
+       0.8688,
+       0.8728
+      ],
+      "merge_height_summary": {
+       "merges": 169,
+       "min": 0.823,
+       "max": 1.0
+      }
+     }
+    ],
+    "all_nights_reproduced": true
+   },
+   "Klaus Mueller": {
+    "nights": [
+     {
+      "night": 0,
+      "sim_time": "2023-02-13 00:00:00",
+      "recorded_entries_considered": 0,
+      "recorded_histogram": {},
+      "recorded_entries_flagged": 0,
+      "reconstructed_entries": 0,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "note": "no entries"
+     },
+     {
+      "night": 1,
+      "sim_time": "2023-02-13 14:03:00",
+      "recorded_entries_considered": 132,
+      "recorded_histogram": {
+       "1": 13,
+       "2": 5,
+       "3": 3,
+       "4": 3,
+       "6": 1,
+       "9": 1,
+       "10": 1,
+       "12": 1,
+       "16": 1,
+       "17": 1,
+       "18": 1
+      },
+      "recorded_entries_flagged": 67,
+      "reconstructed_entries": 132,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 13,
+       "2": 5,
+       "3": 3,
+       "4": 3,
+       "6": 1,
+       "9": 1,
+       "10": 1,
+       "12": 1,
+       "16": 1,
+       "17": 1,
+       "18": 1
+      },
+      "reproduced_entries_flagged": 67,
+      "d2_entries_in_range_min_cluster": 21,
+      "d2_entries_in_range_clusters_of_2_or_more": 23,
+      "merge_heights_in_range": [
+       0.8237,
+       0.8567,
+       0.8709
+      ],
+      "merge_height_summary": {
+       "merges": 101,
+       "min": 0.8237,
+       "max": 1.0
+      }
+     },
+     {
+      "night": 2,
+      "sim_time": "2023-02-14 13:52:00",
+      "recorded_entries_considered": 215,
+      "recorded_histogram": {
+       "1": 27,
+       "2": 6,
+       "3": 2,
+       "4": 3,
+       "5": 4,
+       "6": 1,
+       "7": 2,
+       "8": 1,
+       "12": 1,
+       "14": 1,
+       "15": 1,
+       "18": 2,
+       "33": 1
+      },
+      "recorded_entries_flagged": 72,
+      "reconstructed_entries": 215,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 27,
+       "2": 6,
+       "3": 2,
+       "4": 3,
+       "5": 4,
+       "6": 1,
+       "7": 2,
+       "8": 1,
+       "12": 1,
+       "14": 1,
+       "15": 1,
+       "18": 2,
+       "33": 1
+      },
+      "reproduced_entries_flagged": 72,
+      "d2_entries_in_range_min_cluster": 81,
+      "d2_entries_in_range_clusters_of_2_or_more": 85,
+      "merge_heights_in_range": [
+       0.8225,
+       0.8238,
+       0.8301,
+       0.8447,
+       0.8547,
+       0.8567,
+       0.8707,
+       0.8715
+      ],
+      "merge_height_summary": {
+       "merges": 163,
+       "min": 0.8225,
+       "max": 1.0
+      }
+     }
+    ],
+    "all_nights_reproduced": true
+   },
+   "Maria Lopez": {
+    "nights": [
+     {
+      "night": 0,
+      "sim_time": "2023-02-13 00:00:00",
+      "recorded_entries_considered": 0,
+      "recorded_histogram": {},
+      "recorded_entries_flagged": 0,
+      "reconstructed_entries": 0,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "note": "no entries"
+     },
+     {
+      "night": 1,
+      "sim_time": "2023-02-13 14:22:00",
+      "recorded_entries_considered": 132,
+      "recorded_histogram": {
+       "1": 12,
+       "2": 6,
+       "3": 2,
+       "4": 1,
+       "5": 1,
+       "7": 2,
+       "9": 1,
+       "12": 1,
+       "16": 1,
+       "17": 1,
+       "25": 1
+      },
+      "recorded_entries_flagged": 64,
+      "reconstructed_entries": 132,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 12,
+       "2": 6,
+       "3": 2,
+       "4": 1,
+       "5": 1,
+       "7": 2,
+       "9": 1,
+       "12": 1,
+       "16": 1,
+       "17": 1,
+       "25": 1
+      },
+      "reproduced_entries_flagged": 64,
+      "d2_entries_in_range_min_cluster": 30,
+      "d2_entries_in_range_clusters_of_2_or_more": 30,
+      "merge_heights_in_range": [
+       0.8327,
+       0.8428
+      ],
+      "merge_height_summary": {
+       "merges": 103,
+       "min": 0.8327,
+       "max": 1.0
+      }
+     },
+     {
+      "night": 2,
+      "sim_time": "2023-02-14 13:55:00",
+      "recorded_entries_considered": 171,
+      "recorded_histogram": {
+       "1": 21,
+       "2": 8,
+       "3": 3,
+       "4": 2,
+       "5": 3,
+       "6": 1,
+       "7": 2,
+       "9": 1,
+       "10": 1,
+       "11": 2,
+       "41": 1
+      },
+      "recorded_entries_flagged": 60,
+      "reconstructed_entries": 171,
+      "embeddings_missing": 0,
+      "reproduced": true,
+      "reproduced_histogram": {
+       "1": 21,
+       "2": 8,
+       "3": 3,
+       "4": 2,
+       "5": 3,
+       "6": 1,
+       "7": 2,
+       "9": 1,
+       "10": 1,
+       "11": 2,
+       "41": 1
+      },
+      "reproduced_entries_flagged": 60,
+      "d2_entries_in_range_min_cluster": 49,
+      "d2_entries_in_range_clusters_of_2_or_more": 51,
+      "merge_heights_in_range": [
+       0.8248,
+       0.8371,
+       0.8435,
+       0.876
+      ],
+      "merge_height_summary": {
+       "merges": 126,
+       "min": 0.8248,
+       "max": 1.0
+      }
+     }
+    ],
+    "all_nights_reproduced": true
+   }
+  },
+  "missing_texts": [],
+  "verdict": {
+   "outcome": "right",
+   "reason": "entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy",
+   "numbers": {
+    "Isabella Rodriguez": 127,
+    "Klaus Mueller": 102,
+    "Maria Lopez": 79
+   }
+  }
+ },
+ "purpose_tag_audit": {
+  "baseline": {
+   "reflection_tagged_rows_in_delivered_log": 119,
+   "real_reflection_prompts": 118,
+   "keyword_false_matches": 1,
+   "false_match_examples": [
+    "Task: Turn the input into (subject, predicate, object). \n\nInput: Sam Johnson is "
+   ]
+  },
+  "staged": {
+   "reflection_tagged_rows_in_delivered_log": 6,
+   "real_reflection_prompts": 0,
+   "keyword_false_matches": 6,
+   "false_match_examples": [
+    "Task -- choose an appropriate area  from the area options for a task at hand. \n\n",
+    "Jane Anderson is in kitchen in Jane Anderson's house.\nJane Anderson is going to ",
+    "Current activity: sleep in bed\nObjects available: {bed, easel, closet, painting}"
+   ]
+  },
+  "note": "by-purpose ledger figures use the keyword tag; only the reflection tag is audited here; the totals per arm do not depend on the tag"
  },
  "consolidation_log_per_agent_and_night": [
   {
@@ -1607,8 +1978,10 @@
    "id": "S-mismatch",
    "prediction": "mismatch priors move scores toward that persona's direction",
    "outcome": "undecidable",
-   "reason": "the registered text gives no sign for Wolfgang Schulz's direction, so no pre-registered threshold exists; the observed means are in the replay table",
-   "numbers": {}
+   "reason": "PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only",
+   "numbers": {
+    "observed_mismatch_mean": null
+   }
   },
   {
    "id": "M2",
@@ -1736,10 +2109,14 @@
   },
   {
    "id": "D-2",
-   "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the three nights",
-   "outcome": "undecidable",
-   "reason": "the consolidation log records cluster sizes, not the cosines at which entries merged; the metric was never logged, and a re-clustering offline from cached embeddings is not built (open question to the PM)",
-   "numbers": {}
+   "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering)",
+   "outcome": "right",
+   "reason": "entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy",
+   "numbers": {
+    "Isabella Rodriguez": 127,
+    "Klaus Mueller": 102,
+    "Maria Lopez": 79
+   }
   }
  ]
 }

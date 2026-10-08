@@ -1,0 +1,354 @@
+{
+ "agents": {
+  "Isabella Rodriguez": {
+   "nights": [
+    {
+     "night": 0,
+     "sim_time": "2023-02-13 00:00:00",
+     "recorded_entries_considered": 0,
+     "recorded_histogram": {},
+     "recorded_entries_flagged": 0,
+     "reconstructed_entries": 0,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "note": "no entries"
+    },
+    {
+     "night": 1,
+     "sim_time": "2023-02-13 13:52:00",
+     "recorded_entries_considered": 93,
+     "recorded_histogram": {
+      "1": 9,
+      "2": 3,
+      "3": 2,
+      "4": 1,
+      "6": 1,
+      "8": 2,
+      "11": 2,
+      "24": 1
+     },
+     "recorded_entries_flagged": 56,
+     "reconstructed_entries": 93,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 9,
+      "2": 3,
+      "3": 2,
+      "4": 1,
+      "6": 1,
+      "8": 2,
+      "11": 2,
+      "24": 1
+     },
+     "reproduced_entries_flagged": 56,
+     "d2_entries_in_range_min_cluster": 30,
+     "d2_entries_in_range_clusters_of_2_or_more": 32,
+     "merge_heights_in_range": [
+      0.8201,
+      0.8274,
+      0.8412
+     ],
+     "merge_height_summary": {
+      "merges": 72,
+      "min": 0.8201,
+      "max": 1.0
+     }
+    },
+    {
+     "night": 2,
+     "sim_time": "2023-02-14 13:06:00",
+     "recorded_entries_considered": 204,
+     "recorded_histogram": {
+      "1": 19,
+      "2": 2,
+      "3": 4,
+      "4": 3,
+      "6": 1,
+      "8": 2,
+      "9": 1,
+      "24": 1,
+      "45": 1,
+      "57": 1
+     },
+     "recorded_entries_flagged": 61,
+     "reconstructed_entries": 204,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 19,
+      "2": 2,
+      "3": 4,
+      "4": 3,
+      "6": 1,
+      "8": 2,
+      "9": 1,
+      "24": 1,
+      "45": 1,
+      "57": 1
+     },
+     "reproduced_entries_flagged": 61,
+     "d2_entries_in_range_min_cluster": 97,
+     "d2_entries_in_range_clusters_of_2_or_more": 97,
+     "merge_heights_in_range": [
+      0.823,
+      0.8244,
+      0.8283,
+      0.8576,
+      0.8688,
+      0.8728
+     ],
+     "merge_height_summary": {
+      "merges": 169,
+      "min": 0.823,
+      "max": 1.0
+     }
+    }
+   ],
+   "all_nights_reproduced": true
+  },
+  "Klaus Mueller": {
+   "nights": [
+    {
+     "night": 0,
+     "sim_time": "2023-02-13 00:00:00",
+     "recorded_entries_considered": 0,
+     "recorded_histogram": {},
+     "recorded_entries_flagged": 0,
+     "reconstructed_entries": 0,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "note": "no entries"
+    },
+    {
+     "night": 1,
+     "sim_time": "2023-02-13 14:03:00",
+     "recorded_entries_considered": 132,
+     "recorded_histogram": {
+      "1": 13,
+      "2": 5,
+      "3": 3,
+      "4": 3,
+      "6": 1,
+      "9": 1,
+      "10": 1,
+      "12": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1
+     },
+     "recorded_entries_flagged": 67,
+     "reconstructed_entries": 132,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 13,
+      "2": 5,
+      "3": 3,
+      "4": 3,
+      "6": 1,
+      "9": 1,
+      "10": 1,
+      "12": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1
+     },
+     "reproduced_entries_flagged": 67,
+     "d2_entries_in_range_min_cluster": 21,
+     "d2_entries_in_range_clusters_of_2_or_more": 23,
+     "merge_heights_in_range": [
+      0.8237,
+      0.8567,
+      0.8709
+     ],
+     "merge_height_summary": {
+      "merges": 101,
+      "min": 0.8237,
+      "max": 1.0
+     }
+    },
+    {
+     "night": 2,
+     "sim_time": "2023-02-14 13:52:00",
+     "recorded_entries_considered": 215,
+     "recorded_histogram": {
+      "1": 27,
+      "2": 6,
+      "3": 2,
+      "4": 3,
+      "5": 4,
+      "6": 1,
+      "7": 2,
+      "8": 1,
+      "12": 1,
+      "14": 1,
+      "15": 1,
+      "18": 2,
+      "33": 1
+     },
+     "recorded_entries_flagged": 72,
+     "reconstructed_entries": 215,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 27,
+      "2": 6,
+      "3": 2,
+      "4": 3,
+      "5": 4,
+      "6": 1,
+      "7": 2,
+      "8": 1,
+      "12": 1,
+      "14": 1,
+      "15": 1,
+      "18": 2,
+      "33": 1
+     },
+     "reproduced_entries_flagged": 72,
+     "d2_entries_in_range_min_cluster": 81,
+     "d2_entries_in_range_clusters_of_2_or_more": 85,
+     "merge_heights_in_range": [
+      0.8225,
+      0.8238,
+      0.8301,
+      0.8447,
+      0.8547,
+      0.8567,
+      0.8707,
+      0.8715
+     ],
+     "merge_height_summary": {
+      "merges": 163,
+      "min": 0.8225,
+      "max": 1.0
+     }
+    }
+   ],
+   "all_nights_reproduced": true
+  },
+  "Maria Lopez": {
+   "nights": [
+    {
+     "night": 0,
+     "sim_time": "2023-02-13 00:00:00",
+     "recorded_entries_considered": 0,
+     "recorded_histogram": {},
+     "recorded_entries_flagged": 0,
+     "reconstructed_entries": 0,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "note": "no entries"
+    },
+    {
+     "night": 1,
+     "sim_time": "2023-02-13 14:22:00",
+     "recorded_entries_considered": 132,
+     "recorded_histogram": {
+      "1": 12,
+      "2": 6,
+      "3": 2,
+      "4": 1,
+      "5": 1,
+      "7": 2,
+      "9": 1,
+      "12": 1,
+      "16": 1,
+      "17": 1,
+      "25": 1
+     },
+     "recorded_entries_flagged": 64,
+     "reconstructed_entries": 132,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 12,
+      "2": 6,
+      "3": 2,
+      "4": 1,
+      "5": 1,
+      "7": 2,
+      "9": 1,
+      "12": 1,
+      "16": 1,
+      "17": 1,
+      "25": 1
+     },
+     "reproduced_entries_flagged": 64,
+     "d2_entries_in_range_min_cluster": 30,
+     "d2_entries_in_range_clusters_of_2_or_more": 30,
+     "merge_heights_in_range": [
+      0.8327,
+      0.8428
+     ],
+     "merge_height_summary": {
+      "merges": 103,
+      "min": 0.8327,
+      "max": 1.0
+     }
+    },
+    {
+     "night": 2,
+     "sim_time": "2023-02-14 13:55:00",
+     "recorded_entries_considered": 171,
+     "recorded_histogram": {
+      "1": 21,
+      "2": 8,
+      "3": 3,
+      "4": 2,
+      "5": 3,
+      "6": 1,
+      "7": 2,
+      "9": 1,
+      "10": 1,
+      "11": 2,
+      "41": 1
+     },
+     "recorded_entries_flagged": 60,
+     "reconstructed_entries": 171,
+     "embeddings_missing": 0,
+     "reproduced": true,
+     "reproduced_histogram": {
+      "1": 21,
+      "2": 8,
+      "3": 3,
+      "4": 2,
+      "5": 3,
+      "6": 1,
+      "7": 2,
+      "9": 1,
+      "10": 1,
+      "11": 2,
+      "41": 1
+     },
+     "reproduced_entries_flagged": 60,
+     "d2_entries_in_range_min_cluster": 49,
+     "d2_entries_in_range_clusters_of_2_or_more": 51,
+     "merge_heights_in_range": [
+      0.8248,
+      0.8371,
+      0.8435,
+      0.876
+     ],
+     "merge_height_summary": {
+      "merges": 126,
+      "min": 0.8248,
+      "max": 1.0
+     }
+    }
+   ],
+   "all_nights_reproduced": true
+  }
+ },
+ "missing_texts": [],
+ "verdict": {
+  "outcome": "right",
+  "reason": "entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy",
+  "numbers": {
+   "Isabella Rodriguez": 127,
+   "Klaus Mueller": 102,
+   "Maria Lopez": 79
+  }
+ }
+}
