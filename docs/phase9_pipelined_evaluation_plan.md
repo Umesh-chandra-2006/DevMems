@@ -44,3 +44,7 @@ Driver: `devmem/eval/phase9/run_arm_evaluation.py` runs, for ONE finished arm an
 | Full comparison (both arms graded and judged, E1 to E3 on final data, the prediction table) | about 04:50 | about 05:30 to 06:30 |
 
 The parallel column needs the one-process-per-agent variant of the driver (not yet written); the realistic column uses what exists.
+
+## Addendum, 2026-10-08 (PM order of 20:00): staged-pool chain and independent modes
+
+On the staged arm's finish, `devmem/eval/phase9/run_staged_chain.py` (running, waits for `eval_keys.finished("staged")`) runs, one process per step and stopping at the first failure, on the staged pool: (1) staged day-3 evaluation (93 calls), (2) judge calibration (20 calls), (3) baseline day-2 interim evaluation with `--pool-arm staged --day 2` (78 calls), (4) replay controls (`run_replay_controls.py`, at most 900 calls, replies cached). The earlier stand-alone calibration waiter was stopped so that the order above holds. Each step writes its output file (`devmem/storage/phase9_eval/...`) and a line to `chain_status.jsonl`. The baseline day-3 evaluation runs on the baseline pool when the baseline finishes. Offline, `results_export.py --day 2|3` writes the paper export.

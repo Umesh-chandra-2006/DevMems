@@ -1,0 +1,1745 @@
+{
+ "label": "INTERIM day 2 (dry run of the final export)",
+ "day": 2,
+ "built_at": "2026-10-08 18:31:36",
+ "arm_states": {
+  "baseline": "running",
+  "staged": "running"
+ },
+ "single_run_per_arm": true,
+ "agents": 3,
+ "arms": {
+  "baseline": {
+   "label": "interim, step 13770, sim clock 2023-02-14 14:15:00",
+   "checkpoint": {
+    "label": "day2_primary_interim",
+    "step": 13770,
+    "sim_clock": "2023-02-14 14:15:00",
+    "made_at": "2026-10-08 17:34:49",
+    "exact_first_autosave": true
+   },
+   "E1": {
+    "raw_by_purpose": {
+     "dialogue": 599,
+     "importance_scoring": 3781,
+     "planning": 2978,
+     "reflection": 113
+    },
+    "raw_total": 7471,
+    "replay_pass_removed_by_purpose": {
+     "dialogue": 6,
+     "importance_scoring": 89,
+     "planning": 68,
+     "reflection": 6
+    },
+    "removed_total": 169,
+    "unique_by_purpose": {
+     "dialogue": 593,
+     "importance_scoring": 3692,
+     "planning": 2910,
+     "reflection": 107
+    },
+    "unique_total": 7302,
+    "restarts_with_a_replay_pass": [
+     {
+      "restart_ist": "2026-10-08 00:53:32",
+      "prekill_step": 3599,
+      "replayed_second_pass_calls": 0,
+      "note": "the pre-kill last step was not rewritten: no replay pass"
+     },
+     {
+      "restart_ist": "2026-10-08 16:14:25",
+      "prekill_step": 13306,
+      "rewritten_until_ist": "2026-10-08 16:40:24",
+      "replayed_second_pass_calls": 169
+     }
+    ],
+    "per_day_agent_purpose": {
+     "by_day_agent_purpose": [
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "dialogue",
+       "raw": 92,
+       "unique": 92
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "importance_scoring",
+       "raw": 679,
+       "unique": 679
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "planning",
+       "raw": 479,
+       "unique": 479
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "reflection",
+       "raw": 21,
+       "unique": 21
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "dialogue",
+       "raw": 91,
+       "unique": 91
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "importance_scoring",
+       "raw": 280,
+       "unique": 280
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "planning",
+       "raw": 422,
+       "unique": 422
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "reflection",
+       "raw": 9,
+       "unique": 9
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "dialogue",
+       "raw": 131,
+       "unique": 131
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "importance_scoring",
+       "raw": 629,
+       "unique": 629
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "planning",
+       "raw": 578,
+       "unique": 578
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "reflection",
+       "raw": 21,
+       "unique": 21
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "dialogue",
+       "raw": 96,
+       "unique": 95
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "importance_scoring",
+       "raw": 1133,
+       "unique": 1100
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "planning",
+       "raw": 636,
+       "unique": 610
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "reflection",
+       "raw": 34,
+       "unique": 31
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "dialogue",
+       "raw": 88,
+       "unique": 87
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "importance_scoring",
+       "raw": 432,
+       "unique": 432
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "planning",
+       "raw": 426,
+       "unique": 419
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "reflection",
+       "raw": 12,
+       "unique": 12
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "dialogue",
+       "raw": 101,
+       "unique": 97
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "importance_scoring",
+       "raw": 628,
+       "unique": 572
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "planning",
+       "raw": 437,
+       "unique": 402
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "reflection",
+       "raw": 16,
+       "unique": 13
+      }
+     ],
+     "unique_by_day_purpose": {
+      "1": {
+       "dialogue": 314,
+       "importance_scoring": 1588,
+       "planning": 1479,
+       "reflection": 51
+      },
+      "2": {
+       "dialogue": 279,
+       "importance_scoring": 2104,
+       "planning": 1431,
+       "reflection": 56
+      }
+     },
+     "raw_total": 7471,
+     "unique_total": 7302,
+     "method": "sim day = day of the first step file written after the call; replayed second passes removed"
+    }
+   },
+   "E2_prompt_tokens": {
+    "condition": "baseline",
+    "purpose": "importance_scoring",
+    "calls": 3781,
+    "mean_tokens_in": 418.5,
+    "window_utc": [
+     "2026-10-07 10:27:47",
+     "2026-10-08 12:04:49"
+    ]
+   },
+   "E3_consolidated_fraction": {
+    "entries": 0,
+    "consolidated": 0,
+    "fraction": 0.0,
+    "note": "no memory database: the baseline has no Stage 3, so the fraction is 0 by construction"
+   },
+   "sweep_markers_done_nights_per_agent": {}
+  },
+  "staged": {
+   "label": "interim, step 13770, sim clock 2023-02-14 14:15:00",
+   "checkpoint": {
+    "label": "day2_primary_interim",
+    "step": 13770,
+    "sim_clock": "2023-02-14 14:15:00",
+    "made_at": "2026-10-08 13:30:03",
+    "exact_first_autosave": true
+   },
+   "E1": {
+    "raw_by_purpose": {
+     "consolidation_summary": 36,
+     "dialogue": 474,
+     "identity_trait": 14,
+     "importance_scoring": 3331,
+     "planning": 2181,
+     "reflection": 6
+    },
+    "raw_total": 6042,
+    "replay_pass_removed_by_purpose": {
+     "dialogue": 3,
+     "importance_scoring": 8,
+     "planning": 23
+    },
+    "removed_total": 34,
+    "unique_by_purpose": {
+     "consolidation_summary": 36,
+     "dialogue": 471,
+     "identity_trait": 14,
+     "importance_scoring": 3323,
+     "planning": 2158,
+     "reflection": 6
+    },
+    "unique_total": 6008,
+    "restarts_with_a_replay_pass": [
+     {
+      "restart_ist": "2026-10-08 00:54:01",
+      "prekill_step": 4012,
+      "rewritten_until_ist": "2026-10-08 01:00:29",
+      "replayed_second_pass_calls": 34
+     }
+    ],
+    "per_day_agent_purpose": {
+     "by_day_agent_purpose": [
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "dialogue",
+       "raw": 70,
+       "unique": 69
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "identity_trait",
+       "raw": 2,
+       "unique": 2
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "importance_scoring",
+       "raw": 505,
+       "unique": 501
+      },
+      {
+       "sim_day": 1,
+       "agent": "Isabella Rodriguez",
+       "purpose": "planning",
+       "raw": 369,
+       "unique": 362
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "dialogue",
+       "raw": 90,
+       "unique": 89
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "identity_trait",
+       "raw": 4,
+       "unique": 4
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "importance_scoring",
+       "raw": 282,
+       "unique": 281
+      },
+      {
+       "sim_day": 1,
+       "agent": "Klaus Mueller",
+       "purpose": "planning",
+       "raw": 393,
+       "unique": 385
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "dialogue",
+       "raw": 111,
+       "unique": 110
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "identity_trait",
+       "raw": 5,
+       "unique": 5
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "importance_scoring",
+       "raw": 466,
+       "unique": 463
+      },
+      {
+       "sim_day": 1,
+       "agent": "Maria Lopez",
+       "purpose": "planning",
+       "raw": 413,
+       "unique": 405
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "dialogue",
+       "raw": 58,
+       "unique": 58
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "identity_trait",
+       "raw": 2,
+       "unique": 2
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "importance_scoring",
+       "raw": 972,
+       "unique": 972
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "planning",
+       "raw": 343,
+       "unique": 343
+      },
+      {
+       "sim_day": 2,
+       "agent": "Isabella Rodriguez",
+       "purpose": "reflection",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "dialogue",
+       "raw": 57,
+       "unique": 57
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "identity_trait",
+       "raw": 1,
+       "unique": 1
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "importance_scoring",
+       "raw": 357,
+       "unique": 357
+      },
+      {
+       "sim_day": 2,
+       "agent": "Klaus Mueller",
+       "purpose": "planning",
+       "raw": 318,
+       "unique": 318
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "consolidation_summary",
+       "raw": 6,
+       "unique": 6
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "dialogue",
+       "raw": 88,
+       "unique": 88
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "importance_scoring",
+       "raw": 749,
+       "unique": 749
+      },
+      {
+       "sim_day": 2,
+       "agent": "Maria Lopez",
+       "purpose": "planning",
+       "raw": 345,
+       "unique": 345
+      }
+     ],
+     "unique_by_day_purpose": {
+      "1": {
+       "consolidation_summary": 18,
+       "dialogue": 268,
+       "identity_trait": 11,
+       "importance_scoring": 1245,
+       "planning": 1152
+      },
+      "2": {
+       "consolidation_summary": 18,
+       "dialogue": 203,
+       "identity_trait": 3,
+       "importance_scoring": 2078,
+       "planning": 1006,
+       "reflection": 6
+      }
+     },
+     "raw_total": 6042,
+     "unique_total": 6008,
+     "method": "sim day = day of the first step file written after the call; replayed second passes removed"
+    }
+   },
+   "E2_prompt_tokens": {
+    "condition": "staged",
+    "purpose": "importance_scoring",
+    "calls": 3331,
+    "mean_tokens_in": 572.3,
+    "window_utc": [
+     "2026-10-07 10:27:47",
+     "2026-10-08 08:00:03"
+    ]
+   },
+   "E3_consolidated_fraction": {
+    "entries": 3901,
+    "consolidated": 380,
+    "fraction": 0.0974
+   },
+   "sweep_markers_done_nights_per_agent": {
+    "Isabella Rodriguez": [
+     0,
+     1,
+     2
+    ],
+    "Maria Lopez": [
+     0,
+     1,
+     2
+    ],
+    "Klaus Mueller": [
+     0,
+     1,
+     2
+    ]
+   },
+   "summaries_and_traits": {
+    "semantic_summaries": 14,
+    "identity_traits": 13
+   }
+  }
+ },
+ "run_conditions": {
+  "baseline": {
+   "restart_log_events": {
+    "exit": 3,
+    "key_change_resume": 3,
+    "start": 6,
+    "external_kill_watchdog_restart": 1
+   },
+   "restarts_detail": [
+    {
+     "ts": "2026-10-07 16:50:25",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 2340,
+     "sim_clock": "2023-02-13 06:30:00"
+    },
+    {
+     "ts": "2026-10-07 22:15:32",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 2970,
+     "sim_clock": "2023-02-13 08:15:00"
+    },
+    {
+     "ts": "2026-10-08 01:09:57",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 3780,
+     "sim_clock": "2023-02-13 10:30:00"
+    },
+    {
+     "ts": "2026-10-08 16:14:24",
+     "event": "external_kill_watchdog_restart",
+     "outcome": null,
+     "step": null,
+     "sim_clock": null
+    }
+   ],
+   "replayed_spans": [
+    [
+     "2026-10-08 00:53:32",
+     3599
+    ],
+    [
+     "2026-10-08 16:14:25",
+     13306
+    ]
+   ],
+   "outage_minutes_from_outage_log": 82.6,
+   "counters_at_last_hourly_row": {
+    "outage_minutes_total": 82.64,
+    "rate_limit_wait_minutes_total": 356.75,
+    "quota_pauses": 0,
+    "step": 13680,
+    "sim_clock": "2023-02-14 14:00:00"
+   },
+   "429_waves_whole_run_to_now": {
+    "waves": 228,
+    "waited_seconds": 22028,
+    "mean_wave_seconds": 96.6,
+    "max_wave_seconds": 438.8,
+    "share_of_wall_time_since_launch": 0.2303,
+    "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
+   },
+   "router_failures_in_run_status": 0,
+   "fail_safe_scores": "not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised",
+   "injection_check": {
+    "events_total": 27,
+    "resolved": 18,
+    "pass": 18,
+    "fail": [],
+    "pending": [],
+    "asleep_at_injection": []
+   },
+   "state": "running"
+  },
+  "staged": {
+   "restart_log_events": {
+    "exit": 3,
+    "key_change_resume": 3,
+    "start": 6
+   },
+   "restarts_detail": [
+    {
+     "ts": "2026-10-07 16:50:36",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 2340,
+     "sim_clock": "2023-02-13 06:30:00"
+    },
+    {
+     "ts": "2026-10-07 22:38:23",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 3330,
+     "sim_clock": "2023-02-13 09:15:00"
+    },
+    {
+     "ts": "2026-10-08 01:10:11",
+     "event": "exit",
+     "outcome": "key change restart at an autosave (the supervisor resumes with the keys in extra_keys.json)",
+     "step": 4050,
+     "sim_clock": "2023-02-13 11:15:00"
+    }
+   ],
+   "replayed_spans": [
+    [
+     "2026-10-08 00:54:01",
+     4012
+    ],
+    [
+     "2026-10-08 16:15:24",
+     19809
+    ]
+   ],
+   "outage_minutes_from_outage_log": 90.1,
+   "counters_at_last_hourly_row": {
+    "outage_minutes_total": 90.07,
+    "rate_limit_wait_minutes_total": 300.51,
+    "quota_pauses": 0,
+    "step": 13680,
+    "sim_clock": "2023-02-14 14:00:00"
+   },
+   "429_waves_whole_run_to_now": {
+    "waves": 221,
+    "waited_seconds": 21151,
+    "mean_wave_seconds": 95.7,
+    "max_wave_seconds": 509.1,
+    "share_of_wall_time_since_launch": 0.2212,
+    "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
+   },
+   "router_failures_in_run_status": 0,
+   "fail_safe_scores": "not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised",
+   "injection_check": {
+    "events_total": 27,
+    "resolved": 18,
+    "pass": 17,
+    "fail": [
+     "I6"
+    ],
+    "pending": [],
+    "asleep_at_injection": []
+   },
+   "state": "running"
+  }
+ },
+ "sweep_markers_per_agent_and_night": {
+  "staged": {
+   "Isabella Rodriguez": [
+    {
+     "night": 0,
+     "status": "done"
+    },
+    {
+     "night": 1,
+     "status": "done"
+    },
+    {
+     "night": 2,
+     "status": "done"
+    }
+   ],
+   "Klaus Mueller": [
+    {
+     "night": 0,
+     "status": "done"
+    },
+    {
+     "night": 1,
+     "status": "done"
+    },
+    {
+     "night": 2,
+     "status": "done"
+    }
+   ],
+   "Maria Lopez": [
+    {
+     "night": 0,
+     "status": "done"
+    },
+    {
+     "night": 1,
+     "status": "done"
+    },
+    {
+     "night": 2,
+     "status": "done"
+    }
+   ]
+  },
+  "baseline": "none by design (no Stage 3)"
+ },
+ "recall": {
+  "rows": [
+   {
+    "question_id": "Q_I1",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I1",
+    "event_type": "mundane",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_I2",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I2",
+    "event_type": "theme",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_I3",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I3",
+    "event_type": "friction",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_I4",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I4",
+    "event_type": "theme",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_I5",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I5",
+    "event_type": "pivotal",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_I6",
+    "agent": "Isabella Rodriguez",
+    "type": "injected",
+    "event_id": "I6",
+    "event_type": "mundane",
+    "distance_days": 0,
+    "excluded": "injection of I6 failed its check in an arm; excluded from both arms (pre-registration section 4)",
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M1",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M1",
+    "event_type": "mundane",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M2",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M2",
+    "event_type": "theme",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M3",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M3",
+    "event_type": "friction",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M4",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M4",
+    "event_type": "one_off",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M5",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M5",
+    "event_type": "pivotal",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_M6",
+    "agent": "Maria Lopez",
+    "type": "injected",
+    "event_id": "M6",
+    "event_type": "theme",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K1",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K1",
+    "event_type": "mundane",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K2",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K2",
+    "event_type": "theme",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K3",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K3",
+    "event_type": "friction",
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K4",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K4",
+    "event_type": "one_off",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K5",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K5",
+    "event_type": "pivotal",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "Q_K6",
+    "agent": "Klaus Mueller",
+    "type": "injected",
+    "event_id": "K6",
+    "event_type": "theme",
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_I1",
+    "agent": "Isabella Rodriguez",
+    "type": "natural",
+    "event_id": "schedule day 2 09:00",
+    "event_type": null,
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_I2",
+    "agent": "Isabella Rodriguez",
+    "type": "natural",
+    "event_id": "schedule day 1 12:00",
+    "event_type": null,
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_M1",
+    "agent": "Maria Lopez",
+    "type": "natural",
+    "event_id": "schedule day 2 09:00",
+    "event_type": null,
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_M2",
+    "agent": "Maria Lopez",
+    "type": "natural",
+    "event_id": "schedule day 1 11:30",
+    "event_type": null,
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_K1",
+    "agent": "Klaus Mueller",
+    "type": "natural",
+    "event_id": "schedule day 2 09:00",
+    "event_type": null,
+    "distance_days": 0,
+    "baseline": null,
+    "staged": null
+   },
+   {
+    "question_id": "N_K2",
+    "agent": "Klaus Mueller",
+    "type": "natural",
+    "event_id": "schedule day 1 11:30",
+    "event_type": null,
+    "distance_days": 1,
+    "baseline": null,
+    "staged": null
+   }
+  ],
+  "excluded_question_ids": [
+   "Q_I6"
+  ],
+  "grader_validation": {
+   "items_checked": 57,
+   "item_agreement": 0.9474,
+   "answers": 30,
+   "answer_agreement": 0.9333,
+   "interpretable": true
+  },
+  "grader_disagreements": [
+   {
+    "n": 13,
+    "question_id": "Q_I3",
+    "item": "received",
+    "hand_label": false,
+    "grader": true,
+    "answer": "Hale was handed a tea although he had asked for a latte.",
+    "note": "swapped: received and wanted are reversed, both wrong"
+   },
+   {
+    "n": 13,
+    "question_id": "Q_I3",
+    "item": "wanted",
+    "hand_label": false,
+    "grader": true,
+    "answer": "Hale was handed a tea although he had asked for a latte.",
+    "note": "swapped: received and wanted are reversed, both wrong"
+   },
+   {
+    "n": 18,
+    "question_id": "Q_I5",
+    "item": "when",
+    "hand_label": true,
+    "grader": false,
+    "answer": "It announced that the cafe would not close on Monday.",
+    "note": "negated closure; Monday mentioned"
+   }
+  ],
+  "bootstrap_staged_minus_baseline": {
+   "available": false
+  },
+  "pivotal_observed_not_registered": {
+   "n": 0,
+   "question_ids": [],
+   "baseline_mean": null,
+   "staged_mean": null,
+   "staged_minus_baseline_mean": null,
+   "per_question_diff": {}
+  },
+  "definition_notes": [
+   "R3 as registered says distance 2, but I5, M5 and K5 are day-2 events: at the day-3 checkpoint their distance is 1; the literal registered definition matches no question. The observed pivotal pool is shown separately.",
+   "R1 and R2 each rest on one question (n = 1 < 3): undecidable under pre-registration section 6; the observed values are shown."
+  ]
+ },
+ "coherence_M2": {
+  "available": false,
+  "note": "day-1 against day-3 judge results or the judge calibration are not available yet",
+  "calibration_available": false
+ },
+ "stage2_replay_controls": {
+  "available": false,
+  "note": "not run yet"
+ },
+ "D1_provenance": {
+  "traits": 13,
+  "available": 0,
+  "flagged": 0,
+  "rows": [
+   {
+    "trait_id": "Isabella Rodriguez:trait_1",
+    "agent": "Isabella Rodriguez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Isabella Rodriguez:trait_2",
+    "agent": "Isabella Rodriguez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Klaus Mueller:trait_1",
+    "agent": "Klaus Mueller",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Klaus Mueller:trait_2",
+    "agent": "Klaus Mueller",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Klaus Mueller:trait_3",
+    "agent": "Klaus Mueller",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Klaus Mueller:trait_4",
+    "agent": "Klaus Mueller",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Maria Lopez:trait_1",
+    "agent": "Maria Lopez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Maria Lopez:trait_2",
+    "agent": "Maria Lopez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Maria Lopez:trait_3",
+    "agent": "Maria Lopez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Maria Lopez:trait_4",
+    "agent": "Maria Lopez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Maria Lopez:trait_5",
+    "agent": "Maria Lopez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Isabella Rodriguez:trait_3",
+    "agent": "Isabella Rodriguez",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   },
+   {
+    "trait_id": "Klaus Mueller:trait_5",
+    "agent": "Klaus Mueller",
+    "available": false,
+    "cosine_to_priors": null,
+    "best_source_cosine": null,
+    "closer_to_priors": null
+   }
+  ]
+ },
+ "D2": {
+  "available": false,
+  "note": "merge cosines were never logged"
+ },
+ "consolidation_log_per_agent_and_night": [
+  {
+   "agent": "Isabella Rodriguez",
+   "sim_time": "2023-02-13 00:00:00",
+   "night": 0,
+   "entries_considered": 0,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "summaries_reinforced": 0,
+   "entries_flagged": 0,
+   "status": "done",
+   "llm_tokens": {},
+   "seconds": 1.9
+  },
+  {
+   "agent": "Maria Lopez",
+   "sim_time": "2023-02-13 00:00:00",
+   "night": 0,
+   "entries_considered": 0,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "summaries_reinforced": 0,
+   "entries_flagged": 0,
+   "status": "done",
+   "llm_tokens": {},
+   "seconds": 0.3
+  },
+  {
+   "agent": "Klaus Mueller",
+   "sim_time": "2023-02-13 00:00:00",
+   "night": 0,
+   "entries_considered": 0,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {},
+   "summaries_written": 0,
+   "summaries_reinforced": 0,
+   "entries_flagged": 0,
+   "status": "done",
+   "llm_tokens": {},
+   "seconds": 0.4
+  },
+  {
+   "agent": "Isabella Rodriguez",
+   "sim_time": "2023-02-13 13:52:00",
+   "night": 1,
+   "entries_considered": 93,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 9,
+    "2": 3,
+    "3": 2,
+    "4": 1,
+    "6": 1,
+    "8": 2,
+    "11": 2,
+    "24": 1
+   },
+   "summaries_written": 4,
+   "summaries_reinforced": 2,
+   "entries_flagged": 56,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2799,
+     "tokens_out": 178
+    },
+    "importance_scoring": {
+     "calls": 18,
+     "tokens_in": 7066,
+     "tokens_out": 691
+    }
+   },
+   "seconds": 50.6
+  },
+  {
+   "agent": "Klaus Mueller",
+   "sim_time": "2023-02-13 14:03:00",
+   "night": 1,
+   "entries_considered": 132,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 13,
+    "2": 5,
+    "3": 3,
+    "4": 3,
+    "6": 1,
+    "9": 1,
+    "10": 1,
+    "12": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1
+   },
+   "summaries_written": 4,
+   "summaries_reinforced": 2,
+   "entries_flagged": 67,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2591,
+     "tokens_out": 187
+    },
+    "importance_scoring": {
+     "calls": 6,
+     "tokens_in": 2431,
+     "tokens_out": 770
+    }
+   },
+   "seconds": 49.1
+  },
+  {
+   "agent": "Maria Lopez",
+   "sim_time": "2023-02-13 14:22:00",
+   "night": 1,
+   "entries_considered": 132,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 12,
+    "2": 6,
+    "3": 2,
+    "4": 1,
+    "5": 1,
+    "7": 2,
+    "9": 1,
+    "12": 1,
+    "16": 1,
+    "17": 1,
+    "25": 1
+   },
+   "summaries_written": 5,
+   "summaries_reinforced": 1,
+   "entries_flagged": 64,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2929,
+     "tokens_out": 189
+    },
+    "importance_scoring": {
+     "calls": 13,
+     "tokens_in": 4843,
+     "tokens_out": 841
+    }
+   },
+   "seconds": 86.2
+  },
+  {
+   "agent": "Isabella Rodriguez",
+   "sim_time": "2023-02-14 13:06:00",
+   "night": 2,
+   "entries_considered": 204,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 19,
+    "2": 2,
+    "3": 4,
+    "4": 3,
+    "6": 1,
+    "8": 2,
+    "9": 1,
+    "24": 1,
+    "45": 1,
+    "57": 1
+   },
+   "summaries_written": 0,
+   "summaries_reinforced": 6,
+   "entries_flagged": 61,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2519,
+     "tokens_out": 190
+    },
+    "importance_scoring": {
+     "calls": 13,
+     "tokens_in": 7528,
+     "tokens_out": 800
+    }
+   },
+   "seconds": 123.1
+  },
+  {
+   "agent": "Klaus Mueller",
+   "sim_time": "2023-02-14 13:52:00",
+   "night": 2,
+   "entries_considered": 215,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 27,
+    "2": 6,
+    "3": 2,
+    "4": 3,
+    "5": 4,
+    "6": 1,
+    "7": 2,
+    "8": 1,
+    "12": 1,
+    "14": 1,
+    "15": 1,
+    "18": 2,
+    "33": 1
+   },
+   "summaries_written": 0,
+   "summaries_reinforced": 6,
+   "entries_flagged": 72,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2604,
+     "tokens_out": 175
+    },
+    "importance_scoring": {
+     "calls": 15,
+     "tokens_in": 7915,
+     "tokens_out": 692
+    }
+   },
+   "seconds": 149.6
+  },
+  {
+   "agent": "Maria Lopez",
+   "sim_time": "2023-02-14 13:55:00",
+   "night": 2,
+   "entries_considered": 171,
+   "threshold": 0.82,
+   "linkage": "average",
+   "min_cluster_size": 3,
+   "importance_floor": 3,
+   "pinned_model": null,
+   "failures": [],
+   "fallbacks": 0,
+   "cluster_size_histogram": {
+    "1": 21,
+    "2": 8,
+    "3": 3,
+    "4": 2,
+    "5": 3,
+    "6": 1,
+    "7": 2,
+    "9": 1,
+    "10": 1,
+    "11": 2,
+    "41": 1
+   },
+   "summaries_written": 1,
+   "summaries_reinforced": 5,
+   "entries_flagged": 60,
+   "status": "done",
+   "llm_tokens": {
+    "consolidation_summary": {
+     "calls": 6,
+     "tokens_in": 2708,
+     "tokens_out": 182
+    },
+    "importance_scoring": {
+     "calls": 6,
+     "tokens_in": 4094,
+     "tokens_out": 607
+    }
+   },
+   "seconds": 78.6
+  }
+ ],
+ "evaluation_calls": {
+  "baseline": null,
+  "staged": null
+ },
+ "predictions": [
+  {
+   "id": "E1",
+   "prediction": "S makes more calls than B by less than 10 percent of B's calls (unique calls, same checkpoint step)",
+   "outcome": "wrong",
+   "reason": "S made fewer calls than B; the cause is named in the purpose breakdown (E1 table)",
+   "numbers": {
+    "baseline_unique": 7302,
+    "staged_unique": 6008,
+    "relative_difference": -0.1772
+   }
+  },
+  {
+   "id": "E2",
+   "prediction": "mean prompt tokens per scoring call higher in S than in B",
+   "outcome": "right",
+   "reason": "direction only; the size of the priors and trait blocks is not separately checked here",
+   "numbers": {
+    "baseline": 418.5,
+    "staged": 572.3
+   }
+  },
+  {
+   "id": "E3",
+   "prediction": "consolidated fraction above 0 in S and exactly 0 in B",
+   "outcome": "right",
+   "reason": "B has no Stage 3 by construction",
+   "numbers": {
+    "baseline": 0.0,
+    "staged": 0.0974
+   }
+  },
+  {
+   "id": "R1",
+   "prediction": "S answers Isabella's theme-count question no worse than B",
+   "outcome": "undecidable",
+   "reason": "interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b)",
+   "numbers": {}
+  },
+  {
+   "id": "R2",
+   "prediction": "S answers Klaus's theme-count question no worse than B",
+   "outcome": "undecidable",
+   "reason": "interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b)",
+   "numbers": {}
+  },
+  {
+   "id": "R3",
+   "prediction": "pivotal events I5, M5, K5 at distance 2: no checklist difference larger than 0.2",
+   "outcome": "undecidable",
+   "reason": "interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b)",
+   "numbers": {}
+  },
+  {
+   "id": "R4",
+   "prediction": "mundane events at distance 2: S at or below B",
+   "outcome": "undecidable",
+   "reason": "interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b)",
+   "numbers": {}
+  },
+  {
+   "id": "R5",
+   "prediction": "same-day questions (distance 0): no difference larger than 0.1",
+   "outcome": "undecidable",
+   "reason": "recall answers are not available yet for both arms",
+   "numbers": {}
+  },
+  {
+   "id": "S-Isabella",
+   "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
+   "outcome": "undecidable",
+   "reason": "replay controls have not been run yet (they run on the staged pool after the staged arm finishes)",
+   "numbers": {}
+  },
+  {
+   "id": "S-Maria",
+   "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
+   "outcome": "undecidable",
+   "reason": "replay controls have not been run yet (they run on the staged pool after the staged arm finishes)",
+   "numbers": {}
+  },
+  {
+   "id": "S-Klaus",
+   "prediction": "staged minus baseline mean importance on the persona's friction events is below 0",
+   "outcome": "undecidable",
+   "reason": "replay controls have not been run yet (they run on the staged pool after the staged arm finishes)",
+   "numbers": {}
+  },
+  {
+   "id": "S-mismatch",
+   "prediction": "mismatch priors move scores toward that persona's direction",
+   "outcome": "undecidable",
+   "reason": "the registered text gives no sign for Wolfgang Schulz's direction, so no pre-registered threshold exists; the observed means are in the replay table",
+   "numbers": {}
+  },
+  {
+   "id": "M2",
+   "prediction": "no directional prediction (two-sided, only if the judge calibration is at least 80 percent)",
+   "outcome": "undecidable",
+   "reason": "day-1 against day-3 judge results or the judge calibration are not available yet",
+   "numbers": {}
+  },
+  {
+   "id": "D-1",
+   "prediction": "at least one third of Stage 4 traits closer to the priors text than to their sources",
+   "outcome": "undecidable",
+   "reason": "fewer than 3 traits with cached embeddings (traits 13, available 0)",
+   "numbers": {
+    "traits": 13,
+    "available": 0,
+    "flagged": 0,
+    "rows": [
+     {
+      "trait_id": "Isabella Rodriguez:trait_1",
+      "agent": "Isabella Rodriguez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Isabella Rodriguez:trait_2",
+      "agent": "Isabella Rodriguez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Klaus Mueller:trait_1",
+      "agent": "Klaus Mueller",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Klaus Mueller:trait_2",
+      "agent": "Klaus Mueller",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Klaus Mueller:trait_3",
+      "agent": "Klaus Mueller",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Klaus Mueller:trait_4",
+      "agent": "Klaus Mueller",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Maria Lopez:trait_1",
+      "agent": "Maria Lopez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Maria Lopez:trait_2",
+      "agent": "Maria Lopez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Maria Lopez:trait_3",
+      "agent": "Maria Lopez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Maria Lopez:trait_4",
+      "agent": "Maria Lopez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Maria Lopez:trait_5",
+      "agent": "Maria Lopez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Isabella Rodriguez:trait_3",
+      "agent": "Isabella Rodriguez",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     },
+     {
+      "trait_id": "Klaus Mueller:trait_5",
+      "agent": "Klaus Mueller",
+      "available": false,
+      "cosine_to_priors": null,
+      "best_source_cosine": null,
+      "closer_to_priors": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-2",
+   "prediction": "Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the three nights",
+   "outcome": "undecidable",
+   "reason": "the consolidation log records cluster sizes, not the cosines at which entries merged; the metric was never logged, and a re-clustering offline from cached embeddings is not built (open question to the PM)",
+   "numbers": {}
+  }
+ ]
+}
