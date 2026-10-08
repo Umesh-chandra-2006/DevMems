@@ -37,6 +37,7 @@ STEPS: List[Dict] = [
 
 
 def _event(status_path: Path, **kw) -> None:
+    kw.setdefault("chain", "staged")
     kw["at"] = time.strftime("%Y-%m-%d %H:%M:%S")
     status_path.parent.mkdir(parents=True, exist_ok=True)
     with open(status_path, "a", encoding="utf-8") as fh:
@@ -44,22 +45,22 @@ def _event(status_path: Path, **kw) -> None:
     print(json.dumps(kw), flush=True)
 
 
-def run_chain(finished_fn: Callable[[], bool], run_fn: Callable[[Dict], int], status_path: Path, steps: List[Dict] = None, poll: float = 60.0, sleep_fn=time.sleep) -> bool:
+def run_chain(finished_fn: Callable[[], bool], run_fn: Callable[[Dict], int], status_path: Path, steps: List[Dict] = None, poll: float = 60.0, sleep_fn=time.sleep, chain: str = "staged") -> bool:
     steps = STEPS if steps is None else steps
     while not finished_fn():
         sleep_fn(poll)
-    _event(status_path, event="staged_finished_chain_starts")
+    _event(status_path, event=f"{chain}_finished_chain_starts", chain=chain)
     for s in steps:
         if Path(s["output"]).exists():
-            _event(status_path, event="step_skipped_output_exists", step=s["name"], output=str(s["output"]))
+            _event(status_path, chain=chain, event="step_skipped_output_exists", step=s["name"], output=str(s["output"]))
             continue
-        _event(status_path, event="step_start", step=s["name"])
+        _event(status_path, chain=chain, event="step_start", step=s["name"])
         rc = run_fn(s)
         if rc != 0 or not Path(s["output"]).exists():
-            _event(status_path, event="step_failed_chain_halted", step=s["name"], returncode=rc, output_exists=Path(s["output"]).exists())
+            _event(status_path, chain=chain, event="step_failed_chain_halted", step=s["name"], returncode=rc, output_exists=Path(s["output"]).exists())
             return False
-        _event(status_path, event="step_done", step=s["name"], output=str(s["output"]))
-    _event(status_path, event="chain_done")
+        _event(status_path, chain=chain, event="step_done", step=s["name"], output=str(s["output"]))
+    _event(status_path, chain=chain, event="chain_done")
     return True
 
 
