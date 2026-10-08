@@ -1,0 +1,60 @@
+{
+ "baseline": {
+  "log_rows": 8249,
+  "area_replies": 710,
+  "replies_judged_differently": 15,
+  "calls": 698,
+  "calls_with_a_different_outcome": 3,
+  "different_calls": [
+   {
+    "kind": "sector",
+    "agent": "Isabella Rodriguez",
+    "row_in_log": 3794,
+    "upstream": "fail-safe",
+    "changed": "accepted at attempt 1",
+    "reply_start": "Hobbs Cafe}\n2. For opening the cafe and serving customers, I"
+   },
+   {
+    "kind": "sector",
+    "agent": "Isabella Rodriguez",
+    "row_in_log": 7550,
+    "upstream": "fail-safe",
+    "changed": "accepted at attempt 1",
+    "reply_start": "Isabella Rodriguez's apartment}\n1. Wake up and complete the "
+   },
+   {
+    "kind": "sector",
+    "agent": "Maria Lopez",
+    "row_in_log": 7563,
+    "upstream": "fail-safe",
+    "changed": "accepted at attempt 1",
+    "reply_start": "Dorm for Oak Hill College}\nFor studying physics and working "
+   }
+  ]
+ },
+ "staged": {
+  "log_rows": 7555,
+  "area_replies": 764,
+  "replies_judged_differently": 10,
+  "calls": 756,
+  "calls_with_a_different_outcome": 2,
+  "different_calls": [
+   {
+    "kind": "arena",
+    "agent": "Isabella Rodriguez",
+    "row_in_log": 7540,
+    "upstream": "fail-safe",
+    "changed": "accepted at attempt 1",
+    "reply_start": "cafe}\n1. Walk to the condiment station\n2. Arrange sugar, sti"
+   },
+   {
+    "kind": "arena",
+    "agent": "Isabella Rodriguez",
+    "row_in_log": 7550,
+    "upstream": "fail-safe",
+    "changed": "accepted at attempt 1",
+    "reply_start": "cafe}\n1. Walk to the condiment station\n2. Arrange sugar, sti"
+   }
+  ]
+ }
+}

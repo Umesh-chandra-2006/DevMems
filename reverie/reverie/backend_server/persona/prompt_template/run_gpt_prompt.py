@@ -490,6 +490,19 @@ def run_gpt_prompt_task_decomp(persona,
 
 
 
+def _devmem_comma_after_brace_ok(gpt_response, options_str):
+  """DEVMEM deviation (PM ruling 2026-10-08, claims ledger H28): upstream rejects any area reply that contains a comma. A run-on reply such as
+  "cafe}" followed by a numbered list ("1. Walk to the condiment station ... Arrange sugar, stirrers") was rejected five times (temperature 0, identical replies) and upstream returned its fail-safe
+  "kitchen", which does not exist in the sector. A comma AFTER the first "}" is now ignored when the text before the first "}" (upstream's own clean-up) contains no comma
+  and is exactly one of the options offered in the prompt. Every other reply is judged as upstream judges it: no substitution and no fallback value."""
+  if "}" not in gpt_response:
+    return False
+  head = gpt_response.split("}")[0]
+  if "," in head:
+    return False
+  return head in [o for o in str(options_str).split(", ")]
+
+
 def run_gpt_prompt_action_sector(action_description, 
                                 persona, 
                                 maze, 
@@ -561,7 +574,7 @@ def run_gpt_prompt_action_sector(action_description,
       return False
     if "}" not in gpt_response:
       return False
-    if "," in gpt_response: 
+    if "," in gpt_response and not _devmem_comma_after_brace_ok(gpt_response, prompt_input[7]):  # DEVMEM H28
       return False
     return True
   
@@ -691,7 +704,7 @@ def run_gpt_prompt_action_arena(action_description,
       return False
     if "}" not in gpt_response:
       return False
-    if "," in gpt_response: 
+    if "," in gpt_response and not _devmem_comma_after_brace_ok(gpt_response, prompt_input[2]):  # DEVMEM H28
       return False
     return True
   
