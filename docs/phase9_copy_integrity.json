@@ -1,0 +1,247 @@
+{
+ "interim_day1/baseline": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day1\\baseline\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": true
+ },
+ "interim_day1/staged": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day1\\staged\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": true,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": true
+ },
+ "interim_day2/baseline": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2\\baseline\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [
+   "personas/Isabella Rodriguez/bootstrap_memory/associative_memory/embeddings.json",
+   "personas/Maria Lopez/bootstrap_memory/associative_memory/embeddings.json"
+  ],
+  "T2_all_json_parse": false,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_primary_interim",
+   "step": 13770,
+   "sim_clock": "2023-02-14 14:15:00",
+   "made_at": "2026-10-08 17:34:49",
+   "repaired_copy": null
+  }
+ },
+ "interim_day2/staged": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2\\staged\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 12
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 19
+   }
+  },
+  "json_not_parsing": [
+   "personas/Isabella Rodriguez/bootstrap_memory/associative_memory/embeddings.json"
+  ],
+  "T2_all_json_parse": false,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_primary_interim",
+   "step": 13770,
+   "sim_clock": "2023-02-14 14:15:00",
+   "made_at": "2026-10-08 13:30:03",
+   "repaired_copy": null
+  }
+ },
+ "interim_day2_repaired/baseline": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2_repaired\\baseline\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_primary_interim",
+   "step": 13770,
+   "sim_clock": "2023-02-14 14:15:00",
+   "made_at": "2026-10-08 17:34:49",
+   "repaired_copy": "embeddings.json rebuilt from the embedding cache (see repair.json); do not present as an untouched checkpoint"
+  }
+ },
+ "interim_day2_repaired/staged": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2_repaired\\staged\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 12
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 19
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_primary_interim",
+   "step": 13770,
+   "sim_clock": "2023-02-14 14:15:00",
+   "made_at": "2026-10-08 13:30:03",
+   "repaired_copy": "embeddings.json rebuilt from the embedding cache (see repair.json); do not present as an untouched checkpoint"
+  }
+ },
+ "interim_day2_secondary/baseline": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2_secondary\\baseline\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [
+   "personas/Isabella Rodriguez/bootstrap_memory/associative_memory/embeddings.json"
+  ],
+  "T2_all_json_parse": false,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_secondary_2345",
+   "step": 17190,
+   "sim_clock": "2023-02-14 23:45:00",
+   "made_at": "2026-10-08 17:47:42",
+   "repaired_copy": null
+  }
+ },
+ "interim_day2_secondary/staged": {
+  "sim_dir": "D:\\DevMems\\devmem\\storage\\interim_day2_secondary\\staged\\sim",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": false,
+    "T3_mirror_rows_without_a_node": 0
+   }
+  },
+  "json_not_parsing": [
+   "personas/Isabella Rodriguez/bootstrap_memory/associative_memory/embeddings.json"
+  ],
+  "T2_all_json_parse": false,
+  "passes": false,
+  "checkpoint": {
+   "label": "day2_secondary_2345",
+   "step": 17190,
+   "sim_clock": "2023-02-14 23:45:00",
+   "made_at": "2026-10-08 13:46:45",
+   "repaired_copy": null
+  }
+ },
+ "runner:p7_baseline__ckpt_day1_end_awake": {
+  "sim_dir": "D:\\DevMems\\reverie\\environment\\frontend_server\\storage\\p7_baseline__ckpt_day1_end_awake",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": true
+ },
+ "runner:p7_staged__ckpt_day1_end_awake": {
+  "sim_dir": "D:\\DevMems\\reverie\\environment\\frontend_server\\storage\\p7_staged__ckpt_day1_end_awake",
+  "personas": {
+   "Isabella Rodriguez": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   },
+   "Klaus Mueller": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   },
+   "Maria Lopez": {
+    "T1_scratch_at_least_as_new_as_meta": true
+   }
+  },
+  "json_not_parsing": [],
+  "T2_all_json_parse": true,
+  "passes": true
+ }
+}

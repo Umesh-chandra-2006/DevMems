@@ -29,7 +29,7 @@ class TestBaselineChain(unittest.TestCase):
             self.assertTrue(B.copies_ready("baseline", st)["all_ready"])
 
     def test_steps_follow_the_pm_order_and_the_chain_is_labelled_baseline(self):
-        self.assertEqual([s["name"] for s in B.STEPS], ["baseline_checkpoint_copies_ready", "baseline_day3_evaluation", "results_export_day3"])
+        self.assertEqual([s["name"] for s in B.STEPS], ["baseline_checkpoint_copies_ready", "baseline_day3_evaluation", "results_export_day3", "baseline_day2_secondary_evaluation"])
         self.assertEqual(B.STEPS[1]["args"][-2:], ["--arm", "baseline"])
         with tempfile.TemporaryDirectory() as t:
             t = Path(t)

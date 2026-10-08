@@ -48,9 +48,11 @@ class TestChain(unittest.TestCase):
 
     def test_the_real_step_list_follows_the_pm_order(self):
         names = [s["name"] for s in run_staged_chain.STEPS]
-        self.assertEqual(names, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool", "staged_replay_controls", "d1_d2_embedding_fetch"])
+        self.assertEqual(names, ["staged_day3_evaluation", "judge_calibration", "baseline_day2_evaluation_on_staged_pool", "staged_day2_evaluation", "staged_replay_controls", "d1_d2_embedding_fetch", "staged_day2_secondary_evaluation"])
         self.assertIn("--pool-arm", run_staged_chain.STEPS[2]["args"])
         self.assertIn("staged", run_staged_chain.STEPS[2]["args"])
+        self.assertIn("secondary", run_staged_chain.STEPS[-1]["args"])               # the 7g sensitivity run is the LAST step: it never delays a day-3 result
+        self.assertIn("interim_day2_repaired", " ".join(run_staged_chain.STEPS[3]["args"]))
 
 
 if __name__ == "__main__":

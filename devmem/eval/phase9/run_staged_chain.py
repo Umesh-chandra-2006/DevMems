@@ -2,6 +2,7 @@
 Chain of the live evaluation steps that run on the STAGED arm's own key pool once the staged arm has FINISHED, in the order the PM fixed (2026-10-08):
   1. staged day-3 evaluation (recall, probes, judge; 93 calls)
   2. judge calibration (20 authored pairs)
+  3. staged day-2 primary evaluation follows step 3 (staged pool, registered 14:15 copy as taken; its Maria and Klaus persona files are one save old, disclosed)
   3. baseline day-2 interim evaluation on the staged pool (--pool-arm staged --day 2; 78 calls; refuses unless the staged arm has finished), on the REPAIRED baseline day-2 copy
      (interim_day2_repaired/baseline: the original copy has a truncated embeddings.json for two personas; see repair_copy.py)
   4. staged replay controls (stratified sample, 300 events x 3 conditions; seed 20261008)
@@ -31,8 +32,12 @@ STEPS: List[Dict] = [
     {"name": "judge_calibration", "args": ["-m", "devmem.eval.phase9.run_judge_calibration", "--poll", "5"], "output": OUT / "judge_calibration.json", "cwd": ROOT},
     {"name": "baseline_day2_evaluation_on_staged_pool", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "baseline", "--day", "2", "--pool-arm", "staged", "--day3", str(ROOT / "devmem" / "storage" / "interim_day2_repaired" / "baseline" / "sim")],
      "output": OUT / "baseline_day2" / "evaluation.json", "cwd": BACKEND},
+    {"name": "staged_day2_evaluation", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "staged", "--day", "2", "--day3", str(ROOT / "devmem" / "storage" / "interim_day2_repaired" / "staged" / "sim")], "output": OUT / "staged_day2" / "evaluation.json", "cwd": BACKEND},
     {"name": "staged_replay_controls", "args": ["-m", "devmem.eval.phase9.run_replay_controls"], "output": OUT / "replay_controls.json", "cwd": ROOT},
     {"name": "d1_d2_embedding_fetch", "args": ["-m", "devmem.eval.phase9.fetch_embeddings"], "output": OUT / "fetch_embeddings.json", "cwd": ROOT},
+    # sensitivity analysis (pre-registration 7g), always last so that it never delays a day-3 result: the 23:45 copies, Isabella's embeddings repaired the same way in both arms
+    {"name": "staged_day2_secondary_evaluation", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "staged", "--day", "2", "--tag", "secondary", "--day3",
+                                                          str(ROOT / "devmem" / "storage" / "interim_day2_secondary_repaired" / "staged" / "sim")], "output": OUT / "staged_day2_secondary" / "evaluation.json", "cwd": BACKEND},
 ]
 
 

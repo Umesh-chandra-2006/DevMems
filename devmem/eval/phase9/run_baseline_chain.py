@@ -53,6 +53,9 @@ STEPS: List[Dict] = [
     {"name": "baseline_checkpoint_copies_ready", "args": ["-m", "devmem.eval.phase9.run_baseline_chain", "--check-copies"], "output": OUT / "baseline_copies_ready.json", "cwd": ROOT},
     {"name": "baseline_day3_evaluation", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "baseline"], "output": OUT / "baseline" / "evaluation.json", "cwd": BACKEND},
     {"name": "results_export_day3", "args": ["-m", "devmem.eval.phase9.results_export", "--day", "3"], "output": ROOT / "docs" / "phase9_results_export_day3.json", "cwd": BACKEND},
+    # sensitivity analysis (pre-registration 7g), last: the baseline 23:45 copy on the baseline pool, Isabella's embeddings repaired
+    {"name": "baseline_day2_secondary_evaluation", "args": ["-m", "devmem.eval.phase9.run_arm_evaluation", "--arm", "baseline", "--day", "2", "--tag", "secondary", "--day3",
+                                                            str(ROOT / "devmem" / "storage" / "interim_day2_secondary_repaired" / "baseline" / "sim")], "output": OUT / "baseline_day2_secondary" / "evaluation.json", "cwd": BACKEND},
 ]
 
 
