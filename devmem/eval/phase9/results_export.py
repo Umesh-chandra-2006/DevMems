@@ -219,6 +219,27 @@ def bootstrap(rows: List[Dict[str, Any]], n: int = 2000, seed: int = 20261008) -
     return {"available": True, "mean": _mean([sum(v) / len(v) for v in by.values()]), "ci95": [round(means[int(0.025 * n)], 4), round(means[int(0.975 * n)], 4)], "resamples": n, "agents": len(by), "questions": sum(len(v) for v in by.values())}
 
 
+def sensitivity_table(failed: set) -> Dict[str, Any]:
+    """Small table for the day-2 export: the registered 14:15 copy against the 23:45 sensitivity copy (pre-registration 7g), both arms: recall means over all day-2 questions and over the
+    same-day questions (distance 0), strict answers, and the judge counts. Descriptive; both are interim; the copies are repaired as disclosed (ledger H23)."""
+    out: Dict[str, Any] = {}
+    for variant, suffix in (("registered_14_15_copy", "_day2"), ("sensitivity_23_45_copy", "_day2_secondary")):
+        ev = {a: _read(EVAL / f"{a}{suffix}" / "evaluation.json") for a in ARMS}
+        if not all(ev.values()):
+            out[variant] = {"available": False}
+            continue
+        rows = recall_table(2, ev, failed)["rows"]
+        v: Dict[str, Any] = {"available": True}
+        for a in ARMS:
+            sel = [r for r in rows if "excluded" not in r and r[a]]
+            d0 = [r for r in sel if r["distance_days"] == 0]
+            v[a] = {"questions": len(sel), "mean_checklist_score": _mean([r[a]["score"] for r in sel]), "strict_answers": sum(1 for r in sel if r[a]["strict"]),
+                    "same_day_questions": len(d0), "same_day_mean": _mean([r[a]["score"] for r in d0]),
+                    "judge_labels": {k: sum(1 for j in ev[a]["judge"] if j["judge_label"] == k) for k in ("consistent", "contradictory", "unrelated")}}
+        out[variant] = v
+    return out
+
+
 def verdict(outcome: str, reason: str, **numbers) -> Dict[str, Any]:
     return {"outcome": outcome, "reason": reason, "numbers": numbers}
 
@@ -405,6 +426,8 @@ def build(day: int, interim_root: Path = None) -> Dict[str, Any]:
            "D2_reproduction": d2, "purpose_tag_audit": purpose_tag_audit(),
            "consolidation_log_per_agent_and_night": _jsonl(ST / "p7_staged" / "consolidation_log.jsonl"), "evaluation_calls": {a: (ev[a] or {}).get("counts") for a in ARMS}}
     out["predictions"] = predictions(day, lab, arms, recall, gv, m2, rep, d1, d2)
+    if day == 2:
+        out["sensitivity_23_45"] = sensitivity_table(failed)
     return out
 
 
@@ -460,6 +483,16 @@ def markdown(r: Dict[str, Any]) -> str:
         L.append(f"| {q['question_id']} | {q['agent']} | {q['type']} | {q['event_id']} | {q['distance_days']} | {q['baseline']['score'] if q['baseline'] else 'n/a'} | {q['staged']['score'] if q['staged'] else 'n/a'} | {q.get('excluded', '')} |")
     L += ["", f"Bootstrap of the mean staged-minus-baseline difference: {r['recall']['bootstrap_staged_minus_baseline']}", ""]
     L += [f"- {n}" for n in r["recall"]["definition_notes"]]
+    if r.get("sensitivity_23_45"):
+        L += ["", "## Sensitivity: the registered 14:15 copy against the 23:45 copy (pre-registration 7g; interim; repaired copies, ledger H23)", "", "| copy | arm | questions | mean checklist score | strict answers | same-day questions | same-day mean | judge consistent / contradictory / unrelated |", "|---|---|---|---|---|---|---|---|"]
+        for variant, v in r["sensitivity_23_45"].items():
+            if not v.get("available"):
+                L.append(f"| {variant} | not available | | | | | | |")
+                continue
+            for a in ARMS:
+                x = v[a]
+                jl = x["judge_labels"]
+                L.append(f"| {variant} | {a} | {x['questions']} | {x['mean_checklist_score']} | {x['strict_answers']} | {x['same_day_questions']} | {x['same_day_mean']} | {jl['consistent']} / {jl['contradictory']} / {jl['unrelated']} |")
     L += ["", "## Purpose-tag audit (planning, dialogue, reflection, importance_scoring)", "", json.dumps({k: v for k, v in r["purpose_tag_audit"].items() if k != "family_table"}, indent=1), ""]
     L += ["", "## Coherence (M2)", "", json.dumps(r["coherence_M2"], indent=1), "", "## Stage 2 replay controls", "", json.dumps({k: v for k, v in (r["stage2_replay_controls"] or {}).items() if k != "rows"}, indent=1), "",
           "## D-1 provenance and D-2", "", f"D-1: {r['D1_provenance'].get('traits')} traits, {r['D1_provenance'].get('available')} with cached embeddings, {r['D1_provenance'].get('flagged')} closer to the priors than to the best source.", "", "D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearly every merge falls in the 0.80 to 0.88 band, so a count above 0 was close to certain. D-2 reproduction (nights, reproduced, count): " + json.dumps({a: [(n['night'], n.get('reproduced'), n.get('d2_entries_in_range_min_cluster')) for n in v['nights']] for a, v in (r['D2_reproduction'].get('agents') or {}).items()}) + f"; verdict {r['D2_reproduction'].get('verdict')}", "",

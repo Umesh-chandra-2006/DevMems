@@ -88,6 +88,27 @@ class TestM2Calibration(unittest.TestCase):
             self.assertEqual(m["arms"]["baseline"]["contradiction_rate"], 0.0)
 
 
+class TestSensitivityTable(unittest.TestCase):
+    def test_both_copies_are_tabulated_and_a_missing_one_is_marked(self):
+        import tempfile
+        from unittest import mock
+        qs = json.loads(R.QFILE.read_text(encoding="utf-8"))["questions"]
+        ev = lambda sc: {"recall": [{"question_id": q["id"], "agent": q["agent"], "grade": {"score": sc, "strict": sc == 1.0, "failure": False}} for q in qs if q.get("event_day", 3) <= 2 and q["type"] != "theme_count"],
+                         "judge": [{"agent": "A", "judge_label": "consistent"}] * 18}
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            for name, sc in (("baseline_day2", 1.0), ("staged_day2", 0.5), ("baseline_day2_secondary", 1.0)):
+                (t / name).mkdir()
+                (t / name / "evaluation.json").write_text(json.dumps(ev(sc)))
+            with mock.patch.object(R, "EVAL", t):
+                s = R.sensitivity_table({"I6"})
+            self.assertTrue(s["registered_14_15_copy"]["available"])
+            self.assertEqual(s["registered_14_15_copy"]["baseline"]["mean_checklist_score"], 1.0)
+            self.assertEqual(s["registered_14_15_copy"]["staged"]["mean_checklist_score"], 0.5)
+            self.assertEqual(s["registered_14_15_copy"]["baseline"]["judge_labels"]["consistent"], 18)
+            self.assertFalse(s["sensitivity_23_45_copy"]["available"])                  # the staged 23:45 evaluation is missing here
+
+
 class TestBuildSmoke(unittest.TestCase):
     def test_build_and_markdown_with_no_copies(self):
         with tempfile.TemporaryDirectory() as t:
