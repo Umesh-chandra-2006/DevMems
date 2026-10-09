@@ -197,15 +197,16 @@
     useEffect(function () {   /* frames: load the chunk around the step, prefetch the next one, then point the avatars at the frame */
       if (!inRange || !ctrlRef.current) { return; }
       var cs = Math.floor(stepNow / CHUNK) * CHUNK;
+      var stride = p.playing ? 6 : 1;   /* while the clock runs, one frame per simulated minute (stride 6 at 10 s per step) keeps 25,920-frame runs smooth; the full detail loads on pause */
       function ensure(c) {
-        var key = String(c), now = Date.now(), pend = pendingRef.current[key];
+        var key = c + "/" + stride, now = Date.now(), pend = pendingRef.current[key];
         /* a complete chunk is fetched once; a partial chunk of a growing (folder) run is re-read at most every 10 seconds */
         if (pend && (!pend.partial || now - pend.at < 10000)) { return; }
         pendingRef.current[key] = { at: now, partial: false, busy: true };
-        DM.api("/runs/" + encodeURIComponent(run) + "/movement/frames?from_step=" + c + "&to_step=" + (c + CHUNK - 1)).then(function (r) {
+        DM.api("/runs/" + encodeURIComponent(run) + "/movement/frames?from_step=" + c + "&to_step=" + (c + CHUNK - 1) + (stride > 1 ? "&stride=" + stride : "")).then(function (r) {
           var before = Object.keys(framesRef.current).length;
           r.frames.forEach(function (f) { framesRef.current[f.s] = f.p; });
-          pendingRef.current[key] = { at: Date.now(), partial: r.frames.length < CHUNK && meta.source === "folder", busy: false };
+          pendingRef.current[key] = { at: Date.now(), partial: r.frames.length < CHUNK / stride && meta.source === "folder", busy: false };
           if (Object.keys(framesRef.current).length !== before) { setLoadTick(function (x) { return x + 1; }); }
         }).catch(function (e) { delete pendingRef.current[key]; setError(String(e)); });
       }
