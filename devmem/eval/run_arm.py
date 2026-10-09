@@ -211,7 +211,7 @@ def main(argv=None):
     from devmem.eval import authored_plan, checks
     from devmem.eval.injector import EventInjector
     from devmem.eval.quota_gate import QuotaGate, RunAborted
-    from devmem.eval.run_support import LedgerWindows, count_fence_strips, make_checkpoint, write_status
+    from devmem.eval.run_support import LedgerWindows, count_fence_strips, make_checkpoint, unique_snapshot_path, write_status
     from devmem.api.movement_archive import MovementExporter
     from devmem.memory import consolidation, episodic, identity
     from devmem.memory.episodic import get_db_path
@@ -364,8 +364,7 @@ def main(argv=None):
         if raw_log.exists():
             lines = [l for l in raw_log.read_text(encoding="utf-8").splitlines() if l.strip()]
             last = json.loads(lines[-1]) if lines else None
-        snap = storage / f"{sim}__crash_snapshot_{prior['runs'] + 1}"
-        shutil.rmtree(snap, ignore_errors=True)
+        snap = unique_snapshot_path(storage, sim, prior["runs"])        # never overwrites an earlier snapshot (ledger H28)
         shutil.copytree(storage / sim, snap)
         exc_info = {"type": type(e).__name__, "message": str(e)[:300], "traceback": traceback.format_exc(), "last_router_call": last, "snapshot": snap.name}
         outcome = f"upstream exception: {type(e).__name__}: {str(e)[:200]}"

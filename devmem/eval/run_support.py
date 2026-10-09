@@ -117,3 +117,12 @@ class LedgerWindows:
         self.steps = 0
         self.sleep_steps = {n: 0 for n in self.sleep_steps}
         return rec
+
+
+def unique_snapshot_path(storage: Path, sim: str, runs: int) -> Path:
+    """Path of the crash snapshot folder for the next crash. The run counter only moves at an autosave, so two crashes without an autosave in between used to get the same name and the second
+    snapshot overwrote the first (staged run, 2026-10-08: p7_staged__crash_snapshot_6). The name now moves on to the next free number, and an existing snapshot is never removed."""
+    n = runs + 1
+    while (Path(storage) / f"{sim}__crash_snapshot_{n}").exists():
+        n += 1
+    return Path(storage) / f"{sim}__crash_snapshot_{n}"
