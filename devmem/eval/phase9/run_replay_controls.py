@@ -26,7 +26,14 @@ def build_events(memory_db: Path, injection_log: Path, until: str = "2023-02-16 
     from devmem.eval.phase9 import interim_day1
     inj_rows = [json.loads(l) for l in Path(injection_log).read_text(encoding="utf-8").splitlines() if l.strip()]
     inj_rows = [r for r in inj_rows if r.get("perceived_and_stored") and r.get("stored_text")]
-    nat, ij = interim_day1.event_stream(memory_db, [r["stored_text"] for r in inj_rows], until)
+    nat, ij_all = interim_day1.event_stream(memory_db, [r["stored_text"] for r in inj_rows], until)
+    # one row per injected event: the injected agent's earliest mirror row with the stored text at or after the injection clock (the same text is also stored again when the agent perceives it
+    # on later steps, and by other agents who see the tile; found 2026-10-09 when 37 rows made 930 calls for 26 injected events and the 900-call cap stopped the step)
+    ij = []
+    for r in inj_rows:
+        cands = sorted(e for e in ij_all if e[0] == r["agent"] and e[2] == r["stored_text"] and e[1] >= r.get("injected_clock", ""))
+        if cands:
+            ij.append(min(cands, key=lambda e: e[1]))
     c = sqlite3.connect(f"file:{Path(memory_db).as_posix()}?mode=ro", uri=True)
     own = {(a, t, x): s for a, t, x, s in c.execute("SELECT agent_id, sim_timestamp, content, importance_score FROM episodic_memory WHERE sim_timestamp <= ?", (until,)) if s is not None}
     c.close()

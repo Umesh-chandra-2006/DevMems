@@ -368,11 +368,12 @@ class TestReplayRunner(unittest.TestCase):
             c.execute("CREATE TABLE episodic_memory (entry_id TEXT, agent_id TEXT, content TEXT, sim_timestamp TEXT, importance_score REAL)")
             rows = [("Isabella Rodriguez", f"2023-02-13 0{6 + i % 3}:00:{i:02d}", f"natural event {i}", 3.0) for i in range(12)]
             rows += [("Isabella Rodriguez", "2023-02-13 08:15:00", "a friction event happened", 6.0), ("Isabella Rodriguez", "2023-02-13 09:15:00", "a quiet event happened", 2.0)]
+            rows += [("Isabella Rodriguez", "2023-02-13 08:15:40", "a friction event happened", 6.0), ("Klaus Mueller", "2023-02-13 08:15:10", "a friction event happened", 5.0)]      # the same text stored again and by another agent
             c.executemany("INSERT INTO episodic_memory (agent_id, sim_timestamp, content, importance_score) VALUES (?,?,?,?)", rows)
             c.commit()
             c.close()
             (t / "inj.jsonl").write_text("\n".join(json.dumps(r) for r in [
-                {"id": "I3", "perceived_and_stored": True, "stored_text": "a friction event happened"}, {"id": "I1", "perceived_and_stored": True, "stored_text": "a quiet event happened"},
+                {"id": "I3", "agent": "Isabella Rodriguez", "injected_clock": "2023-02-13 08:15:00", "perceived_and_stored": True, "stored_text": "a friction event happened"}, {"id": "I1", "agent": "Isabella Rodriguez", "injected_clock": "2023-02-13 09:00:00", "perceived_and_stored": True, "stored_text": "a quiet event happened"},
                 {"id": "I2", "perceived_and_stored": False, "stored_text": ""}]) + "\n")
             calls = []
             fn = lambda p: (calls.append(p), "4")[1]
