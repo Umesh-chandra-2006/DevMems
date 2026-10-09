@@ -50,13 +50,18 @@ class TestStartAndPool(unittest.TestCase):
             t = Path(t)
             (t / "p7_baseline").mkdir()
             rs = t / "p7_baseline" / "run_status.json"
-            self.assertFalse(B.baseline_day3_primary_exists(t))                                  # no status file
+            self.assertFalse(B.baseline_day3_primary_exists(t, sim_root=t / "none"))                                  # no status file
             rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake"]}))
-            self.assertFalse(B.baseline_day3_primary_exists(t))
+            self.assertFalse(B.baseline_day3_primary_exists(t, sim_root=t / "none"))
             rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake", "day3_end_awake"]}))
-            self.assertTrue(B.baseline_day3_primary_exists(t))                                   # still running its last night: the chain starts at once
+            self.assertTrue(B.baseline_day3_primary_exists(t, sim_root=t / "none"))                                   # still running its last night: the chain starts at once
             rs.write_text(json.dumps({"state": "finished: reached end", "checkpoints_made": []}))
-            self.assertTrue(B.baseline_day3_primary_exists(t))
+            self.assertTrue(B.baseline_day3_primary_exists(t, sim_root=t / "none"))
+            rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake"]}))      # status file lags: the checkpoint folder alone is enough
+            self.assertFalse(B.baseline_day3_primary_exists(t, sim_root=t / "sim"))
+            (t / "sim" / "p7_baseline__ckpt_day3_end_awake" / "reverie").mkdir(parents=True)
+            (t / "sim" / "p7_baseline__ckpt_day3_end_awake" / "reverie" / "meta.json").write_text("{}")
+            self.assertTrue(B.baseline_day3_primary_exists(t, sim_root=t / "sim"))
 
     def test_the_pool_is_a_finished_arms_never_a_running_arms(self):
         self.assertEqual(B.pool_arm(lambda arm: arm == "staged"), "staged")

@@ -42,7 +42,7 @@ STEPS: List[Dict] = [
 ]
 
 
-def baseline_released(storage: Path = None, status_path: Path = None, now=time.time, grace_s: float = 1800.0) -> bool:
+def baseline_released(storage: Path = None, status_path: Path = None, now=time.time, grace_s: float = 1800.0, sim_root: Path = None) -> bool:
     """The held staged steps are released when the baseline arm has passed its day-3 primary checkpoint (step 22,410) AND the baseline chain has ended (chain_done or a halted step), so
     the replay controls (900 calls) never compete with the baseline for the shared free-tier limit while the baseline is still running its day 3. Fallback: the baseline arm finished more
     than grace_s ago and its chain never ended."""
@@ -52,7 +52,9 @@ def baseline_released(storage: Path = None, status_path: Path = None, now=time.t
         rs = json.loads((st / "p7_baseline" / "run_status.json").read_text(encoding="utf-8"))
     except Exception:
         return False
-    passed = "day3_end_awake" in (rs.get("checkpoints_made") or []) or str(rs.get("state", "")).startswith("finished")
+    sim = sim_root or ROOT / "reverie" / "environment" / "frontend_server" / "storage"
+    passed = ("day3_end_awake" in (rs.get("checkpoints_made") or []) or str(rs.get("state", "")).startswith("finished")
+              or (sim / "p7_baseline__ckpt_day3_end_awake" / "reverie" / "meta.json").exists())      # run_status.json lags the checkpoint by up to a simulated hour
     if not passed:
         return False
     ended = False

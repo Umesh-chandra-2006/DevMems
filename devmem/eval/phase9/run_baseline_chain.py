@@ -29,8 +29,13 @@ BACKEND = C.BACKEND
 POOL_HOLD = "evaluation_pool_available"
 
 
-def baseline_day3_primary_exists(storage: Path = None) -> bool:
+def baseline_day3_primary_exists(storage: Path = None, sim_root: Path = None) -> bool:
+    """True when the baseline's day-3 primary checkpoint exists. run_status.json is rewritten only at the hourly windows, so it can lag the checkpoint by up to a simulated hour (seen at 05:43 on
+    2026-10-09); the runner's checkpoint folder is therefore checked first."""
     st = storage or ROOT / "devmem" / "storage"
+    sim = sim_root or ROOT / "reverie" / "environment" / "frontend_server" / "storage"
+    if (sim / "p7_baseline__ckpt_day3_end_awake" / "reverie" / "meta.json").exists():
+        return True
     try:
         rs = json.loads((st / "p7_baseline" / "run_status.json").read_text(encoding="utf-8"))
     except Exception:

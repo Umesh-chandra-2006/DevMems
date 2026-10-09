@@ -81,18 +81,24 @@ class TestChain(unittest.TestCase):
             (t / "p7_baseline").mkdir()
             rs, st = t / "p7_baseline" / "run_status.json", t / "chain_status.jsonl"
             rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake"]}))
-            self.assertFalse(run_staged_chain.baseline_released(t, st))                          # baseline has not passed step 22,410
+            self.assertFalse(run_staged_chain.baseline_released(t, st, sim_root=t / "none"))                          # baseline has not passed step 22,410
             rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake", "day3_end_awake"]}))
             st.write_text(json.dumps({"chain": "baseline", "event": "step_done"}) + "\n")
-            self.assertFalse(run_staged_chain.baseline_released(t, st))                          # passed, but its chain is still running
+            self.assertFalse(run_staged_chain.baseline_released(t, st, sim_root=t / "none"))                          # passed, but its chain is still running
             st.write_text(json.dumps({"chain": "baseline", "event": "chain_done"}) + "\n")
-            self.assertTrue(run_staged_chain.baseline_released(t, st))
+            self.assertTrue(run_staged_chain.baseline_released(t, st, sim_root=t / "none"))
             st.write_text(json.dumps({"chain": "baseline", "event": "step_failed_chain_halted"}) + "\n")
-            self.assertTrue(run_staged_chain.baseline_released(t, st))                          # a halted chain also releases
+            self.assertTrue(run_staged_chain.baseline_released(t, st, sim_root=t / "none"))                          # a halted chain also releases
+            st.write_text("")
+            rs.write_text(json.dumps({"state": "running", "checkpoints_made": ["day1_end_awake"]}))        # status file lags the checkpoint folder
+            (t / "sim" / "p7_baseline__ckpt_day3_end_awake" / "reverie").mkdir(parents=True)
+            (t / "sim" / "p7_baseline__ckpt_day3_end_awake" / "reverie" / "meta.json").write_text("{}")
+            st.write_text(json.dumps({"chain": "baseline", "event": "chain_done"}) + "\n")
+            self.assertTrue(run_staged_chain.baseline_released(t, st, sim_root=t / "sim"))
             st.write_text("")
             rs.write_text(json.dumps({"state": "finished: reached end", "checkpoints_made": ["day3_end_awake"]}))
-            self.assertFalse(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 10))
-            self.assertTrue(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 4000))   # fallback: finished long ago and no chain end
+            self.assertFalse(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 10, sim_root=t / "none"))
+            self.assertTrue(run_staged_chain.baseline_released(t, st, now=lambda: rs.stat().st_mtime + 4000, sim_root=t / "none"))   # fallback: finished long ago and no chain end
 
     def test_the_real_step_list_follows_the_pm_order(self):
         names = [s["name"] for s in run_staged_chain.STEPS]
