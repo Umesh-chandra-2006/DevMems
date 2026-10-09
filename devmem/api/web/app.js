@@ -154,6 +154,7 @@
         onSeek: function (m) { clk.setPlaying(false); clk.setT(m); }, onSpeed: clk.setSpeed,
         hint: "One clock drives both panes. A pane whose run has no frame at this time says so and keeps the avatars where they were last recorded." }) :
         h("div", { className: "empty", style: { padding: 18 } }, noneAvailable ? "Neither chosen run has recorded movement. Choose p7pilot_staged and p7pilot_baseline." : "loading movement metadata (the first frame is drawn when it arrives; press Start or Play to move)..."),
+      range && /^p7_(baseline|staged)$/.test(p.runA || "") ? h(window.Full.TownTools, { range: range, t: tShown, onSeek: function (m) { clk.setPlaying(false); clk.setT(m); } }) : null,
       h("div", { className: "panes" },
         ["left", "right"].map(function (id) {
           return h(window.Town.TownPane, { key: id, id: id, run: id === "left" ? p.runA : p.runB, runs: p.runs, t: tShown, playing: clk.playing,
@@ -185,8 +186,8 @@
   var HINTS = {
     town: "Town replay: both runs on one clock; click an avatar to see its action, dialogue and memory at that moment.",
     inspector: "Memory inspector: the four memory stages of one agent at a chosen simulated time, as recorded.",
-    cost: "Cost view: router calls and tokens per purpose and per window for the two runs.",
-    findings: "Findings: injected events, calls per purpose and per window, and the bugs the pilot caught, from saved artifacts.",
+    cost: "Cost view: router calls and tokens per purpose and per window for the two runs; for the full runs, calls by class per simulated day.",
+    findings: "Findings: for the full runs, the scorecard of the registered predictions, recall, calls by class, replay controls and coherence, from the final day-3 export; for pilot runs, the pilot artifacts.",
     differs: "Where it differs and why: each difference with the rule that fired, its logged numbers and the evidence file; no generated text.",
     side: "Side by side: one agent over a time range in both runs, with the first step where the recorded action text differs.",
     edge: "Edge cases: known failures and weaknesses with the evidence for each."
@@ -206,9 +207,9 @@
         var any = r.runs.filter(function (x) { return x.agents.length; });
         var pick = declared.concat(any);
         var has = function (id) { return r.runs.some(function (x) { return x.run === id; }); };
-        /* demo defaults: left = p7pilot_staged, right = p7pilot_baseline (when they exist and the URL names nothing) */
-        setRunA(function (cur) { return cur || (has("p7pilot_staged") ? "p7pilot_staged" : (pick[0] && pick[0].run)); });
-        setRunB(function (cur) { return cur || (has("p7pilot_baseline") ? "p7pilot_baseline" : ((pick[1] && pick[1].run) || (pick[0] && pick[0].run))); });
+        /* defaults: left = p7_staged, right = p7_baseline, the full arms (pilot runs stay selectable); then the pilot pair, then whatever exists */
+        setRunA(function (cur) { return cur || (has("p7_staged") ? "p7_staged" : (has("p7pilot_staged") ? "p7pilot_staged" : (pick[0] && pick[0].run))); });
+        setRunB(function (cur) { return cur || (has("p7_baseline") ? "p7_baseline" : (has("p7pilot_baseline") ? "p7pilot_baseline" : ((pick[1] && pick[1].run) || (pick[0] && pick[0].run)))); });
       }).catch(function (e) { setError(String(e)); });
     }, []);
     useEffect(function () {   /* the label bar must always show the runs on screen, whichever tab is open */
@@ -218,6 +219,7 @@
     }, [runA, runB]);
     function onLabel(side, l) { setLabels(function (o) { var n = Object.assign({}, o); n[side] = l; return n; }); }
     function onRun(side, run) { if (side === "left") { setRunA(run); } else { setRunB(run); } }
+    var isFull = /^p7_(baseline|staged)$/.test(runA || "") && /^p7_(baseline|staged)$/.test(runB || "");
     var shown = tab === "inspector" ? [labels.insp || labels.left] : [labels.left, labels.right];
     var tabBtn = function (id, text) { return h("button", { className: tab === id ? "on" : "", onClick: function () { setTab(id); } }, text); };
     var select2 = function (value, set) { return h("select", { value: value || "", onChange: function (e) { set(e.target.value); } }, runs.map(function (r) { return h("option", { key: r.run, value: r.run }, r.run); })); };
@@ -231,17 +233,18 @@
       h(LivePanel, { runA: runA, runB: runB }),
       !runA ? h("div", { className: "empty", style: { padding: 18 } }, "loading runs...") :
         tab === "town" ? h(TownTab, { runs: runs, runA: runA, runB: runB, onRun: onRun, onLabel: onLabel }) :
-        tab === "findings" ? h(window.Views.Findings) :
-        tab === "differs" ? h(window.Views.Differs) :
-        tab === "edge" ? h(window.Views.EdgeCases) :
+        tab === "findings" ? (isFull ? h(window.Full.Findings) : h(window.Views.Findings)) :
+        tab === "differs" ? (isFull ? h(window.Full.Differs) : h(window.Views.Differs)) :
+        tab === "edge" ? (isFull ? h("div", null, h(window.Full.EdgeCases), h(window.Views.EdgeCases)) : h(window.Views.EdgeCases)) :
         tab === "side" ? h("div", null, h("div", { className: "controls" }, h("label", null, "left"), select2(runA, setRunA), h("label", null, "right"), select2(runB, setRunB)),
           h(window.Views.SideBySide, { key: runA + "|" + runB, runA: runA, runB: runB })) :
         tab === "cost" ? h("div", null,
           h("div", { className: "controls" }, h("label", null, "left"), select2(runA, setRunA), h("label", null, "right"), select2(runB, setRunB)),
-          h(window.Cost.CostView, { runA: runA, runB: runB })) :
+          isFull ? h(window.Full.CostByClass) : null, h(window.Cost.CostView, { runA: runA, runB: runB })) :
         h("div", null,
           h("div", { className: "controls" }, h("label", null, "run"), select2(runA, setRunA)),
-          h(Inspector, { key: runA, run: runA, onLabel: function (l) { onLabel("insp", l); } })));
+          h(Inspector, { key: runA, run: runA, onLabel: function (l) { onLabel("insp", l); } }),
+          /^p7_(baseline|staged)$/.test(runA || "") ? h(window.Full.NightsView, { key: "n" + runA, run: runA }) : null));
   }
 
   ReactDOM.createRoot(document.getElementById("root")).render(h(App));

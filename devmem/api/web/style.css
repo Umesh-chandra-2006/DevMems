@@ -145,3 +145,17 @@ input { font: inherit; color: var(--text); background: var(--panel-2); border: 1
 button.on, .tabs button.on { background: var(--baseline); color: #06131c; border-color: var(--gold-hi); }
 
 .tabhint { padding: 4px 18px 0; color: var(--muted); font-size: 12.5px; }
+
+/* full-run views (seminar of 2026-10-09) */
+.badge.full { background: #1f5f4a; color: #fff; }
+.tiles { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.tile { border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; min-width: 190px; }
+.tilek { font-size: 11px; color: var(--muted); }
+.tilev { font-size: 22px; font-weight: 700; }
+.tbl tr.out-right td:nth-child(3) { color: #6fcf97; }
+.tbl tr.out-wrong td:nth-child(3) { color: #eb5757; }
+.tbl tr.out-undecidable td:nth-child(3), .tbl tr.out-being-re-run td:nth-child(3) { color: #f2c94c; }
+.tbl tr.diffrow td { background: rgba(224, 184, 79, 0.12); }
+.towntools { padding: 6px 0; }
+.towntools .markers { height: 34px; width: 100%; }
+details summary { cursor: pointer; font-size: 12px; color: var(--muted); }

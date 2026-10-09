@@ -122,6 +122,18 @@ def slug(agent: str) -> str:
 # ---------------------------------------------------------------------------------------------
 # labels (spec 3.5: nothing may look like a result the data does not support)
 # ---------------------------------------------------------------------------------------------
+FULL_RUNS = ("p7_baseline", "p7_staged")
+
+
+def full_run_mode(run: str, state: Optional[str]) -> Optional[str]:
+    """The label of a full Phase 7 run is rendered from its run_status.json state, not from run_label.json (which was written at launch and still says "live run in progress"): the
+    run folder is never edited. Pilot runs (p7pilot_*) and every other run keep their declared label."""
+    if run not in FULL_RUNS:
+        return None
+    st = str(state or "")
+    return "FULL RUN, 3 simulated days, " + ("finished" if st.startswith("finished") else ("running" if st.startswith(("running", "starting")) else "state not recorded"))
+
+
 def run_label(run: str) -> Dict[str, Any]:
     d = run_dir(run)
     declared = _json(d / "run_label.json") or {}
@@ -135,9 +147,10 @@ def run_label(run: str) -> Dict[str, Any]:
     if sf.is_file() and time.time() - sf.stat().st_mtime < LIVE_WINDOW_SECONDS:
         status_live = str((_json(sf) or {}).get("state", "")).startswith(("running", "starting"))
     live_hint = status_live or (age < LIVE_WINDOW_SECONDS and declared.get("mode") != "recorded")
+    full_mode = full_run_mode(run, (_json(sf) or {}).get("state") if sf.is_file() else None)
     return {
         "run": run,
-        "mode": "live (database written in the last %d s)" % LIVE_WINDOW_SECONDS if live_hint else declared.get("mode", "recorded (inferred: the database was not written in the last %d s)" % LIVE_WINDOW_SECONDS),
+        "mode": full_mode or ("live (database written in the last %d s)" % LIVE_WINDOW_SECONDS if live_hint else declared.get("mode", "recorded (inferred: the database was not written in the last %d s)" % LIVE_WINDOW_SECONDS)),
         "origin": declared.get("origin", "unknown"),
         "model": declared.get("model", report.get("model", "unknown")),
         "normalizer": declared.get("normalizer", "unknown"),

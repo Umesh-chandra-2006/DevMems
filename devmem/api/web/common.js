@@ -31,12 +31,13 @@
     var labels = (p.labels || []).filter(Boolean);
     var _o = React.useState(false), open = _o[0], setOpen = _o[1];
     var kv = function (k, v) { return h("span", { className: "kv" }, k + " ", h("b", null, v == null ? "unknown" : String(v))); };
-    var pilot = labels.some(function (l) { return /PILOT/i.test(String(l.mode || "")) || /PILOT/i.test(String(l.note || "")); });
+    var full = labels.length > 0 && labels.every(function (l) { return /^FULL RUN/.test(String(l.mode || "")); });
+    var pilot = !full && labels.some(function (l) { return /PILOT/i.test(String(l.mode || "")) || /PILOT/i.test(String(l.note || "")); });
     var summary = labels.map(function (l) { return l.run; }).join(" | ");
     return h("div", null,
       h("div", { className: "labelbar" + (open ? " open" : "") },
         h("span", { className: "title" }, "DevMem Memory Inspector"),
-        h("span", { className: "badge" + (pilot ? " pilot" : "") }, pilot ? "PILOT, not a result" : (labels[0] ? String(labels[0].mode || "recorded").slice(0, 40) : "recorded")),
+        h("span", { className: "badge" + (pilot ? " pilot" : (full ? " full" : "")) }, full ? "FULL RUN, 3 simulated days" : (pilot ? "PILOT, not a result" : (labels[0] ? String(labels[0].mode || "recorded").slice(0, 40) : "recorded"))),
         h("span", { className: "kv" }, summary),
         open ? labels.map(function (l, i) {
           return h("span", { className: "labelgroup", key: i },
@@ -46,7 +47,7 @@
         }) : null,
         h("button", { className: "expand", onClick: function () { setOpen(!open); } }, open ? "collapse label" : "expand label"),
         h("span", { className: "ro" }, "read only")),
-      h("div", { className: "nonclaim" }, "single run per arm; differences can be model noise; PILOT is not a result. This view displays what was recorded in the run and makes no claim about recall, coherence or efficiency. Label source: " +
+      h("div", { className: "nonclaim" }, (full ? "single run per arm; descriptive results; differences can be model noise" : "single run per arm; differences can be model noise; PILOT is not a result") + ". This view displays what was recorded in the run and makes no claim about recall, coherence or efficiency. Label source: " +
         labels.map(function (l) { return l.label_source || "none"; }).join(" | ") + (labels[0] && labels[0].note ? ". " + labels[0].note : "")));
   }
 
