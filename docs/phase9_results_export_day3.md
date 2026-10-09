@@ -1,6 +1,6 @@
-# Results export: day-3 export, PARTIAL: replay controls missing
+# Results export: FINAL day-3 export
 
-Built 2026-10-09 06:08:40. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
+Built 2026-10-09 07:49:35. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
@@ -14,12 +14,13 @@ Built 2026-10-09 06:08:40. Single run per arm, 3 agents: descriptive only, no si
 | R3 | pivotal events I5, M5, K5 at distance 2: no checklist difference larger than 0.2 | **undecidable** | the registered definition matches no question (see the note below the table) |  |
 | R4 | mundane events at distance 2: S at or below B | **right** | applied literally | n=3, baseline_mean=0.8333, staged_mean=0.8333, staged_minus_baseline_mean=0.0 |
 | R5 | same-day questions (distance 0): no difference larger than 0.1 | **right** | applied literally | n=12, baseline_mean=0.8333, staged_mean=0.7917, staged_minus_baseline_mean=-0.0417 |
-| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=None |
+| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=2.0 |
+| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=0.5 |
+| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=1.5 |
+| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled | filler_mean=1.94, baseline_mean=1.98, staged_mean=2.629 |
+| S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=2.472 |
 | M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **no prediction** | reported two-sided | calibration_accuracy=1.0, coherence_interpretable=True |
-| D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **undecidable** | fewer than 3 traits with cached embeddings (traits 14, available 0) | traits=14, available=0, flagged=0 |
+| D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **wrong** | cached-embedding cosines; a diagnostic | traits=14, available=14, flagged=1, fraction=0.071 |
 | D-2 | Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering); WEAK BY DESIGN: at threshold 0.82 nearly every merge falls in this band | **right** | entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy | Isabella Rodriguez=362, Klaus Mueller=221, Maria Lopez=236 |
 
 ## E1 to E3 (checkpoint copies)
@@ -513,13 +514,189 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
 ## Stage 2 replay controls
 
 {
- "available": false,
- "note": "not run yet"
+ "summary": {
+  "by_condition": {
+   "baseline": {
+    "n": 299,
+    "mean": 1.98
+   },
+   "filler": {
+    "n": 299,
+    "mean": 1.94
+   },
+   "mismatch": {
+    "n": 299,
+    "mean": 2.472
+   },
+   "staged_own": {
+    "n": 299,
+    "mean": 2.629
+   }
+  },
+  "by_agent": {
+   "Isabella Rodriguez|baseline": {
+    "n": 101,
+    "mean": 1.812
+   },
+   "Isabella Rodriguez|filler": {
+    "n": 101,
+    "mean": 1.782
+   },
+   "Isabella Rodriguez|mismatch": {
+    "n": 101,
+    "mean": 1.842
+   },
+   "Isabella Rodriguez|staged_own": {
+    "n": 101,
+    "mean": 2.614
+   },
+   "Klaus Mueller|baseline": {
+    "n": 99,
+    "mean": 2.182
+   },
+   "Klaus Mueller|filler": {
+    "n": 99,
+    "mean": 2.192
+   },
+   "Klaus Mueller|mismatch": {
+    "n": 99,
+    "mean": 3.0
+   },
+   "Klaus Mueller|staged_own": {
+    "n": 99,
+    "mean": 2.889
+   },
+   "Maria Lopez|baseline": {
+    "n": 99,
+    "mean": 1.949
+   },
+   "Maria Lopez|filler": {
+    "n": 99,
+    "mean": 1.848
+   },
+   "Maria Lopez|mismatch": {
+    "n": 99,
+    "mean": 2.586
+   },
+   "Maria Lopez|staged_own": {
+    "n": 99,
+    "mean": 2.384
+   }
+  }
+ },
+ "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+ "seed": 20261008,
+ "n_injected": 26,
+ "n_natural": 273,
+ "allocation": {
+  "Isabella Rodriguez|day1": {
+   "available": 483,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Isabella Rodriguez|day2": {
+   "available": 960,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Isabella Rodriguez|day3": {
+   "available": 656,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Klaus Mueller|day1": {
+   "available": 261,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Klaus Mueller|day2": {
+   "available": 343,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Klaus Mueller|day3": {
+   "available": 311,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day1": {
+   "available": 439,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day2": {
+   "available": 732,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day3": {
+   "available": 532,
+   "quota": 30,
+   "chosen": 30
+  }
+ },
+ "friction_events_staged_minus_baseline_inputs": {
+  "Isabella Rodriguez": {
+   "mismatch": {
+    "n": 2,
+    "mean": 7.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 5.0
+   }
+  },
+  "Klaus Mueller": {
+   "mismatch": {
+    "n": 2,
+    "mean": 7.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.5
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.5
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 5.0
+   }
+  },
+  "Maria Lopez": {
+   "mismatch": {
+    "n": 2,
+    "mean": 8.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 3.5
+   }
+  }
+ },
+ "calls_made_at_most": 897
 }
 
 ## D-1 provenance and D-2
 
-D-1: 14 traits, 0 with cached embeddings, 0 closer to the priors than to the best source.
+D-1: 14 traits, 14 with cached embeddings, 1 closer to the priors than to the best source.
 
 D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearly every merge falls in the 0.80 to 0.88 band, so a count above 0 was close to certain. D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, null], [1, true, 30], [2, true, 97], [3, true, 235]], "Klaus Mueller": [[0, true, null], [1, true, 21], [2, true, 81], [3, true, 119]], "Maria Lopez": [[0, true, null], [1, true, 30], [2, true, 49], [3, true, 157]]}; verdict {'outcome': 'right', 'reason': 'entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy', 'numbers': {'Isabella Rodriguez': 362, 'Klaus Mueller': 221, 'Maria Lopez': 236}}
 
@@ -530,7 +707,7 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 5, 'key_change_resume': 4, 'start': 7, 'external_kill_watchdog_restart': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
 - outage minutes (outage log) 93.0; counters at the last hourly row {'outage_minutes_total': 93.01, 'rate_limit_wait_minutes_total': 398.7, 'quota_pauses': 0, 'step': 22320, 'sim_clock': '2023-02-15 14:00:00'}
-- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.174, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1667, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 27, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
@@ -538,6 +715,6 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 406.85, 'quota_pauses': 0, 'step': 22320, 'sim_clock': '2023-02-15 14:00:00'}
-- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1792, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1717, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 26, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 

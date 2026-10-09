@@ -1,6 +1,6 @@
 # Results export: INTERIM day 2 (dry run of the final export)
 
-Built 2026-10-08 19:39:17. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'running', 'staged': 'starting'}.
+Built 2026-10-09 07:51:00. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
@@ -13,13 +13,14 @@ Built 2026-10-08 19:39:17. Single run per arm, 3 agents: descriptive only, no si
 | R2 | S answers Klaus's theme-count question no worse than B | **undecidable** | interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b) |  |
 | R3 | pivotal events I5, M5, K5 at distance 2: no checklist difference larger than 0.2 | **undecidable** | interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b) |  |
 | R4 | mundane events at distance 2: S at or below B | **undecidable** | interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b) |  |
-| R5 | same-day questions (distance 0): no difference larger than 0.1 | **undecidable** | recall answers are not available yet for both arms |  |
-| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **undecidable** | replay controls have not been run yet (they run on the staged pool after the staged arm finishes) |  |
-| S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=None |
-| M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **undecidable** | day-1 against day-3 judge results or the judge calibration are not available yet |  |
-| D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **undecidable** | fewer than 3 traits with cached embeddings (traits 13, available 0) | traits=13, available=0, flagged=0 |
+| R5 | same-day questions (distance 0): no difference larger than 0.1 | **right** | applied literally | n=11, baseline_mean=1.0, staged_mean=1.0, staged_minus_baseline_mean=0.0 |
+| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=2.0 |
+| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=0.5 |
+| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=1.5 |
+| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled | filler_mean=1.94, baseline_mean=1.98, staged_mean=2.629 |
+| S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=2.472 |
+| M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **no prediction** | reported two-sided | calibration_accuracy=1.0, coherence_interpretable=True |
+| D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **wrong** | cached-embedding cosines; a diagnostic | traits=13, available=13, flagged=1, fraction=0.077 |
 | D-2 | Stage 3 entries merged between cosine 0.80 and 0.88 above 0 over the nights, per agent (merge heights recovered offline by re-running the recorded clustering); WEAK BY DESIGN: at threshold 0.82 nearly every merge falls in this band | **right** | entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy | Isabella Rodriguez=127, Klaus Mueller=102, Maria Lopez=79 |
 
 ## E1 to E3 (checkpoint copies)
@@ -68,31 +69,31 @@ Built 2026-10-08 19:39:17. Single run per arm, 3 agents: descriptive only, no si
 
 Where each ledger keyword tag's calls go in the classes (whole log, both arms):
 
-- baseline: {"planning": {"planning": 143, "action_object_description": 3079, "dialogue": 31, "periodic_reflection": 92}, "dialogue": {"action_object_description": 340, "dialogue": 174, "post_conversation_memo": 52, "periodic_reflection": 72, "other": 18, "planning": 6}, "importance_scoring": {"importance_scoring": 4019}, "reflection": {"periodic_reflection": 121, "action_object_description": 1}}
-- staged: {"planning": {"planning": 125, "action_object_description": 2693, "dialogue": 47}, "dialogue": {"action_object_description": 364, "dialogue": 163, "post_conversation_memo": 52, "other": 18, "planning": 11}, "importance_scoring": {"importance_scoring": 4026}, "consolidation_summary": {"consolidation": 36}, "identity_trait": {"identity": 14}, "reflection": {"action_object_description": 6}}
+- baseline: {"planning": {"planning": 201, "action_object_description": 4283, "dialogue": 57, "periodic_reflection": 144}, "dialogue": {"action_object_description": 461, "dialogue": 273, "post_conversation_memo": 76, "periodic_reflection": 108, "other": 18, "planning": 21}, "importance_scoring": {"importance_scoring": 6215}, "reflection": {"periodic_reflection": 187, "action_object_description": 1}}
+- staged: {"planning": {"planning": 177, "action_object_description": 3200, "dialogue": 71}, "dialogue": {"action_object_description": 441, "dialogue": 232, "post_conversation_memo": 72, "other": 18, "planning": 16}, "importance_scoring": {"importance_scoring": 4917}, "consolidation_summary": {"consolidation": 54}, "identity_trait": {"identity": 15}, "reflection": {"action_object_description": 6}}
 
 ### E1 unique calls by the ledger KEYWORD tag per simulated day (the ledger record, not a classification); the last column is the purpose-tag audit (false-match rate of the keyword tag, sampled)
 
 | arm | sim day | purpose | unique calls | tag audit |
 |---|---|---|---|---|
-| baseline | 1 | dialogue | 314 | 0.7347 false-match rate (144 of 196 classified, 200 audited) |
+| baseline | 1 | dialogue | 314 | 0.7107 false-match rate (140 of 197 classified, 200 audited) |
 | baseline | 1 | importance_scoring | 1588 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | baseline | 1 | planning | 1479 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
-| baseline | 1 | reflection | 51 | 0.0082 false-match rate (1 of 122 classified, 122 audited) |
-| baseline | 2 | dialogue | 279 | 0.7347 false-match rate (144 of 196 classified, 200 audited) |
+| baseline | 1 | reflection | 51 | 0.0053 false-match rate (1 of 188 classified, 188 audited) |
+| baseline | 2 | dialogue | 279 | 0.7107 false-match rate (140 of 197 classified, 200 audited) |
 | baseline | 2 | importance_scoring | 2104 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
 | baseline | 2 | planning | 1431 | 0.04 false-match rate (8 of 200 classified, 200 audited) |
-| baseline | 2 | reflection | 56 | 0.0082 false-match rate (1 of 122 classified, 122 audited) |
+| baseline | 2 | reflection | 56 | 0.0053 false-match rate (1 of 188 classified, 188 audited) |
 | staged | 1 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
-| staged | 1 | dialogue | 268 | 0.759 false-match rate (148 of 195 classified, 200 audited) |
+| staged | 1 | dialogue | 268 | 0.7268 false-match rate (141 of 194 classified, 200 audited) |
 | staged | 1 | identity_trait | 11 | not audited (set by the code, not by the keyword rule) |
 | staged | 1 | importance_scoring | 1245 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
-| staged | 1 | planning | 1152 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
+| staged | 1 | planning | 1152 | 0.005 false-match rate (1 of 200 classified, 200 audited) |
 | staged | 2 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
-| staged | 2 | dialogue | 203 | 0.759 false-match rate (148 of 195 classified, 200 audited) |
+| staged | 2 | dialogue | 203 | 0.7268 false-match rate (141 of 194 classified, 200 audited) |
 | staged | 2 | identity_trait | 3 | not audited (set by the code, not by the keyword rule) |
 | staged | 2 | importance_scoring | 2078 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
-| staged | 2 | planning | 1006 | 0.02 false-match rate (4 of 200 classified, 200 audited) |
+| staged | 2 | planning | 1006 | 0.005 false-match rate (1 of 200 classified, 200 audited) |
 | staged | 2 | reflection | 6 | 1.0 false-match rate (6 of 6 classified, 6 audited) |
 
 ### E1 unique calls per agent (simulated day, purpose)
@@ -166,32 +167,32 @@ Grader validation: {'items_checked': 57, 'item_agreement': 0.9474, 'answers': 30
 
 | question | agent | type | event | distance | baseline score | staged score | note |
 |---|---|---|---|---|---|---|---|
-| Q_I1 | Isabella Rodriguez | injected | I1 | 1 | n/a | n/a |  |
-| Q_I2 | Isabella Rodriguez | injected | I2 | 1 | n/a | n/a |  |
-| Q_I3 | Isabella Rodriguez | injected | I3 | 1 | n/a | n/a |  |
-| Q_I4 | Isabella Rodriguez | injected | I4 | 0 | n/a | n/a |  |
-| Q_I5 | Isabella Rodriguez | injected | I5 | 0 | n/a | n/a |  |
-| Q_I6 | Isabella Rodriguez | injected | I6 | 0 | n/a | n/a | injection of I6 failed its check in an arm; excluded from both arms (pre-registration section 4) |
-| Q_M1 | Maria Lopez | injected | M1 | 1 | n/a | n/a |  |
-| Q_M2 | Maria Lopez | injected | M2 | 1 | n/a | n/a |  |
-| Q_M3 | Maria Lopez | injected | M3 | 1 | n/a | n/a |  |
-| Q_M4 | Maria Lopez | injected | M4 | 0 | n/a | n/a |  |
-| Q_M5 | Maria Lopez | injected | M5 | 0 | n/a | n/a |  |
-| Q_M6 | Maria Lopez | injected | M6 | 0 | n/a | n/a |  |
-| Q_K1 | Klaus Mueller | injected | K1 | 1 | n/a | n/a |  |
-| Q_K2 | Klaus Mueller | injected | K2 | 1 | n/a | n/a |  |
-| Q_K3 | Klaus Mueller | injected | K3 | 1 | n/a | n/a |  |
-| Q_K4 | Klaus Mueller | injected | K4 | 0 | n/a | n/a |  |
-| Q_K5 | Klaus Mueller | injected | K5 | 0 | n/a | n/a |  |
-| Q_K6 | Klaus Mueller | injected | K6 | 0 | n/a | n/a |  |
-| N_I1 | Isabella Rodriguez | natural | schedule day 2 09:00 | 0 | n/a | n/a |  |
-| N_I2 | Isabella Rodriguez | natural | schedule day 1 12:00 | 1 | n/a | n/a |  |
-| N_M1 | Maria Lopez | natural | schedule day 2 09:00 | 0 | n/a | n/a |  |
-| N_M2 | Maria Lopez | natural | schedule day 1 11:30 | 1 | n/a | n/a |  |
-| N_K1 | Klaus Mueller | natural | schedule day 2 09:00 | 0 | n/a | n/a |  |
-| N_K2 | Klaus Mueller | natural | schedule day 1 11:30 | 1 | n/a | n/a |  |
+| Q_I1 | Isabella Rodriguez | injected | I1 | 1 | 1.0 | 1.0 |  |
+| Q_I2 | Isabella Rodriguez | injected | I2 | 1 | 1.0 | 0.0 |  |
+| Q_I3 | Isabella Rodriguez | injected | I3 | 1 | 1.0 | 1.0 |  |
+| Q_I4 | Isabella Rodriguez | injected | I4 | 0 | 1.0 | 1.0 |  |
+| Q_I5 | Isabella Rodriguez | injected | I5 | 0 | 1.0 | 1.0 |  |
+| Q_I6 | Isabella Rodriguez | injected | I6 | 0 | 1.0 | 0.0 | injection of I6 failed its check in an arm; excluded from both arms (pre-registration section 4) |
+| Q_M1 | Maria Lopez | injected | M1 | 1 | 1.0 | 1.0 |  |
+| Q_M2 | Maria Lopez | injected | M2 | 1 | 1.0 | 1.0 |  |
+| Q_M3 | Maria Lopez | injected | M3 | 1 | 1.0 | 0.3333 |  |
+| Q_M4 | Maria Lopez | injected | M4 | 0 | 1.0 | 1.0 |  |
+| Q_M5 | Maria Lopez | injected | M5 | 0 | 1.0 | 1.0 |  |
+| Q_M6 | Maria Lopez | injected | M6 | 0 | 1.0 | 1.0 |  |
+| Q_K1 | Klaus Mueller | injected | K1 | 1 | 0.5 | 0.5 |  |
+| Q_K2 | Klaus Mueller | injected | K2 | 1 | 0.5 | 0.5 |  |
+| Q_K3 | Klaus Mueller | injected | K3 | 1 | 1.0 | 1.0 |  |
+| Q_K4 | Klaus Mueller | injected | K4 | 0 | 1.0 | 1.0 |  |
+| Q_K5 | Klaus Mueller | injected | K5 | 0 | 1.0 | 1.0 |  |
+| Q_K6 | Klaus Mueller | injected | K6 | 0 | 1.0 | 1.0 |  |
+| N_I1 | Isabella Rodriguez | natural | schedule day 2 09:00 | 0 | 1.0 | 1.0 |  |
+| N_I2 | Isabella Rodriguez | natural | schedule day 1 12:00 | 1 | 1.0 | 0.0 |  |
+| N_M1 | Maria Lopez | natural | schedule day 2 09:00 | 0 | 1.0 | 1.0 |  |
+| N_M2 | Maria Lopez | natural | schedule day 1 11:30 | 1 | 1.0 | 1.0 |  |
+| N_K1 | Klaus Mueller | natural | schedule day 2 09:00 | 0 | 1.0 | 1.0 |  |
+| N_K2 | Klaus Mueller | natural | schedule day 1 11:30 | 1 | 1.0 | 1.0 |  |
 
-Bootstrap of the mean staged-minus-baseline difference: {'available': False}
+Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mean': -0.123, 'ci95': [-0.254, 0.0], 'resamples': 2000, 'agents': 3, 'questions': 23}
 
 - R3 as registered says distance 2, but I5, M5 and K5 are day-2 events: at the day-3 checkpoint their distance is 1; the literal registered definition matches no question. The observed pivotal pool is shown separately.
 - R1 and R2 each rest on one question (n = 1 < 3): undecidable under pre-registration section 6; the observed values are shown.
@@ -204,10 +205,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
  "templates_loaded": 91,
  "arms": {
   "baseline": {
-   "log_rows": 8156,
+   "log_rows": 12045,
    "tags": {
     "planning": {
-     "rows_with_this_tag_in_log": 3345,
+     "rows_with_this_tag_in_log": 4685,
      "audited": 200,
      "sampled": true,
      "true_family": 192,
@@ -215,25 +216,25 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      "unclassified": 0,
      "false_match_rate_of_classified": 0.04,
      "false_matches_belong_to": {
-      "reflection": 5,
-      "dialogue": 3
+      "reflection": 4,
+      "dialogue": 4
      },
      "examples": [
-      "generate_focal_pt: '\"\"\"\\nMaria Lopez shares a close, collaborative, and mutually supportive'",
-      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nMaria Lopez values deep, meaningful relationships wit'"
+      "generate_focal_pt: 'Maria Lopez maintains a disciplined academic schedule balanced with so'",
+      "generate_focal_pt: 'library table is being cleared\\nwalking to Hobbs Cafe from the library\\n'"
      ]
     },
     "dialogue": {
-     "rows_with_this_tag_in_log": 662,
+     "rows_with_this_tag_in_log": 957,
      "audited": 200,
      "sampled": true,
-     "true_family": 52,
-     "false_match": 144,
-     "unclassified": 4,
-     "false_match_rate_of_classified": 0.7347,
+     "true_family": 57,
+     "false_match": 140,
+     "unclassified": 3,
+     "false_match_rate_of_classified": 0.7107,
      "false_matches_belong_to": {
-      "planning": 107,
-      "reflection": 37
+      "planning": 106,
+      "reflection": 34
      },
      "examples": [
       "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -241,13 +242,13 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "reflection": {
-     "rows_with_this_tag_in_log": 122,
-     "audited": 122,
+     "rows_with_this_tag_in_log": 188,
+     "audited": 188,
      "sampled": false,
-     "true_family": 121,
+     "true_family": 187,
      "false_match": 1,
      "unclassified": 0,
-     "false_match_rate_of_classified": 0.0082,
+     "false_match_rate_of_classified": 0.0053,
      "false_matches_belong_to": {
       "planning": 1
      },
@@ -256,7 +257,7 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "importance_scoring": {
-     "rows_with_this_tag_in_log": 4027,
+     "rows_with_this_tag_in_log": 6215,
      "audited": 200,
      "sampled": true,
      "true_family": 200,
@@ -270,49 +271,48 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
    "reflection_family_prompts_whole_log": {
     "by_tag_and_template": {
      "dialogue": {
-      "memo_on_convo": 52,
-      "generate_focal_pt": 72
+      "memo_on_convo": 76,
+      "generate_focal_pt": 108
      },
      "reflection": {
-      "insight_and_evidence": 121
+      "insight_and_evidence": 187
      },
      "planning": {
-      "generate_focal_pt": 92
+      "generate_focal_pt": 144
      }
     },
-    "total": 337
+    "total": 515
    }
   },
   "staged": {
-   "log_rows": 7555,
+   "log_rows": 9219,
    "tags": {
     "planning": {
-     "rows_with_this_tag_in_log": 2865,
+     "rows_with_this_tag_in_log": 3448,
      "audited": 200,
      "sampled": true,
-     "true_family": 196,
-     "false_match": 4,
+     "true_family": 199,
+     "false_match": 1,
      "unclassified": 0,
-     "false_match_rate_of_classified": 0.02,
+     "false_match_rate_of_classified": 0.005,
      "false_matches_belong_to": {
-      "dialogue": 4
+      "dialogue": 1
      },
      "examples": [
-      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nThis is Isabella Rodriguez\\'s plan for Monday February'",
-      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nKlaus Mueller is conversing about Klaus Mueller and M'"
+      "summarize_chat_relationship: '\"\"\"\\n[Statements]\\nThis is Isabella Rodriguez\\'s plan for Monday February'"
      ]
     },
     "dialogue": {
-     "rows_with_this_tag_in_log": 608,
+     "rows_with_this_tag_in_log": 779,
      "audited": 200,
      "sampled": true,
-     "true_family": 47,
-     "false_match": 148,
-     "unclassified": 5,
-     "false_match_rate_of_classified": 0.759,
+     "true_family": 53,
+     "false_match": 141,
+     "unclassified": 6,
+     "false_match_rate_of_classified": 0.7268,
      "false_matches_belong_to": {
-      "planning": 128,
-      "reflection": 20
+      "planning": 118,
+      "reflection": 23
      },
      "examples": [
       "action_object: 'Current activity: sleep in bed\\nObjects available: {bed, easel, closet,'",
@@ -336,7 +336,7 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
      ]
     },
     "importance_scoring": {
-     "rows_with_this_tag_in_log": 4026,
+     "rows_with_this_tag_in_log": 4917,
      "audited": 200,
      "sampled": true,
      "true_family": 200,
@@ -350,10 +350,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
    "reflection_family_prompts_whole_log": {
     "by_tag_and_template": {
      "dialogue": {
-      "memo_on_convo": 52
+      "memo_on_convo": 72
      }
     },
-    "total": 52
+    "total": 72
    }
   }
  },
@@ -364,21 +364,275 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': False}
 ## Coherence (M2)
 
 {
- "available": false,
- "note": "day-1 against day-3 judge results or the judge calibration are not available yet",
- "calibration_available": false
+ "available": true,
+ "calibration_accuracy": 1.0,
+ "coherence_interpretable": true,
+ "confusion_matrix_true_by_judged": {
+  "consistent": {
+   "consistent": 7,
+   "contradictory": 0,
+   "unrelated": 0,
+   "parse_failure": 0
+  },
+  "contradictory": {
+   "consistent": 0,
+   "contradictory": 7,
+   "unrelated": 0,
+   "parse_failure": 0
+  },
+  "unrelated": {
+   "consistent": 0,
+   "contradictory": 0,
+   "unrelated": 6,
+   "parse_failure": 0
+  }
+ },
+ "calibration_pairs": 20,
+ "calibration_parse_failures": 0,
+ "arms": {
+  "baseline": {
+   "pairs": 18,
+   "contradiction_rate": 0.0556,
+   "per_agent": {
+    "Isabella Rodriguez": {
+     "consistent": 6,
+     "contradictory": 0,
+     "unrelated": 0,
+     "parse_failure": 0,
+     "n": 6
+    },
+    "Maria Lopez": {
+     "consistent": 6,
+     "contradictory": 0,
+     "unrelated": 0,
+     "parse_failure": 0,
+     "n": 6
+    },
+    "Klaus Mueller": {
+     "consistent": 5,
+     "contradictory": 1,
+     "unrelated": 0,
+     "parse_failure": 0,
+     "n": 6
+    }
+   }
+  },
+  "staged": {
+   "pairs": 18,
+   "contradiction_rate": 0.0556,
+   "per_agent": {
+    "Isabella Rodriguez": {
+     "consistent": 6,
+     "contradictory": 0,
+     "unrelated": 0,
+     "parse_failure": 0,
+     "n": 6
+    },
+    "Maria Lopez": {
+     "consistent": 5,
+     "contradictory": 0,
+     "unrelated": 1,
+     "parse_failure": 0,
+     "n": 6
+    },
+    "Klaus Mueller": {
+     "consistent": 5,
+     "contradictory": 1,
+     "unrelated": 0,
+     "parse_failure": 0,
+     "n": 6
+    }
+   }
+  }
+ }
 }
 
 ## Stage 2 replay controls
 
 {
- "available": false,
- "note": "not run yet"
+ "summary": {
+  "by_condition": {
+   "baseline": {
+    "n": 299,
+    "mean": 1.98
+   },
+   "filler": {
+    "n": 299,
+    "mean": 1.94
+   },
+   "mismatch": {
+    "n": 299,
+    "mean": 2.472
+   },
+   "staged_own": {
+    "n": 299,
+    "mean": 2.629
+   }
+  },
+  "by_agent": {
+   "Isabella Rodriguez|baseline": {
+    "n": 101,
+    "mean": 1.812
+   },
+   "Isabella Rodriguez|filler": {
+    "n": 101,
+    "mean": 1.782
+   },
+   "Isabella Rodriguez|mismatch": {
+    "n": 101,
+    "mean": 1.842
+   },
+   "Isabella Rodriguez|staged_own": {
+    "n": 101,
+    "mean": 2.614
+   },
+   "Klaus Mueller|baseline": {
+    "n": 99,
+    "mean": 2.182
+   },
+   "Klaus Mueller|filler": {
+    "n": 99,
+    "mean": 2.192
+   },
+   "Klaus Mueller|mismatch": {
+    "n": 99,
+    "mean": 3.0
+   },
+   "Klaus Mueller|staged_own": {
+    "n": 99,
+    "mean": 2.889
+   },
+   "Maria Lopez|baseline": {
+    "n": 99,
+    "mean": 1.949
+   },
+   "Maria Lopez|filler": {
+    "n": 99,
+    "mean": 1.848
+   },
+   "Maria Lopez|mismatch": {
+    "n": 99,
+    "mean": 2.586
+   },
+   "Maria Lopez|staged_own": {
+    "n": 99,
+    "mean": 2.384
+   }
+  }
+ },
+ "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+ "seed": 20261008,
+ "n_injected": 26,
+ "n_natural": 273,
+ "allocation": {
+  "Isabella Rodriguez|day1": {
+   "available": 483,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Isabella Rodriguez|day2": {
+   "available": 960,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Isabella Rodriguez|day3": {
+   "available": 656,
+   "quota": 31,
+   "chosen": 31
+  },
+  "Klaus Mueller|day1": {
+   "available": 261,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Klaus Mueller|day2": {
+   "available": 343,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Klaus Mueller|day3": {
+   "available": 311,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day1": {
+   "available": 439,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day2": {
+   "available": 732,
+   "quota": 30,
+   "chosen": 30
+  },
+  "Maria Lopez|day3": {
+   "available": 532,
+   "quota": 30,
+   "chosen": 30
+  }
+ },
+ "friction_events_staged_minus_baseline_inputs": {
+  "Isabella Rodriguez": {
+   "mismatch": {
+    "n": 2,
+    "mean": 7.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 5.0
+   }
+  },
+  "Klaus Mueller": {
+   "mismatch": {
+    "n": 2,
+    "mean": 7.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.5
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.5
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 5.0
+   }
+  },
+  "Maria Lopez": {
+   "mismatch": {
+    "n": 2,
+    "mean": 8.0
+   },
+   "filler": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "baseline": {
+    "n": 2,
+    "mean": 3.0
+   },
+   "staged_own": {
+    "n": 2,
+    "mean": 3.5
+   }
+  }
+ },
+ "calls_made_at_most": 897
 }
 
 ## D-1 provenance and D-2
 
-D-1: 13 traits, 0 with cached embeddings, 0 closer to the priors than to the best source.
+D-1: 13 traits, 13 with cached embeddings, 1 closer to the priors than to the best source.
 
 D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearly every merge falls in the 0.80 to 0.88 band, so a count above 0 was close to certain. D-2 reproduction (nights, reproduced, count): {"Isabella Rodriguez": [[0, true, null], [1, true, 30], [2, true, 97]], "Klaus Mueller": [[0, true, null], [1, true, 21], [2, true, 81]], "Maria Lopez": [[0, true, null], [1, true, 30], [2, true, 49]]}; verdict {'outcome': 'right', 'reason': 'entries in final clusters of at least min_cluster_size that took part in a merge at height 0.80 to 0.88, summed over the nights of the copy', 'numbers': {'Isabella Rodriguez': 127, 'Klaus Mueller': 102, 'Maria Lopez': 79}}
 
@@ -386,17 +640,17 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 
 ### baseline
 
-- state running; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
-- restart log events {'exit': 3, 'key_change_resume': 3, 'start': 6, 'external_kill_watchdog_restart': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
-- outage minutes (outage log) 82.6; counters at the last hourly row {'outage_minutes_total': 82.64, 'rate_limit_wait_minutes_total': 356.75, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 233, 'waited_seconds': 22398, 'mean_wave_seconds': 96.1, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.2247, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
-- injection check {'events_total': 27, 'resolved': 18, 'pass': 18, 'fail': [], 'pending': [], 'asleep_at_injection': []}
+- state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
+- restart log events {'exit': 5, 'key_change_resume': 4, 'start': 7, 'external_kill_watchdog_restart': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
+- outage minutes (outage log) 93.0; counters at the last hourly row {'outage_minutes_total': 82.64, 'rate_limit_wait_minutes_total': 356.75, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
+- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1666, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- injection check {'events_total': 27, 'resolved': 27, 'pass': 27, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
 
-- state starting; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
-- restart log events {'exit': 4, 'key_change_resume': 3, 'start': 7, 'resume': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
+- state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
+- restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 300.51, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 231, 'waited_seconds': 22046, 'mean_wave_seconds': 95.4, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.2211, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
-- injection check {'events_total': 27, 'resolved': 21, 'pass': 20, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
+- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1716, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- injection check {'events_total': 27, 'resolved': 27, 'pass': 26, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 
