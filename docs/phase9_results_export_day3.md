@@ -1,12 +1,12 @@
 # Results export: FINAL day-3 export
 
-Built 2026-10-09 07:49:35. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
+Built 2026-10-09 08:52:26. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
 | id | prediction | outcome | reason | numbers |
 |---|---|---|---|---|
-| E1 | S makes more calls than B by less than 10 percent of B's calls (unique calls, same checkpoint step) | **wrong** | S made fewer calls than B; the cause is named in the purpose breakdown (E1 table) | baseline_unique=11858, staged_unique=9112, relative_difference=-0.2316 |
+| E1 | S makes more calls than B by less than 10 percent of B's calls (unique calls, same checkpoint step) | **wrong** | S made fewer calls than B; the cause is named in the purpose breakdown (E1 table) | baseline_unique=11858, staged_unique=9100, relative_difference=-0.2326 |
 | E2 | mean prompt tokens per scoring call higher in S than in B | **right** | direction only; the size of the priors and trait blocks is not separately checked here | baseline=466.6, staged=608.4 |
 | E3 | consolidated fraction above 0 in S and exactly 0 in B | **right** | B has no Stage 3 by construction | baseline=0.0, staged=0.1012 |
 | R1 | S answers Isabella's theme-count question no worse than B | **undecidable** | n = 1 question(s), below the 3 required by pre-registration section 6; the observed difference is shown, not scored | n=1, baseline_mean=0.5, staged_mean=0.0, staged_minus_baseline_mean=-0.5 |
@@ -14,10 +14,10 @@ Built 2026-10-09 07:49:35. Single run per arm, 3 agents: descriptive only, no si
 | R3 | pivotal events I5, M5, K5 at distance 2: no checklist difference larger than 0.2 | **undecidable** | the registered definition matches no question (see the note below the table) |  |
 | R4 | mundane events at distance 2: S at or below B | **right** | applied literally | n=3, baseline_mean=0.8333, staged_mean=0.8333, staged_minus_baseline_mean=0.0 |
 | R5 | same-day questions (distance 0): no difference larger than 0.1 | **right** | applied literally | n=12, baseline_mean=0.8333, staged_mean=0.7917, staged_minus_baseline_mean=-0.0417 |
-| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=2.0 |
-| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=0.5 |
-| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=1.5 |
-| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled | filler_mean=1.94, baseline_mean=1.98, staged_mean=2.629 |
+| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=2.0, sensitivity_recorded_in_run_minus_baseline=2.0 |
+| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=0.0, sensitivity_recorded_in_run_minus_baseline=0.5 |
+| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=2.5, sensitivity_recorded_in_run_minus_baseline=1.5 |
+| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled; staged condition = staged_replayed (registered) | filler_mean=1.94, baseline_mean=1.98, staged_replayed_mean=2.411, sensitivity_recorded_in_run_mean=2.629, sensitivity_filler_closer_than_recorded=True |
 | S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=2.472 |
 | M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **no prediction** | reported two-sided | calibration_accuracy=1.0, coherence_interpretable=True |
 | D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **wrong** | cached-embedding cosines; a diagnostic | traits=14, available=14, flagged=1, fraction=0.071 |
@@ -28,7 +28,7 @@ Built 2026-10-09 07:49:35. Single run per arm, 3 agents: descriptive only, no si
 | item | baseline | staged |
 |---|---|---|
 | checkpoint | step 22410, sim 2023-02-15 14:15:00 | step 22410, sim 2023-02-15 14:15:00 |
-| E1 calls raw / unique | 12027 / 11858 | 9203 / 9112 |
+| E1 calls raw / unique | 12027 / 11858 | 9203 / 9100 |
 | E2 mean tokens in per importance call | 466.6 (6213 calls) | 608.4 (4917 calls) |
 | E3 consolidated fraction | 0.0 (0 of 0) | 0.1012 (589 of 5822) |
 
@@ -72,11 +72,11 @@ Built 2026-10-09 07:49:35. Single run per arm, 3 agents: descriptive only, no si
 | staged | 2 | other | 9 |
 | staged | 2 | planning | 43 |
 | staged | 2 | post_conversation_memo | 16 |
-| staged | 3 | action_object_description | 1238 |
+| staged | 3 | action_object_description | 1230 |
 | staged | 3 | consolidation | 18 |
 | staged | 3 | dialogue | 125 |
 | staged | 3 | identity | 1 |
-| staged | 3 | importance_scoring | 1570 |
+| staged | 3 | importance_scoring | 1566 |
 | staged | 3 | other | 9 |
 | staged | 3 | planning | 83 |
 | staged | 3 | post_conversation_memo | 28 |
@@ -115,10 +115,10 @@ Where each ledger keyword tag's calls go in the classes (whole log, both arms):
 | staged | 2 | planning | 1034 | 0.005 false-match rate (1 of 200 classified, 200 audited) |
 | staged | 2 | reflection | 6 | 1.0 false-match rate (6 of 6 classified, 6 audited) |
 | staged | 3 | consolidation_summary | 18 | not audited (set by the code, not by the keyword rule) |
-| staged | 3 | dialogue | 295 | 0.7268 false-match rate (141 of 194 classified, 200 audited) |
+| staged | 3 | dialogue | 294 | 0.7268 false-match rate (141 of 194 classified, 200 audited) |
 | staged | 3 | identity_trait | 1 | not audited (set by the code, not by the keyword rule) |
-| staged | 3 | importance_scoring | 1570 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
-| staged | 3 | planning | 1188 | 0.005 false-match rate (1 of 200 classified, 200 audited) |
+| staged | 3 | importance_scoring | 1566 | 0.0 false-match rate (0 of 200 classified, 200 audited) |
+| staged | 3 | planning | 1181 | 0.005 false-match rate (1 of 200 classified, 200 audited) |
 
 ### E1 unique calls per agent (simulated day, purpose)
 
@@ -191,17 +191,17 @@ Where each ledger keyword tag's calls go in the classes (whole log, both arms):
 | staged | Maria Lopez | 2 | importance_scoring | 749 | 749 |
 | staged | Maria Lopez | 2 | planning | 352 | 352 |
 | staged | Isabella Rodriguez | 3 | consolidation_summary | 6 | 6 |
-| staged | Isabella Rodriguez | 3 | dialogue | 100 | 98 |
-| staged | Isabella Rodriguez | 3 | importance_scoring | 690 | 683 |
-| staged | Isabella Rodriguez | 3 | planning | 445 | 424 |
+| staged | Isabella Rodriguez | 3 | dialogue | 100 | 97 |
+| staged | Isabella Rodriguez | 3 | importance_scoring | 690 | 682 |
+| staged | Isabella Rodriguez | 3 | planning | 445 | 417 |
 | staged | Klaus Mueller | 3 | consolidation_summary | 6 | 6 |
 | staged | Klaus Mueller | 3 | dialogue | 82 | 81 |
-| staged | Klaus Mueller | 3 | importance_scoring | 339 | 332 |
+| staged | Klaus Mueller | 3 | importance_scoring | 339 | 330 |
 | staged | Klaus Mueller | 3 | planning | 383 | 375 |
 | staged | Maria Lopez | 3 | consolidation_summary | 6 | 6 |
 | staged | Maria Lopez | 3 | dialogue | 117 | 116 |
 | staged | Maria Lopez | 3 | identity_trait | 1 | 1 |
-| staged | Maria Lopez | 3 | importance_scoring | 557 | 555 |
+| staged | Maria Lopez | 3 | importance_scoring | 557 | 554 |
 | staged | Maria Lopez | 3 | planning | 397 | 389 |
 
 ## Sweep markers per agent and night (staged)
@@ -531,6 +531,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "staged_own": {
     "n": 299,
     "mean": 2.629
+   },
+   "staged_replayed": {
+    "n": 299,
+    "mean": 2.411
    }
   },
   "by_agent": {
@@ -550,6 +554,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 101,
     "mean": 2.614
    },
+   "Isabella Rodriguez|staged_replayed": {
+    "n": 101,
+    "mean": 2.257
+   },
    "Klaus Mueller|baseline": {
     "n": 99,
     "mean": 2.182
@@ -566,6 +574,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 99,
     "mean": 2.889
    },
+   "Klaus Mueller|staged_replayed": {
+    "n": 99,
+    "mean": 2.768
+   },
    "Maria Lopez|baseline": {
     "n": 99,
     "mean": 1.949
@@ -581,10 +593,14 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "Maria Lopez|staged_own": {
     "n": 99,
     "mean": 2.384
+   },
+   "Maria Lopez|staged_replayed": {
+    "n": 99,
+    "mean": 2.212
    }
   }
  },
- "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+ "label": "Stage 2 replay controls on the fixed sample, staged pool, live (staged_replayed registered; staged_own sensitivity)",
  "seed": 20261008,
  "n_injected": 26,
  "n_natural": 273,
@@ -649,6 +665,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 2,
     "mean": 3.0
    },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 5.0
+   },
    "staged_own": {
     "n": 2,
     "mean": 5.0
@@ -666,6 +686,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "baseline": {
     "n": 2,
     "mean": 3.5
+   },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 6.0
    },
    "staged_own": {
     "n": 2,
@@ -685,13 +709,19 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 2,
     "mean": 3.0
    },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 3.0
+   },
    "staged_own": {
     "n": 2,
     "mean": 3.5
    }
   }
  },
- "calls_made_at_most": 897
+ "calls_made_at_most": 1196,
+ "new_calls_this_run": 249,
+ "conditions_note": "staged_replayed = the registered staged condition (fresh replay of the staged scorer prompt with the identity context recorded for each event); staged_own = the run's recorded in-run scores, kept as a labelled sensitivity line (the first run of this step used it as the staged condition)"
 }
 
 ## D-1 provenance and D-2
@@ -707,14 +737,14 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 5, 'key_change_resume': 4, 'start': 7, 'external_kill_watchdog_restart': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
 - outage minutes (outage log) 93.0; counters at the last hourly row {'outage_minutes_total': 93.01, 'rate_limit_wait_minutes_total': 398.7, 'quota_pauses': 0, 'step': 22320, 'sim_clock': '2023-02-15 14:00:00'}
-- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1667, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1624, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 27, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
 
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
-- restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
+- restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826), ('2026-10-08 20:01:52', 20826)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 406.85, 'quota_pauses': 0, 'step': 22320, 'sim_clock': '2023-02-15 14:00:00'}
-- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1717, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1673, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 26, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 

@@ -1,7 +1,7 @@
 {
  "label": "FINAL day-3 export",
  "day": 3,
- "built_at": "2026-10-09 07:49:35",
+ "built_at": "2026-10-09 08:52:26",
  "arm_states": {
   "baseline": "finished: reached 2023-02-16 00:00:00",
   "staged": "finished: reached 2023-02-16 00:00:00"
@@ -868,20 +868,20 @@
     },
     "raw_total": 9203,
     "replay_pass_removed_by_purpose": {
-     "dialogue": 7,
-     "importance_scoring": 24,
-     "planning": 60
+     "dialogue": 8,
+     "importance_scoring": 28,
+     "planning": 67
     },
-    "removed_total": 91,
+    "removed_total": 103,
     "unique_by_purpose": {
      "consolidation_summary": 54,
-     "dialogue": 770,
+     "dialogue": 769,
      "identity_trait": 15,
-     "importance_scoring": 4893,
-     "planning": 3374,
+     "importance_scoring": 4889,
+     "planning": 3367,
      "reflection": 6
     },
-    "unique_total": 9112,
+    "unique_total": 9100,
     "restarts_with_a_replay_pass": [
      {
       "restart_ist": "2026-10-08 00:54:01",
@@ -900,6 +900,12 @@
       "prekill_step": 20826,
       "rewritten_until_ist": "2026-10-08 20:04:39",
       "replayed_second_pass_calls": 22
+     },
+     {
+      "restart_ist": "2026-10-08 20:01:52",
+      "prekill_step": 20826,
+      "rewritten_until_ist": "2026-10-08 20:04:39",
+      "replayed_second_pass_calls": 12
      }
     ],
     "per_day_agent_purpose": {
@@ -1126,21 +1132,21 @@
        "agent": "Isabella Rodriguez",
        "purpose": "dialogue",
        "raw": 100,
-       "unique": 98
+       "unique": 97
       },
       {
        "sim_day": 3,
        "agent": "Isabella Rodriguez",
        "purpose": "importance_scoring",
        "raw": 690,
-       "unique": 683
+       "unique": 682
       },
       {
        "sim_day": 3,
        "agent": "Isabella Rodriguez",
        "purpose": "planning",
        "raw": 445,
-       "unique": 424
+       "unique": 417
       },
       {
        "sim_day": 3,
@@ -1161,7 +1167,7 @@
        "agent": "Klaus Mueller",
        "purpose": "importance_scoring",
        "raw": 339,
-       "unique": 332
+       "unique": 330
       },
       {
        "sim_day": 3,
@@ -1196,7 +1202,7 @@
        "agent": "Maria Lopez",
        "purpose": "importance_scoring",
        "raw": 557,
-       "unique": 555
+       "unique": 554
       },
       {
        "sim_day": 3,
@@ -1224,14 +1230,14 @@
       },
       "3": {
        "consolidation_summary": 18,
-       "dialogue": 295,
-       "importance_scoring": 1570,
-       "planning": 1188,
+       "dialogue": 294,
+       "importance_scoring": 1566,
+       "planning": 1181,
        "identity_trait": 1
       }
      },
      "raw_total": 9203,
-     "unique_total": 9112,
+     "unique_total": 9100,
      "method": "sim day = day of the first step file written after the call; replayed second passes removed"
     },
     "per_day_agent_class": {
@@ -1549,7 +1555,7 @@
        "agent": "Isabella Rodriguez",
        "class": "action_object_description",
        "raw": 488,
-       "unique": 466
+       "unique": 458
       },
       {
        "sim_day": 3,
@@ -1570,7 +1576,7 @@
        "agent": "Isabella Rodriguez",
        "class": "importance_scoring",
        "raw": 690,
-       "unique": 683
+       "unique": 682
       },
       {
        "sim_day": 3,
@@ -1619,7 +1625,7 @@
        "agent": "Klaus Mueller",
        "class": "importance_scoring",
        "raw": 339,
-       "unique": 332
+       "unique": 330
       },
       {
        "sim_day": 3,
@@ -1675,7 +1681,7 @@
        "agent": "Maria Lopez",
        "class": "importance_scoring",
        "raw": 557,
-       "unique": 555
+       "unique": 554
       },
       {
        "sim_day": 3,
@@ -1720,10 +1726,10 @@
        "post_conversation_memo": 16
       },
       "3": {
-       "action_object_description": 1238,
+       "action_object_description": 1230,
        "consolidation": 18,
        "dialogue": 125,
-       "importance_scoring": 1570,
+       "importance_scoring": 1566,
        "other": 9,
        "planning": 83,
        "post_conversation_memo": 28,
@@ -1731,7 +1737,7 @@
       }
      },
      "raw_total": 9203,
-     "unique_total": 9112,
+     "unique_total": 9100,
      "other_share_of_unique": 0.002,
      "pairing": {
       "ledger_rows": 9219,
@@ -1896,7 +1902,7 @@
     "waited_seconds": 23922,
     "mean_wave_seconds": 91.3,
     "max_wave_seconds": 438.8,
-    "share_of_wall_time_since_launch": 0.1667,
+    "share_of_wall_time_since_launch": 0.1624,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
@@ -1976,6 +1982,10 @@
     [
      "2026-10-08 19:34:36",
      20826
+    ],
+    [
+     "2026-10-08 20:01:52",
+     20826
     ]
    ],
    "outage_minutes_from_outage_log": 90.1,
@@ -1991,7 +2001,7 @@
     "waited_seconds": 24638,
     "mean_wave_seconds": 92.3,
     "max_wave_seconds": 509.1,
-    "share_of_wall_time_since_launch": 0.1717,
+    "share_of_wall_time_since_launch": 0.1673,
     "note": "wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows"
    },
    "router_failures_in_run_status": 0,
@@ -2958,6 +2968,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 08:15:00",
     "text": "A janitor is mopping the floor between the library reading tables",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values focused work and intellectual thoroughness, a janitor mopping the floor is"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:15:00",
+    "text": "A janitor is mopping the floor between the library reading tables",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -2985,6 +3003,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For a cafe owner, a delivery van is a routine part of business operations (receiving supplies, i"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 08:20:00",
+    "text": "A blue delivery van is parked outside the entrance of Hobbs Cafe",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Isabella, a cafe owner, a delivery van is a routine, mundane occurrence. However, because sh"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -3022,6 +3048,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 08:30:00",
     "text": "The printer on the second floor of the library is out of paper",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For a student like Maria, a printer being out of paper is a minor, everyday inconvenience. While"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 08:30:00",
+    "text": "The printer on the second floor of the library is out of paper",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -3049,6 +3083,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 09:40:00",
+    "text": "A man is asking the price of a croissant and leaving without ordering",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For a cafe owner like Isabella, a customer leaving without a purchase is a routine, mundane occu"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -3086,6 +3128,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 10:00:00",
     "text": "A group of students is talking loudly near the quiet section of the library",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** For Klaus, who values solitude, focused work, and thoroughness, a disruption in the library is m"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 10:00:00",
+    "text": "A group of students is talking loudly near the quiet section of the library",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -3113,6 +3163,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:15:00",
+    "text": "A man at the next table is asking to borrow a pen",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is inquisitive and generally views people as well-intentioned, a request for a pe"
    },
    {
     "agent": "Maria Lopez",
@@ -3150,6 +3208,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 12:10:00",
     "text": "Peter Hale is raising his voice because he received a latte instead of tea",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Isabella, this event is moderately distressing rather than life-altering. Because she is hig"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:10:00",
+    "text": "Peter Hale is raising his voice because he received a latte instead of tea",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -3177,6 +3243,14 @@
     "condition": "baseline",
     "score": 4,
     "raw_start": "Rate: 4"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:30:00",
+    "text": "A classmate is telling Klaus Mueller in the hallway that his outline is weak",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, this event is more than a minor annoyance but falls short of a life-altering crisis. "
    },
    {
     "agent": "Klaus Mueller",
@@ -3214,6 +3288,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 12:40:00",
     "text": "A student is shouting at the cashier about a missing discount",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nWhile Maria is energetic and wears her emotions on her sleeve, she is also inquisitive and focus"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 12:40:00",
+    "text": "A student is shouting at the cashier about a missing discount",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -3241,6 +3323,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 08:10:00",
+    "text": "A sparrow is flying into the reading room through an open window",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nWhile Maria is energetic and inquisitive, she is also deeply focused on her intellectual pursuit"
    },
    {
     "agent": "Maria Lopez",
@@ -3278,6 +3368,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 08:30:00",
     "text": "A woman is looking at the menu board and leaving without ordering",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Isabella, a customer leaving without ordering is more than just a lost sale; it represents a"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 08:30:00",
+    "text": "A woman is looking at the menu board and leaving without ordering",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -3305,6 +3403,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 08:40:00",
+    "text": "A fire alarm test is sounding for ten seconds in the library",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\nReasoning: For Klaus, who values focused work and intellectual rigor, a ten-second fire alarm test is a minor, "
    },
    {
     "agent": "Klaus Mueller",
@@ -3342,6 +3448,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 09:20:00",
     "text": "A phone is ringing loudly in the library reading room",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, a ringing phone in a library is not a life-altering event, but it is a significant an"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 09:20:00",
+    "text": "A phone is ringing loudly in the library reading room",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -3369,6 +3483,14 @@
     "condition": "baseline",
     "score": 8,
     "raw_start": "Rate: 8"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 09:30:00",
+    "text": "A physics professor is announcing in the hallway that the midterm exam moved up to this Friday",
+    "condition": "staged_replayed",
+    "score": 8,
+    "raw_start": "Rate: 8\n\n**Reasoning:**\nFor Maria, this event is highly poignant because it directly threatens her ability to balance he"
    },
    {
     "agent": "Maria Lopez",
@@ -3406,6 +3528,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 10:15:00",
     "text": "A city inspector is taping a notice on the cafe door announcing a mandatory closure for repairs starting next Monday",
+    "condition": "staged_replayed",
+    "score": 9,
+    "raw_start": "Rate: 9\n\n**Reasoning:**\nFor Isabella, Hobbs Cafe is not just a business; it is the primary vehicle for her social connec"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 10:15:00",
+    "text": "A city inspector is taping a notice on the cafe door announcing a mandatory closure for repairs starting next Monday",
     "condition": "staged_own",
     "score": 9.0,
     "raw_start": "recorded in the run"
@@ -3433,6 +3563,14 @@
     "condition": "baseline",
     "score": 8,
     "raw_start": "Rate: 8"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:20:00",
+    "text": "The department chair is telling Klaus Mueller at the cafe that his research funding will be cut at the end of the month",
+    "condition": "staged_replayed",
+    "score": 8,
+    "raw_start": "Rate: 8\n\n**Reasoning:**\nFor Klaus, this event is highly poignant because it directly threatens his core values of thorou"
    },
    {
     "agent": "Klaus Mueller",
@@ -3470,6 +3608,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:30:00",
     "text": "A woman at the counter is asking to borrow an umbrella",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, this event is a minor, mundane social interaction. Given her personality traits, she "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:30:00",
+    "text": "A woman at the counter is asking to borrow an umbrella",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -3497,6 +3643,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:20:00",
+    "text": "A librarian is restocking the shelf next to Klaus Mueller's table",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\nReasoning: For Klaus, who values solitude, focused work, and intellectual rigor, a librarian restocking shelves"
    },
    {
     "agent": "Klaus Mueller",
@@ -3534,6 +3688,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 08:40:00",
     "text": "The vending machine near the library entrance is displaying an out of order sign",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is a busy physics student and streamer, a broken vending machine is a minor, mund"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 08:40:00",
+    "text": "The vending machine near the library entrance is displaying an out of order sign",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -3561,6 +3723,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:50:00",
+    "text": "A teenager is studying the display case and leaving without ordering",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Isabella, this event is slightly more than mundane because it touches upon her core values o"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -3598,6 +3768,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 10:30:00",
     "text": "Construction workers is drilling outside the library window",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, who prioritizes solitude and focused, methodical work, the drilling is a significant "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:30:00",
+    "text": "Construction workers is drilling outside the library window",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -3625,6 +3803,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:20:00",
+    "text": "A boy at the next table is asking to borrow a phone charger",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, this is a minor, mundane social interaction. While she is inquisitive and generally a"
    },
    {
     "agent": "Maria Lopez",
@@ -3662,6 +3848,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 11:20:00",
     "text": "A brown stray dog is lying down under table four in the cafe",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Isabella, this event is more than just a mundane occurrence. Given her core traits\u2014specifica"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 11:20:00",
+    "text": "A brown stray dog is lying down under table four in the cafe",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -3689,6 +3883,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** While this is an annoying disruption to Klaus\u2019s focused research routine, it is a minor social c"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 12:50:00",
+    "text": "A visitor is taking the seat Klaus Mueller left to fetch a book and refusing to move",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, this event is more than a minor inconvenience; it is a direct disruption to his focus"
    },
    {
     "agent": "Klaus Mueller",
@@ -3726,6 +3928,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:00:00",
     "text": "Two customers is arguing over the last seat near the window",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Isabella, this event is more than just a minor inconvenience; it strikes at the core of her "
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:00:00",
+    "text": "Two customers is arguing over the last seat near the window",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -3753,6 +3963,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:10:00",
+    "text": "Two students is arguing loudly about who had reserved the corner table",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Maria, Hobbs Cafe is a familiar, daily environment where she goes to focus on her physics st"
    },
    {
     "agent": "Maria Lopez",
@@ -3790,6 +4008,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 06:30:10",
     "text": "Isabella Rodriguez is preparing a quick cup of coffee in the kitchen",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 06:30:10",
+    "text": "Isabella Rodriguez is preparing a quick cup of coffee in the kitchen",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -3815,6 +4041,14 @@
     "sim_time": "2023-02-13 07:15:20",
     "text": "behind the cafe counter is being prepared for the morning",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 07:15:20",
+    "text": "behind the cafe counter is being prepared for the morning",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -3854,6 +4088,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 07:24:10",
     "text": "behind the cafe counter is a workspace where staff prepare food and drinks, currently occupied by employees serving customers and managing the cafe's operations",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** This event describes the standard, daily operational state of Hobbs Cafe. For Isabella, who mana"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 07:24:10",
+    "text": "behind the cafe counter is a workspace where staff prepare food and drinks, currently occupied by employees serving customers and managing the cafe's operations",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -3881,6 +4123,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 09:39:10",
+    "text": "Isabella Rodriguez is chatting with regulars to build a welcoming atmosphere",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** For Isabella, chatting with regulars is a core component of her daily routine and identity as a "
    },
    {
     "agent": "Isabella Rodriguez",
@@ -3918,6 +4168,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 09:39:30",
     "text": "behind the cafe counter is busy with Isabella Rodriguez serving fresh pastries to patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, serving pastries is a core part of her daily routine and her identity as a cafe ow"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 09:39:30",
+    "text": "behind the cafe counter is busy with Isabella Rodriguez serving fresh pastries to patrons",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -3950,6 +4208,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 10:49:10",
     "text": "behind the cafe counter is busy with Isabella Rodriguez serving fresh pastries to patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, serving pastries is a core part of her daily routine and her identity as a cafe ow"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 10:49:10",
+    "text": "behind the cafe counter is busy with Isabella Rodriguez serving fresh pastries to patrons",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -3975,6 +4241,14 @@
     "sim_time": "2023-02-13 11:28:10",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 11:28:10",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -4014,6 +4288,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 11:38:30",
     "text": "Maria Lopez is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, this event is relatively mundane. While she is friendly and enjoys social interact"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 11:38:30",
+    "text": "Maria Lopez is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -4039,6 +4321,14 @@
     "sim_time": "2023-02-13 11:42:20",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 11:42:20",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -4073,6 +4363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 11:53:10",
+    "text": "behind the cafe counter is staffed by a barista preparing drinks and managing orders",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, having a barista staff the counter is a standard, mundane part of her daily operat"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4110,6 +4408,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 12:08:10",
     "text": "Isabella Rodriguez is duration in minutes: 20, minutes left: 56",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** The event described is simply Isabella performing her daily routine at the cafe (standing at the"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:08:10",
+    "text": "Isabella Rodriguez is duration in minutes: 20, minutes left: 56",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -4137,6 +4443,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:08:20",
+    "text": "behind the cafe counter is being managed by Isabella Rodriguez, who is coordinating with kitchen staff to ensure timely food delivery",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event represents a standard, routine part of Isabella\u2019s daily life as a cafe owner. While s"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4174,6 +4488,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 12:18:20",
     "text": "behind the cafe counter is occupied by Isabella Rodriguez, who is currently preparing specialty coffee drinks for lunch patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella takes pride in her work and loves making people feel welcome, preparing lunch dri"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:18:20",
+    "text": "behind the cafe counter is occupied by Isabella Rodriguez, who is currently preparing specialty coffee drinks for lunch patrons",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4201,6 +4523,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, a cafe owner who prides herself on hospitality and making people feel welcome, a c"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:40:20",
+    "text": "Maria Lopez is duration in minutes: 20, minutes left: 77",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:**\nFor Isabella, a customer (Maria Lopez) spending 20 minutes in her cafe is a standard, mundane oc"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4238,6 +4568,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 12:49:10",
     "text": "behind the cafe counter is staffed by a barista preparing drinks and managing orders",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, having a barista staff the counter is a standard, mundane part of her daily operat"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:49:10",
+    "text": "behind the cafe counter is staffed by a barista preparing drinks and managing orders",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4270,6 +4608,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 12:59:50",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who is friendly, outgoing, and values the community atmosphere of her cafe, an emp"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 12:59:50",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4297,6 +4643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:00:20",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Cleaning the counter is a routine, daily maintenance task for a cafe owner. While Isabella takes"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4334,6 +4688,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:09:10",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who is friendly, outgoing, and values the community atmosphere of her cafe, an emp"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:09:10",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4361,6 +4723,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:14:50",
+    "text": "behind the cafe counter is being managed by Isabella Rodriguez, who is coordinating with kitchen staff to ensure timely food delivery",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event represents a standard, routine part of Isabella\u2019s daily life as a cafe owner. While s"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4398,6 +4768,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:15:00",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who is friendly, outgoing, and values the community atmosphere of her cafe, an emp"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:15:00",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4423,6 +4801,14 @@
     "sim_time": "2023-02-13 13:24:30",
     "text": "cafe customer seating is being cleared of empty cups and plates",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:24:30",
+    "text": "cafe customer seating is being cleared of empty cups and plates",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -4462,6 +4848,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:25:00",
     "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who is a friendly and hospitable cafe owner, seeing customers occupy seating is a "
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:25:00",
+    "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4487,6 +4881,14 @@
     "sim_time": "2023-02-13 13:39:50",
     "text": "Isabella Rodriguez is mopping the cafe floor near the entrance",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:39:50",
+    "text": "Isabella Rodriguez is mopping the cafe floor near the entrance",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -4521,6 +4923,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:48:10",
+    "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, standing behind the counter at Hobbs Cafe is a core part of her daily routine and "
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4558,6 +4968,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:49:10",
     "text": "Isabella Rodriguez is conversing about Maria Lopez and Isabella Rodriguez discussing their excitement for an upcoming Valentine's Day party and Maria offering assistance with event preparations.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:** For Isabella, this event is quite significant. Given her personality traits\u2014specifically her nee"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:49:10",
+    "text": "Isabella Rodriguez is conversing about Maria Lopez and Isabella Rodriguez discussing their excitement for an upcoming Valentine's Day party and Maria offering assistance with event preparations.",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -4590,6 +5008,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:52:10",
     "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Cleaning the counter is a routine, functional task associated with Isabella\u2019s daily operations a"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:52:10",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4617,6 +5043,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:52:30",
+    "text": "behind the cafe counter is occupied by Isabella Rodriguez, who is currently preparing specialty coffee drinks for lunch patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella takes pride in her cafe and enjoys the social interaction of serving customers, p"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4654,6 +5088,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:52:40",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who thrives on social interaction and communal harmony, an empty counter is a mino"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:52:40",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4681,6 +5123,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:53:10",
+    "text": "behind the cafe counter is occupied by Isabella Rodriguez, who is currently preparing specialty coffee drinks for lunch patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella takes pride in her cafe and enjoys the social interaction of serving customers, p"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4718,6 +5168,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:53:40",
     "text": "cafe customer seating is being cleared of empty cups and plates",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, clearing tables is a routine, mundane task associated with the daily operation of "
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:53:40",
+    "text": "cafe customer seating is being cleared of empty cups and plates",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -4750,6 +5208,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-13 13:55:50",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, who thrives on social interaction and communal harmony, an empty counter is a mino"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-13 13:55:50",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4777,6 +5243,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 06:50:20",
+    "text": "closet is open",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, an open closet is a purely mundane, domestic detail. It does not involve social in"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4814,6 +5288,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 07:25:20",
     "text": "Maria Lopez is conversing about Maria Lopez and Isabella Rodriguez coordinating Maria's assistance with setting up chairs at 4:00 PM for a party they will both attend at 5:00 PM.",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Isabella, this event is a positive, functional interaction that aligns perfectly with her co"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:25:20",
+    "text": "Maria Lopez is conversing about Maria Lopez and Isabella Rodriguez coordinating Maria's assistance with setting up chairs at 4:00 PM for a party they will both attend at 5:00 PM.",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -4846,6 +5328,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 07:25:30",
     "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Cleaning the counter is a routine, functional task associated with Isabella\u2019s daily operations a"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:25:30",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -4873,6 +5363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:32:10",
+    "text": "cooking area is being used to prepare coffee and pastries",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, preparing coffee and pastries is a routine, daily task associated with her role as"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -4910,6 +5408,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 07:47:20",
     "text": "cafe customer seating is empty",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:** For Isabella, an empty cafe is not merely a business issue; it strikes at the core of her person"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:47:20",
+    "text": "cafe customer seating is empty",
     "condition": "staged_own",
     "score": 8.0,
     "raw_start": "recorded in the run"
@@ -4942,6 +5448,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 07:51:30",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations as"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:51:30",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -4967,6 +5481,14 @@
     "sim_time": "2023-02-14 07:52:40",
     "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:52:40",
+    "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -5006,6 +5528,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 07:56:20",
     "text": "Isabella Rodriguez is greeting the first customers with a warm smile",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate (return a number between 1 to 10): 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 07:56:20",
+    "text": "Isabella Rodriguez is greeting the first customers with a warm smile",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -5031,6 +5561,14 @@
     "sim_time": "2023-02-14 08:11:10",
     "text": "Isabella Rodriguez is brewing fresh pots of coffee for the morning rush",
     "condition": "baseline",
+    "score": 2,
+    "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 08:11:10",
+    "text": "Isabella Rodriguez is brewing fresh pots of coffee for the morning rush",
+    "condition": "staged_replayed",
     "score": 2,
     "raw_start": "Rate: 2"
    },
@@ -5070,6 +5608,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 08:36:20",
     "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Standing behind the counter is Isabella\u2019s daily routine. As a cafe owner, this is a mundane, exp"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 08:36:20",
+    "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5097,6 +5643,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 08:37:50",
+    "text": "cafe customer seating is currently unoccupied and awaiting setup for the 5:00 PM party",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** For Isabella, this event is more than just a mundane task; it represents the physical manifestat"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5134,6 +5688,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 09:36:10",
     "text": "Isabella Rodriguez is checking the inventory of milk and coffee beans",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 09:36:10",
+    "text": "Isabella Rodriguez is checking the inventory of milk and coffee beans",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5166,6 +5728,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 09:36:20",
     "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 09:36:20",
+    "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5198,6 +5768,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 09:51:40",
     "text": "behind the cafe counter is being restocked with napkins and sugar",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 09:51:40",
+    "text": "behind the cafe counter is being restocked with napkins and sugar",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -5230,6 +5808,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 10:15:20",
     "text": "Isabella Rodriguez is refilling the water pitcher for the self-serve station",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 10:15:20",
+    "text": "Isabella Rodriguez is refilling the water pitcher for the self-serve station",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -5255,6 +5841,14 @@
     "sim_time": "2023-02-14 10:23:20",
     "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 10:23:20",
+    "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -5294,6 +5888,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 10:55:00",
     "text": "behind the cafe counter is a busy workspace with a steaming espresso machine, milk pitchers, and various coffee-making equipment in active use",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While the espresso machine is the heart of Isabella\u2019s business and the center of her daily routi"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 10:55:00",
+    "text": "behind the cafe counter is a busy workspace with a steaming espresso machine, milk pitchers, and various coffee-making equipment in active use",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5326,6 +5928,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 11:20:10",
     "text": "behind the cafe counter is being restocked with fresh sandwiches by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Restocking sandwiches is a routine, daily operational task for a cafe owner. While Isabella take"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:20:10",
+    "text": "behind the cafe counter is being restocked with fresh sandwiches by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5351,6 +5961,14 @@
     "sim_time": "2023-02-14 11:27:20",
     "text": "Isabella Rodriguez is brewing a fresh pot of coffee for the lunch rush",
     "condition": "baseline",
+    "score": 2,
+    "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:27:20",
+    "text": "Isabella Rodriguez is brewing a fresh pot of coffee for the lunch rush",
+    "condition": "staged_replayed",
     "score": 2,
     "raw_start": "Rate: 2"
    },
@@ -5390,6 +6008,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 11:27:30",
     "text": "behind the cafe counter is clean and organized in preparation for the lunch transition",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella is a cafe owner who takes pride in her business, the act of cleaning and organizi"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:27:30",
+    "text": "behind the cafe counter is clean and organized in preparation for the lunch transition",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5417,6 +6043,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:35:50",
+    "text": "kitchen sink is not being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, whose life revolves around the bustling, social environment of Hobbs Cafe, a kitch"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5454,6 +6088,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 11:53:20",
     "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Cleaning the counter is a routine, functional task associated with Isabella\u2019s daily operations a"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:53:20",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5486,6 +6128,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 11:58:20",
     "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Standing behind the counter is Isabella\u2019s daily routine. As a cafe owner, this is a mundane, exp"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:58:20",
+    "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5513,6 +6163,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:58:20",
+    "text": "behind the cafe counter is being prepared for the morning",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Preparing the counter is a routine, daily task for Isabella. While she takes pride in her cafe a"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5550,6 +6208,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 11:58:20",
     "text": "behind the cafe counter is empty of staff and quiet",
+    "condition": "staged_replayed",
+    "score": 8,
+    "raw_start": "Rate: 8\n\n**Reasoning:**\nFor Isabella, an empty and quiet cafe is not merely a mundane lack of customers; it directly tri"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 11:58:20",
+    "text": "behind the cafe counter is empty of staff and quiet",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -5582,6 +6248,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 12:03:00",
     "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:03:00",
+    "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5609,6 +6283,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:14:10",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Cleaning the counter is a routine, functional task associated with Isabella\u2019s daily operations a"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5646,6 +6328,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 12:20:50",
     "text": "behind the cafe counter is staffed by employees preparing orders and operating the espresso machine",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, seeing her employees handle the daily operations is a routine, mundane aspect of r"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:20:50",
+    "text": "behind the cafe counter is staffed by employees preparing orders and operating the espresso machine",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5673,6 +6363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:36:30",
+    "text": "behind the cafe counter is being monitored by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Standing behind the counter is Isabella\u2019s daily routine. As a cafe owner, this is a mundane, exp"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5710,6 +6408,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 12:42:10",
     "text": "behind the cafe counter is busy with Isabella Rodriguez processing payments at the register",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event is a standard, routine part of Isabella\u2019s daily life as a cafe owner. While she enjoy"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:42:10",
+    "text": "behind the cafe counter is busy with Isabella Rodriguez processing payments at the register",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5742,6 +6448,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-14 12:52:10",
     "text": "behind the cafe counter is currently being staffed by employees preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, seeing her employees staff the counter is a routine, mundane aspect of her daily o"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-14 12:52:10",
+    "text": "behind the cafe counter is currently being staffed by employees preparing food and drinks for customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5774,6 +6488,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 06:07:40",
     "text": "bathroom sink is being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 06:07:40",
+    "text": "bathroom sink is being used",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -5799,6 +6521,14 @@
     "sim_time": "2023-02-15 06:16:30",
     "text": "bathroom sink is being used",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 06:16:30",
+    "text": "bathroom sink is being used",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -5838,6 +6568,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 07:00:00",
     "text": "behind the cafe counter is empty and waiting for the morning shift to begin",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, the cafe is her primary social hub and the antidote to her fear of isolation. Whil"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 07:00:00",
+    "text": "behind the cafe counter is empty and waiting for the morning shift to begin",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5870,6 +6608,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 07:12:50",
     "text": "behind the cafe counter is being prepared for the morning",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate (return a number between 1 to 10): 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 07:12:50",
+    "text": "behind the cafe counter is being prepared for the morning",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5897,6 +6643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 07:51:10",
+    "text": "behind the cafe counter is being organized with napkins and stirrers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella is a cafe owner who takes pride in her workspace, organizing napkins and stirrers"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5934,6 +6688,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 07:51:40",
     "text": "cooking area is being used by Isabella Rodriguez to prepare morning pastries",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella takes pride in her cafe and values the community, preparing morning pastries is a"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 07:51:40",
+    "text": "cooking area is being used by Isabella Rodriguez to prepare morning pastries",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -5961,6 +6723,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 07:52:10",
+    "text": "Isabella Rodriguez is putting on her apron and preparing her workspace for service",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -5998,6 +6768,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 08:16:10",
     "text": "behind the cafe counter is being used by the barista to prepare Maria's order",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** This event is a standard, routine operational task at Hobbs Cafe. As the owner, Isabella is accu"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:16:10",
+    "text": "behind the cafe counter is being used by the barista to prepare Maria's order",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -6025,6 +6803,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:31:10",
+    "text": "behind the cafe counter is staffed by employees preparing orders and managing the coffee machines",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, the cafe is her life's work and a hub for the community she cherishes. While seein"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6062,6 +6848,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 08:46:20",
     "text": "behind the cafe counter is prepared and welcoming",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Isabella, having the cafe counter prepared and welcoming is a fundamental part of her daily "
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:46:20",
+    "text": "behind the cafe counter is prepared and welcoming",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6089,6 +6883,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:50:20",
+    "text": "cafe customer seating is unoccupied",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Isabella, an unoccupied seat represents a missed opportunity for social connection and a pot"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6126,6 +6928,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 08:56:10",
     "text": "refrigerator is being checked for inventory",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Checking the refrigerator for inventory is a routine, mundane task necessary for the operation o"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 08:56:10",
+    "text": "refrigerator is being checked for inventory",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6153,6 +6963,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 09:57:30",
+    "text": "behind the cafe counter is organized and prepared for self-service",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, organizing the counter for self-service is a functional, routine task related to h"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6190,6 +7008,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 10:41:10",
     "text": "Isabella Rodriguez is preparing a tray of drinks for a large group order",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Isabella takes pride in her work and enjoys making people feel welcome, preparing a tray o"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 10:41:10",
+    "text": "Isabella Rodriguez is preparing a tray of drinks for a large group order",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6217,6 +7043,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 11:50:20",
+    "text": "behind the cafe counter is being tidied by Isabella Rodriguez in preparation for the lunch transition",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Tidying the counter is a routine, functional task associated with the daily operation of Hobbs C"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6254,6 +7088,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 12:32:20",
     "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event represents Isabella\u2019s standard daily routine. As a cafe owner who opens at 8:00 AM ev"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 12:32:20",
+    "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6281,6 +7123,14 @@
     "condition": "baseline",
     "score": 4,
     "raw_start": "Rate: 4\n\n**Reasoning:** While the cafe is Isabella's livelihood and a central part of her identity, a temporary closure "
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 12:32:30",
+    "text": "behind the cafe counter is a place of conversation where Isabella Rodriguez is working while discussing the cafe's upcoming closure for repairs",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:**\nFor Isabella, Hobbs Cafe is not just a business; it is the physical manifestation of her need fo"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6318,6 +7168,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 12:32:40",
     "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event represents Isabella\u2019s standard daily routine. As a cafe owner who opens at 8:00 AM ev"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 12:32:40",
+    "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6350,6 +7208,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 12:42:20",
     "text": "behind the cafe counter is a place of conversation where Isabella Rodriguez is working while discussing the cafe's upcoming closure for repairs",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:**\nFor Isabella, Hobbs Cafe is not just a business; it is the physical manifestation of her need fo"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 12:42:20",
+    "text": "behind the cafe counter is a place of conversation where Isabella Rodriguez is working while discussing the cafe's upcoming closure for repairs",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -6375,6 +7241,14 @@
     "sim_time": "2023-02-15 12:42:30",
     "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 9",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 12:42:30",
+    "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 9",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -6414,6 +7288,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:17:00",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations at"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:17:00",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6441,6 +7323,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:17:20",
+    "text": "cooking area is not currently being used by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Isabella, the cooking area being unused is a purely functional, mundane state of affairs. Gi"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6478,6 +7368,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:21:40",
     "text": "Isabella Rodriguez is loading the dishwasher with the collected dishes",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:21:40",
+    "text": "Isabella Rodriguez is loading the dishwasher with the collected dishes",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -6510,6 +7408,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:21:40",
     "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations as"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:21:40",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6537,6 +7443,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:42:20",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations as"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6574,6 +7488,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:43:10",
     "text": "behind the cafe counter is a place of conversation where Isabella Rodriguez is working while discussing the cafe's upcoming closure for repairs",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:**\nFor Isabella, Hobbs Cafe is not just a business; it is the physical manifestation of her need fo"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:43:10",
+    "text": "behind the cafe counter is a place of conversation where Isabella Rodriguez is working while discussing the cafe's upcoming closure for repairs",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -6606,6 +7528,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:44:50",
     "text": "behind the cafe counter is being prepared for the lunch menu display",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:44:50",
+    "text": "behind the cafe counter is being prepared for the lunch menu display",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -6633,6 +7563,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:46:40",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations as"
    },
    {
     "agent": "Isabella Rodriguez",
@@ -6670,6 +7608,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:47:20",
     "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, a customer occupying a seat is a standard, mundane part of her daily operations as"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:47:20",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6702,6 +7648,14 @@
     "agent": "Isabella Rodriguez",
     "sim_time": "2023-02-15 13:47:40",
     "text": "cafe customer seating is being cleaned",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Isabella, cleaning the cafe seating is a routine, mundane task necessary for maintaining the"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 13:47:40",
+    "text": "cafe customer seating is being cleaned",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -6727,6 +7681,14 @@
     "sim_time": "2023-02-15 14:14:20",
     "text": "bed is being slept in",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Isabella Rodriguez",
+    "sim_time": "2023-02-15 14:14:20",
+    "text": "bed is being slept in",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -6766,6 +7728,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 06:25:40",
     "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller discussing their morning plans, which include studying at the library and potentially meeting for lunch at Hobbs Cafe.",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, this interaction is a routine logistical coord"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 06:25:40",
+    "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller discussing their morning plans, which include studying at the library and potentially meeting for lunch at Hobbs Cafe.",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -6791,6 +7761,14 @@
     "sim_time": "2023-02-13 06:34:10",
     "text": "Klaus Mueller is duration in minutes: 10, minutes left: 77",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 06:34:10",
+    "text": "Klaus Mueller is duration in minutes: 10, minutes left: 77",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -6830,6 +7808,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 06:44:10",
     "text": "game console is not being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Given Klaus\u2019s personality, he is highly focused on his academic work, social justice research, a"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 06:44:10",
+    "text": "game console is not being used",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -6862,6 +7848,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 07:34:20",
     "text": "library sofa is unoccupied",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\nReasoning: For Klaus, who values solitude, focused work, and a consistent routine, finding his preferred worksp"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 07:34:20",
+    "text": "library sofa is unoccupied",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -6887,6 +7881,14 @@
     "sim_time": "2023-02-13 07:58:10",
     "text": "Klaus Mueller is duration in minutes: 3, minutes left: 0",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 07:58:10",
+    "text": "Klaus Mueller is duration in minutes: 3, minutes left: 0",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -6921,6 +7923,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** For a sociology student like Klaus, who is deeply inquisitive and currently immersed in a resear"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:01:50",
+    "text": "bookshelf is being searched",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:** Given Klaus\u2019s personality, he is highly methodical, values his personal space, and is deeply inv"
    },
    {
     "agent": "Klaus Mueller",
@@ -6953,6 +7963,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** For a sociology student like Klaus, who is deeply inquisitive and currently immersed in a resear"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:16:10",
+    "text": "bookshelf is being searched",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:** Given Klaus\u2019s personality, he is highly methodical, values his personal space, and is deeply inv"
    },
    {
     "agent": "Klaus Mueller",
@@ -6990,6 +8008,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 08:21:50",
     "text": "library table is being occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, the library is his primary workspace and a sanctuary for the focused, thorough resear"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:21:50",
+    "text": "library table is being occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7017,6 +8043,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:28:40",
+    "text": "Klaus Mueller is settling into a quiet study carrel with his laptop and books",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who values solitude, focused work, and thoroughness, settling into a study carrel is "
    },
    {
     "agent": "Klaus Mueller",
@@ -7054,6 +8088,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 08:51:20",
     "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller discussing their respective academic research on quantum mechanics and gentrification before confirming their plans to meet for lunch at Hobbs Cafe at 11:00.",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, this event is relatively low in poignancy. While he values intellectual exchange, his"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:51:20",
+    "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller discussing their respective academic research on quantum mechanics and gentrification before confirming their plans to meet for lunch at Hobbs Cafe at 11:00.",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -7081,6 +8123,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 08:55:20",
+    "text": "library table is being used by Klaus Mueller to take notes",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\nReasoning: For Klaus, who values solitude, focused work, and thoroughness, the library is his primary environme"
    },
    {
     "agent": "Klaus Mueller",
@@ -7118,6 +8168,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 09:25:20",
     "text": "library table is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude, focused work, and a structured routine, securing his preferred w"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 09:25:20",
+    "text": "library table is occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7150,6 +8208,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 10:06:40",
     "text": "library table is being used by Klaus Mueller to take notes",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\nReasoning: For Klaus, who values solitude, focused work, and thoroughness, the library is his primary environme"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 10:06:40",
+    "text": "library table is being used by Klaus Mueller to take notes",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7177,6 +8243,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:00:10",
+    "text": "Klaus Mueller is walking to Hobbs Cafe from the library",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, this is a routine transition between his two primary locations (the library and the c"
    },
    {
     "agent": "Klaus Mueller",
@@ -7214,6 +8288,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:09:10",
     "text": "Klaus Mueller is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, this event is moderately significant but not life-altering. As someone who prefers so"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:09:10",
+    "text": "Klaus Mueller is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -7241,6 +8323,14 @@
     "condition": "baseline",
     "score": 4,
     "raw_start": "Rate: 4\n\n**Reasoning:** While this interaction is intellectually stimulating and socially pleasant for Klaus, it represe"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:09:10",
+    "text": "conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, this event is significantly more poignant than his daily routine but falls short of a"
    },
    {
     "agent": "Klaus Mueller",
@@ -7278,6 +8368,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:25:40",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude, focused work, and efficiency, a routine interaction at a cafe is"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:25:40",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7305,6 +8403,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** For a student like Klaus, who is inquisitive and passionate about social justice, sharing a tabl"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:25:50",
+    "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, sharing a seating area with a stranger (Maria "
    },
    {
     "agent": "Klaus Mueller",
@@ -7342,6 +8448,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:28:20",
     "text": "Klaus Mueller is conversing about Klaus Mueller ordering lunch from Isabella Rodriguez and accepting her invitation to a Valentine's Day party tomorrow evening.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, a 6 is appropriate because this event represents a significant departure from his est"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:28:20",
+    "text": "Klaus Mueller is conversing about Klaus Mueller ordering lunch from Isabella Rodriguez and accepting her invitation to a Valentine's Day party tomorrow evening.",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -7369,6 +8483,14 @@
     "condition": "baseline",
     "score": 6,
     "raw_start": "Rate: 6\n\n**Reasoning:** For a student like Klaus, who is described as \"inquisitive\" and passionate about exploring \"diff"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:33:10",
+    "text": "Maria Lopez is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, this event is moderately significant but not life-altering. As an inquisitive student"
    },
    {
     "agent": "Klaus Mueller",
@@ -7406,6 +8528,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:33:10",
     "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the act of occupying a seat at Hobbs Cafe is a"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:33:10",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7438,6 +8568,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:33:30",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the cafe is primarily a functional space for h"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:33:30",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7470,6 +8608,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:38:50",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the cafe is primarily a functional space for h"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:38:50",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7497,6 +8643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, a student with a structured routine, finding his usual seat occupied is a minor incon"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:43:20",
+    "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the cafe is primarily a functional space for h"
    },
    {
     "agent": "Klaus Mueller",
@@ -7534,6 +8688,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 11:43:50",
     "text": "Klaus Mueller is duration in minutes: 10, minutes left: 131",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Klaus is a student who values solitude, thoroughness, and focused work. Being in the middle of a"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 11:43:50",
+    "text": "Klaus Mueller is duration in minutes: 10, minutes left: 131",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -7561,6 +8723,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:04:40",
+    "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\nReasoning: For Klaus, who prefers solitude and focused work, the activity behind the cafe counter is merely bac"
    },
    {
     "agent": "Klaus Mueller",
@@ -7598,6 +8768,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 12:04:40",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude, focused work, and efficiency, a routine interaction at a cafe is"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:04:40",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7630,6 +8808,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 12:17:10",
     "text": "behind the cafe counter is empty",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who values routine, efficiency, and the quiet order of his daily life, an empty cafe "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:17:10",
+    "text": "behind the cafe counter is empty",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -7657,6 +8843,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, a student with a structured routine, finding his usual seat occupied is a minor incon"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:19:10",
+    "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the cafe is primarily a functional space for h"
    },
    {
     "agent": "Klaus Mueller",
@@ -7694,6 +8888,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-13 12:19:20",
     "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, sharing a seating area with a stranger (Maria "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-13 12:19:20",
+    "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -7726,6 +8928,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 06:39:10",
     "text": "closet is open",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Klaus is a highly analytical, methodical, and focused individual who prioritizes intellectual pu"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 06:39:10",
+    "text": "closet is open",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -7753,6 +8963,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 06:43:10",
+    "text": "Klaus Mueller is making his bed and tidying his room",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values order, thoroughness, and a structured lifestyle, tidying his room is a rou"
    },
    {
     "agent": "Klaus Mueller",
@@ -7790,6 +9008,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 06:53:10",
     "text": "Klaus Mueller is preparing a quick cup of coffee",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 06:53:10",
+    "text": "Klaus Mueller is preparing a quick cup of coffee",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -7822,6 +9048,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 06:57:00",
     "text": "Klaus Mueller is preparing a quick cup of coffee",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 06:57:00",
+    "text": "Klaus Mueller is preparing a quick cup of coffee",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -7849,6 +9083,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 07:03:10",
+    "text": "bed is being made",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate (return a number between 1 to 10): 1"
    },
    {
     "agent": "Klaus Mueller",
@@ -7886,6 +9128,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 07:58:50",
     "text": "library table is occupied by Klaus Mueller, who is using it to write his research paper",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, the library is his sanctuary for focused, high-quality work. Occupying his preferred "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 07:58:50",
+    "text": "library table is occupied by Klaus Mueller, who is using it to write his research paper",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -7913,6 +9163,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 08:22:10",
+    "text": "Klaus Mueller is skimming through the abstracts of selected articles",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who is a dedicated sociology student and values thoroughness and intellectual rigor, "
    },
    {
     "agent": "Klaus Mueller",
@@ -7950,6 +9208,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 08:53:30",
     "text": "library table is being used by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** \nFor Klaus, who values solitude and focused work, having his preferred workspace occupied by a s"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 08:53:30",
+    "text": "library table is being used by Maria Lopez",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -7977,6 +9243,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** The event describes Klaus in the middle of his routine research process (writing his paper). Whi"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 09:23:30",
+    "text": "Klaus Mueller is duration in minutes: 30, minutes left: 75",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Klaus is a student who values solitude, thoroughness, and focused academic work. Spending 30 min"
    },
    {
     "agent": "Klaus Mueller",
@@ -8014,6 +9288,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 09:53:40",
     "text": "Klaus Mueller is duration in minutes: 30, minutes left: 45",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Based on Klaus\u2019s personality, he is a focused, solitary student who prioritizes thoroughness and"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 09:53:40",
+    "text": "Klaus Mueller is duration in minutes: 30, minutes left: 45",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -8046,6 +9328,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:02:20",
     "text": "cafe customer seating is being cleaned",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values order, competence, and the \"quietly doing one's part\" ethos of a functiona"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:02:20",
+    "text": "cafe customer seating is being cleaned",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -8073,6 +9363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:02:20",
+    "text": "cafe customer seating is empty",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** While an empty seat at a cafe is a mundane physical occurrence, for Klaus, it is not merely an o"
    },
    {
     "agent": "Klaus Mueller",
@@ -8110,6 +9408,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:03:50",
     "text": "Klaus Mueller is waiting in line to order his lunch",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, waiting in line is a mundane, potentially irri"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:03:50",
+    "text": "Klaus Mueller is waiting in line to order his lunch",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -8137,6 +9443,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:04:10",
+    "text": "behind the cafe counter is currently being managed by the cafe staff who are preparing drinks and food for customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, this event is a mundane observation that reinforces his existing worldview. While he "
    },
    {
     "agent": "Klaus Mueller",
@@ -8174,6 +9488,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:06:50",
     "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, this event is moderately significant because it directly addresses his established in"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:06:50",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -8201,6 +9523,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, this is a routine observation during his daily visit to Hobbs Cafe. While he is an in"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:11:30",
+    "text": "behind the cafe counter is being managed by Isabella Rodriguez, who is coordinating with kitchen staff to ensure timely food delivery",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, this event is a minor, positive observation rather than a life-altering moment. Becau"
    },
    {
     "agent": "Klaus Mueller",
@@ -8238,6 +9568,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:13:30",
     "text": "cafe customer seating is currently occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, this event is a minor annoyance rather than a life-altering moment. Because he values"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:13:30",
+    "text": "cafe customer seating is currently occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -8265,6 +9603,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:17:10",
+    "text": "cafe customer seating is occupied by regulars",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, this event is a minor annoyance rather than a life-altering experience. Because he va"
    },
    {
     "agent": "Klaus Mueller",
@@ -8302,6 +9648,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:20:40",
     "text": "Klaus Mueller is eating his meal while reading a sociology journal",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\nReasoning: For Klaus, who is a sociology student deeply invested in his research, reading a journal while eatin"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:20:40",
+    "text": "Klaus Mueller is eating his meal while reading a sociology journal",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -8329,6 +9683,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:20:50",
+    "text": "cafe customer seating is being cleaned",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values order, competence, and the \"quietly doing one's part\" ethos of a functiona"
    },
    {
     "agent": "Klaus Mueller",
@@ -8366,6 +9728,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:20:50",
     "text": "cafe customer seating is empty",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** While an empty seat at a cafe is a mundane physical occurrence, for Klaus, it is not merely an o"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:20:50",
+    "text": "cafe customer seating is empty",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -8398,6 +9768,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:20:50",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, the cafe is a place of routine and focused work. While he generally prefers solitude "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:20:50",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -8423,6 +9801,14 @@
     "sim_time": "2023-02-14 11:39:50",
     "text": "Klaus Mueller is finishing his drink and cleaning up his table",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:39:50",
+    "text": "Klaus Mueller is finishing his drink and cleaning up his table",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -8462,6 +9848,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:42:20",
     "text": "cafe customer seating is currently unoccupied and awaiting setup for the 5:00 PM party",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, this event is not a major life milestone, but it is a source of mild, characteristic "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:42:20",
+    "text": "cafe customer seating is currently unoccupied and awaiting setup for the 5:00 PM party",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -8489,6 +9883,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, a student with a structured routine, finding his usual seat occupied is a minor incon"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:42:30",
+    "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, the cafe is a place of routine and focused work. While he generally prefers solitude "
    },
    {
     "agent": "Klaus Mueller",
@@ -8526,6 +9928,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 11:56:30",
     "text": "library table is covered with research notes and primary sources",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, this event represents the culmination of his intellectual rigor and his commitment to"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:56:30",
+    "text": "library table is covered with research notes and primary sources",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -8553,6 +9963,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 11:56:40",
+    "text": "library table is being used by Maria Lopez for studying physics",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude and focused work, finding his preferred study spot occupied by a "
    },
    {
     "agent": "Klaus Mueller",
@@ -8590,6 +10008,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 12:27:10",
     "text": "library table is occupied by Klaus Mueller, who is using it to write his research paper",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, the library is his sanctuary for focused, high-quality work. Occupying his preferred "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 12:27:10",
+    "text": "library table is occupied by Klaus Mueller, who is using it to write his research paper",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -8617,6 +10043,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 13:32:10",
+    "text": "Klaus Mueller is proofreading his written paragraphs for clarity and flow",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who prioritizes being thorough and gets irritated by sloppy work, the act of proofrea"
    },
    {
     "agent": "Klaus Mueller",
@@ -8654,6 +10088,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-14 13:47:10",
     "text": "library table is being used by Klaus Mueller to write his research paper",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, the library is his sanctuary for focused, high-quality work. Securing a table is a ne"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-14 13:47:10",
+    "text": "library table is being used by Klaus Mueller to write his research paper",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -8679,6 +10121,14 @@
     "sim_time": "2023-02-15 06:00:10",
     "text": "Klaus Mueller is waking up and stretching in bed",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:00:10",
+    "text": "Klaus Mueller is waking up and stretching in bed",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -8713,6 +10163,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:10:30",
+    "text": "desk is being used to pack a bag with a laptop and notebooks",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, packing his bag is a routine, functional action associated with his daily plan of hea"
    },
    {
     "agent": "Klaus Mueller",
@@ -8750,6 +10208,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 06:10:30",
     "text": "desk is empty",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:**\nFor Klaus, whose identity is deeply rooted in his academic rigor, meticulous research process, a"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:10:30",
+    "text": "desk is empty",
     "condition": "staged_own",
     "score": 8.0,
     "raw_start": "recorded in the run"
@@ -8782,6 +10248,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 06:40:40",
     "text": "closet is closed",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:40:40",
+    "text": "closet is closed",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -8814,6 +10288,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 06:40:40",
     "text": "closet is open",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Klaus, who is highly focused on his academic research and values order and intellectual rigo"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:40:40",
+    "text": "closet is open",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -8841,6 +10323,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:45:20",
+    "text": "bed is unmade",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Given Klaus\u2019s personality traits\u2014specifically his focus on intellectual rigor, his preference fo"
    },
    {
     "agent": "Klaus Mueller",
@@ -8878,6 +10368,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 06:50:10",
     "text": "Klaus Mueller is checking his bag for his research notes and laptop",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values thoroughness and intellectual rigor, his research notes and laptop are the"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:50:10",
+    "text": "Klaus Mueller is checking his bag for his research notes and laptop",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -8905,6 +10403,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 06:52:50",
+    "text": "desk is being used to pack a bag with a laptop and notebooks",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, packing his bag is a routine, functional action associated with his daily plan of hea"
    },
    {
     "agent": "Klaus Mueller",
@@ -8942,6 +10448,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 08:17:10",
     "text": "library table is empty",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Klaus, who values solitude, focused work, and intellectual rigor, an empty library table is "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:17:10",
+    "text": "library table is empty",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -8969,6 +10483,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:32:00",
+    "text": "Klaus Mueller is waiting to start duration in minutes: 15, minutes left: 140",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values focused, methodical work and intellectual rigor, waiting for a scheduled e"
    },
    {
     "agent": "Klaus Mueller",
@@ -9006,6 +10528,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 08:40:00",
     "text": "bookshelf is being browsed",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** For Klaus, browsing a bookshelf is not a mundane chore; it is a deliberate, intellectual pursuit"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:40:00",
+    "text": "bookshelf is being browsed",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -9033,6 +10563,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1\n\n**Reasoning:** The event description provided (\"Maria Lopez is duration in minutes: 20, minutes left: 151\") is "
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:40:10",
+    "text": "Maria Lopez is duration in minutes: 20, minutes left: 151",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Klaus is a solitary, focused student who prioritizes his research and intellectual pursuits. He "
    },
    {
     "agent": "Klaus Mueller",
@@ -9070,6 +10608,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 08:44:00",
     "text": "library sofa is being used by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude, focused work, and a methodical routine, securing a specific spot"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:44:00",
+    "text": "library sofa is being used by Klaus Mueller",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -9097,6 +10643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:44:00",
+    "text": "library table is being used by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, this event is a minor disruption to his established routine and his preference for so"
    },
    {
     "agent": "Klaus Mueller",
@@ -9134,6 +10688,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 08:54:40",
     "text": "Maria Lopez is duration in minutes: 30, minutes left: 86",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, an interaction with a stranger (Maria Lopez) is a low-stakes event. Given his persona"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 08:54:40",
+    "text": "Maria Lopez is duration in minutes: 30, minutes left: 86",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -9161,6 +10723,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1\n\n**Reasoning:** The event description provided (\"Maria Lopez is duration in minutes: 20, minutes left: 6\") is gr"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:12:10",
+    "text": "Maria Lopez is duration in minutes: 20, minutes left: 6",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Klaus is a solitary, focused student who prioritizes his research and intellectual pursuits. An "
    },
    {
     "agent": "Klaus Mueller",
@@ -9198,6 +10768,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 10:12:20",
     "text": "library table is being used by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, the library is his sanctuary for focused, methodical work. Securing a table is a nece"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:12:20",
+    "text": "library table is being used by Klaus Mueller",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9225,6 +10803,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** For a student like Klaus, who spends his days researching and writing at the library, having his"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:34:20",
+    "text": "library table is being cleared",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, the library is his sanctuary for deep, methodical work. Because he values intellectua"
    },
    {
     "agent": "Klaus Mueller",
@@ -9262,6 +10848,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 10:38:20",
     "text": "Klaus Mueller is conversing about Klaus Mueller and Maria Lopez deciding to grab lunch at Hobbs Cafe to vent about their respective academic stressors, specifically Maria's upcoming physics midterm and Klaus's recent loss of research funding.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Klaus, this event carries significant weight because it directly involves his research\u2014the p"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:38:20",
+    "text": "Klaus Mueller is conversing about Klaus Mueller and Maria Lopez deciding to grab lunch at Hobbs Cafe to vent about their respective academic stressors, specifically Maria's upcoming physics midterm and Klaus's recent loss of research funding.",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -9289,6 +10883,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** For a student like Klaus, who spends his days researching and writing at the library, having his"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 10:38:30",
+    "text": "library table is being cleared",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, the library is his sanctuary for deep, methodical work. Because he values intellectua"
    },
    {
     "agent": "Klaus Mueller",
@@ -9326,6 +10928,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 11:20:10",
     "text": "behind the cafe counter is a place where Isabella Rodriguez is working and preparing to close for repairs",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Klaus, who is naturally solitary, cautious, and focused on his academic work, a chance encou"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:20:10",
+    "text": "behind the cafe counter is a place where Isabella Rodriguez is working and preparing to close for repairs",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -9351,6 +10961,14 @@
     "sim_time": "2023-02-15 11:32:20",
     "text": "kitchen sink is not currently being used",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:32:20",
+    "text": "kitchen sink is not currently being used",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -9390,6 +11008,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 11:32:30",
     "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, this event is largely mundane. While he appreciates organization and efficiency\u2014align"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:32:30",
+    "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9417,6 +11043,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:42:10",
+    "text": "behind the cafe counter is currently unoccupied",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, an unoccupied cafe counter is a minor inconvenience that disrupts his routine. Given "
    },
    {
     "agent": "Klaus Mueller",
@@ -9454,6 +11088,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 11:54:00",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, the presence of a specific person (Maria Lopez"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:54:00",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9481,6 +11123,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 11:54:30",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Klaus, who prefers solitude and focused work, a cafe is primarily a functional space for sus"
    },
    {
     "agent": "Klaus Mueller",
@@ -9518,6 +11168,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 12:34:10",
     "text": "Maria Lopez is attempting the first set of complex mechanics problems",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** Klaus is a sociology student focused on his own research regarding gentrification. He is describ"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 12:34:10",
+    "text": "Maria Lopez is attempting the first set of complex mechanics problems",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -9545,6 +11203,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who is a student with a structured routine, finding his preferred study spot occupied"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 13:34:40",
+    "text": "library table is not being used by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude, focused work, and a predictable routine, the library is his sanc"
    },
    {
     "agent": "Klaus Mueller",
@@ -9582,6 +11248,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 13:39:10",
     "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller agreeing to meet at Hobbs Cafe to discuss Maria's physics midterm stress and Klaus's research funding challenges.",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Klaus, this event is moderately significant but not life-altering. While he generally prefer"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 13:39:10",
+    "text": "Klaus Mueller is conversing about Maria Lopez and Klaus Mueller agreeing to meet at Hobbs Cafe to discuss Maria's physics midterm stress and Klaus's research funding challenges.",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -9614,6 +11288,14 @@
     "agent": "Klaus Mueller",
     "sim_time": "2023-02-15 13:44:10",
     "text": "Maria Lopez is saving her progress and packing her study materials into her bag",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Klaus, who values solitude and focused academic work, the sight of a peer packing up is a mu"
+   },
+   {
+    "agent": "Klaus Mueller",
+    "sim_time": "2023-02-15 13:44:10",
+    "text": "Maria Lopez is saving her progress and packing her study materials into her bag",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9641,6 +11323,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 06:25:30",
+    "text": "Klaus Mueller is getting dressed",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Klaus Mueller is not mentioned in Maria\u2019s profile, nor is there any indication of a relationship"
    },
    {
     "agent": "Maria Lopez",
@@ -9678,6 +11368,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 06:54:10",
     "text": "desk is being used to pack a backpack with a laptop and physics textbooks",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\nReasoning: For a college student like Maria, packing a backpack for study is a routine, functional task. While "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 06:54:10",
+    "text": "desk is being used to pack a backpack with a laptop and physics textbooks",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9703,6 +11401,14 @@
     "sim_time": "2023-02-13 06:59:50",
     "text": "closet is open",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 06:59:50",
+    "text": "closet is open",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -9742,6 +11448,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 07:18:30",
     "text": "Isabella Rodriguez is conversing about Maria Lopez and Isabella Rodriguez discussing Maria's breakfast and Isabella's invitation for Maria to attend a Valentine's Day party at the shop on the 14th from 5pm to 7pm.",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Maria, this event is moderately significant but not life-altering. As someone who values clo"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 07:18:30",
+    "text": "Isabella Rodriguez is conversing about Maria Lopez and Isabella Rodriguez discussing Maria's breakfast and Isabella's invitation for Maria to attend a Valentine's Day party at the shop on the 14th from 5pm to 7pm.",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -9767,6 +11481,14 @@
     "sim_time": "2023-02-13 07:29:10",
     "text": "behind the cafe counter is being prepared for the morning",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 07:29:10",
+    "text": "behind the cafe counter is being prepared for the morning",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -9806,6 +11528,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 07:39:50",
     "text": "behind the cafe counter is being organized with fresh pastries",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Maria is energetic and inquisitive, the simple act of organizing pastries at her regular s"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 07:39:50",
+    "text": "behind the cafe counter is being organized with fresh pastries",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9833,6 +11563,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 07:40:10",
+    "text": "behind the cafe counter is a workspace where staff prepare food and drinks, currently occupied by employees serving customers and managing the cafe's operations",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a familiar, routine environment where she spends a significant portion "
    },
    {
     "agent": "Maria Lopez",
@@ -9863,6 +11601,14 @@
     "sim_time": "2023-02-13 08:06:30",
     "text": "library table is unoccupied",
     "condition": "baseline",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For a student like Maria who frequents cafes and libraries to study, finding an unoccupied table"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 08:06:30",
+    "text": "library table is unoccupied",
+    "condition": "staged_replayed",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For a student like Maria who frequents cafes and libraries to study, finding an unoccupied table"
    },
@@ -9902,6 +11648,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 08:07:20",
     "text": "library table is being used by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 08:07:20",
+    "text": "library table is being used by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9929,6 +11683,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 09:11:40",
+    "text": "library table is being used by Klaus Mueller as a workspace for his laptop and books",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who frequents Hobbs Cafe daily for her study sessions, finding her preferred spot occ"
    },
    {
     "agent": "Maria Lopez",
@@ -9966,6 +11728,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 09:45:10",
     "text": "library table is being used by Klaus Mueller to take notes",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is inquisitive and focused on her physics studies, finding a library table occupi"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 09:45:10",
+    "text": "library table is being used by Klaus Mueller to take notes",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -9991,6 +11761,14 @@
     "sim_time": "2023-02-13 10:06:10",
     "text": "Maria Lopez is duration in minutes: 15, minutes left: 51",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 10:06:10",
+    "text": "Maria Lopez is duration in minutes: 15, minutes left: 51",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -10030,6 +11808,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 11:24:10",
     "text": "Maria Lopez is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Maria, this event carries significant weight because she deeply values intellectual curiosit"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:24:10",
+    "text": "Maria Lopez is conversing about Klaus Mueller and Maria Lopez catching up over lunch to discuss their respective academic pursuits in gentrification research and quantum mechanics, as well as their different methods of decompressing through reading and gaming.",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -10057,6 +11843,14 @@
     "condition": "baseline",
     "score": 6,
     "raw_start": "Rate: 6"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:25:20",
+    "text": "Isabella Rodriguez is conversing about Isabella Rodriguez inviting Maria Lopez to a Valentine's Day party, which Maria confirms she will attend tomorrow from 5pm to 7pm.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Maria, a social invitation is a significant event because she values deep, close friendships"
    },
    {
     "agent": "Maria Lopez",
@@ -10094,6 +11888,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 11:26:20",
     "text": "conversing about Isabella Rodriguez inviting Maria Lopez to a Valentine's Day party, which Maria confirms she will attend tomorrow from 5pm to 7pm.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Maria, this event carries significant weight because she values deep, close friendships over"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:26:20",
+    "text": "conversing about Isabella Rodriguez inviting Maria Lopez to a Valentine's Day party, which Maria confirms she will attend tomorrow from 5pm to 7pm.",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -10121,6 +11923,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits Hobbs Cafe daily, encountering a fellow regular or a stranger at a shared "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:38:00",
+    "text": "cafe customer seating is occupied by Klaus Mueller and Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For Maria, who is inquisitive and enjoys connecting with people, sharing a table at her \"home ba"
    },
    {
     "agent": "Maria Lopez",
@@ -10158,6 +11968,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 11:38:10",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she spends a significant portion of her day"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:38:10",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -10190,6 +12008,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 11:43:30",
     "text": "cafe customer seating is occupied by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment. While she is inquisitive and enjoys connecting w"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:43:30",
+    "text": "cafe customer seating is occupied by Klaus Mueller",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10217,6 +12043,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 11:53:10",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a familiar, daily environment. Seeing a new person (Isabella) behind th"
    },
    {
     "agent": "Maria Lopez",
@@ -10254,6 +12088,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 12:13:10",
     "text": "behind the cafe counter is staffed by employees preparing drinks and food for customers",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** This event is a routine, background observation for Maria. Since she visits Hobbs Cafe every day"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 12:13:10",
+    "text": "behind the cafe counter is staffed by employees preparing drinks and food for customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10281,6 +12123,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1\n\n**Reasoning:** The event description provided (\"Isabella Rodriguez is duration in minutes: 20, minutes left: 56"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 12:17:40",
+    "text": "Isabella Rodriguez is duration in minutes: 20, minutes left: 56",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** The event description is ambiguous (it is unclear who Isabella Rodriguez is to Maria), but assum"
    },
    {
     "agent": "Maria Lopez",
@@ -10318,6 +12168,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 12:43:10",
     "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits Hobbs Cafe daily, seeing a staff member like Isabella restocking supplies "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 12:43:10",
+    "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10345,6 +12203,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 12:48:10",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy attending to customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is a regular at Hobbs Cafe, an unoccupied counter is a minor, mundane observation"
    },
    {
     "agent": "Maria Lopez",
@@ -10382,6 +12248,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 13:48:10",
     "text": "behind the cafe counter is empty and powered down",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:** For Maria, Hobbs Cafe is a central part of her daily routine\u2014it is her \"third place\" where she s"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 13:48:10",
+    "text": "behind the cafe counter is empty and powered down",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -10409,6 +12283,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 13:48:20",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy attending to customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is a regular at Hobbs Cafe, an unoccupied counter is a minor, mundane observation"
    },
    {
     "agent": "Maria Lopez",
@@ -10446,6 +12328,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 13:48:30",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a familiar, daily environment. Seeing a new person (Isabella) behind th"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 13:48:30",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10473,6 +12363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 13:49:00",
+    "text": "Isabella Rodriguez is turning off the lights and checking the security alarm",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria Lopez, this event is a purely mundane, routine action performed by someone else (presu"
    },
    {
     "agent": "Maria Lopez",
@@ -10510,6 +12408,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 13:51:00",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy attending to customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is a regular at Hobbs Cafe, an unoccupied counter is a minor, mundane observation"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 13:51:00",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy attending to customers in the dining area",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10537,6 +12443,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 14:22:10",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is highly focused on her physics studies and her own internal intellectual world,"
    },
    {
     "agent": "Maria Lopez",
@@ -10574,6 +12488,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-13 14:23:00",
     "text": "cafe customer seating is being cleared of empty cups and plates",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-13 14:23:00",
+    "text": "cafe customer seating is being cleared of empty cups and plates",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -10606,6 +12528,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 06:32:10",
     "text": "Maria Lopez is getting dressed",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 06:32:10",
+    "text": "Maria Lopez is getting dressed",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -10631,6 +12561,14 @@
     "sim_time": "2023-02-14 06:37:10",
     "text": "Maria Lopez is styling her hair and applying light makeup",
     "condition": "baseline",
+    "score": 2,
+    "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 06:37:10",
+    "text": "Maria Lopez is styling her hair and applying light makeup",
+    "condition": "staged_replayed",
     "score": 2,
     "raw_start": "Rate: 2"
    },
@@ -10670,6 +12608,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 07:17:40",
     "text": "cafe customer seating is empty",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a functional space\u2014a \"third place\" for studying and eating. While she e"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 07:17:40",
+    "text": "cafe customer seating is empty",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -10697,6 +12643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits the cafe daily, seeing a specific barista is a routine occurrence. Unless "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 07:18:30",
+    "text": "behind the cafe counter is occupied by Isabella Rodriguez, who is currently preparing specialty coffee drinks for lunch patrons",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:**\nFor Maria, Hobbs Cafe is a functional space\u2014a \"third place\" for studying and eating. While she i"
    },
    {
     "agent": "Maria Lopez",
@@ -10734,6 +12688,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 07:26:20",
     "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is highly focused on her physics studies and her own internal intellectual world,"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 07:26:20",
+    "text": "behind the cafe counter is currently unoccupied as the staff are busy serving customers in the dining area",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -10761,6 +12723,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 07:26:50",
+    "text": "Maria Lopez is conversing about Maria Lopez and Isabella Rodriguez coordinating Maria's assistance with setting up chairs at 4:00 PM for a party they will both attend at 5:00 PM.",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** This event is a routine social coordination task. While Maria values her close friendships, sett"
    },
    {
     "agent": "Maria Lopez",
@@ -10798,6 +12768,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 08:06:30",
     "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** Maria is described as being highly focused on her own intellectual pursuits (physics) and her st"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 08:06:30",
+    "text": "behind the cafe counter is being restocked with napkins, utensils, and condiments by Isabella Rodriguez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -10825,6 +12803,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 08:07:10",
+    "text": "cafe customer seating is currently occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes daily to study and work. Occupying"
    },
    {
     "agent": "Maria Lopez",
@@ -10862,6 +12848,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 08:15:10",
     "text": "<random> is being carried by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 4,
+    "raw_start": "Rate: 4\n\n**Reasoning:**\nFor Maria, the poignancy of this event depends heavily on her relationship with Klaus Mueller. B"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 08:15:10",
+    "text": "<random> is being carried by Klaus Mueller",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -10889,6 +12883,14 @@
     "condition": "baseline",
     "score": 4,
     "raw_start": "Rate: 4\n\n**Reasoning:** While this event is not life-altering, it holds more significance than a mundane task. For a stu"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 10:37:50",
+    "text": "Klaus Mueller is conversing about Klaus Mueller and Maria Lopez discussing their respective academic pressures and research interests before agreeing to meet for lunch at Hobbs Cafe at 1:00 PM.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Maria, this event ranks as a 6 because it bridges her two primary worlds: her intense intell"
    },
    {
     "agent": "Maria Lopez",
@@ -10926,6 +12928,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:20:50",
     "text": "Klaus Mueller is eating his meal while reading a sociology journal",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who is inquisitive and values intellectual pursuits, seeing someone reading a sociolo"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:20:50",
+    "text": "Klaus Mueller is eating his meal while reading a sociology journal",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -10953,6 +12963,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:25:20",
+    "text": "behind the cafe counter is being cleaned by Isabella Rodriguez",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment for her studies. While she is inquisitive and enj"
    },
    {
     "agent": "Maria Lopez",
@@ -10990,6 +13008,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:26:30",
     "text": "Maria Lopez is checking her social media notifications while waiting for her food",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For a Twitch streamer who values connecting with people and is inquisitive by nature, checking s"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:26:30",
+    "text": "Maria Lopez is checking her social media notifications while waiting for her food",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11015,6 +13041,14 @@
     "sim_time": "2023-02-14 11:26:30",
     "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:26:30",
+    "text": "behind the cafe counter is a busy area where staff are preparing food and drinks for customers",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -11054,6 +13088,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:26:30",
     "text": "behind the cafe counter is empty of staff and quiet",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:**\nFor Maria, Hobbs Cafe is a familiar, routine environment where she goes to study and eat daily. "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:26:30",
+    "text": "behind the cafe counter is empty of staff and quiet",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -11081,6 +13123,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:54:40",
+    "text": "kitchen sink is not being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria, whose life is centered around her physics studies, Twitch streaming, and frequenting "
    },
    {
     "agent": "Maria Lopez",
@@ -11118,6 +13168,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:55:30",
     "text": "Isabella Rodriguez is duration in minutes: 20, minutes left: 57",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** The event description \"Isabella Rodriguez is duration in minutes: 20, minutes left: 57\" appears "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:55:30",
+    "text": "Isabella Rodriguez is duration in minutes: 20, minutes left: 57",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11150,6 +13208,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 11:59:10",
     "text": "behind the cafe counter is a bustling workspace filled with the aroma of freshly brewed coffee and the sounds of morning preparation",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes to study and eat daily. While she "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 11:59:10",
+    "text": "behind the cafe counter is a bustling workspace filled with the aroma of freshly brewed coffee and the sounds of morning preparation",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11182,6 +13248,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 12:16:00",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to prepare the lunch menu board",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** \nFor Maria, Hobbs Cafe is a familiar, routine environment where she goes to study and eat. While"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:16:00",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to prepare the lunch menu board",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11209,6 +13283,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits Hobbs Cafe daily, seeing a familiar face or a staff member updating the me"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:31:30",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to prepare the lunch menu board",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** \nFor Maria, Hobbs Cafe is a familiar, routine environment where she goes to study and eat. While"
    },
    {
     "agent": "Maria Lopez",
@@ -11246,6 +13328,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 12:54:10",
     "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 12",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** The event description is vague, but assuming Isabella Rodriguez is a peer or acquaintance at Oak"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:54:10",
+    "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 12",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11278,6 +13368,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 12:56:50",
     "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 12",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** The event description is vague, but assuming Isabella Rodriguez is a peer or acquaintance at Oak"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:56:50",
+    "text": "Isabella Rodriguez is duration in minutes: 10, minutes left: 12",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11305,6 +13403,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits Hobbs Cafe daily, seeing a familiar face or a staff member updating the me"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:59:20",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to prepare the lunch menu board",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** \nFor Maria, Hobbs Cafe is a familiar, routine environment where she goes to study and eat. While"
    },
    {
     "agent": "Maria Lopez",
@@ -11337,6 +13443,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 12:59:20",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a functional space for her studies and routine. While she is inquisitiv"
    },
    {
     "agent": "Maria Lopez",
@@ -11374,6 +13488,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 13:22:00",
     "text": "behind the cafe counter is currently being staffed by employees preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 13:22:00",
+    "text": "behind the cafe counter is currently being staffed by employees preparing food and drinks for customers",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11401,6 +13523,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 13:25:10",
+    "text": "behind the cafe counter is being prepared for the morning shift with the lights turned on and the pastries set out",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes to study and eat daily. While the "
    },
    {
     "agent": "Maria Lopez",
@@ -11438,6 +13568,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 13:25:10",
     "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a functional space for her studies and routine. While she is inquisitiv"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 13:25:10",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to take orders for sandwiches and salads",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11470,6 +13608,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 13:45:20",
     "text": "behind the cafe counter is a bustling workspace filled with the aroma of freshly brewed coffee and the sounds of morning preparation",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes to study and eat daily. While she "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 13:45:20",
+    "text": "behind the cafe counter is a bustling workspace filled with the aroma of freshly brewed coffee and the sounds of morning preparation",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11502,6 +13648,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 13:55:30",
     "text": "behind the cafe counter is staffed by employees preparing orders and operating the espresso machine",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 13:55:30",
+    "text": "behind the cafe counter is staffed by employees preparing orders and operating the espresso machine",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11534,6 +13688,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-14 14:09:40",
     "text": "bed is being slept in",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-14 14:09:40",
+    "text": "bed is being slept in",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11566,6 +13728,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 06:00:20",
     "text": "bed is being slept in",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 06:00:20",
+    "text": "bed is being slept in",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11591,6 +13761,14 @@
     "sim_time": "2023-02-15 06:05:40",
     "text": "bed is being slept in",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 06:05:40",
+    "text": "bed is being slept in",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -11630,6 +13808,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 06:17:20",
     "text": "Maria Lopez is picking out her outfit for the day",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 06:17:20",
+    "text": "Maria Lopez is picking out her outfit for the day",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11655,6 +13841,14 @@
     "sim_time": "2023-02-15 06:17:20",
     "text": "desk is being used by Maria Lopez to hold her phone",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 06:17:20",
+    "text": "desk is being used by Maria Lopez to hold her phone",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -11694,6 +13888,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 07:16:10",
     "text": "Isabella Rodriguez is arranging the display case with fresh morning pastries",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she spends a significant portion of her day"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 07:16:10",
+    "text": "Isabella Rodriguez is arranging the display case with fresh morning pastries",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11721,6 +13923,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 07:31:10",
+    "text": "Isabella Rodriguez is brewing the first batch of house blend coffee",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a central hub of her daily routine. While she is inquisitive and enjoys"
    },
    {
     "agent": "Maria Lopez",
@@ -11758,6 +13968,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 08:15:00",
     "text": "<random> is being approached by Klaus Mueller",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nFor Maria, an interaction with a new person like Klaus Mueller is a relatively low-stakes event."
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 08:15:00",
+    "text": "<random> is being approached by Klaus Mueller",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -11785,6 +14003,14 @@
     "condition": "baseline",
     "score": 3,
     "raw_start": "Rate: 3\n\n**Reasoning:** While the event involves a specific person (Klaus Mueller), the description is vague and lacks c"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 09:14:40",
+    "text": "Klaus Mueller is duration in minutes: 25, minutes left: 104",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** \nThe event is relatively low in poignancy because it appears to be a brief, routine interaction "
    },
    {
     "agent": "Maria Lopez",
@@ -11822,6 +14048,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 10:12:20",
     "text": "library table is being used by Maria Lopez for studying physics",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, studying physics is a core part of her identity and daily routine. While she is deepl"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 10:12:20",
+    "text": "library table is being used by Maria Lopez for studying physics",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -11849,6 +14083,14 @@
     "condition": "baseline",
     "score": 6,
     "raw_start": "Rate: 6\n\n**Reasoning:** While checking a phone is a mundane action, the context of \"waiting for a message\" implies antic"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:15:10",
+    "text": "Maria Lopez is checking her phone for the message she is waiting for",
+    "condition": "staged_replayed",
+    "score": 7,
+    "raw_start": "Rate: 7\n\n**Reasoning:** Given Maria\u2019s personality traits\u2014specifically that she invests deeply in a few close relationshi"
    },
    {
     "agent": "Maria Lopez",
@@ -11886,6 +14128,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 11:15:30",
     "text": "behind the cafe counter is a place where Isabella Rodriguez is working and preparing to close for repairs",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:**\nFor Maria, Hobbs Cafe is a routine environment where she spends a significant portion of her tim"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:15:30",
+    "text": "behind the cafe counter is a place where Isabella Rodriguez is working and preparing to close for repairs",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -11918,6 +14168,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 11:15:40",
     "text": "kitchen sink is not currently being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate (return a number between 1 to 10): 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:15:40",
+    "text": "kitchen sink is not currently being used",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -11945,6 +14203,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:16:20",
+    "text": "kitchen sink is not currently being used",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate (return a number between 1 to 10): 1"
    },
    {
     "agent": "Maria Lopez",
@@ -11977,6 +14243,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:17:10",
+    "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes to study and eat. While she is obs"
    },
    {
     "agent": "Maria Lopez",
@@ -12014,6 +14288,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 11:20:10",
     "text": "behind the cafe counter is organized and prepared for self-service",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria, who is a regular at Hobbs Cafe and primarily uses the space as a functional environme"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:20:10",
+    "text": "behind the cafe counter is organized and prepared for self-service",
     "condition": "staged_own",
     "score": 1.0,
     "raw_start": "recorded in the run"
@@ -12046,6 +14328,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 11:24:30",
     "text": "behind the cafe counter is being tidied by Isabella Rodriguez in preparation for the lunch transition",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** \nFor Maria, Hobbs Cafe is a familiar, routine environment where she spends a significant portion"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:24:30",
+    "text": "behind the cafe counter is being tidied by Isabella Rodriguez in preparation for the lunch transition",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -12073,6 +14363,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:30:40",
+    "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes daily to study. Occupying a seat i"
    },
    {
     "agent": "Maria Lopez",
@@ -12110,6 +14408,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 11:45:10",
     "text": "cafe customer seating is occupied by Maria Lopez",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes daily to study. Occupying a seat i"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:45:10",
+    "text": "cafe customer seating is occupied by Maria Lopez",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -12135,6 +14441,14 @@
     "sim_time": "2023-02-15 11:46:00",
     "text": "Maria Lopez is finishing her coffee and cleaning up her table",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:46:00",
+    "text": "Maria Lopez is finishing her coffee and cleaning up her table",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -12169,6 +14483,14 @@
     "condition": "baseline",
     "score": 1,
     "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 11:50:10",
+    "text": "behind the cafe counter is staffed by employees preparing food and drinks for customers",
+    "condition": "staged_replayed",
+    "score": 1,
+    "raw_start": "Rate: 1\n\n**Reasoning:** This event is a routine, background observation for Maria. Since she visits Hobbs Cafe every day"
    },
    {
     "agent": "Maria Lopez",
@@ -12206,6 +14528,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 12:00:30",
     "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a routine environment where she goes to study and eat. While she is obs"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 12:00:30",
+    "text": "behind the cafe counter is busy and organized, with Isabella Rodriguez actively preparing and handing out breakfast sandwiches to customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -12233,6 +14563,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 12:05:30",
+    "text": "Maria Lopez is logging into her student portal to access the physics problem set",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Maria is a dedicated physics student who values achievement and curiosity, logging into a "
    },
    {
     "agent": "Maria Lopez",
@@ -12270,6 +14608,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 12:06:20",
     "text": "cafe customer seating is occupied by customers",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** While Maria visits Hobbs Cafe daily, her personality traits emphasize that she prioritizes her i"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 12:06:20",
+    "text": "cafe customer seating is occupied by customers",
     "condition": "staged_own",
     "score": 2.0,
     "raw_start": "recorded in the run"
@@ -12297,6 +14643,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, who visits Hobbs Cafe daily, seeing a familiar face or a new staff member behind the "
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 12:55:00",
+    "text": "behind the cafe counter is being used by Isabella Rodriguez to process payments at the register",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For Maria, Hobbs Cafe is a familiar, routine environment where she goes to study and eat daily. "
    },
    {
     "agent": "Maria Lopez",
@@ -12334,6 +14688,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 12:55:10",
     "text": "Maria Lopez is working through the second set of problems involving thermodynamics",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:** For a physics student like Maria, working through problem sets is a standard, expected part of h"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 12:55:10",
+    "text": "Maria Lopez is working through the second set of problems involving thermodynamics",
     "condition": "staged_own",
     "score": 3.0,
     "raw_start": "recorded in the run"
@@ -12366,6 +14728,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 13:25:10",
     "text": "Maria Lopez is writing down the step-by-step solutions for the problem set",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:** For a physics student like Maria, completing a problem set is a routine academic task. While she"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:25:10",
+    "text": "Maria Lopez is writing down the step-by-step solutions for the problem set",
     "condition": "staged_own",
     "score": 4.0,
     "raw_start": "recorded in the run"
@@ -12391,6 +14761,14 @@
     "sim_time": "2023-02-15 13:25:10",
     "text": "kitchen sink is not being used",
     "condition": "baseline",
+    "score": 1,
+    "raw_start": "Rate: 1"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:25:10",
+    "text": "kitchen sink is not being used",
+    "condition": "staged_replayed",
     "score": 1,
     "raw_start": "Rate: 1"
    },
@@ -12430,6 +14808,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 13:33:50",
     "text": "Klaus Mueller is duration in minutes: 13, minutes left: 9",
+    "condition": "staged_replayed",
+    "score": 3,
+    "raw_start": "Rate: 3\n\n**Reasoning:**\nThe event involves a brief, 13-minute interaction with Klaus Mueller. Given Maria\u2019s personality,"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:33:50",
+    "text": "Klaus Mueller is duration in minutes: 13, minutes left: 9",
     "condition": "staged_own",
     "score": 7.0,
     "raw_start": "recorded in the run"
@@ -12457,6 +14843,14 @@
     "condition": "baseline",
     "score": 2,
     "raw_start": "Rate: 2"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:33:50",
+    "text": "library table is being used by Klaus Mueller to organize his research notes",
+    "condition": "staged_replayed",
+    "score": 2,
+    "raw_start": "Rate: 2\n\n**Reasoning:**\nFor Maria, the library table being occupied is a minor, mundane inconvenience. Given her persona"
    },
    {
     "agent": "Maria Lopez",
@@ -12494,6 +14888,14 @@
     "agent": "Maria Lopez",
     "sim_time": "2023-02-15 13:48:30",
     "text": "Maria Lopez is conversing about Isabella Rodriguez and Maria Lopez supporting each other as Maria helps Isabella with party preparations while managing her own stress over an upcoming physics midterm.",
+    "condition": "staged_replayed",
+    "score": 6,
+    "raw_start": "Rate: 6\n\n**Reasoning:**\nFor Maria, this event carries significant weight because it touches on her core values regarding"
+   },
+   {
+    "agent": "Maria Lopez",
+    "sim_time": "2023-02-15 13:48:30",
+    "text": "Maria Lopez is conversing about Isabella Rodriguez and Maria Lopez supporting each other as Maria helps Isabella with party preparations while managing her own stress over an upcoming physics midterm.",
     "condition": "staged_own",
     "score": 6.0,
     "raw_start": "recorded in the run"
@@ -12516,6 +14918,10 @@
     "staged_own": {
      "n": 299,
      "mean": 2.629
+    },
+    "staged_replayed": {
+     "n": 299,
+     "mean": 2.411
     }
    },
    "by_agent": {
@@ -12535,6 +14941,10 @@
      "n": 101,
      "mean": 2.614
     },
+    "Isabella Rodriguez|staged_replayed": {
+     "n": 101,
+     "mean": 2.257
+    },
     "Klaus Mueller|baseline": {
      "n": 99,
      "mean": 2.182
@@ -12551,6 +14961,10 @@
      "n": 99,
      "mean": 2.889
     },
+    "Klaus Mueller|staged_replayed": {
+     "n": 99,
+     "mean": 2.768
+    },
     "Maria Lopez|baseline": {
      "n": 99,
      "mean": 1.949
@@ -12566,10 +14980,14 @@
     "Maria Lopez|staged_own": {
      "n": 99,
      "mean": 2.384
+    },
+    "Maria Lopez|staged_replayed": {
+     "n": 99,
+     "mean": 2.212
     }
    }
   },
-  "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+  "label": "Stage 2 replay controls on the fixed sample, staged pool, live (staged_replayed registered; staged_own sensitivity)",
   "seed": 20261008,
   "n_injected": 26,
   "n_natural": 273,
@@ -12634,6 +15052,10 @@
      "n": 2,
      "mean": 3.0
     },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 5.0
+    },
     "staged_own": {
      "n": 2,
      "mean": 5.0
@@ -12651,6 +15073,10 @@
     "baseline": {
      "n": 2,
      "mean": 3.5
+    },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 6.0
     },
     "staged_own": {
      "n": 2,
@@ -12670,13 +15096,19 @@
      "n": 2,
      "mean": 3.0
     },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 3.0
+    },
     "staged_own": {
      "n": 2,
      "mean": 3.5
     }
    }
   },
-  "calls_made_at_most": 897
+  "calls_made_at_most": 1196,
+  "new_calls_this_run": 249,
+  "conditions_note": "staged_replayed = the registered staged condition (fresh replay of the staged scorer prompt with the identity context recorded for each event); staged_own = the run's recorded in-run scores, kept as a labelled sensitivity line (the first run of this step used it as the staged condition)"
  },
  "D1_provenance": {
   "traits": 14,
@@ -14005,8 +16437,8 @@
    "reason": "S made fewer calls than B; the cause is named in the purpose breakdown (E1 table)",
    "numbers": {
     "baseline_unique": 11858,
-    "staged_unique": 9112,
-    "relative_difference": -0.2316
+    "staged_unique": 9100,
+    "relative_difference": -0.2326
    }
   },
   {
@@ -14138,9 +16570,10 @@
    "id": "S-Isabella",
    "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
    "outcome": "right",
-   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more)",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 2.0,
+    "staged_replayed_minus_baseline": 2.0,
+    "sensitivity_recorded_in_run_minus_baseline": 2.0,
     "detail": {
      "mismatch": {
       "n": 2,
@@ -14154,6 +16587,10 @@
       "n": 2,
       "mean": 3.0
      },
+     "staged_replayed": {
+      "n": 2,
+      "mean": 5.0
+     },
      "staged_own": {
       "n": 2,
       "mean": 5.0
@@ -14164,10 +16601,11 @@
   {
    "id": "S-Maria",
    "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
-   "outcome": "right",
-   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more)",
+   "outcome": "wrong",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 0.5,
+    "staged_replayed_minus_baseline": 0.0,
+    "sensitivity_recorded_in_run_minus_baseline": 0.5,
     "detail": {
      "mismatch": {
       "n": 2,
@@ -14178,6 +16616,10 @@
       "mean": 3.0
      },
      "baseline": {
+      "n": 2,
+      "mean": 3.0
+     },
+     "staged_replayed": {
       "n": 2,
       "mean": 3.0
      },
@@ -14192,9 +16634,10 @@
    "id": "S-Klaus",
    "prediction": "staged minus baseline mean importance on the persona's friction events is below 0",
    "outcome": "wrong",
-   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more)",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 1.5,
+    "staged_replayed_minus_baseline": 2.5,
+    "sensitivity_recorded_in_run_minus_baseline": 1.5,
     "detail": {
      "mismatch": {
       "n": 2,
@@ -14208,6 +16651,10 @@
       "n": 2,
       "mean": 3.5
      },
+     "staged_replayed": {
+      "n": 2,
+      "mean": 6.0
+     },
      "staged_own": {
       "n": 2,
       "mean": 5.0
@@ -14219,11 +16666,13 @@
    "id": "S-filler",
    "prediction": "neutral filler moves scores toward the baseline (closer to baseline than staged is)",
    "outcome": "right",
-   "reason": "over the whole sample, all personas pooled",
+   "reason": "over the whole sample, all personas pooled; staged condition = staged_replayed (registered)",
    "numbers": {
     "filler_mean": 1.94,
     "baseline_mean": 1.98,
-    "staged_mean": 2.629
+    "staged_replayed_mean": 2.411,
+    "sensitivity_recorded_in_run_mean": 2.629,
+    "sensitivity_filler_closer_than_recorded": true
    }
   },
   {

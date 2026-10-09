@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-09 08:33:14",
+ "built_at": "2026-10-09 08:53:54",
  "standing_line": "single run per arm; descriptive results; differences can be model noise",
  "d1_wording": "periodic reflection (focal-point and insight generation) is off in the staged arm; the post-conversation planning-thought and memo calls in reflect() run in both arms",
  "export_label": "FINAL day-3 export",
@@ -15,8 +15,8 @@
    "reason": "S made fewer calls than B; the cause is named in the purpose breakdown (E1 table)",
    "numbers": {
     "baseline_unique": 11858,
-    "staged_unique": 9112,
-    "relative_difference": -0.2316
+    "staged_unique": 9100,
+    "relative_difference": -0.2326
    },
    "being_re_run": false
   },
@@ -105,44 +105,49 @@
   {
    "id": "S-Isabella",
    "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
-   "outcome": "being re-run",
-   "reason": "the staged condition is being replayed (PM correction 2026-10-09); the earlier verdict used the recorded in-run scores",
+   "outcome": "right",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 2.0
+    "staged_replayed_minus_baseline": 2.0,
+    "sensitivity_recorded_in_run_minus_baseline": 2.0
    },
-   "being_re_run": true
+   "being_re_run": false
   },
   {
    "id": "S-Maria",
    "prediction": "staged minus baseline mean importance on the persona's friction events is above 0",
-   "outcome": "being re-run",
-   "reason": "the staged condition is being replayed (PM correction 2026-10-09); the earlier verdict used the recorded in-run scores",
+   "outcome": "wrong",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 0.5
+    "staged_replayed_minus_baseline": 0.0,
+    "sensitivity_recorded_in_run_minus_baseline": 0.5
    },
-   "being_re_run": true
+   "being_re_run": false
   },
   {
    "id": "S-Klaus",
    "prediction": "staged minus baseline mean importance on the persona's friction events is below 0",
-   "outcome": "being re-run",
-   "reason": "the staged condition is being replayed (PM correction 2026-10-09); the earlier verdict used the recorded in-run scores",
+   "outcome": "wrong",
+   "reason": "n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)",
    "numbers": {
-    "staged_minus_baseline": 1.5
+    "staged_replayed_minus_baseline": 2.5,
+    "sensitivity_recorded_in_run_minus_baseline": 1.5
    },
-   "being_re_run": true
+   "being_re_run": false
   },
   {
    "id": "S-filler",
    "prediction": "neutral filler moves scores toward the baseline (closer to baseline than staged is)",
-   "outcome": "being re-run",
-   "reason": "the staged condition is being replayed (PM correction 2026-10-09); the earlier verdict used the recorded in-run scores",
+   "outcome": "right",
+   "reason": "over the whole sample, all personas pooled; staged condition = staged_replayed (registered)",
    "numbers": {
     "filler_mean": 1.94,
     "baseline_mean": 1.98,
-    "staged_mean": 2.629
+    "staged_replayed_mean": 2.411,
+    "sensitivity_recorded_in_run_mean": 2.629,
+    "sensitivity_filler_closer_than_recorded": true
    },
-   "being_re_run": true
+   "being_re_run": false
   },
   {
    "id": "S-mismatch",
@@ -1526,7 +1531,7 @@
   },
   "staged": {
    "E1_raw": 9203,
-   "E1_unique": 9112,
+   "E1_unique": 9100,
    "E2_mean_tokens_in": 608.4,
    "E3_consolidated_fraction": 0.1012
   }
@@ -1687,7 +1692,7 @@
  },
  "replay": {
   "available": true,
-  "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+  "label": "Stage 2 replay controls on the fixed sample, staged pool, live (staged_replayed registered; staged_own sensitivity)",
   "seed": 20261008,
   "n_injected": 26,
   "n_natural": 273,
@@ -1695,9 +1700,10 @@
    "baseline",
    "filler",
    "mismatch",
-   "staged_own"
+   "staged_own",
+   "staged_replayed"
   ],
-  "staged_replayed_present": false,
+  "staged_replayed_present": true,
   "whole_sample_means": {
    "baseline": {
     "n": 299,
@@ -1714,6 +1720,10 @@
    "staged_own": {
     "n": 299,
     "mean": 2.629
+   },
+   "staged_replayed": {
+    "n": 299,
+    "mean": 2.411
    }
   },
   "friction_by_agent": {
@@ -1729,6 +1739,10 @@
     "baseline": {
      "n": 2,
      "mean": 3.0
+    },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 5.0
     },
     "staged_own": {
      "n": 2,
@@ -1748,6 +1762,10 @@
      "n": 2,
      "mean": 3.5
     },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 6.0
+    },
     "staged_own": {
      "n": 2,
      "mean": 5.0
@@ -1766,13 +1784,17 @@
      "n": 2,
      "mean": 3.0
     },
+    "staged_replayed": {
+     "n": 2,
+     "mean": 3.0
+    },
     "staged_own": {
      "n": 2,
      "mean": 3.5
     }
    }
   },
-  "note": ""
+  "note": "staged_replayed = the registered staged condition (fresh replay of the staged scorer prompt with the identity context recorded for each event); staged_own = the run's recorded in-run scores, kept as a labelled sensitivity line (the first run of this step used it as the staged condition)"
  },
  "m2": {
   "available": true,

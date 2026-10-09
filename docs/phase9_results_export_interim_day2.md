@@ -1,6 +1,6 @@
 # Results export: INTERIM day 2 (dry run of the final export)
 
-Built 2026-10-09 07:51:00. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
+Built 2026-10-09 08:53:50. Single run per arm, 3 agents: descriptive only, no significance claims, no causal attribution to one stage (periodic reflection (focal-point and insight generation) is off in the staged arm by decision D1; the post-conversation planning-thought and memo calls in reflect() run in both arms). Arm states: {'baseline': 'finished: reached 2023-02-16 00:00:00', 'staged': 'finished: reached 2023-02-16 00:00:00'}.
 
 ## Predictions (pre-registration section 5, scored by the rules in the module header)
 
@@ -14,10 +14,10 @@ Built 2026-10-09 07:51:00. Single run per arm, 3 agents: descriptive only, no si
 | R3 | pivotal events I5, M5, K5 at distance 2: no checklist difference larger than 0.2 | **undecidable** | interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b) |  |
 | R4 | mundane events at distance 2: S at or below B | **undecidable** | interim day 2: this prediction needs the day-3 checkpoint (pre-registration section 5b) |  |
 | R5 | same-day questions (distance 0): no difference larger than 0.1 | **right** | applied literally | n=11, baseline_mean=1.0, staged_mean=1.0, staged_minus_baseline_mean=0.0 |
-| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=2.0 |
-| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=0.5 |
-| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more) | staged_minus_baseline=1.5 |
-| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled | filler_mean=1.94, baseline_mean=1.98, staged_mean=2.629 |
+| S-Isabella | staged minus baseline mean importance on the persona's friction events is above 0 | **right** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=2.0, sensitivity_recorded_in_run_minus_baseline=2.0 |
+| S-Maria | staged minus baseline mean importance on the persona's friction events is above 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=0.0, sensitivity_recorded_in_run_minus_baseline=0.5 |
+| S-Klaus | staged minus baseline mean importance on the persona's friction events is below 0 | **wrong** | n = 2 friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered) | staged_replayed_minus_baseline=2.5, sensitivity_recorded_in_run_minus_baseline=1.5 |
+| S-filler | neutral filler moves scores toward the baseline (closer to baseline than staged is) | **right** | over the whole sample, all personas pooled; staged condition = staged_replayed (registered) | filler_mean=1.94, baseline_mean=1.98, staged_replayed_mean=2.411, sensitivity_recorded_in_run_mean=2.629, sensitivity_filler_closer_than_recorded=True |
 | S-mismatch | mismatch priors move scores toward that persona's direction | **undecidable** | PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only | observed_mismatch_mean=2.472 |
 | M2 | no directional prediction (two-sided, only if the judge calibration is at least 80 percent) | **no prediction** | reported two-sided | calibration_accuracy=1.0, coherence_interpretable=True |
 | D-1 | at least one third of Stage 4 traits closer to the priors text than to their sources | **wrong** | cached-embedding cosines; a diagnostic | traits=13, available=13, flagged=1, fraction=0.077 |
@@ -196,6 +196,15 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
 
 - R3 as registered says distance 2, but I5, M5 and K5 are day-2 events: at the day-3 checkpoint their distance is 1; the literal registered definition matches no question. The observed pivotal pool is shown separately.
 - R1 and R2 each rest on one question (n = 1 < 3): undecidable under pre-registration section 6; the observed values are shown.
+
+## Sensitivity: the registered 14:15 copy against the 23:45 copy (pre-registration 7g; interim; repaired copies, ledger H23)
+
+| copy | arm | questions | mean checklist score | strict answers | same-day questions | same-day mean | judge consistent / contradictory / unrelated |
+|---|---|---|---|---|---|---|---|
+| registered_14_15_copy | baseline | 23 | 0.9565 | 21 | 11 | 1.0 | 17 / 1 / 0 |
+| registered_14_15_copy | staged | 23 | 0.8406 | 18 | 11 | 1.0 | 16 / 1 / 1 |
+| sensitivity_23_45_copy | baseline | 23 | 0.9565 | 21 | 11 | 1.0 | 17 / 1 / 0 |
+| sensitivity_23_45_copy | staged | 23 | 0.7971 | 17 | 11 | 1.0 | 18 / 0 / 0 |
 
 ## Purpose-tag audit (planning, dialogue, reflection, importance_scoring)
 
@@ -467,6 +476,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "staged_own": {
     "n": 299,
     "mean": 2.629
+   },
+   "staged_replayed": {
+    "n": 299,
+    "mean": 2.411
    }
   },
   "by_agent": {
@@ -486,6 +499,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 101,
     "mean": 2.614
    },
+   "Isabella Rodriguez|staged_replayed": {
+    "n": 101,
+    "mean": 2.257
+   },
    "Klaus Mueller|baseline": {
     "n": 99,
     "mean": 2.182
@@ -502,6 +519,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 99,
     "mean": 2.889
    },
+   "Klaus Mueller|staged_replayed": {
+    "n": 99,
+    "mean": 2.768
+   },
    "Maria Lopez|baseline": {
     "n": 99,
     "mean": 1.949
@@ -517,10 +538,14 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "Maria Lopez|staged_own": {
     "n": 99,
     "mean": 2.384
+   },
+   "Maria Lopez|staged_replayed": {
+    "n": 99,
+    "mean": 2.212
    }
   }
  },
- "label": "Stage 2 replay controls on the fixed sample, staged pool, live",
+ "label": "Stage 2 replay controls on the fixed sample, staged pool, live (staged_replayed registered; staged_own sensitivity)",
  "seed": 20261008,
  "n_injected": 26,
  "n_natural": 273,
@@ -585,6 +610,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 2,
     "mean": 3.0
    },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 5.0
+   },
    "staged_own": {
     "n": 2,
     "mean": 5.0
@@ -602,6 +631,10 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
    "baseline": {
     "n": 2,
     "mean": 3.5
+   },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 6.0
    },
    "staged_own": {
     "n": 2,
@@ -621,13 +654,19 @@ Bootstrap of the mean staged-minus-baseline difference: {'available': True, 'mea
     "n": 2,
     "mean": 3.0
    },
+   "staged_replayed": {
+    "n": 2,
+    "mean": 3.0
+   },
    "staged_own": {
     "n": 2,
     "mean": 3.5
    }
   }
  },
- "calls_made_at_most": 897
+ "calls_made_at_most": 1196,
+ "new_calls_this_run": 249,
+ "conditions_note": "staged_replayed = the registered staged condition (fresh replay of the staged scorer prompt with the identity context recorded for each event); staged_own = the run's recorded in-run scores, kept as a labelled sensitivity line (the first run of this step used it as the staged condition)"
 }
 
 ## D-1 provenance and D-2
@@ -643,14 +682,14 @@ D-2 NOTE: right, but weak by design: with the clustering threshold at 0.82 nearl
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
 - restart log events {'exit': 5, 'key_change_resume': 4, 'start': 7, 'external_kill_watchdog_restart': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:53:32', 3599), ('2026-10-08 16:14:25', 13306)]
 - outage minutes (outage log) 93.0; counters at the last hourly row {'outage_minutes_total': 82.64, 'rate_limit_wait_minutes_total': 356.75, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1666, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 262, 'waited_seconds': 23922, 'mean_wave_seconds': 91.3, 'max_wave_seconds': 438.8, 'share_of_wall_time_since_launch': 0.1623, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 27, 'fail': [], 'pending': [], 'asleep_at_injection': []}
 
 ### staged
 
 - state finished: reached 2023-02-16 00:00:00; router failures 0; fail-safe: not logged as a separate counter (the scorer returns 4 and the call counts as a router success); router_failures counts calls that raised
-- restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826)]
+- restart log events {'exit': 6, 'key_change_resume': 3, 'start': 8, 'resume': 1, 'abort': 1, 'final': 1}; replayed spans (restart wall time, pre-kill step): [('2026-10-08 00:54:01', 4012), ('2026-10-08 16:15:24', 19809), ('2026-10-08 19:34:36', 20826), ('2026-10-08 20:01:52', 20826)]
 - outage minutes (outage log) 90.1; counters at the last hourly row {'outage_minutes_total': 90.07, 'rate_limit_wait_minutes_total': 300.51, 'quota_pauses': 0, 'step': 13680, 'sim_clock': '2023-02-14 14:00:00'}
-- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1716, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
+- 429 waves, whole run to now: {'waves': 267, 'waited_seconds': 24638, 'mean_wave_seconds': 92.3, 'max_wave_seconds': 509.1, 'share_of_wall_time_since_launch': 0.1672, 'note': 'wall time includes a stoppage (power off) in which no wave could occur; see the per-hour tables of devmem.eval.wave_report for windows'}
 - injection check {'events_total': 27, 'resolved': 27, 'pass': 26, 'fail': ['I6'], 'pending': [], 'asleep_at_injection': []}
 
