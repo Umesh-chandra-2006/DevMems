@@ -14,6 +14,7 @@ from devmem.memory.priors import get_prompt_context
 
 MISMATCH_PERSONA = "Wolfgang Schulz"
 CONDITIONS = ("mismatch", "filler", "baseline")
+STAGED = "staged_replayed"      # the staged scorer's own prompt (upstream + priors + the identity context it had at that point of the run), run again
 
 
 def _filler() -> str:
@@ -21,7 +22,10 @@ def _filler() -> str:
     return NEUTRAL_FILLER
 
 
-def build_prompt(condition: str, agent: str, text: str, kind: str = "event") -> str:
+def build_prompt(condition: str, agent: str, text: str, kind: str = "event", identity_context: str = "") -> str:
+    if condition == STAGED:
+        from devmem.memory.episodic import build_staged_prompt
+        return build_staged_prompt(agent, text, kind=kind, identity_context=identity_context)
     upstream = get_upstream_prompt(agent, text, kind=kind)
     if condition == "mismatch":
         return f"{upstream}\n\n{get_prompt_context(MISMATCH_PERSONA)}"
@@ -33,12 +37,12 @@ def build_prompt(condition: str, agent: str, text: str, kind: str = "event") -> 
 
 
 def replay(events: Sequence[Tuple[str, str, str]], call_fn: Callable[[str], str], own_scores: Dict[Tuple[str, str, str], float] = None,
-           conditions: Sequence[str] = CONDITIONS) -> Dict[str, Any]:
+           conditions: Sequence[str] = CONDITIONS, ctx_for: Callable[[Tuple[str, str, str]], str] = None) -> Dict[str, Any]:
     rows: List[Dict[str, Any]] = []
     for ev in events:
         agent, when, text = ev
         for cond in conditions:
-            raw = call_fn(build_prompt(cond, agent, text))
+            raw = call_fn(build_prompt(cond, agent, text, identity_context=(ctx_for(ev) if (ctx_for and cond == STAGED) else "")))
             rows.append({"agent": agent, "sim_time": when, "text": text, "condition": cond, "score": parse_importance_score(raw), "raw_start": str(raw)[:120]})
         if own_scores and ev in own_scores:
             rows.append({"agent": agent, "sim_time": when, "text": text, "condition": "staged_own", "score": own_scores[ev], "raw_start": "recorded in the run"})

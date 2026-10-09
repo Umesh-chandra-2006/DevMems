@@ -268,17 +268,18 @@ def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, An
     for pid, agent, sign in (("S-Isabella", "Isabella Rodriguez", 1), ("S-Maria", "Maria Lopez", 1), ("S-Klaus", "Klaus Mueller", -1)):
         text = f"staged minus baseline mean importance on the persona's friction events is {'above' if sign > 0 else 'below'} 0"
         fr = (replay or {}).get("friction_events_staged_minus_baseline_inputs", {}).get(agent) if replay else None
-        if not fr or "staged_own" not in fr or "baseline" not in fr:
-            P.append({"id": pid, "prediction": text, **verdict("undecidable", "replay controls have not been run yet (they run on the staged pool after the staged arm finishes)")})
+        if not fr or "staged_replayed" not in fr or "baseline" not in fr:
+            P.append({"id": pid, "prediction": text, **verdict("undecidable", "replay controls with the staged condition replayed have not been run yet (they run on the staged pool after the staged arm finishes)")})
             continue
-        diff = round(fr["staged_own"]["mean"] - fr["baseline"]["mean"], 3)
-        P.append({"id": pid, "prediction": text, **verdict("right" if diff * sign > 0 else "wrong", f"n = {fr['staged_own']['n']} friction events for this persona (a small n; the sign is the verdict, no more)", staged_minus_baseline=diff, detail=fr)})
+        diff = round(fr["staged_replayed"]["mean"] - fr["baseline"]["mean"], 3)
+        sens = round(fr["staged_own"]["mean"] - fr["baseline"]["mean"], 3) if "staged_own" in fr else None
+        P.append({"id": pid, "prediction": text, **verdict("right" if diff * sign > 0 else "wrong", f"n = {fr['staged_replayed']['n']} friction events for this persona (a small n; the sign is the verdict, no more); staged condition = staged_replayed (registered)", staged_replayed_minus_baseline=diff, sensitivity_recorded_in_run_minus_baseline=sens, detail=fr)})
     # mismatch and filler (registered text: "move toward that persona's direction" / "toward the baseline")
     if replay and replay.get("summary", {}).get("by_condition"):
         bc = replay["summary"]["by_condition"]
-        if all(k in bc for k in ("staged_own", "filler", "baseline")):
+        if all(k in bc for k in ("staged_replayed", "filler", "baseline")):
             dist = lambda k: abs(bc[k]["mean"] - bc["baseline"]["mean"])
-            P.append({"id": "S-filler", "prediction": "neutral filler moves scores toward the baseline (closer to baseline than staged is)", **verdict("right" if dist("filler") < dist("staged_own") else "wrong", "over the whole sample, all personas pooled", filler_mean=bc["filler"]["mean"], baseline_mean=bc["baseline"]["mean"], staged_mean=bc["staged_own"]["mean"])})
+            P.append({"id": "S-filler", "prediction": "neutral filler moves scores toward the baseline (closer to baseline than staged is)", **verdict("right" if dist("filler") < dist("staged_replayed") else "wrong", "over the whole sample, all personas pooled; staged condition = staged_replayed (registered)", filler_mean=bc["filler"]["mean"], baseline_mean=bc["baseline"]["mean"], staged_replayed_mean=bc["staged_replayed"]["mean"], sensitivity_recorded_in_run_mean=bc.get("staged_own", {}).get("mean"), sensitivity_filler_closer_than_recorded=(dist("filler") < dist("staged_own")) if "staged_own" in bc else None)})
     mm = ((replay or {}).get("summary", {}).get("by_condition") or {}).get("mismatch")
     P.append({"id": "S-mismatch", "prediction": "mismatch priors move scores toward that persona's direction", **verdict("undecidable", "PM ruling 2026-10-08: the registered text gives no sign for Wolfgang Schulz's direction; observed value only", observed_mismatch_mean=(mm or {}).get("mean"))})
     # coherence: no directional prediction

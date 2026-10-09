@@ -379,8 +379,10 @@ class TestReplayRunner(unittest.TestCase):
             fn = lambda p: (calls.append(p), "4")[1]
             res = run_replay_controls.run(t / "m.db", t / "inj.jsonl", fn, t / "out.json", "synthetic", cache_path=t / "cache.jsonl")
             self.assertEqual((res["n_injected"], res["n_natural"]), (2, 12))
-            self.assertEqual(len(calls), 14 * 3)
+            self.assertEqual(len(calls), 14 * 4)                                           # three control conditions plus the staged condition replayed
             self.assertEqual(res["summary"]["by_condition"]["staged_own"]["n"], 14)
+            self.assertEqual(res["summary"]["by_condition"]["staged_replayed"]["n"], 14)
+            self.assertTrue(any("Traits this agent has developed" in p for p in calls) is False)       # no identity table in the synthetic mirror: empty context
             self.assertEqual(res["friction_events_staged_minus_baseline_inputs"]["Isabella Rodriguez"]["staged_own"], {"n": 1, "mean": 6.0})
             calls.clear()
             run_replay_controls.run(t / "m.db", t / "inj.jsonl", fn, t / "out2.json", "synthetic again", cache_path=t / "cache.jsonl")
@@ -400,6 +402,26 @@ class TestArmEvaluationSameNamedSources(unittest.TestCase):
             res = run_arm_evaluation.run("baseline", roots[0], roots[1], lambda p, purpose: "consistent" if purpose == "eval_judge" else "x", load_persona=lambda d, n: None,
                                          retrieve_fn=lambda p, q, k: ["m"], stub=True, day=2)
             self.assertEqual((res["day1_checkpoint"]["step"], res["day3_checkpoint"]["step"]), (5130, 13770))
+
+
+class TestStagedReplayedContext(unittest.TestCase):
+    def test_the_recorded_traits_of_an_event_become_its_identity_context(self):
+        with tempfile.TemporaryDirectory() as t:
+            c = sqlite3.connect(Path(t) / "m.db")
+            c.execute("CREATE TABLE episodic_memory (entry_id TEXT, agent_id TEXT, content TEXT, sim_timestamp TEXT, importance_score REAL)")
+            c.execute("CREATE TABLE identity_traits (trait_id TEXT, text TEXT)")
+            c.execute("CREATE TABLE event_scoring_context (agent_id TEXT, entry_id TEXT, trait_ids_json TEXT, status TEXT)")
+            c.executemany("INSERT INTO episodic_memory VALUES (?,?,?,?,?)", [("A:node_1", "A", "early event", "2023-02-13 08:00:00", 3.0), ("A:node_2", "A", "late event", "2023-02-14 08:00:00", 3.0)])
+            c.executemany("INSERT INTO identity_traits VALUES (?,?)", [("A:trait_1", "A is a warm host."), ("A:trait_2", "A avoids conflict.")])
+            c.executemany("INSERT INTO event_scoring_context VALUES (?,?,?,?)", [("A", "A:node_1", "[]", "ok"), ("A", "A:node_2", json.dumps(["A:trait_2", "A:trait_1"]), "ok")])
+            c.commit()
+            c.close()
+            evs = [("A", "2023-02-13 08:00:00", "early event"), ("A", "2023-02-14 08:00:00", "late event")]
+            ctx = run_replay_controls.identity_contexts(Path(t) / "m.db", evs)
+            self.assertEqual(ctx[evs[0]], "")                                                       # scored before any trait existed
+            self.assertIn("- A avoids conflict.\n- A is a warm host.", ctx[evs[1]])                  # recorded order, the scorer's own renderer
+            p = replay.build_prompt(replay.STAGED, "Isabella Rodriguez", "late event", identity_context=ctx[evs[1]])
+            self.assertTrue(p.endswith(ctx[evs[1]]))                                                 # upstream prompt + priors block + identity context, in the scorer's order
 
 
 class TestDiagnostics(unittest.TestCase):
