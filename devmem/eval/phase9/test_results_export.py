@@ -74,6 +74,20 @@ class TestPredictions(unittest.TestCase):
         self.assertEqual(a["mean"], -0.5)
 
 
+class TestM2Calibration(unittest.TestCase):
+    def test_the_nested_calibration_file_is_read(self):
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as t:
+            t = Path(t)
+            (t / "judge_calibration.json").write_text(json.dumps({"calibration": {"accuracy": 1.0, "coherence_interpretable": True, "pairs": 20, "parse_failures": 0, "confusion_matrix_true_by_judged": {}}, "results": []}))
+            ev = {a: {"judge": [{"agent": "A", "judge_label": "consistent"}]} for a in R.ARMS}
+            with mock.patch.object(R, "EVAL", t):
+                m = R.m2_section(ev)
+            self.assertEqual((m["available"], m["calibration_accuracy"], m["coherence_interpretable"], m["calibration_pairs"]), (True, 1.0, True, 20))
+            self.assertEqual(m["arms"]["baseline"]["contradiction_rate"], 0.0)
+
+
 class TestBuildSmoke(unittest.TestCase):
     def test_build_and_markdown_with_no_copies(self):
         with tempfile.TemporaryDirectory() as t:

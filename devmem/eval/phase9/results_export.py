@@ -300,7 +300,8 @@ def predictions(day: int, label: str, arms: Dict[str, Any], recall: Dict[str, An
 
 # ---------------------------------------------------------------- M2, D-1, replay
 def m2_section(ev: Dict[str, Optional[dict]]) -> Dict[str, Any]:
-    cal = _read(EVAL / "judge_calibration.json")
+    raw = _read(EVAL / "judge_calibration.json")
+    cal = (raw or {}).get("calibration", raw)                       # the calibration file nests the summary under "calibration" (found when the first day-3 export showed None)
     if not all(ev.get(a) for a in ARMS) or not cal:
         return {"available": False, "note": "day-1 against day-3 judge results or the judge calibration are not available yet", "calibration_available": bool(cal)}
     out: Dict[str, Any] = {"available": True, "calibration_accuracy": cal.get("accuracy"), "coherence_interpretable": cal.get("coherence_interpretable"), "confusion_matrix_true_by_judged": cal.get("confusion_matrix_true_by_judged"),
