@@ -1,6 +1,6 @@
 # DevMem-Agents: Team Guide (implementation A to Z, for the seminar panel)
 
-Written 2026-10-08 (evening) for teammates who did not build the project. Read sections 1 to 3 first (ten minutes), then skim section 13 (the question bank). Everything here was checked against the code and the run logs in this repository on the day of writing; where a number is interim or still running, the text says so. Facts that are not in the repository (opinions, expectations) are marked as such. No API key value appears in this guide or anywhere in the repository; keys are referred to by name only.
+Written 2026-10-08 and updated 2026-10-09 (final results) for teammates who did not build the project. Read sections 1 to 3 first (ten minutes), then skim section 13 (the question bank). Everything here was checked against the code and the run logs in this repository on the day of writing; where a number is interim or still running, the text says so. Facts that are not in the repository (opinions, expectations) are marked as such. No API key value appears in this guide or anywhere in the repository; keys are referred to by name only.
 
 ---
 
@@ -183,7 +183,18 @@ Per-call classes (planning, action/object description, dialogue, importance, per
 
 ## 10. The viewer (`devmem/api/`)
 
-A read-only inspector: a FastAPI server plus a web UI (React and Phaser vendored, no CDN). It replays a recorded run (a town view with the agents moving), shows an agent's memory by stage, supports a side-by-side comparison of the two arms and a Findings tab with the reported results and where they differ and why. It never calls an LLM and never writes to a run. Start it with `python devmem/api/serve.py --a <staged run> --b <baseline run> --open` (system Python with fastapi and uvicorn; see `devmem/api/REQUIREMENTS.md`). The Findings text must use the corrected D1 wording; its data file (`web/data/findings.json`) is rebuilt after the arms finish.
+A read-only inspector (FastAPI server plus a web page; React and Phaser are bundled, no internet needed). It never calls a model and never writes to a run. Start it with `python devmem/api/serve.py --a p7_staged --b p7_baseline --tab town --port 8765`, then open `http://127.0.0.1:8765/ui/index.html`. It opens on the two full runs (staged on the left, baseline on the right); the pilot runs stay in the drop-down. The badge reads "FULL RUN, 3 simulated days" and every tab carries the line "single run per arm; descriptive results; differences can be model noise".
+
+What each tab shows (use this as the demo script):
+- **Town replay:** both runs on one clock. Day 1, Day 2 and Day 3 buttons; a drop-down that jumps to any of the 27 injected events; a marker bar (gold ticks = the Stage 3 night sweeps, teal ticks = injected events). Click an avatar to see its action, dialogue, thoughts and its memory (Stage 3 summaries and Stage 4 traits) at that moment.
+- **Memory inspector:** the four memory stages of one agent at any time. Below it, for the staged run: each night's sweep (entries considered, clusters, the summaries with their source memories) and each trait with its sources, its similarity score to the priors (the one flagged trait of 14 is marked) and the text fed into scoring. For the baseline run: its memory stream and thought nodes.
+- **Cost view:** calls per simulated day, split by what the call was for (planning, action description, dialogue, scoring, reflection, memo, consolidation, identity), for both arms.
+- **Findings:** the final results in simple tables (scorecard, calls, recall by distance and per question, replay controls, coherence). The persona-scoring rows come from the corrected replay.
+- **Where it differs and why:** the questions where the arms gave different answers (both answers shown), how the 26 injected events were scored by each arm, one real consolidation night and one real trait with sources, and the first moment each agent behaved differently in the two runs. Where retrieval is not logged it says so.
+- **Side by side:** one agent over a time range in both runs.
+- **Edge cases:** the incidents of the full run with their ledger ids.
+
+The viewer's data for the last four tabs is built offline by `python -m devmem.api.build_full_run` into `devmem/api/web/data/full_run.json`. If the page does not answer, relaunch it (it is started detached so it survives closing a terminal).
 
 ---
 
@@ -196,19 +207,43 @@ Launch: 2026-10-07 15:57:47 IST, both arms, supervised. The key events, all disc
 - **Torn checkpoint copies** (found Oct 8): the external copier copied while upstream was still saving (upstream writes `meta.json` first), so some day-2 copies had truncated embedding files; fixed in the copier, repaired copies are used and labelled (H23).
 - **Staged crash on an invalid area** (Oct 8, 19:23 onward): the model's area reply contained a run-on list; upstream rejected it five times (identical replies at temperature 0) and returned its own fail-safe area "kitchen", which does not exist in the cafe sector, so the run raised `KeyError`. The same step crashed twice and the supervisor wrote ABORT. With PM approval a minimal validator change (touch point 6) was applied to both arms (staged resumed at step 20,790 at 20:01 IST; baseline restarted at step 19,980 at 20:10); the staged arm then passed the step (H27, H28).
 - **Upstream fail-safes** reached the simulation in both arms (H29): the "decide to talk" function fell back to "yes" in 14 of 14 calls in each arm, so conversation starts were not decided by the model; about 38 to 39 percent of schedule revisions fell back to the unchanged schedule. Totals are 0.65 percent (baseline) and 0.44 percent (staged) of upstream function calls, under the 1 percent flag.
+- **Torn-copy fix, staged crash and replay correction in one line each:** the copier now waits for a finished save (H23); a validator change let the staged arm pass the step it crashed on and was applied to both arms (H27, H28); the replay controls first used the recorded scores for the staged condition and were corrected to a fresh replay, which flipped one verdict (S-Maria: right to wrong) (H30).
+- **Chain bugs found and fixed during the evaluation** (all rerun, none changed a result): two source folders with the same name collided in the evaluation driver; the replay sample counted repeated rows (930 calls against a cap of 900); the baseline chain trigger lagged the checkpoint by up to an hour.
 
 ---
 
-## 12. Results so far and what you may and may not say
+## 12. The results, in plain words, and what you may and may not say
 
-**Status on 2026-10-08 evening:** both arms are still running day 3 (staged slightly ahead). No day-3 answer, judge result or replay result exists yet; the final comparison depends on the arms finishing (see the status report in the chat/`docs`). Everything below is **interim**, from day-2 copies (step 13,770, simulated 2023-02-14 14:15):
-- **E1 unique calls:** baseline 7,302; staged 6,008 (staged about 18 percent fewer). The registered prediction (staged more by under 10 percent) is scored **wrong** so far. Do **not** say the stages make the system cheaper: periodic reflection is off in the staged arm (D1), so the gap cannot be credited to the stages. By class the gap sits mainly in action/object description calls, and we make no attribution.
-- **E2 mean prompt tokens per scoring call:** baseline 418.5; staged 572.3 (right).
-- **E3 consolidated fraction:** staged 0.0974 (380 of 3,901 entries), baseline 0 by construction (right). Stage 3 produced 14 summaries and Stage 4 13 traits across the three agents by that checkpoint.
-- **D-2** reproduced exactly offline for all six consolidating nights and scores right, but it was weak by design (at threshold 0.82 nearly every merge falls in the 0.80 to 0.88 band).
-- Recall, coherence, replay and D-1 results do not exist yet.
+Both arms finished all three simulated days. One run per arm, three agents. Full details: `docs/phase9_results_export_day3.md`. The registered predictions were written before any data; "right/wrong" only says whether the prediction held.
 
-**Never say:** that the result is significant; that a difference is caused by Stage 2, 3 or 4 alone; that the system models human memory, development or cognition; that agent behaviour improved; that staged memory is cheaper or more efficient because of the stages; that either arm ran unmodified upstream code. **Do say:** single run per arm, three agents, descriptive; every number labelled live/interim/derived; periodic reflection (focal-point and insight generation) is off in staged and on in baseline, the post-conversation memo calls run in both.
+**Efficiency**
+| What we predicted | What happened | Result |
+|---|---|---|
+| Staged makes a few more calls than baseline (under 10 percent more) | Staged made fewer: 9,100 against 11,858 calls (about 23 percent fewer) | wrong |
+| Staged prompts are longer | Staged 608 tokens per scoring call, baseline 467 | right |
+| Some memories get consolidated in staged, none in baseline | Staged 10 percent of entries consolidated, baseline 0 | right |
+
+Do not say the stages made it cheaper: periodic reflection is off in staged, so the gap cannot be credited to the stages.
+
+**Recall** (39 questions, one excluded; checklist score from 0 to 1, higher is better)
+- Same day: baseline 0.83, staged 0.79. One day: both 1.00. Two days: both 0.75. Theme counts: baseline 0.83, staged 0.50 (only 3 questions).
+- The arms gave the same score on 31 of 38 questions. Staged did worse on 5 (Q_I2, Q_I_theme, Q_M_theme, N_I3, N_M3) and better on 2 (Q_K7, N_K2).
+- Registered checks: same-day questions and two-day mundane questions held (right); the two theme-count checks and the pivotal-event check cannot be scored (too few questions, or no question matches the registered definition: undecidable).
+
+**Coherence** (does an agent contradict its own day-1 answers on day 3?): baseline 1 contradiction in 18 answer pairs, staged 0 in 18. The judge scored 20 of 20 practice pairs correctly, so it can be used. No prediction was registered.
+
+**Does personality shift how important things feel? (replay controls, scores only)**
+| Agent | Prediction | Result |
+|---|---|---|
+| Isabella | staged scores friction events higher | right |
+| Maria | staged scores them higher | wrong (no difference) |
+| Klaus | staged scores them lower | wrong (higher) |
+| Neutral filler text moves scores toward baseline | filler 1.94, baseline 1.98, staged 2.41 | right |
+Each agent has only 2 friction events, so these three lines are very small samples.
+
+**Other checks**: of 14 identity traits, 1 sits closer to the priors text than to its sources (predicted at least a third: wrong, in a good way for the claim). Consolidation merges at similarity 0.80 to 0.88 happened (right, but the prediction was easy by design).
+
+**Never say:** that the result is significant; that a difference is caused by Stage 2, 3 or 4 alone; that the system models human memory or cognition; that agent behaviour improved; that staged memory is cheaper or more efficient because of the stages; that either arm ran unmodified upstream code. **Do say:** one run per arm, three agents, descriptive only; periodic reflection (focal-point and insight generation) is off in staged and on in baseline, while the post-conversation memo calls run in both.
 
 ---
 
@@ -239,8 +274,8 @@ Launch: 2026-10-07 15:57:47 IST, both arms, supervised. The key events, all disc
 18. *Why only three agents and one run per arm?* Free-tier quotas and wall time; hence no significance claims.
 19. *How is recall graded?* By a rule-based key-fact checklist grader, validated against 30 developer-authored labels (94.7 percent item agreement; the disagreements are listed). No LLM judge for the primary score.
 20. *How is coherence judged?* An LLM judge with a fixed rubric, calibrated on 20 authored pairs; interpretable only at 80 percent accuracy or better; parse failures are counted, never guessed.
-21. *What are the predictions?* Written before data: staged more calls (under 10 percent), higher prompt tokens, consolidated fraction above zero, recall relations R1 to R5, persona-specific scoring directions, D-1 and D-2. Each is scored right, wrong or undecidable and reported either way. So far E1 is wrong, E2 and E3 right.
-22. *Why is E1 wrong and does that mean your system is cheaper?* Staged made fewer calls so far, but periodic reflection is off in staged by decision D1, so the difference cannot be credited to the stages. We report it as registered and make no efficiency claim.
+21. *What are the predictions?* Written before data: staged more calls (under 10 percent), higher prompt tokens, consolidated fraction above zero, recall relations R1 to R5, persona-specific scoring directions, D-1 and D-2. Each is scored right, wrong or undecidable and reported either way. Final: E1 wrong; E2, E3, R4, R5, S-Isabella, S-filler, D-2 right; S-Maria, S-Klaus, D-1 wrong; R1, R2, R3 undecidable.
+22. *Why is E1 wrong and does that mean your system is cheaper?* Staged made about 23 percent fewer calls (9,100 against 11,858), but periodic reflection is off in staged by decision D1, so the difference cannot be credited to the stages. We report it as registered and make no efficiency claim.
 23. *What do the replay controls show?* How the scoring prompt variants score the same recorded events (priors, another persona's priors, filler, none). They say nothing about behaviour.
 24. *Is there a control for the priors?* Yes: the mismatch-persona and neutral-filler conditions in the replay, plus baseline injection of the same priors as thoughts.
 25. *What about statistics?* Bootstrap intervals over questions within agents are descriptive only; with three agents and one seed there are no p-values.
@@ -249,10 +284,14 @@ Launch: 2026-10-07 15:57:47 IST, both arms, supervised. The key events, all disc
 26. *Did anything go wrong?* Yes; all of it is disclosed: 429 waves, a timeout change, an external kill, a laptop power-off, torn checkpoint copies, a crash on an invalid area (fixed with a validator change applied to both arms), and fail-safe values that reached the simulation (section 11). Replayed stretches are counted once in unique figures.
 27. *Do both arms run the same code?* Yes, except the staged-only stages; but from the restart on, the area parsing differs from upstream in both arms (touch point 6), and we say so.
 28. *Why did conversations not depend on the model?* In this setup upstream's "decide to talk" fell back to its fail-safe "yes" every time in both arms (14 of 14), because the model's answer format was rejected by upstream's validator. We report it and make no claim about conversation initiation.
-29. *Is the staged arm's lower call count an artefact?* Possibly partly; by class the gap is mainly in action/object description calls. We do not attribute it.
+29. *Is the staged arm's lower call count an artefact?* Possibly partly; by class the gap is mainly in the calls that describe actions and objects, not in scoring. We do not attribute it.
 30. *What is excluded?* Injected event I6 in both arms (not perceived in staged; probably attention crowding on a busy tile, unverified).
 31. *Could the result be a fluke of the free tier?* Quota and rate-limit waits changed wall time, not simulated content; replayed steps are removed from unique counts; the arms ran on disjoint key pools.
 32. *What would you do next?* More agents and seeds, an ablation arm with reflection on in the staged arm, a validated behavioural measure, and a human evaluation of recall and coherence.
+33. *Did the stages help recall?* Not visibly: the two arms scored the same on 31 of 38 questions, staged was lower on 5 and higher on 2, and the biggest gap is in the 3 theme-count questions. With one run and three agents that is a description, not a finding.
+34. *Did the personality priors change how events were scored?* For Isabella yes in the predicted direction; for Maria no difference; for Klaus the opposite direction. Each has only two friction events, so we do not generalise. Scores only, not behaviour.
+35. *Why did one replay verdict change late?* The first replay reused the staged arm's recorded scores as the staged condition; the pre-registration says all conditions are replays, so we reran it as a fresh replay and disclosed the change (ledger H30). One verdict (Maria) flipped.
+36. *Why can the staged arm be trusted at day 3 after its crash?* The crash was an upstream parsing failure, not a memory failure; it was resumed from its last save, the fix applies to both arms, and the replayed steps are counted once. It is disclosed in H27 and H28.
 
 **If asked something not covered:** say what the data show and what they do not; point to `docs/CLAIMS_LEDGER.md` and `docs/phase9_claims_not_supported.md`; never extrapolate.
 
